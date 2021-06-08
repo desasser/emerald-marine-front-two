@@ -22,6 +22,35 @@ const API = {
     },
     deleteUser: username => {
         return axios.delete(`${URL_PREFIX}/users/${username}`)
+    },
+
+    // Blog post routes
+    getAllBlogPosts: () => {
+        return axios.get(`${URL_PREFIX}/blogposts`)
+    },
+    getOneBlogPost: id => {
+        return axios.get(`${URL_PREFIX}/blogposts/${id}`)
+    },
+    createBlogPost: token => {
+        return axios.post(`${URL_PREFIX}/blogposts`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+    updateBlogPost: (id, token) => {
+        return axios.put(`${URL_PREFIX}/blogposts/${id}`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+    deleteBlogPost: (id, token) => {
+        return axios.delete(`${URL_PREFIX}/blogposts/${id}`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
     }
 
 }
