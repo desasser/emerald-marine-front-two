@@ -7,6 +7,7 @@ import Cart from "./pages/Cart"
 import Contact from "./pages/Contact"
 import Home from "./pages/Home"
 import News from "./pages/News"
+import Admin from './pages/Admin';
 import Products from "./pages/Products"
 import Support from "./pages/Support"
 import theme from './theme-provider'
@@ -40,6 +41,7 @@ function App() {
             <Route path="/news" component={News} />
             <Route path="/products" component={Products} />
             <Route path="/support" component={Support} />
+            <Route path='/admin' component={Admin}></Route>
           </Switch>
         </Router>
       </main>
