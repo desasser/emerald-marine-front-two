@@ -61,32 +61,32 @@ const Header = () => {
           <a to='/' className={classes.link}>
             <EmeraldMarineLogo className={classes.imgContainer} />
           </a>
-          <Link to="/" className={classes.linkStyles}>
+          <Link href="/" className={classes.linkStyles}>
             <Typography variant='h6'>
               Home
             </Typography>
           </Link>
-          <Link to="/products" className={classes.linkStyles}>
+          <Link href="/products" className={classes.linkStyles}>
             <Typography variant='h6'>
               Products
             </Typography>
           </Link>
-          <Link to="/news" className={classes.linkStyles}>
+          <Link href="/news" className={classes.linkStyles}>
             <Typography variant='h6'>
               News
             </Typography>
           </Link>
-          <Link to="/support" className={classes.linkStyles}>
+          <Link href="/support" className={classes.linkStyles}>
             <Typography variant='h6'>
               Support
             </Typography>
           </Link>
-          <Link to="/contact" className={classes.linkStyles}>
+          <Link href="/contact" className={classes.linkStyles}>
             <Typography variant='h6'>
               Contact
             </Typography>
           </Link>
-          <Link to="/cart" className={classes.linkStyles}>
+          <Link href="/cart" className={classes.linkStyles}>
             <Typography variant='h6'>
               Cart
             </Typography>
