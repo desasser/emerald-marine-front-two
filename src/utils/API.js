@@ -13,8 +13,8 @@ const API = {
     getAllUsers: () => {
         return axios.get(`${URL_PREFIX}/users`)
     },
-    updateUserInfo: (username, token) => {
-        return axios.put(`${URL_PREFIX}/users/${username}`, {
+    updateUserInfo: (username, token, userData) => {
+        return axios.put(`${URL_PREFIX}/users/${username}`, userData, {
             headers: {
                 authorization: `Bearer: ${token}`
             }
@@ -31,15 +31,15 @@ const API = {
     getOneBlogPost: id => {
         return axios.get(`${URL_PREFIX}/blogposts/${id}`)
     },
-    createBlogPost: token => {
-        return axios.post(`${URL_PREFIX}/blogposts`, {
+    createBlogPost: (postData, token) => {
+        return axios.post(`${URL_PREFIX}/blogposts`, postData, {
             headers: {
                 authorization: `Bearer: ${token}`
             }
         });
     },
-    updateBlogPost: (id, token) => {
-        return axios.put(`${URL_PREFIX}/blogposts/${id}`, {
+    updateBlogPost: (id, postData, token) => {
+        return axios.put(`${URL_PREFIX}/blogposts/${id}`, postData, {
             headers: {
                 authorization: `Bearer: ${token}`
             }
@@ -60,15 +60,15 @@ const API = {
     getOneNewsArticle: id => {
         return axios.get(`${URL_PREFIX}/news/${id}`)
     },
-    createNewsArticle: token => {
-        return axios.post(`${URL_PREFIX}/news`, {
+    createNewsArticle: (articleData, token) => {
+        return axios.post(`${URL_PREFIX}/news`, articleData, {
             headers: {
                 authorization: `Bearer: ${token}`
             }
         });
     },
-    updateNewsArticle: (id, token) => {
-        return axios.put(`${URL_PREFIX}/news/${id}`, {
+    updateNewsArticle: (id, articleData, token) => {
+        return axios.put(`${URL_PREFIX}/news/${id}`, articleData, {
             headers: {
                 authorization: `Bearer: ${token}`
             }
@@ -89,15 +89,15 @@ const API = {
     getOnePressRelease: id => {
         return axios.get(`${URL_PREFIX}/press/${id}`)
     },
-    createPressRelease: token => {
-        return axios.post(`${URL_PREFIX}/press`, {
+    createPressRelease: (pressData, token) => {
+        return axios.post(`${URL_PREFIX}/press`, pressData, {
             headers: {
                 authorization: `Bearer: ${token}`
             }
         });
     },
-    updatePressRelease: (id, token) => {
-        return axios.put(`${URL_PREFIX}/press/${id}`, {
+    updatePressRelease: (id, pressData, token) => {
+        return axios.put(`${URL_PREFIX}/press/${id}`, pressData, {
             headers: {
                 authorization: `Bearer: ${token}`
             }
@@ -111,6 +111,36 @@ const API = {
         });
     },
 
-    // 
+    // Product Routes
+    getAllProducts: () => {
+        return axios.get(`${URL_PREFIX}/products`)
+    },
+    getOneProduct: id => {
+        return axios.get(`${URL_PREFIX}/products/${id}`)
+    },
+    createProduct: (productData, token) => {
+        return axios.post(`${URL_PREFIX}/products`, productData, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+    updateProduct: (id, productData, token) => {
+        return axios.put(`${URL_PREFIX}/products/${id}`, productData, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+    deleteProduct: (id, token) => {
+        return axios.delete(`${URL_PREFIX}/products/${id}`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+
+    // Mailing list routes
+    
 
 }
