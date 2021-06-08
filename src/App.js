@@ -35,10 +35,9 @@ function App() {
             <Route path="/cart" component={Cart} />
             <Route path="/contact" component={Contact} />
             <Route path="/home" component={Home} />
-            {/* <Route path="/news" component={News} /> */}
-            {/* <Route path="/products" component={Products} /> */}
-            {/* <Route path="/support" component={Support} /> */}
-
+            <Route path="/news" component={News} />
+            <Route path="/products" component={Products} />
+            <Route path="/support" component={Support} />
           </Switch>
         </Router>
       </main>
