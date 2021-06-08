@@ -31,10 +31,10 @@ function App() {
       <main className={classes.main}>
         <Router>
           <Switch>
-            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/" component={Home} />
             <Route path="/cart" component={Cart} />
-            {/* <Route path="/contact" component={Contact} /> */}
-            {/* <Route path="/home" component={Home} /> */}
+            <Route path="/contact" component={Contact} />
+            <Route path="/home" component={Home} />
             {/* <Route path="/news" component={News} /> */}
             {/* <Route path="/products" component={Products} /> */}
             {/* <Route path="/support" component={Support} /> */}
