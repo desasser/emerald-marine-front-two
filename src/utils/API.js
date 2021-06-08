@@ -51,6 +51,66 @@ const API = {
                 authorization: `Bearer: ${token}`
             }
         });
-    }
+    },
+
+    // News article routes
+    getAllNewsArticles: () => {
+        return axios.get(`${URL_PREFIX}/news`)
+    },
+    getOneNewsArticle: id => {
+        return axios.get(`${URL_PREFIX}/news/${id}`)
+    },
+    createNewsArticle: token => {
+        return axios.post(`${URL_PREFIX}/news`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+    updateNewsArticle: (id, token) => {
+        return axios.put(`${URL_PREFIX}/news/${id}`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+    deleteNewsArticle: (id, token) => {
+        return axios.delete(`${URL_PREFIX}/news/${id}`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    }, 
+
+    // Press release routes
+    getAllPressReleases: () => {
+        return axios.get(`${URL_PREFIX}/press`)
+    },
+    getOnePressRelease: id => {
+        return axios.get(`${URL_PREFIX}/press/${id}`)
+    },
+    createPressRelease: token => {
+        return axios.post(`${URL_PREFIX}/press`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+    updatePressRelease: (id, token) => {
+        return axios.put(`${URL_PREFIX}/press/${id}`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    }, 
+    deletePressRelease: (id, token) => {
+        return axios.delete(`${URL_PREFIX}/press/${id}`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+
+    // 
 
 }
