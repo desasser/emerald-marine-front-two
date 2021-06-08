@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     margin: '0 auto',
     maxWidth: '80%',
     marginTop: '64px',
-     height: '100vh'
+    //  height: '100vh'
   },
 })
 
@@ -32,7 +32,7 @@ function App() {
         <Router>
           <Switch>
             {/* <Route exact path="/" component={Home} /> */}
-            {/* <Route path="/cart" component={Cart} /> */}
+            <Route path="/cart" component={Cart} />
             {/* <Route path="/contact" component={Contact} /> */}
             {/* <Route path="/home" component={Home} /> */}
             {/* <Route path="/news" component={News} /> */}

@@ -86,11 +86,11 @@ const Header = () => {
               Contact
             </Typography>
           </Link>
-          <Link to="/cart" className={classes.linkStyles}>
+          <a to="/cart" className={classes.linkStyles}>
             <Typography variant='h6'>
               Cart
             </Typography>
-          </Link>
+          </a>
         </Toolbar>
       </div>
     </AppBar>
