@@ -2,12 +2,14 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { makeStyles, CssBaseline } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core/styles'
 import Cart from "./pages/Cart"
 import Contact from "./pages/Contact"
 import Home from "./pages/Home"
 import News from "./pages/News"
 import Products from "./pages/Products"
 import Support from "./pages/Support"
+import theme from './theme-provider'
 
 const useStyles = makeStyles({
   main: {
@@ -25,7 +27,7 @@ function App() {
   const classes = useStyles()
 
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
       <main className={classes.main}>
@@ -42,7 +44,7 @@ function App() {
         </Router>
       </main>
       <Footer />
-    </div>
+    </ThemeProvider>
   );
 }
 
