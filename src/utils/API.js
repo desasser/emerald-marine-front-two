@@ -141,6 +141,38 @@ const API = {
     },
 
     // Mailing list routes
-    
+    getMailingList: () => {
+        return axios.get(`${URL_PREFIX}/mailing`)
+    },
+    addToMailingList: userData => {
+        return axios.post(`${URL_PREFIX}/mailing`, userData)
+    },
+    updateMailingList: (userData, id, token) => {
+        return axios.put(`${URL_PREFIX}/mailing/${id}`, userData, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+    removeFromTestList: id => {
+        return axios.delete(`${URL_PREFIX}/test/${id}`)
+    },
 
+    // Testing reminders routes
+    getTestList: () => {
+        return axios.get(`${URL_PREFIX}/test`)
+    },
+    addToTestList: userData => {
+        return axios.post(`${URL_PREFIX}/test`, userData)
+    },
+    updateTestList: (userData, id, token) => {
+        return axios.put(`${URL_PREFIX}/test/${id}`, userData, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
+    },
+    removeFromTestList: id => {
+        return axios.delete(`${URL_PREFIX}/test/${id}`)
+    }
 }
