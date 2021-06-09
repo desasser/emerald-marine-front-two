@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const URL_PREFIX = 'https://designly-freelance-back.herokuapp.com/'
+const URL_PREFIX = 'https://designly-freelance-back.herokuapp.com'
 
 const API = {
     // User routes
@@ -154,8 +154,8 @@ const API = {
             }
         });
     },
-    removeFromTestList: id => {
-        return axios.delete(`${URL_PREFIX}/test/${id}`)
+    removeFromMailingListList: id => {
+        return axios.delete(`${URL_PREFIX}/mailing/${id}`)
     },
 
     // Testing reminders routes
@@ -176,3 +176,5 @@ const API = {
         return axios.delete(`${URL_PREFIX}/test/${id}`)
     }
 }
+
+export default API;

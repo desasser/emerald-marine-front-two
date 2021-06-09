@@ -1,8 +1,70 @@
-import React from "react"
+import React, {useState} from "react";
+import {useHistory} from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import API from '../utils/API';
 
 const AdminLogin = () => {
+    let history = useHistory();
+
+    const [user, setUser] = useState({
+        username: '',
+        password: '',
+        token: ''
+    });
+
+    const [login, setLogin] = useState({
+        username: '',
+        password: ''
+    });
+
+    const handleInputChange = e => {
+        const {name, value} = e.target;
+        setLogin({
+            ...login,
+            [name]: value
+        });
+    }
+
+    const wrongLogin = () => {
+        setUser({
+            username: '',
+            password: '',
+            token: ''
+        });
+        localStorage.removeItem('token');
+        alert('Username or password is incorrect!')
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        API.loginUser(login).then(res => {
+            localStorage.setItem('token', res.data.token);
+            setUser({
+                username: res.data.username,
+                password: res.data.password,
+                token: res.data.token
+            });
+            setLogin({
+                username: '',
+                password: ''
+            });
+            history.push('/admin')
+        }).catch(err => {
+            err ? wrongLogin() : history.push('/admin')
+        }); 
+    }
+
+    
+    
     return (
-        <h1>Here's your dumb admin dashboard login dummy</h1>
+        <form  noValidate autoComplete="off">
+            <h1>Here's your dumb admin dashboard login dummy</h1>
+            <TextField id="outlined-basic" label="Username" variant="outlined" name="username" onChange={handleInputChange} />
+            <TextField id="outlined-basic" label="Password" variant="outlined" name="password" onChange={handleInputChange} />
+            <br />
+            <Button variant="contained" onClick={handleSubmit} >Submit</Button>
+        </form>
     )
 }
 
