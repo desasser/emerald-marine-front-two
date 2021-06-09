@@ -3,6 +3,10 @@ const axios = require('axios');
 const URL_PREFIX = 'https://designly-freelance-back.herokuapp.com'
 
 const API = {
+    // Wake up server
+    greeting: () => {
+        return axios.get(`${URL_PREFIX}/`)
+    },
     // User routes
     addNewUser: userData => {
         return axios.post(`${URL_PREFIX}/users/new`, userData)

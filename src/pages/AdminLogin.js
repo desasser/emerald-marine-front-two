@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useHistory} from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -6,6 +6,15 @@ import API from '../utils/API';
 
 const AdminLogin = () => {
     let history = useHistory();
+
+    useEffect(() => {
+        API.greeting().then(res => {
+            console.log(res.data)
+        });
+        if(localStorage.getItem('token')) {
+            history.push('/admin')
+        }
+    }, [localStorage.getItem('token')]);
 
     const [user, setUser] = useState({
         username: '',
@@ -54,8 +63,6 @@ const AdminLogin = () => {
             err ? wrongLogin() : history.push('/admin')
         }); 
     }
-
-    
     
     return (
         <form  noValidate autoComplete="off">
