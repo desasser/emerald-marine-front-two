@@ -17,11 +17,12 @@ const useStyles = makeStyles(() => ({
 
 }))
 
+// TODO: Figure out how to remove token from local storage when it expires
 const Admin = () => {
     let history = useHistory();
     const classes = useStyles();
 
-    const [view, setView] = useState('Product')
+    const [view, setView] = useState('Product');
 
     const handleLogout = () => {
         localStorage.removeItem('token');

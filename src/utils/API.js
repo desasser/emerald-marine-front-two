@@ -145,8 +145,12 @@ const API = {
     },
 
     // Mailing list routes
-    getMailingList: () => {
-        return axios.get(`${URL_PREFIX}/mailing`)
+    getMailingList: token => {
+        return axios.get(`${URL_PREFIX}/mailing`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
     },
     addToMailingList: userData => {
         return axios.post(`${URL_PREFIX}/mailing`, userData)
@@ -163,8 +167,12 @@ const API = {
     },
 
     // Testing reminders routes
-    getTestList: () => {
-        return axios.get(`${URL_PREFIX}/test`)
+    getTestList: token => {
+        return axios.get(`${URL_PREFIX}/test`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
     },
     addToTestList: userData => {
         return axios.post(`${URL_PREFIX}/test`, userData)
