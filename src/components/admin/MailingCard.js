@@ -40,7 +40,7 @@ const MailingCard = ({name, email, removeMe, updateMe}) => {
           </CardContent>
           <CardActions>
             <Button size="small" onClick={removeMe}>Remove from List</Button>
-            <Button size="small" onClick={updateMe}>Update Subscriber Info</Button>
+            <Button size="small" onClick={updateMe}>Edit Subscriber Info</Button>
           </CardActions>
         </Card>
       ); 
