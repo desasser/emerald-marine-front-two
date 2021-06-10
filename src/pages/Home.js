@@ -8,7 +8,6 @@ import TestimonialBanner from "../components/TestimonialBanner"
 import MarketingInfo from "../components/MarketingInfo"
 import ProductBlock from "../components/ProductBlock"
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button } from '@material-ui/core'
 
 export default function Home() {
   const items = [
@@ -49,7 +48,7 @@ export default function Home() {
       <Carousel 
         indicators={false}
         // timeout='500'
-        animation='slide'
+        // animation='slide'
         next={(now, previous) => console.log(`Next User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
         prev={(now, previous) => console.log(`Prev User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
       >
