@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 import mailingListReducer from './reducers/mailingListReducer';
+import testListReducer from './reducers/testListReducer';
 
 const rootReducer = combineReducers({
-    mailingList: mailingListReducer
+    mailingList: mailingListReducer,
+    testList: testListReducer
 });
 
 const store = createStore(

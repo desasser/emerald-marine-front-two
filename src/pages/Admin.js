@@ -1,14 +1,15 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useHistory} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import API from '../utils/API';
+import store from '../utils/store';
 import AdminButton from '../components/admin/AdminButton';
 import Product from '../components/admin/Product';
 import Blog from '../components/admin/Blog';
 import Mailing from '../components/admin/Mailing';
 import News from '../components/admin/News';
-import Press from '../components/admin/Press'
+import Press from '../components/admin/Press';
 
 const useStyles = makeStyles(() => ({
     logout: {
@@ -17,12 +18,46 @@ const useStyles = makeStyles(() => ({
 
 }))
 
-// TODO: Figure out how to remove token from local storage when it expires
 const Admin = () => {
     let history = useHistory();
     const classes = useStyles();
-
+    const token = localStorage.getItem('token');
     const [view, setView] = useState('Product');
+
+    useEffect(() => {
+        API.getMailingList(token).then(res => {
+                store.dispatch({
+                    type: 'GET_MAILING_LIST',
+                    payload: {
+                        mailingList: res.data
+                    }
+                })
+        }).catch(err => {
+            const errorCode = err.message.split(' ')[5]
+            if(errorCode==401) {
+                localStorage.removeItem('token');
+                history.push('/login')
+            } else {
+                console.log(err.message)
+            }
+        });
+        API.getTestList(token).then(res => {
+            store.dispatch({
+                type: 'GET_TEST_LIST',
+                payload: {
+                    testList: res.data
+                }
+            })
+        }).catch(err => {
+            const errorCode = err.message.split(' ')[5]
+            if(errorCode==401) {
+                localStorage.removeItem('token');
+                history.push('/login')
+            } else {
+                console.log(err.message)
+            }
+        });
+    }, [store.getState().mailingList.mailingList]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');

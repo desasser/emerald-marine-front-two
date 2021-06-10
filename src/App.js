@@ -12,6 +12,7 @@ import Admin from './pages/Admin'
 import Products from "./pages/Products"
 import Support from "./pages/Support"
 import theme from './theme-provider'
+import store from './utils/store'
 
 const useStyles = makeStyles({
   main: {
