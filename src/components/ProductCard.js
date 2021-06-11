@@ -1,15 +1,15 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 
-export default function ProductCard({ children, classes, price, sku, title }) {
+export default function ProductCard({ children, classes, price, sku, title, image, alt }) {
 
   return (
     <Card className={classes.mediaRoot}>
       <CardActionArea href={`/product${sku}`}>
         <CardMedia
           className={classes.mediaHeight}
-          image="https://loremflickr.com/320/240"
-          title="Contemplative Reptile"
+          image={`${image}`}
+          title={`${alt}`}
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">

@@ -57,7 +57,7 @@ const Admin = () => {
                 console.log(err.message)
             }
         });
-    }, [store.getState().mailingList.mailingList]);
+    }, [store.getState().mailingList.mailingList, store.getState().testList.testList]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
