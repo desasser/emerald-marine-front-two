@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import Rescue from '../images/rescue.jpg'
 import cgRescue from '../images/coast_guard_rescue.jpg'
 import constructionBarge from '../images/construction_barge.jpg'
@@ -7,9 +7,17 @@ import BlogBanner from "../components/BlogBanner"
 import TestimonialBanner from "../components/TestimonialBanner"
 import MarketingInfo from "../components/MarketingInfo"
 import ProductBlock from "../components/ProductBlock"
+import API from '../utils/API'
+import store from '../utils/store'
 import Carousel from 'react-material-ui-carousel'
 
 export default function Home() {
+  useEffect(() => {
+    API.greeting().then(res => {
+        console.log(res.data)
+    });
+});
+
   const items = [
     {
       name: "Rescue Practice",

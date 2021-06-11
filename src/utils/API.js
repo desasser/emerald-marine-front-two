@@ -1,8 +1,12 @@
 const axios = require('axios');
 
-const URL_PREFIX = 'https://designly-freelance-back.herokuapp.com/'
+const URL_PREFIX = 'https://designly-freelance-back.herokuapp.com'
 
 const API = {
+    // Wake up server
+    greeting: () => {
+        return axios.get(`${URL_PREFIX}/`)
+    },
     // User routes
     addNewUser: userData => {
         return axios.post(`${URL_PREFIX}/users/new`, userData)
@@ -141,8 +145,12 @@ const API = {
     },
 
     // Mailing list routes
-    getMailingList: () => {
-        return axios.get(`${URL_PREFIX}/mailing`)
+    getMailingList: token => {
+        return axios.get(`${URL_PREFIX}/mailing`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
     },
     addToMailingList: userData => {
         return axios.post(`${URL_PREFIX}/mailing`, userData)
@@ -154,13 +162,17 @@ const API = {
             }
         });
     },
-    removeFromTestList: id => {
-        return axios.delete(`${URL_PREFIX}/test/${id}`)
+    removeFromMailingList: id => {
+        return axios.delete(`${URL_PREFIX}/mailing/${id}`)
     },
 
     // Testing reminders routes
-    getTestList: () => {
-        return axios.get(`${URL_PREFIX}/test`)
+    getTestList: token => {
+        return axios.get(`${URL_PREFIX}/test`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        });
     },
     addToTestList: userData => {
         return axios.post(`${URL_PREFIX}/test`, userData)
@@ -176,3 +188,5 @@ const API = {
         return axios.delete(`${URL_PREFIX}/test/${id}`)
     }
 }
+
+export default API;
