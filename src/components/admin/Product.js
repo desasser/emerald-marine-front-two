@@ -28,8 +28,13 @@ const Product = () => {
                 <Grid item xs={12}>
                     <h1>Current Products</h1>
                     <br/>
+                    <Grid container spacing={5} justify='space-evenly'>
                     {products.map(product => 
-                        <ProductCard price={product.price} sku={product.SKU} title={product.name} image={product.image} alt={product.alt} classes={classes}/>)}
+                        <Grid item xs={4}>
+                        <ProductCard price={product.price} sku={product.SKU} title={product.name} image={product.image} alt={product.alt} classes={classes}/>
+                        </Grid>
+                        )}
+                    </Grid>
                 </Grid>
             </Grid>
         </div>
