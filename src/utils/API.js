@@ -162,7 +162,7 @@ const API = {
             }
         });
     },
-    removeFromMailingListList: id => {
+    removeFromMailingList: id => {
         return axios.delete(`${URL_PREFIX}/mailing/${id}`)
     },
 

@@ -2,11 +2,13 @@ import { createStore, combineReducers } from 'redux';
 import mailingListReducer from './reducers/mailingListReducer';
 import testListReducer from './reducers/testListReducer';
 import modalReducer from './reducers/modalReducer';
+import productReducer from './reducers/productReducer';
 
 const rootReducer = combineReducers({
     mailingList: mailingListReducer,
     testList: testListReducer,
-    modal: modalReducer
+    modal: modalReducer,
+    products: productReducer
 });
 
 const store = createStore(

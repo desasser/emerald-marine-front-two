@@ -1,3 +1,4 @@
+import React, {useEffect} from 'react';
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -13,6 +14,7 @@ import Products from "./pages/Products"
 import Support from "./pages/Support"
 import theme from './theme-provider'
 import store from './utils/store'
+import API from './utils/API'
 
 const useStyles = makeStyles({
   main: {
@@ -28,6 +30,18 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles()
+
+  useEffect(() => {
+    API.getAllProducts().then(res => {
+      store.dispatch({
+        type: 'GET_PRODUCTS',
+        payload: {
+          products: res.data
+        }
+      });
+    });
+    
+  })
 
   return (
     <ThemeProvider theme={theme}>
