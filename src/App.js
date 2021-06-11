@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     margin: '0 auto',
     maxWidth: '80%',
     marginTop: '64px',
-    //  height: '100vh'
+    //  height: '80vh'
   },
 })
 
