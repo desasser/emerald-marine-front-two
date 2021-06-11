@@ -43,11 +43,13 @@ export default function BlogBanner() {
   }
 
   return (
-    <div style={{ backgroundColor: 'grey', height: '150px', width: '50vw', padding: '20px' }}>
+    <div style={{ height: '150px', width: '50vw', padding: '20px' }}>
       <Carousel
         indicators={false}
         // timeout='500'
+        interval='10000'
         // animation='slide'
+        navButtonsAlwaysInvisible={true}
         next={(now, previous) => console.log(`Next User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
         prev={(now, previous) => console.log(`Prev User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
       >
