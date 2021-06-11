@@ -40,8 +40,32 @@ function App() {
         }
       });
     });
+    API.getAllBlogPosts().then(res => {
+      store.dispatch({
+        type: 'GET_BLOG_POSTS',
+        payload: {
+          blog: res.data
+        }
+      });
+    });
+    API.getAllNewsArticles().then(res => {
+      store.dispatch({
+        type: 'GET_NEWS_ARTICLES',
+        payload: {
+          newsArticles: res.data
+        }
+      });
+    });
+    API.getAllPressReleases().then(res => {
+      store.dispatch({
+        type: 'GET_PRESS_RELEASES',
+        payload: {
+          pressReleases: res.data
+        }
+      });
+    });
     
-  })
+  }, [store.getState().products.products, store.getState().blog.blog, store.getState().newsArticles.newsArticles, store.getState().pressReleases.pressReleases])
 
   return (
     <ThemeProvider theme={theme}>
