@@ -30,6 +30,10 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles()
+  const products = store.getState().products.products;
+  const blog = store.getState().blog.blog;
+  const newsArticles = store.getState().newsArticles.newsArticles;
+  const pressReleases = store.getState().pressReleases.pressReleases;
 
   useEffect(() => {
     API.getAllProducts().then(res => {
@@ -65,7 +69,7 @@ function App() {
       });
     });
     
-  }, [store.getState().products.products, store.getState().blog.blog, store.getState().newsArticles.newsArticles, store.getState().pressReleases.pressReleases])
+  }, [products, blog, newsArticles, pressReleases])
 
   return (
     <ThemeProvider theme={theme}>
