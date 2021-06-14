@@ -1,6 +1,7 @@
 import React from 'react'
 import CartCard from './CartCard';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   // flexBox: {
@@ -40,10 +41,29 @@ export default function CartContent() {
   const classes = useStyles();
 
   return (
-    <div style={{width: '60vw'}}>
-      <CartCard title='Product 4' classes={classes} sku='4444' price='99.99'>This is a custom description for Product 4, Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.</CartCard>
-      <CartCard title='Product 4' classes={classes} sku='4444' price='99.99'>This is a custom description for Product 4, Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.</CartCard>
-      <CartCard title='Product 4' classes={classes} sku='4444' price='99.99'>This is a custom description for Product 4, Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.</CartCard>
+    <div style={{ width: '60vw' }}>
+      <CartCard title='Product 4' classes={classes} sku='4444' price='99.99' shipping='123.12'>
+        This is a custom description for Product 4
+      </CartCard>
+      <CartCard title='Product 4' classes={classes} sku='4444' price='99.99' shipping='123.12'>
+        This is a custom description for Product 4
+      </CartCard>
+      <CartCard title='Product 4' classes={classes} sku='4444' price='99.99' shipping='123.12'>
+        This is a custom description for Product 4
+      </CartCard>
+      <hr></hr>
+      <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
+        Shipping Estimate Total:
+      </Typography>
+      <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
+        $XXXX.XX
+      </Typography>
+      <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
+        Total Cost:
+      </Typography>
+      <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
+        $XXXX.XX
+      </Typography>
     </div>
   )
 }
