@@ -14,8 +14,6 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
-    // maxWidth: 1500,
-    width: '80%'
   },
   image: {
     width: 128,
@@ -29,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CartCard({ children, price, sku, title }) {
+export default function CartCard({ children, price, shipping, sku, title }) {
   const classes = useStyles();
 
   return (
@@ -60,8 +58,9 @@ export default function CartCard({ children, price, sku, title }) {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item>
-              <Typography variant="subtitle1">${price}</Typography>
+            <Grid item style={{ display: 'flex', flexDirection:'column', height:'100%', justifyContent:'space-between'}}>
+              <Typography variant="subtitle1" style={{ textAlign: 'right'}}>${price}</Typography>
+              <Typography variant="subtitle1">Shipping Estimate: ${shipping}</Typography>
             </Grid>
           </Grid>
         </Grid>
