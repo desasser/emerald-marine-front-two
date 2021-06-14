@@ -13,7 +13,7 @@ export const updateMailingList = () => {
         });
     }).catch(err => {
     const errorCode = err.message.split(' ')[5]
-    if(errorCode==401) {
+    if(errorCode===401) {
         localStorage.removeItem('token');
     } else {
         console.log(err.message)
@@ -31,7 +31,7 @@ export const updateTestList = () => {
         })
     }).catch(err => {
         const errorCode = err.message.split(' ')[5]
-        if(errorCode==401) {
+        if(errorCode===401) {
             localStorage.removeItem('token');
         } else {
             console.log(err.message)

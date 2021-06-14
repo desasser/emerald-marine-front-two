@@ -58,16 +58,10 @@ const Mailing = () => {
 
     const removeMailingList = e => {
         const email = e.currentTarget.getAttribute('data-email');
-        const id = e.currentTarget.getAttribute('data-id');
-        const newMailingList = mailingList.filter(list => list._id !== id);
         API.removeFromMailingList(email).then(res => {
-            store.dispatch({
-                type: 'GET_MAILING_LIST',
-                payload: {
-                    ...store.getState.mailingList,
-                    mailingList: newMailingList
-                }
-            });
+            if(res) {
+            updateMailingList();
+            }
             openAlertModal();
         }).catch(err => {
             console.log(err.message)
@@ -76,17 +70,10 @@ const Mailing = () => {
 
     const removeTestList = e => {
         const email = e.currentTarget.getAttribute('data-email');
-        const id = e.currentTarget.getAttribute('data-id');
-        const newTestList = testList.filter(list => list._id !== id);
         API.removeFromTestList(email).then(res => {
-            console.log(res)
-            store.dispatch({
-                type: 'GET_TEST_LIST',
-                payload: {
-                    ...store.getState.testList,
-                    testList: newTestList
-                }
-            });
+            if(res) {
+                updateTestList();
+            }
             openAlertModal();
         }).catch(err => {
             console.log(err.message)
