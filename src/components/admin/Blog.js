@@ -1,10 +1,44 @@
-import React from "react";
+import React, {useState} from "react";
 import Grid from '@material-ui/core/Grid';
 import BlogCard from '../BlogCard';
+import AddForm from './AddForm';
 import store from '../../utils/store';
+import API from '../../utils/API';
+import {updateBlogPosts} from '../../utils/helpers/updateStore';
 
 const Blog = () => {
     const posts = store.getState().blog.blog;
+    const token = localStorage.getItem('token');
+    const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
+    const [current, setCurrent] = useState({
+        title: '',
+        date: '',
+        categories: '',
+        tags: '',
+        image: 'http://placekitten.com/g/200/300',
+        alt: '',
+        intro: '',
+        content: ''
+    });
+    const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}, {name: 'content', content: `${current.content}`}]
+
+    const handleAddFormChange = e => {
+        const {name, value} = e.target;
+        setCurrent({
+            ...current,
+            [name]: value
+        });
+    }
+
+    const addBlogPost = () => {
+        API.createBlogPost(current, token).then(res => {
+            if(res.data) {
+                updateBlogPosts();
+            }
+        }).catch(err => {
+            console.log(err.message)
+        });
+    }
 
     return (
         <div>
@@ -18,6 +52,9 @@ const Blog = () => {
                         <Grid item xs={6}>
                             <BlogCard id='#' title={post.title} image={post.image} alt={post.alt} children={post.intro}/>
                         </Grid>)}
+                </Grid>
+                <Grid item xs={12}>
+                    <AddForm section='Blog' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost}/>
                 </Grid>
             </Grid>
         </div>

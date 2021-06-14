@@ -16,7 +16,7 @@ const Mailing = () => {
         name: '',
         email: ''
     });
-    
+
     const fields = [{name: 'name', content: `${current.name}`}, {name: 'email', content: `${current.email}`}];
 
     const openAlertModal = () => {
