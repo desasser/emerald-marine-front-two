@@ -11,16 +11,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BlogCard({ children, num, title }) {
+export default function BlogCard({ children, id, title, image, alt }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardActionArea href={`/blog${num}`}>
+      <CardActionArea href={`/blog${id}`}>
         <CardMedia
           className={classes.media}
-          image="https://loremflickr.com/320/240"
-          title="Contemplative Reptile"
+          image={`${image}`}
+          title={`${alt}`}
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">
