@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {useHistory} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import MailingCard from './MailingCard';
 import AlertModal from './AlertModal';
@@ -12,12 +11,12 @@ const Mailing = () => {
     const token = localStorage.getItem('token');
     const mailingList = store.getState().mailingList.mailingList
     const testList = store.getState().testList.testList
-    let history = useHistory();
 
     const [current, setCurrent] = useState({
         name: '',
         email: ''
     });
+    
     const fields = [{name: 'name', content: `${current.name}`}, {name: 'email', content: `${current.email}`}];
 
     const openAlertModal = () => {

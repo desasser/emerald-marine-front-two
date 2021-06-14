@@ -38,3 +38,47 @@ export const updateTestList = () => {
         }
     });
 }
+
+export const updateProducts = () => {
+    API.getAllProducts().then(res => {
+        store.dispatch({
+          type: 'GET_PRODUCTS',
+          payload: {
+            products: res.data
+          }
+        });
+      });
+}
+
+export const updateBlogPosts = () => {
+    API.getAllBlogPosts().then(res => {
+        store.dispatch({
+          type: 'GET_BLOG_POSTS',
+          payload: {
+            blog: res.data
+          }
+        });
+      });
+}
+
+export const updateNewsArticles = () => {
+    API.getAllNewsArticles().then(res => {
+        store.dispatch({
+          type: 'GET_NEWS_ARTICLES',
+          payload: {
+            newsArticles: res.data
+          }
+        });
+      });
+}
+
+export const updatePressReleases = () => {
+    API.getAllPressReleases().then(res => {
+        store.dispatch({
+          type: 'GET_PRESS_RELEASES',
+          payload: {
+            pressReleases: res.data
+          }
+        });
+      });
+}
