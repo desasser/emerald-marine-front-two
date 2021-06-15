@@ -10,7 +10,7 @@ function handleClick(event) {
 
 const SingleProduct = () => (
   <>
-    <div style={{ marginTop: '30px' }}>
+    <div style={{ marginTop: '30px', width: '100%' }}>
       <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
         <Link color="inherit" href="/" onClick={handleClick}>
           Home
@@ -21,8 +21,7 @@ const SingleProduct = () => (
         <Typography color="textPrimary">Product name</Typography>
       </Breadcrumbs>
     </div>
-      <Typography variant='h2' style={{ marginTop: '50px' }}>Product Name</Typography>
-      <SingleProductContent></SingleProductContent>
+    <SingleProductContent></SingleProductContent>
   </>
 )
 
