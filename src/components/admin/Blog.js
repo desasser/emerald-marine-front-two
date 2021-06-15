@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Grid from '@material-ui/core/Grid';
+import { Button } from '@material-ui/core';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
 import store from '../../utils/store';
@@ -40,6 +41,14 @@ const Blog = () => {
         });
     }
 
+    const removeMe = () => {
+        console.log('removed')
+    }
+
+    const updateMe = () => {
+        console.log('updated')
+    }
+
     return (
         <div>
             <Grid container spacing={2}>
@@ -51,6 +60,8 @@ const Blog = () => {
                     {posts.map(post => 
                         <Grid item xs={6}>
                             <BlogCard id='#' title={post.title} image={post.image} alt={post.alt} children={post.intro}/>
+                            <Button size="small" onClick={removeMe}>Delete Blog Post</Button>
+                            <Button size="small" onClick={updateMe}>Edit Blog Post</Button>
                         </Grid>)}
                 </Grid>
                 <Grid item xs={12}>
