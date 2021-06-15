@@ -1,8 +1,9 @@
 import React from 'react'
 import ProductCard from '../components/ProductCard'
 import InputForm from '../components/InputForm'
-import { Container, Grid } from '@material-ui/core'
+import { Container, Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
+import store from '../utils/store';
 
 const useStyles = makeStyles((theme) => ({
   flexBox: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mediaRoot: {
     maxWidth: 350,
+    // height: 550
   },
   mediaHeight: {
     height: 250
@@ -41,15 +43,29 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProductContent() {
   const classes = useStyles();
+  const products = store.getState().products.products;
+  const news = store.getState().blog.blog;
+
+  console.log('================================================')
+  console.log(products.length)
+  console.log(news)
 
   return (
-    <Container style={{ marginTop: '20px' }}>
-      <InputForm classes={classes} text={''} label={'search...'} buttonText={'search'}/>
+    <Container style={{ marginTop: '1.5em' }}>
+      <div style={{display:'flex', alignItems:'flex-end'}}>
+        <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', display: 'inline-block' }}>All Products</Typography>
+        <InputForm classes={classes} text={''} label={'search...'} buttonText={'search'} />
+      </div>
       <hr></hr>
       <Grid container className={classes.flexBox} spacing={2}>
         <Grid item xs={12}>
           <Grid container justify='center' spacing={4}>
-            <Grid item>
+            {products.map(product => (
+              <Grid item>
+                <ProductCard title={product.name} classes={classes} sku={product.sku} price={product.price} image={product.image}>{product.description} </ProductCard>
+              </Grid>
+            ))}
+            {/* <Grid item>
               <ProductCard title='Product 1' classes={classes} sku='1111' price='99.99'>This is a custom description for Product 1, Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters. </ProductCard>
             </Grid>
             <Grid item>
@@ -66,7 +82,7 @@ export default function ProductContent() {
             </Grid>
             <Grid item>
               <ProductCard title='Product 6' classes={classes} sku='6666' price='99.99'>This is a custom description for Product 6, Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.</ProductCard>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
       </Grid>

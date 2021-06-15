@@ -43,6 +43,7 @@ function App() {
     updateNewsArticles();
     updatePressReleases(); 
   }, [products, blog, newsArticles, pressReleases])
+  // 
 
   return (
     <ThemeProvider theme={theme}>
