@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { makeStyles, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles'
+import { updateProducts, updateBlogPosts, updateNewsArticles, updatePressReleases } from './utils/helpers/updateStore';
 import Cart from "./pages/Cart"
 import Contact from "./pages/Contact"
 import Home from "./pages/Home"
@@ -14,7 +15,6 @@ import Products from "./pages/Products"
 import Support from "./pages/Support"
 import theme from './theme-provider'
 import store from './utils/store'
-import API from './utils/API'
 
 const useStyles = makeStyles({
   main: {
@@ -36,39 +36,10 @@ function App() {
   const pressReleases = store.getState().pressReleases.pressReleases;
 
   useEffect(() => {
-    API.getAllProducts().then(res => {
-      store.dispatch({
-        type: 'GET_PRODUCTS',
-        payload: {
-          products: res.data
-        }
-      });
-    });
-    API.getAllBlogPosts().then(res => {
-      store.dispatch({
-        type: 'GET_BLOG_POSTS',
-        payload: {
-          blog: res.data
-        }
-      });
-    });
-    API.getAllNewsArticles().then(res => {
-      store.dispatch({
-        type: 'GET_NEWS_ARTICLES',
-        payload: {
-          newsArticles: res.data
-        }
-      });
-    });
-    API.getAllPressReleases().then(res => {
-      store.dispatch({
-        type: 'GET_PRESS_RELEASES',
-        payload: {
-          pressReleases: res.data
-        }
-      });
-    });
-    
+    updateProducts();
+    updateBlogPosts();
+    updateNewsArticles();
+    updatePressReleases(); 
   }, [products, blog, newsArticles, pressReleases])
 
   return (
