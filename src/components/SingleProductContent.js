@@ -1,8 +1,6 @@
 import React from 'react'
 import { Typography, Grid, Button, Container } from '@material-ui/core';
 
-
-
 export default function SingleProductContent() {
   return (
     <Grid container style={{ width: '80%' }} spacing={2}>
