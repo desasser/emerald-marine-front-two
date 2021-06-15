@@ -12,6 +12,7 @@ import News from "./pages/News"
 import AdminLogin from './pages/AdminLogin'
 import Admin from './pages/Admin'
 import Products from "./pages/Products"
+import SingleProduct from "./pages/SingleProduct"
 import Support from "./pages/Support"
 import theme from './theme-provider'
 import store from './utils/store'
@@ -55,6 +56,7 @@ function App() {
             <Route path="/home" component={Home} />
             <Route path="/news" component={News} />
             <Route path="/products" component={Products} />
+            <Route path="/product/:sku" component={SingleProduct} />
             <Route path="/support" component={Support} />
             <Route path='/login' component={AdminLogin}/>
             <Route path='/admin' component={Admin}/>
