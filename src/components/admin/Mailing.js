@@ -113,9 +113,6 @@ const Mailing = () => {
         });
     }
 
-
-
-
     return (
         <div>
             <AlertModal title={'Unsubscribed successfully!'}/>
