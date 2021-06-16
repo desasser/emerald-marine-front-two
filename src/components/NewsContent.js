@@ -2,6 +2,7 @@ import React from 'react'
 import BlogCard from '../components/BlogCard'
 import { Container, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
+import store from '../utils/store';
 
 const useStyles = makeStyles((theme) => ({
   flexBox: {
@@ -14,6 +15,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewsContent() {
   const classes = useStyles();
+  const blog = store.getState().blog.blog;
+  const pr = store.getState().pressReleases.pressReleases;
+  const news = store.getState().newsArticles.newsArticles;
+
+  const allPosts = blog.concat(pr, news);
+
+  console.log(allPosts)
+  const allSorted = allPosts.sort(function(a,b){
+    return new Date(b.date) - new Date(a.date);
+  })
+
+  console.log(allSorted)
 
   return (
     <Container style={{marginTop: '20px'}}>
