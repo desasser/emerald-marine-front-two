@@ -48,7 +48,6 @@ export default function ProductContent() {
 
   console.log('================================================')
   console.log(products.length)
-  console.log(news)
 
   return (
     <Container style={{ marginTop: '1.5em' }}>

@@ -5,7 +5,7 @@ export default function ProductCard({ children, classes, price, sku, title, imag
 
   return (
     <Card className={classes.mediaRoot}>
-      <CardActionArea href={`/product${sku}`}>
+      <CardActionArea href={`/product/${sku}`}>
         <CardMedia
           className={classes.mediaHeight}
           image={`${image}`}
