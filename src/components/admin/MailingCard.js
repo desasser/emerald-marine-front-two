@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     },
   });
 
-const MailingCard = ({name, email, id, removeMe, updateMe}) => {
+const MailingCard = ({name, email, id, removeMe, grabMe}) => {
     const classes = useStyles();
 
     return ( 
@@ -40,7 +40,7 @@ const MailingCard = ({name, email, id, removeMe, updateMe}) => {
           </CardContent>
           <CardActions>
             <Button size="small" data-name={name} data-email={email} data-id={id} onClick={removeMe}>Remove from List</Button>
-            <Button size="small" data-name={name} data-email={email} data-id={id} onClick={updateMe}>Edit Subscriber Info</Button>
+            <Button size="small" data-name={name} data-email={email} data-id={id} onClick={grabMe}>Edit Subscriber Info</Button>
           </CardActions>
         </Card>
       ); 

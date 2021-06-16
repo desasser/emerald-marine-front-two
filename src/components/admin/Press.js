@@ -18,6 +18,7 @@ const Press = () => {
         alt: '',
         content: ''
     });
+    const [currentID, setCurrentID] = useState('')
 
     const warnings = 'Date must be in the following format: "YYYY-MM-DD".'
     const fields = [{name: 'title', content: `${current.title}`}, {name: 'image', content: `${current.image}`}, {name: 'date', content: `${current.date}`}, {name: 'alt', content: `${current.alt}`}, {name: 'content', content: `${current.content}`}]
@@ -40,12 +41,52 @@ const Press = () => {
         });
     }
 
-    const removeMe = () => {
-        console.log('removed')
+    const grabCurrent = e => {
+        e.preventDefault();
+        const title = e.currentTarget.getAttribute('data-title')
+        const date = e.currentTarget.getAttribute('data-date')
+        const image = e.currentTarget.getAttribute('data-image')
+        const alt = e.currentTarget.getAttribute('data-alt')
+        const content = e.currentTarget.getAttribute('data-content')
+        const id = e.currentTarget.getAttribute('data-id')
+
+        setCurrent({
+            title: title,
+            date: date,
+            image: image,
+            alt: alt,
+            content: content
+        })
+        setCurrentID(id)
     }
 
-    const updateMe = () => {
-        console.log('updated')
+    const removeCurrent = e => {
+        e.preventDefault();
+        const id = e.currentTarget.getAttribute('data-id')
+        API.deletePressRelease(id, token).then(res => {
+            if(res) {
+                console.log(res);
+                updatePressReleases()
+            }
+        }).catch(err => {
+            if(err) {
+                console.log(err.message)
+            }
+        });
+    }
+
+    const updateMe = e => {
+        e.preventDefault();
+        API.updatePressRelease(currentID, current, token).then(res => {
+            if(res) {
+                console.log(res.data);
+                updatePressReleases()
+            }
+        }).catch(err => {
+            if(err) {
+                console.log(err.message)
+            }
+        })
     }
 
     return (
@@ -58,13 +99,12 @@ const Press = () => {
                 <Grid container spacing={3} justify='space-evenly'>
                     {releases.map(release => 
                         <Grid item xs={6}>
-                            <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} children={release.date}/>
-                            <Button size="small" onClick={removeMe}>Delete Press Release</Button>
-                            <Button size="small" onClick={updateMe}>Edit Press Release</Button>
+                            <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
+
                         </Grid>)}
                 </Grid>
                 <Grid item xs={12}>
-                    <AddForm section='Press Releases' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease}/>
+                    <AddForm section='Press Releases' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe}/>
                 </Grid>
             </Grid>
         </div>

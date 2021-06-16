@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardMedia, Typography, Button } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BlogCard({ children, id, title, image, alt }) {
+export default function BlogCard({ children, id, title, image, alt, date, categories, tags, intro, content, publication, link, description, removeMe, grabMe, view, type }) {
   const classes = useStyles();
 
   return (
@@ -27,10 +27,15 @@ export default function BlogCard({ children, id, title, image, alt }) {
             {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {children}
+            {intro}
           </Typography>
           <Typography variant="body1" color="textSecondary" component="p" style={{ textAlign: 'right', paddingTop: '5px', color: 'black' }}>
           </Typography>
+          {view==='admin' ? 
+          <div>
+            <Button size="small" data-id={id} data-title={title} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-date={date} data-intro={intro} data-content={content} data-publication={publication} data-link={link} onClick={removeMe}>Remove {type} </Button>
+            <Button size="small" data-id={id} data-title={title} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-date={date} data-intro={intro} data-content={content} data-publication={publication} data-link={link} onClick={grabMe}>Update {type}</Button>
+          </div> : <div></div>}
         </CardContent>
       </CardActionArea>
     </Card>
