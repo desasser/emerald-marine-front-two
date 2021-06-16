@@ -21,6 +21,8 @@ const Blog = () => {
         intro: '',
         content: ''
     });
+    const [currentID, setCurrentID] = useState('')
+
     const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}, {name: 'content', content: `${current.content}`}]
 
     const handleAddFormChange = e => {
@@ -41,12 +43,55 @@ const Blog = () => {
         });
     }
 
-    const removeMe = () => {
-        console.log('removed')
+    const grabCurrent = e => {
+        e.preventDefault();
+        const title = e.currentTarget.getAttribute('data-title')
+        const date = e.currentTarget.getAttribute('data-date')
+        const categories = e.currentTarget.getAttribute('data-categories')
+        const tags = e.currentTarget.getAttribute('data-tags')
+        const image = e.currentTarget.getAttribute('data-image')
+        const alt = e.currentTarget.getAttribute('data-alt')
+        const intro = e.currentTarget.getAttribute('data-intro')
+        const content = e.currentTarget.getAttribute('data-content')
+        const id = e.currentTarget.getAttribute('data-id')
+        setCurrent({
+            title: title,
+            date: date,
+            categories: categories,
+            tags: tags,
+            image: image,
+            alt: alt,
+            intro: intro,
+            content: content
+        });
+        setCurrentID(id)       
     }
 
-    const updateMe = () => {
-        console.log('updated')
+    const removeCurrent = e => {
+        e.preventDefault();
+        const id = e.currentTarget.getAttribute('data-id');
+        API.deleteBlogPost(id, token).then(res => {
+            if(res) {
+                console.log(res)
+                updateBlogPosts()
+            }
+        }).catch(err => {
+            console.log(err.message)
+        });
+    }
+
+    const updateBlog = e => {
+        e.preventDefault();
+        API.updateBlogPost(currentID, current, token).then(res => {
+            if(res) {
+                console.log(res)
+                updateBlogPosts()
+            }
+        }).catch(err => {
+            if(err) {
+                console.log(err.message)
+            }
+        })
     }
 
     return (
@@ -59,13 +104,11 @@ const Blog = () => {
                 <Grid container spacing={3} justify='space-evenly'>
                     {posts.map(post => 
                         <Grid item xs={6}>
-                            <BlogCard id='#' title={post.title} image={post.image} alt={post.alt} children={post.intro}/>
-                            <Button size="small" onClick={removeMe}>Delete Blog Post</Button>
-                            <Button size="small" onClick={updateMe}>Edit Blog Post</Button>
+                            <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} removeMe={removeCurrent}/>
                         </Grid>)}
                 </Grid>
                 <Grid item xs={12}>
-                    <AddForm section='Blog' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost}/>
+                    <AddForm section='Blog' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog}/>
                 </Grid>
             </Grid>
         </div>

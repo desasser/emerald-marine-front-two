@@ -16,6 +16,7 @@ const Mailing = () => {
         name: '',
         email: ''
     });
+    const [currentID, setCurrentID] = useState('')
 
     const fields = [{name: 'name', content: `${current.name}`}, {name: 'email', content: `${current.email}`}];
 
@@ -79,7 +80,7 @@ const Mailing = () => {
         });
     }
 
-    const updateMailing = e => {
+    const grabCurrent = e => {
         const id = e.currentTarget.getAttribute('data-id');
         const name = e.currentTarget.getAttribute('data-name');
         const email = e.currentTarget.getAttribute('data-email');
@@ -87,15 +88,28 @@ const Mailing = () => {
             name: name,
             email: email
         });
+        setCurrentID(id)
     }
 
-    const updateTest = e => {
-        const email = e.currentTarget.getAttribute('data-email');
-        const name = e.currentTarget.getAttribute('data-name');
-        const id = e.currentTarget.getAttribute('data-id');
-        setCurrent({
-            name: name,
-            email: email
+    const updateCurrentMailing = e => {
+        e.preventDefault();
+        API.updateMailingList(current, currentID, token).then(res => {
+            if(res) {
+                updateMailingList();
+            }
+        }).catch(err => {
+            if(err) {
+                console.log(err.message)
+            }
+        });
+    }
+
+    const updateCurrentTest = e => {
+        e.preventDefault();
+        API.updateTestList(current, currentID, token).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err.message)
         });
     }
 
@@ -107,11 +121,11 @@ const Mailing = () => {
                 <h1>Mailing List Subscribers</h1>
                 <br/>
                 {mailingList.map(list => 
-                <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeMailingList} updateMe={updateMailing}/>   
+                <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
                 )}
                 </Grid>
                 <Grid item xs={6}>
-                    <AddForm section='Mailing List' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList}/>
+                    <AddForm section='Mailing List' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList} updateMe={updateCurrentMailing}/>
                 </Grid>
             </Grid>
             <Grid container spacing={2}>
@@ -119,11 +133,11 @@ const Mailing = () => {
                     <h1>Product Test Reminder Subscribers</h1>
                     <br/>
                     {testList.map(list => 
-                    <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeTestList} updateMe={updateTest}/> 
+                    <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeTestList} grabMe={grabCurrent}/> 
                     )}
                 </Grid>
                 <Grid item xs={6}>
-                    <AddForm section='Testing Reminders List' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList}/>
+                    <AddForm section='Testing Reminders List' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList} updateMe={updateCurrentTest}/>
                 </Grid>
             </Grid>
         
