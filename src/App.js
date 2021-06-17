@@ -44,8 +44,8 @@ function App() {
     dispatch(updateBlogPosts());
     dispatch(updateNewsArticles());
     dispatch(updatePressReleases());
-  }, [products, blog, newsArticles, pressReleases])
-  // 
+  })
+
 
   return (
     <ThemeProvider theme={theme}>

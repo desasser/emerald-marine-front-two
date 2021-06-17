@@ -18,7 +18,6 @@ const useStyles = makeStyles(() => ({
     logout: {
        backgroundColor: 'salmon'
     }
-
 }))
 
 const Admin = () => {
@@ -31,7 +30,7 @@ const Admin = () => {
     useEffect(() => {
        dispatch(updateMailingList());
        dispatch(updateTestList())
-    }, [store.getState().mailingList.mailingList, store.getState().testList.testList]);
+    });
 
     const handleLogout = () => {
         localStorage.removeItem('token');
