@@ -40,10 +40,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(updateProducts())
-    updateBlogPosts();
-    updateNewsArticles();
-    updatePressReleases(); 
+    dispatch(updateProducts());
+    dispatch(updateBlogPosts());
+    dispatch(updateNewsArticles());
+    dispatch(updatePressReleases());
   }, [products, blog, newsArticles, pressReleases])
   // 
 

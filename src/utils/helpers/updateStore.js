@@ -4,39 +4,49 @@ import store from '../../utils/store';
 const token = localStorage.getItem('token');
 
 export const updateMailingList = () => {
-    API.getMailingList(token).then(res => {
-        store.dispatch({
-            type: 'GET_MAILING_LIST',
-            payload: {
-                mailingList: res.data.slice()
+    return function thunk(dispatch) {
+        dispatch({type: 'FETCH_MAILING_LIST'});
+        API.getMailingList(token).then(res => {
+            dispatch({
+              type: 'FETCH_MAILING_LIST_SUCCESS',
+              payload: res.data
+            });
+          }).catch(err => {
+              dispatch({
+                  type: 'FETCH_MAILING_LIST_FAILURE',
+                  payload: err.message
+              });
+            const errorCode = err.message.split(' ')[5]
+            if(errorCode===401) {
+                localStorage.removeItem('token');
+            } else {
+                console.log(err.message)
             }
-        });
-    }).catch(err => {
-    const errorCode = err.message.split(' ')[5]
-    if(errorCode===401) {
-        localStorage.removeItem('token');
-    } else {
-        console.log(err.message)
-    }
-    });
+            });
+    } 
 }
 
 export const updateTestList = () => {
-    API.getTestList(token).then(res => {
-        store.dispatch({
-            type: 'GET_TEST_LIST',
-            payload: {
-                testList: res.data.slice()
+    return function thunk(dispatch) {
+        dispatch({type: 'FETCH_TEST_LIST'});
+        API.getTestList(token).then(res => {
+            dispatch({
+              type: 'FETCH_TEST_LIST_SUCCESS',
+              payload: res.data
+            });
+          }).catch(err => {
+              dispatch({
+                  type: 'FETCH_TEST_LIST_FAILURE',
+                  payload: err.message
+              });
+            const errorCode = err.message.split(' ')[5]
+            if(errorCode===401) {
+                localStorage.removeItem('token');
+            } else {
+                console.log(err.message)
             }
-        })
-    }).catch(err => {
-        const errorCode = err.message.split(' ')[5]
-        if(errorCode===401) {
-            localStorage.removeItem('token');
-        } else {
-            console.log(err.message)
-        }
-    });
+            });
+    } 
 }
 
 export const updateProducts = () => {
@@ -64,55 +74,70 @@ export const updateProducts = () => {
 
 
 export const updateBlogPosts = () => {
-    API.getAllBlogPosts().then(res => {
-        store.dispatch({
-          type: 'GET_BLOG_POSTS',
-          payload: {
-            blog: res.data.slice()
-          }
-        });
-      }).catch(err => {
-        const errorCode = err.message.split(' ')[5]
-        if(errorCode===401) {
-            localStorage.removeItem('token');
-        } else {
-            console.log(err.message)
-        }
-        });
+    return function thunk(dispatch) {
+        dispatch({type: 'FETCH_BLOG'});
+        API.getAllBlogPosts().then(res => {
+            dispatch({
+              type: 'FETCH_BLOG_SUCCESS',
+              payload: res.data
+            });
+          }).catch(err => {
+              dispatch({
+                  type: 'FETCH_BLOG_FAILURE',
+                  payload: err.message
+              });
+            const errorCode = err.message.split(' ')[5]
+            if(errorCode===401) {
+                localStorage.removeItem('token');
+            } else {
+                console.log(err.message)
+            }
+            });
+    } 
 }
 
 export const updateNewsArticles = () => {
-    API.getAllNewsArticles().then(res => {
-        store.dispatch({
-          type: 'GET_NEWS_ARTICLES',
-          payload: {
-            newsArticles: res.data.slice()
-          }
-        });
-      }).catch(err => {
-        const errorCode = err.message.split(' ')[5]
-        if(errorCode===401) {
-            localStorage.removeItem('token');
-        } else {
-            console.log(err.message)
-        }
-        });
+    return function thunk(dispatch) {
+        dispatch({type: 'FETCH_NEWS_ARTICLES'});
+        API.getAllNewsArticles().then(res => {
+            dispatch({
+              type: 'FETCH_NEWS_ARTICLES_SUCCESS',
+              payload: res.data
+            });
+          }).catch(err => {
+              dispatch({
+                  type: 'FETCH_NEWS_ARTICLES_FAILURE',
+                  payload: err.message
+              });
+            const errorCode = err.message.split(' ')[5]
+            if(errorCode===401) {
+                localStorage.removeItem('token');
+            } else {
+                console.log(err.message)
+            }
+            });
+    } 
 }
 
 export const updatePressReleases = () => {
-    API.getAllPressReleases().then(res => {
-        store.dispatch({
-          type: 'GET_PRESS_RELEASES',
-          payload: {
-            pressReleases: res.data.slice()
-          }
-        });
-      }).catch(err => {
-        const errorCode = err.message.split(' ')[5]
-        if(errorCode===401) {
-            localStorage.removeItem('token');
-        } else {
-            console.log(err.message)
-        }
-        });
+    return function thunk(dispatch) {
+        dispatch({type: 'FETCH_PRESS_RELEASES'});
+        API.getAllPressReleases().then(res => {
+            dispatch({
+              type: 'FETCH_PRESS_RELEASES_SUCCESS',
+              payload: res.data
+            });
+          }).catch(err => {
+              dispatch({
+                  type: 'FETCH_PRESS_RELEASES_FAILURE',
+                  payload: err.message
+              });
+            const errorCode = err.message.split(' ')[5]
+            if(errorCode===401) {
+                localStorage.removeItem('token');
+            } else {
+                console.log(err.message)
+            }
+            });
+    } 
 }

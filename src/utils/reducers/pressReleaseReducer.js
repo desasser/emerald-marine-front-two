@@ -1,12 +1,32 @@
 const initialState = {
-    pressReleases: []
+    loading: false,
+    success: false,
+    pressReleases: [],
+    error: ''
 }
 
 const pressReleaseReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'GET_PRESS_RELEASES':
+        case 'FETCH_PRESS_RELEASES':
             return {
-                ...action.payload
+                loading: true,
+                success: false,
+                pressReleases: [],
+                error: ''
+            }
+        case 'FETCH_PRESS_RELEASES_SUCCESS':
+            return {
+                loading: false,
+                success: true,
+                pressReleases: action.payload,
+                error: ''
+            }
+        case 'FETCH_PRESS_RELEASES_FAILURE':
+            return {
+                loading: false,
+                success: false,
+                pressReleases: [],
+                error: action.payload
             }
         default: 
             return state
