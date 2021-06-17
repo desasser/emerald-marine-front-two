@@ -4,7 +4,9 @@ import { Card, CardActionArea, CardContent, CardMedia, Typography, Button } from
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 350,
+    maxWidth: 750,
+    flex: 'wrap',
+    margin: '0 auto'
   },
   media: {
     height: 245,
@@ -14,17 +16,22 @@ const useStyles = makeStyles({
 export default function BlogCard({ children, id, title, image, alt, date, categories, tags, intro, content, publication, link, description, removeMe, grabMe, view, type }) {
   const classes = useStyles();
 
+  console.log('i am an id', id)
+
   return (
     <Card className={classes.root}>
-      <CardActionArea href={`/blog${id}`}>
+      <CardActionArea href={`/news/${id}`}>
         <CardMedia
           className={classes.media}
-          image={`${image}`}
+          image={image ? `${image}` : `https://place-puppy.com/300x300`}
           title={`${alt}`}
         />
         <CardContent>
-          <Typography gutterBottom variant="h6" component="h2">
+          <Typography gutterBottom variant="h5" component="h2">
             {title}
+          </Typography>
+          <Typography gutterBottom variant="body1" component="h2" style={{textAlign:'right'}}>
+            {date}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {intro}

@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   linkStyles: {
     color: 'white',
     textDecoration: 'none',
-    padding: 10,
+    padding: 15,
     cursor: 'pointer',
   },
   imgContainer: {
@@ -62,32 +62,32 @@ const Header = () => {
             <EmeraldMarineLogo className={classes.imgContainer} />
           </a>
           <Link href="/" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='body1'>
               Home
             </Typography>
           </Link>
           <Link href="/products" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='body1'>
               Products
             </Typography>
           </Link>
           <Link href="/news" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='body1'>
               News
             </Typography>
           </Link>
           <Link href="/support" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='body1'>
               Support
             </Typography>
           </Link>
           <Link href="/contact" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='body1'>
               Contact
             </Typography>
           </Link>
           <Link href="/cart" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='body1'>
               Cart
             </Typography>
           </Link>

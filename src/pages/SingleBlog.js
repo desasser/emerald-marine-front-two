@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useParams } from 'react-router-dom'
 import { Breadcrumbs, Typography, Link } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SingleBlogContent from "../components/SingleBlogContent"
@@ -8,7 +9,12 @@ function handleClick(event) {
   console.info('You clicked a breadcrumb.');
 }
 
-const SingleBlog = () => (
+export default function SingleBlog() {
+  const { id } = useParams();
+
+  console.log(id)
+
+  return (
   <>
     <div style={{ marginTop: '30px', width: '100%' }}>
       <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
@@ -21,8 +27,6 @@ const SingleBlog = () => (
         <Typography color="textPrimary">Blog Title</Typography>
       </Breadcrumbs>
     </div>
-    <SingleBlogContent></SingleBlogContent>
+    <SingleBlogContent id={id}></SingleBlogContent>
   </>
-)
-
-export default SingleBlog
+)}
