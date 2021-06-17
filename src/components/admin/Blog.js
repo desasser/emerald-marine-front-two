@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import BlogCard from '../BlogCard';
@@ -10,6 +11,7 @@ import {updateBlogPosts} from '../../utils/helpers/updateStore';
 const Blog = () => {
     const posts = store.getState().blog.blog;
     const token = localStorage.getItem('token');
+    const dispatch=useDispatch()
     const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
     const [current, setCurrent] = useState({
         title: '',
@@ -36,7 +38,7 @@ const Blog = () => {
     const addBlogPost = () => {
         API.createBlogPost(current, token).then(res => {
             if(res.data) {
-                updateBlogPosts();
+                dispatch(updateBlogPosts());
             }
         }).catch(err => {
             console.log(err.message)
@@ -73,7 +75,7 @@ const Blog = () => {
         API.deleteBlogPost(id, token).then(res => {
             if(res) {
                 console.log(res)
-                updateBlogPosts()
+                dispatch(updateBlogPosts())
             }
         }).catch(err => {
             console.log(err.message)
@@ -85,7 +87,7 @@ const Blog = () => {
         API.updateBlogPost(currentID, current, token).then(res => {
             if(res) {
                 console.log(res)
-                updateBlogPosts()
+                dispatch(updateBlogPosts())
             }
         }).catch(err => {
             if(err) {

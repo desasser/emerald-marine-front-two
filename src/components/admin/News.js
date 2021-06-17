@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import BlogCard from '../BlogCard';
@@ -10,6 +11,7 @@ import { updateNewsArticles } from "../../utils/helpers/updateStore";
 const News = () => {
     const articles = store.getState().newsArticles.newsArticles;
     const token = localStorage.getItem('token');
+    const dispatch=useDispatch()
     const [current, setCurrent] = useState({
         title: '',
         publication: '',
@@ -33,7 +35,7 @@ const News = () => {
     const addNewsArticle = () => {
         API.createNewsArticle(current, token).then(res => {
             if(res.data) {
-                updateNewsArticles();
+                dispatch(updateNewsArticles());
             }
         }).catch(err => {
             console.log(err.message)
@@ -70,7 +72,7 @@ const News = () => {
         API.deleteNewsArticle(id, token).then(res => {
             if(res) {
                 console.log(res);
-                updateNewsArticles();
+                dispatch(updateNewsArticles());
             }
         }).catch(err => {
             console.log(err.message)
@@ -82,7 +84,7 @@ const News = () => {
         API.updateNewsArticle(currentID, current, token).then(res => {
             if(res) {
                 console.log(res);
-                updateNewsArticles();
+                dispatch(updateNewsArticles());
             }
         }).catch(err => {
             if(err) {

@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import MailingCard from './MailingCard';
 import AlertModal from './AlertModal';
@@ -11,6 +12,7 @@ const Mailing = () => {
     const token = localStorage.getItem('token');
     const mailingList = store.getState().mailingList.mailingList
     const testList = store.getState().testList.testList
+    const dispatch=useDispatch()
 
     const [current, setCurrent] = useState({
         name: '',
@@ -38,7 +40,7 @@ const Mailing = () => {
         e.preventDefault();
         API.addToMailingList(current).then(res => {
             if(res.data) {
-                updateMailingList();
+                dispatch(updateMailingList());
             }
         }).catch(err => {
             console.log(err.message)
@@ -49,7 +51,7 @@ const Mailing = () => {
         e.preventDefault();
         API.addToTestList(current).then(res => {
             if(res.data) {
-                updateTestList();
+                dispatch(updateTestList());
             }
         }).catch(err => {
             console.log(err.message)
@@ -60,7 +62,7 @@ const Mailing = () => {
         const email = e.currentTarget.getAttribute('data-email');
         API.removeFromMailingList(email).then(res => {
             if(res) {
-            updateMailingList();
+            dispatch(updateMailingList());
             }
             openAlertModal();
         }).catch(err => {
@@ -72,7 +74,7 @@ const Mailing = () => {
         const email = e.currentTarget.getAttribute('data-email');
         API.removeFromTestList(email).then(res => {
             if(res) {
-                updateTestList();
+                dispatch(updateTestList());
             }
             openAlertModal();
         }).catch(err => {
@@ -95,7 +97,7 @@ const Mailing = () => {
         e.preventDefault();
         API.updateMailingList(current, currentID, token).then(res => {
             if(res) {
-                updateMailingList();
+            dispatch(updateMailingList());
             }
         }).catch(err => {
             if(err) {

@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import BlogCard from '../BlogCard';
@@ -11,6 +12,7 @@ import { updatePressReleases } from "../../utils/helpers/updateStore";
 const Press = () => {
     const releases = store.getState().pressReleases.pressReleases;
     const token = localStorage.getItem('token');
+    const dispatch=useDispatch()
     const [current, setCurrent] = useState({
         title: '',
         image: '',
@@ -34,7 +36,7 @@ const Press = () => {
     const addPressRelease = () => {
         API.createPressRelease(current, token).then(res => {
             if(res.data) {
-                updatePressReleases();
+                dispatch(updatePressReleases());
             }
         }).catch(err => {
             console.log(err.message)
@@ -66,7 +68,7 @@ const Press = () => {
         API.deletePressRelease(id, token).then(res => {
             if(res) {
                 console.log(res);
-                updatePressReleases()
+                dispatch(updatePressReleases());
             }
         }).catch(err => {
             if(err) {
@@ -80,7 +82,7 @@ const Press = () => {
         API.updatePressRelease(currentID, current, token).then(res => {
             if(res) {
                 console.log(res.data);
-                updatePressReleases()
+                dispatch(updatePressReleases());
             }
         }).catch(err => {
             if(err) {

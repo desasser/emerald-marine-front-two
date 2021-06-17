@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useHistory} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import API from '../utils/API';
@@ -11,6 +12,7 @@ import Mailing from '../components/admin/Mailing';
 import News from '../components/admin/News';
 import Press from '../components/admin/Press';
 import Welcome from '../components/admin/Welcome';
+import {updateMailingList, updateTestList} from '../utils/helpers/updateStore';
 
 const useStyles = makeStyles(() => ({
     logout: {
@@ -22,42 +24,13 @@ const useStyles = makeStyles(() => ({
 const Admin = () => {
     let history = useHistory();
     const classes = useStyles();
+    const dispatch = useDispatch();
     const token = localStorage.getItem('token');
     const [view, setView] = useState('Welcome');
 
     useEffect(() => {
-        API.getMailingList(token).then(res => {
-                store.dispatch({
-                    type: 'GET_MAILING_LIST',
-                    payload: {
-                        mailingList: res.data
-                    }
-                })
-        }).catch(err => {
-            const errorCode = err.message.split(' ')[5]
-            if(errorCode==401) {
-                localStorage.removeItem('token');
-                history.push('/login')
-            } else {
-                console.log(err.message)
-            }
-        });
-        API.getTestList(token).then(res => {
-            store.dispatch({
-                type: 'GET_TEST_LIST',
-                payload: {
-                    testList: res.data
-                }
-            })
-        }).catch(err => {
-            const errorCode = err.message.split(' ')[5]
-            if(errorCode==401) {
-                localStorage.removeItem('token');
-                history.push('/login')
-            } else {
-                console.log(err.message)
-            }
-        });
+       dispatch(updateMailingList());
+       dispatch(updateTestList())
     }, [store.getState().mailingList.mailingList, store.getState().testList.testList]);
 
     const handleLogout = () => {
