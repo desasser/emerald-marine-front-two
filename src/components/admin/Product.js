@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import {useDispatch} from 'react-redux'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
@@ -22,6 +23,7 @@ const Product = () => {
     const token = localStorage.getItem('token');
     const products = store.getState().products.products
     const classes=useStyles();
+    const dispatch=useDispatch()
 
     const [current, setCurrent] = useState({
         name: '',
@@ -39,6 +41,7 @@ const Product = () => {
         height: ''
     });
     const [currentID, setCurrentID] = useState('')
+    const [data, setData] = useState([]);
 
     const warnings = 'Please enter tags and categories as comma-seperated lists.'
     const fields = [{name: 'name', content: `${current.name}`}, {name: 'description', content: `${current.description}`}, {name: 'price', content: `${current.price}`}, {name: 'SKU', content: `${current.SKU}`}, {name: 'tags', content: `${current.tags}`}, {name: 'categories', content: `${current.categories}`}, {name: 'video', content: `${current.video}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'weight', content: `${current.weight}`}, {name: 'length', content: `${current.length}`}, {name: 'width', content: `${current.width}`}, {name: 'height', content: `${current.height}`}]
@@ -54,10 +57,42 @@ const Product = () => {
     const addProduct = () => {
         API.createProduct(current, token).then(res => {
             if(res.data) {
-                updateProducts();
+                dispatch(updateProducts())
+                setData(res.data);
+                setCurrent({
+                    name: '',
+                    description: '',
+                    price: '',
+                    SKU: '',
+                    tags: '',
+                    categories: '',
+                    video: '',
+                    image: '',
+                    alt: '',
+                    weight: '',
+                    length: '',
+                    width: '',
+                    height: ''
+                })
             }
         }).catch(err => {
-            console.log(err.message)
+            console.log(err.message);
+            setData([]);
+            setCurrent({
+                name: '',
+                description: '',
+                price: '',
+                SKU: '',
+                tags: '',
+                categories: '',
+                video: '',
+                image: '',
+                alt: '',
+                weight: '',
+                length: '',
+                width: '',
+                height: ''
+            });
         });
     }
 
@@ -100,13 +135,43 @@ const Product = () => {
     const updateCurrent = e => {
         e.preventDefault();
         API.updateProduct(currentID, current, token).then(res => {
-            if(res) {
-                updateProducts();
-            }
+            dispatch(updateProducts())
+                setData(res.data);
+                setCurrent({
+                    name: '',
+                    description: '',
+                    price: '',
+                    SKU: '',
+                    tags: '',
+                    categories: '',
+                    video: '',
+                    image: '',
+                    alt: '',
+                    weight: '',
+                    length: '',
+                    width: '',
+                    height: ''
+                })
         }).catch(err => {
             if(err) {
                 console.log(err.message)
             }
+            setData([]);
+            setCurrent({
+                name: '',
+                description: '',
+                price: '',
+                SKU: '',
+                tags: '',
+                categories: '',
+                video: '',
+                image: '',
+                alt: '',
+                weight: '',
+                length: '',
+                width: '',
+                height: ''
+            })
         });
     }
 
@@ -114,13 +179,47 @@ const Product = () => {
         e.preventDefault();
         const id = e.currentTarget.getAttribute('data-id');
         API.deleteProduct(id, token).then(res => {
-            if(res) {
-                updateProducts();
-            }
+            dispatch(updateProducts())
+            setData(true);
+            setCurrent({
+                name: '',
+                description: '',
+                price: '',
+                SKU: '',
+                tags: '',
+                categories: '',
+                video: '',
+                image: '',
+                alt: '',
+                weight: '',
+                length: '',
+                width: '',
+                height: ''
+            })
         }).catch(err => {
             if(err) {
                 console.log(err)
+                store.dispatch({
+                    type: 'FETCH_PRODUCTS_FAILURE',
+                    payload: err.message
+                });
             }
+            setData(false);
+            setCurrent({
+                name: '',
+                description: '',
+                price: '',
+                SKU: '',
+                tags: '',
+                categories: '',
+                video: '',
+                image: '',
+                alt: '',
+                weight: '',
+                length: '',
+                width: '',
+                height: ''
+            })
         });
     }
     

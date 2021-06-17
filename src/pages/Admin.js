@@ -10,6 +10,7 @@ import Blog from '../components/admin/Blog';
 import Mailing from '../components/admin/Mailing';
 import News from '../components/admin/News';
 import Press from '../components/admin/Press';
+import Welcome from '../components/admin/Welcome';
 
 const useStyles = makeStyles(() => ({
     logout: {
@@ -22,7 +23,7 @@ const Admin = () => {
     let history = useHistory();
     const classes = useStyles();
     const token = localStorage.getItem('token');
-    const [view, setView] = useState('Product');
+    const [view, setView] = useState('Welcome');
 
     useEffect(() => {
         API.getMailingList(token).then(res => {
@@ -91,8 +92,9 @@ const Admin = () => {
                     <Blog/> : view==='News' ?
                     <News/> : view==='Press' ?
                     <Press/> : view==='Mailing' ?
-                    <Mailing/> :
-                    <Product/>}
+                    <Mailing/> : view==='Welcome' ?
+                    <Welcome/> :
+                    <Welcome/>}
                 </Grid>
             </Grid>
         </Grid>

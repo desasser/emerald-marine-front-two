@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import { useDispatch } from 'react-redux';
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -36,9 +37,10 @@ function App() {
   const blog = store.getState().blog.blog;
   const newsArticles = store.getState().newsArticles.newsArticles;
   const pressReleases = store.getState().pressReleases.pressReleases;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    updateProducts();
+    dispatch(updateProducts())
     updateBlogPosts();
     updateNewsArticles();
     updatePressReleases(); 

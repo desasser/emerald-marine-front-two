@@ -8,7 +8,7 @@ export const updateMailingList = () => {
         store.dispatch({
             type: 'GET_MAILING_LIST',
             payload: {
-                mailingList: res.data
+                mailingList: res.data.slice()
             }
         });
     }).catch(err => {
@@ -26,7 +26,7 @@ export const updateTestList = () => {
         store.dispatch({
             type: 'GET_TEST_LIST',
             payload: {
-                testList: res.data
+                testList: res.data.slice()
             }
         })
     }).catch(err => {
@@ -40,25 +40,45 @@ export const updateTestList = () => {
 }
 
 export const updateProducts = () => {
-    API.getAllProducts().then(res => {
-        store.dispatch({
-          type: 'GET_PRODUCTS',
-          payload: {
-            products: res.data
-          }
-        });
-      });
+    return function thunk(dispatch) {
+        dispatch({type: 'FETCH_PRODUCTS'});
+        API.getAllProducts().then(res => {
+            dispatch({
+              type: 'FETCH_PRODUCTS_SUCCESS',
+              payload: res.data
+            });
+          }).catch(err => {
+              dispatch({
+                  type: 'FETCH_PRODUCTS_FAILURE',
+                  payload: err.message
+              });
+            const errorCode = err.message.split(' ')[5]
+            if(errorCode===401) {
+                localStorage.removeItem('token');
+            } else {
+                console.log(err.message)
+            }
+            });
+    }   
 }
+
 
 export const updateBlogPosts = () => {
     API.getAllBlogPosts().then(res => {
         store.dispatch({
           type: 'GET_BLOG_POSTS',
           payload: {
-            blog: res.data
+            blog: res.data.slice()
           }
         });
-      });
+      }).catch(err => {
+        const errorCode = err.message.split(' ')[5]
+        if(errorCode===401) {
+            localStorage.removeItem('token');
+        } else {
+            console.log(err.message)
+        }
+        });
 }
 
 export const updateNewsArticles = () => {
@@ -66,10 +86,17 @@ export const updateNewsArticles = () => {
         store.dispatch({
           type: 'GET_NEWS_ARTICLES',
           payload: {
-            newsArticles: res.data
+            newsArticles: res.data.slice()
           }
         });
-      });
+      }).catch(err => {
+        const errorCode = err.message.split(' ')[5]
+        if(errorCode===401) {
+            localStorage.removeItem('token');
+        } else {
+            console.log(err.message)
+        }
+        });
 }
 
 export const updatePressReleases = () => {
@@ -77,8 +104,15 @@ export const updatePressReleases = () => {
         store.dispatch({
           type: 'GET_PRESS_RELEASES',
           payload: {
-            pressReleases: res.data
+            pressReleases: res.data.slice()
           }
         });
-      });
+      }).catch(err => {
+        const errorCode = err.message.split(' ')[5]
+        if(errorCode===401) {
+            localStorage.removeItem('token');
+        } else {
+            console.log(err.message)
+        }
+        });
 }
