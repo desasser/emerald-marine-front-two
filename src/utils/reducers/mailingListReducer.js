@@ -18,7 +18,7 @@ const mailingListReducer = (state = initialState, action) => {
             return {
                 loading: false,
                 success: true,
-                mailingList: action.payload,
+                mailingList: action.payload.mailingList,
                 error: ''
             }
         case 'FETCH_MAILING_LIST_FAILURE':

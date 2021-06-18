@@ -18,7 +18,7 @@ const productReducer = (state = initialState, action) => {
             return {
                 loading: false,
                 success: true,
-                products: action.payload,
+                products: action.payload.data,
                 error: ''
             }
         case 'FETCH_PRODUCTS_FAILURE':

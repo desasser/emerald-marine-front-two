@@ -19,7 +19,7 @@ const blogReducer = (state = initialState, action) => {
             return {
                 loading: false,
                 success: true,
-                blog: action.payload,
+                blog: action.payload.blog,
                 error: ''
             }
         case 'FETCH_BLOG_FAILURE':

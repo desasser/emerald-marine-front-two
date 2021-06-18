@@ -18,7 +18,7 @@ const newsArticleReducer = (state = initialState, action) => {
             return {
                 loading: false,
                 success: true,
-                newsArticles: action.payload,
+                newsArticles: action.payload.data,
                 error: ''
             }
         case 'FETCH_NEWS_ARTICLES_FAILURE':

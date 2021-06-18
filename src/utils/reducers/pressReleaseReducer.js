@@ -18,7 +18,7 @@ const pressReleaseReducer = (state = initialState, action) => {
             return {
                 loading: false,
                 success: true,
-                pressReleases: action.payload,
+                pressReleases: action.payload.pressReleases,
                 error: ''
             }
         case 'FETCH_PRESS_RELEASES_FAILURE':
