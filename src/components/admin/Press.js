@@ -1,15 +1,16 @@
 import React, {useState} from "react";
+import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
 import store from '../../utils/store';
 import API from '../../utils/API';
-import { updatePressReleases } from "../../utils/helpers/updateStore";
+import {fetchPressReleases} from '../../utils/actions/pressReleaseActions';
 
 
 const Press = () => {
-    const releases = store.getState().pressReleases.pressReleases;
+    const releases = useSelector(state => state.pressReleases.pressReleases)
     const token = localStorage.getItem('token');
     const [current, setCurrent] = useState({
         title: '',
@@ -34,7 +35,7 @@ const Press = () => {
     const addPressRelease = () => {
         API.createPressRelease(current, token).then(res => {
             if(res.data) {
-                updatePressReleases();
+                store.dispatch(fetchPressReleases())
             }
         }).catch(err => {
             console.log(err.message)
@@ -66,7 +67,7 @@ const Press = () => {
         API.deletePressRelease(id, token).then(res => {
             if(res) {
                 console.log(res);
-                updatePressReleases()
+                store.dispatch(fetchPressReleases())
             }
         }).catch(err => {
             if(err) {
@@ -80,7 +81,7 @@ const Press = () => {
         API.updatePressRelease(currentID, current, token).then(res => {
             if(res) {
                 console.log(res.data);
-                updatePressReleases()
+                store.dispatch(fetchPressReleases())
             }
         }).catch(err => {
             if(err) {
@@ -97,7 +98,7 @@ const Press = () => {
                     <br/>
                 </Grid>
                 <Grid container spacing={3} justify='space-evenly'>
-                    {releases.map(release => 
+                    {releases?.map(release => 
                         <Grid item xs={6}>
                             <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
 

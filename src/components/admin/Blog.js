@@ -1,14 +1,14 @@
 import React, {useState} from "react";
+import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import { Button } from '@material-ui/core';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
 import store from '../../utils/store';
 import API from '../../utils/API';
-import {updateBlogPosts} from '../../utils/helpers/updateStore';
+import {fetchBlog} from '../../utils/actions/blogActions';
 
 const Blog = () => {
-    const posts = store.getState().blog.blog;
+    const posts = useSelector(state => state.blog.blog);
     const token = localStorage.getItem('token');
     const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
     const [current, setCurrent] = useState({
@@ -36,7 +36,7 @@ const Blog = () => {
     const addBlogPost = () => {
         API.createBlogPost(current, token).then(res => {
             if(res.data) {
-                updateBlogPosts();
+                store.dispatch(fetchBlog())
             }
         }).catch(err => {
             console.log(err.message)
@@ -73,7 +73,7 @@ const Blog = () => {
         API.deleteBlogPost(id, token).then(res => {
             if(res) {
                 console.log(res)
-                updateBlogPosts()
+                store.dispatch(fetchBlog())
             }
         }).catch(err => {
             console.log(err.message)
@@ -85,7 +85,7 @@ const Blog = () => {
         API.updateBlogPost(currentID, current, token).then(res => {
             if(res) {
                 console.log(res)
-                updateBlogPosts()
+                store.dispatch(fetchBlog())
             }
         }).catch(err => {
             if(err) {
@@ -102,7 +102,7 @@ const Blog = () => {
                     <br/>
                 </Grid>
                 <Grid container spacing={3} justify='space-evenly'>
-                    {posts.map(post => 
+                    {posts?.map(post => 
                         <Grid item xs={6}>
                             <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} removeMe={removeCurrent}/>
                         </Grid>)}

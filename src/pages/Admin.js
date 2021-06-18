@@ -2,8 +2,9 @@ import React, {useState, useEffect} from "react";
 import {useHistory} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import API from '../utils/API';
 import store from '../utils/store';
+import {fetchMailingList} from '../utils/actions/mailingListActions';
+import {fetchTestList} from '../utils/actions/testListActions';
 import AdminButton from '../components/admin/AdminButton';
 import Product from '../components/admin/Product';
 import Blog from '../components/admin/Blog';
@@ -15,49 +16,17 @@ const useStyles = makeStyles(() => ({
     logout: {
        backgroundColor: 'salmon'
     }
-
 }))
+
+const token = localStorage.getItem('token')
+
+store.dispatch(fetchMailingList(token));
+store.dispatch(fetchTestList(token));
 
 const Admin = () => {
     let history = useHistory();
     const classes = useStyles();
-    const token = localStorage.getItem('token');
     const [view, setView] = useState('Product');
-
-    useEffect(() => {
-        API.getMailingList(token).then(res => {
-                store.dispatch({
-                    type: 'GET_MAILING_LIST',
-                    payload: {
-                        mailingList: res.data
-                    }
-                })
-        }).catch(err => {
-            const errorCode = err.message.split(' ')[5]
-            if(errorCode==401) {
-                localStorage.removeItem('token');
-                history.push('/login')
-            } else {
-                console.log(err.message)
-            }
-        });
-        API.getTestList(token).then(res => {
-            store.dispatch({
-                type: 'GET_TEST_LIST',
-                payload: {
-                    testList: res.data
-                }
-            })
-        }).catch(err => {
-            const errorCode = err.message.split(' ')[5]
-            if(errorCode==401) {
-                localStorage.removeItem('token');
-                history.push('/login')
-            } else {
-                console.log(err.message)
-            }
-        });
-    }, [store.getState().mailingList.mailingList, store.getState().testList.testList]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
