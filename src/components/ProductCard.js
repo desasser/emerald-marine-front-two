@@ -14,20 +14,22 @@ export default function ProductCard({ children, view, removeMe, grabMe, classes,
             title={`${alt}`}
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="h2" style={{ color: '#74b4ab' }}>
+            <Typography gutterBottom variant="h6" component="h2" style={{ color: '#74b4ab', height: '100px' }}>
               {name}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body2" color="textSecondary" component="p" style={{ height: '55px', overflow: 'hidden', textOverflow: 'ellipsis'}}>
               {children}
-            </Typography>
-            <Typography variant="body1" color="textSecondary" component="p" style={{ textAlign: 'right', paddingTop: '5px', color: 'black' }}>
-              {`$${price}`}
             </Typography>
             {view === 'admin' ?
               <div>
                 <Button size="small" data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={removeMe}>Remove Product </Button>
                 <Button size="small" data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={grabMe}>Update Product Info</Button>
               </div> : <div></div>}
+          </CardContent>
+          <CardContent>
+            <Typography variant="body1" color="textSecondary" component="p" style={{ textAlign: 'right', paddingTop: '5px', color: 'black' }}>
+              {`$${price}`}
+            </Typography>
           </CardContent>
         </CardActionArea>
       </Link>

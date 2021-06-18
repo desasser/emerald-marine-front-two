@@ -18,13 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
   mediaRoot: {
     maxWidth: 350,
-    // height: 550
+    height: 500
   },
   mediaHeight: {
     height: 250
   },
   formStyle: {
-    margin: '10px auto',
+    margin: '10px 0',
     width: '50%'
   },
   inputStyle: {
@@ -53,17 +53,17 @@ export default function ProductContent() {
 
   return (
     <Container style={{ marginTop: '1.5em' }}>
-      <div style={{display:'flex', alignItems:'flex-end'}}>
+      <div style={{display:'flex', alignItems:'flex-end', width: '100%', justifyContent: 'space-between'}}>
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', display: 'inline-block' }}>All Products</Typography>
         <InputForm classes={classes} text={''} label={'search...'} buttonText={'search'} />
       </div>
-      <hr></hr>
+      <hr style={{marginBottom: '2em'}}></hr>
       <Grid container className={classes.flexBox} spacing={2}>
         <Grid item xs={12}>
           <Grid container justify='center' spacing={4}>
             {products.products.products.map(product => (
               <Grid key={product._id} item>
-                <ProductCard name={product.name} classes={classes} sku={product.SKU} price={product.price} image={product.image} alt={product.alt}>{product.description} </ProductCard>
+                <ProductCard name={product.name} classes={classes} sku={product.SKU} price={product.price} image={product.image} alt={product.alt}>{product.description.split('.')[0]} </ProductCard>
               </Grid>
             ))}
           </Grid>
