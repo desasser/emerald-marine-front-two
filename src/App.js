@@ -44,7 +44,7 @@ function App() {
     dispatch(updateBlogPosts());
     dispatch(updateNewsArticles());
     dispatch(updatePressReleases());
-  })
+  }, [dispatch])
 
 
   return (
