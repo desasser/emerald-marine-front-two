@@ -19,7 +19,7 @@ const AlertModal = ({title}) => {
   return (
     <div>
       <Dialog
-        open={open}
+        open={false}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
