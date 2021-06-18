@@ -23,13 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
   formStyle: {
     margin: '10px auto',
-    width: '100%'
+    width: '100%',
+    display: 'flex',
   },
   inputStyle: {
     marginTop: 10,
     backgroundColor: 'white',
     borderRadius: '0.5em',
-    width: '70%',
+    flex: '1 0 auto',
     '& label.Mui-focused': {
       color: 'black',
     },
@@ -54,18 +55,26 @@ export default function SupportContent() {
         </Typography>
       </div>
 
-      <Typography variant='h3' style={{ margin: '50px 0px' }}>Who is protected with the ALERT products?</Typography>
+      <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
+        Who is protected with the ALERT products?
+      </Typography>
       <div className={`${classes.attnBox} ${classes.boxMargin}`}>
         {/* TODO: Make tabs dynamic via props */}
         <VerticalTabs></VerticalTabs>
       </div>
-      <Typography variant='h3' style={{ margin: '50px 0px' }}>FAQ</Typography>
+      <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
+        FAQ
+      </Typography>
       <SupportAccordian></SupportAccordian>
-      <Typography variant='h3' style={{ margin: '50px 0px' }}>Video Library</Typography>
+      <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
+        Video Library
+      </Typography>
       <div className={classes.boxMargin}>
         <VerticalTabs></VerticalTabs>
       </div>
-      <Typography variant='h3' style={{ margin: '50px 0px' }}>Product Documentation and information</Typography>
+      <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
+        Product Documentation and information
+      </Typography>
       <div className={classes.boxMargin}>
         <VerticalTabs></VerticalTabs>
       </div>
