@@ -1,12 +1,33 @@
+
 const initialState = {
-    blog: []
+    loading: false,
+    success: false,
+    blog: [],
+    error: ''
 }
 
 const blogReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'GET_BLOG_POSTS':
+        case 'FETCH_BLOG':
             return {
-                ...action.payload
+                loading: true,
+                success: false,
+                blog: [],
+                error: ''
+            }
+        case 'FETCH_BLOG_SUCCESS':
+            return {
+                loading: false,
+                success: true,
+                blog: action.payload,
+                error: ''
+            }
+        case 'FETCH_BLOG_FAILURE':
+            return {
+                loading: false,
+                success: false,
+                blog: [],
+                error: action.payload
             }
         default: 
             return state
