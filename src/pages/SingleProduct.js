@@ -13,8 +13,6 @@ function handleClick(event) {
 export default function SingleProduct() {
   const { sku } = useParams();
 
-  console.log('product sku', sku);
-
   return (
     <>
       <div style={{ marginTop: '30px', width: '100%' }}>

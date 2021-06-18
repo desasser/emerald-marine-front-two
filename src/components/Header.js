@@ -1,4 +1,5 @@
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types'
 import React from 'react'
 import { AppBar, Toolbar, makeStyles } from '@material-ui/core'
@@ -61,32 +62,32 @@ const Header = () => {
           <a to='/' className={classes.link}>
             <EmeraldMarineLogo className={classes.imgContainer} />
           </a>
-          <Link href="/" underline='none' className={classes.linkStyles}>
+          <Link to="/" underline='none' className={classes.linkStyles}>
             <Typography variant='body1'>
               Home
             </Typography>
           </Link>
-          <Link href="/products" underline='none' className={classes.linkStyles}>
+          <Link to="/products" underline='none' className={classes.linkStyles}>
             <Typography variant='body1'>
               Products
             </Typography>
           </Link>
-          <Link href="/news" underline='none' className={classes.linkStyles}>
+          <Link to="/news" underline='none' className={classes.linkStyles}>
             <Typography variant='body1'>
               News
             </Typography>
           </Link>
-          <Link href="/support" underline='none' className={classes.linkStyles}>
+          <Link to="/support" underline='none' className={classes.linkStyles}>
             <Typography variant='body1'>
               Support
             </Typography>
           </Link>
-          <Link href="/contact" underline='none' className={classes.linkStyles}>
+          <Link to="/contact" underline='none' className={classes.linkStyles}>
             <Typography variant='body1'>
               Contact
             </Typography>
           </Link>
-          <Link href="/cart" underline='none' className={classes.linkStyles}>
+          <Link to="/cart" underline='none' className={classes.linkStyles}>
             <Typography variant='body1'>
               Cart
             </Typography>

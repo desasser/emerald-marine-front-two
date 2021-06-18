@@ -11,8 +11,6 @@ export default function SingleBlogContent({ id }) {
 
   const currentPost = allPosts.find(p => p._id === id);
 
-  console.log(currentPost)
-
   return (
     <>
       <div style={{ width: '100%', marginTop: '3em', }}>

@@ -12,8 +12,6 @@ function handleClick(event) {
 export default function SingleBlog() {
   const { id } = useParams();
 
-  console.log(id)
-
   return (
   <>
     <div style={{ marginTop: '30px', width: '100%' }}>

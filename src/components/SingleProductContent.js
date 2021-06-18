@@ -6,11 +6,7 @@ import ReactPlayer from 'react-player/youtube'
 export default function SingleProductContent({ sku }) {
   const products = store.getState().products.products;
 
-  console.log('i am products', products)
-  console.log('single content sku', sku)
-
   const currentProduct = products.find(p => p.SKU === sku);
-  console.log('i am the target product', currentProduct)
 
   return (
     <Grid container style={{ width: '80%' }} spacing={2}>

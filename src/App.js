@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -41,16 +41,16 @@ function App() {
     updateProducts();
     updateBlogPosts();
     updateNewsArticles();
-    updatePressReleases(); 
+    updatePressReleases();
   }, [products, blog, newsArticles, pressReleases])
   // 
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header />
-      <main className={classes.main}>
-        <Router>
+      <Router>
+        <Header />
+        <main className={classes.main}>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/cart" component={Cart} />
@@ -61,11 +61,11 @@ function App() {
             <Route path="/product/:sku" component={SingleProduct} />
             <Route path="/products" component={Products} />
             <Route path="/support" component={Support} />
-            <Route path='/login' component={AdminLogin}/>
-            <Route path='/admin' component={Admin}/>
+            <Route path='/login' component={AdminLogin} />
+            <Route path='/admin' component={Admin} />
           </Switch>
-        </Router>
-      </main>
+        </main>
+      </Router>
       <Footer />
     </ThemeProvider>
   );
