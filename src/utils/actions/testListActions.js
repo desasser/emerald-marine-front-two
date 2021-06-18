@@ -4,7 +4,7 @@ const URL_PREFIX = 'https://designly-freelance-back.herokuapp.com'
 
 const fetchTestListSuccess = testList => ({
     type: 'FETCH_TEST_LIST_SUCCESS',
-    payload: {testList}
+    payload: testList
 })
 
 const fetchTestListFailure = err => ({

@@ -2,9 +2,9 @@ import React, {useState, useEffect} from "react";
 import {useHistory} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import API from '../utils/API';
 import store from '../utils/store';
-import { updateMailingList, updateTestList } from "../utils/helpers/updateStore";
+import {fetchMailingList} from '../utils/actions/mailingListActions';
+import {fetchTestList} from '../utils/actions/testListActions';
 import AdminButton from '../components/admin/AdminButton';
 import Product from '../components/admin/Product';
 import Blog from '../components/admin/Blog';
@@ -18,10 +18,14 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
+const token = localStorage.getItem('token')
+
+store.dispatch(fetchMailingList(token));
+store.dispatch(fetchTestList(token));
+
 const Admin = () => {
     let history = useHistory();
     const classes = useStyles();
-    const token = localStorage.getItem('token');
     const [view, setView] = useState('Product');
 
     const handleLogout = () => {

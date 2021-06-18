@@ -18,7 +18,7 @@ const testListReducer = (state = initialState, action) => {
             return {
                 loading: false,
                 success: true,
-                testList: action.payload.testList,
+                testList: action.payload.data,
                 error: ''
             }
         case 'FETCH_TEST_LIST_FAILURE':

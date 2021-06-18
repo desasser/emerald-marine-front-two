@@ -3,7 +3,7 @@ import axios from 'axios';
 const URL_PREFIX = 'https://designly-freelance-back.herokuapp.com'
 
 const fetchProductsSuccess = products => ({
-    type: 'FETCH_PRODUCT_SUCCESS',
+    type: 'FETCH_PRODUCTS_SUCCESS',
     payload: products
 })
 
@@ -19,8 +19,7 @@ export const fetchProducts = () => {
             dispatch(fetchProductsSuccess(res))
         }
         catch(err) {
-            // dispatch(fetchProductsFailure(err));
-            console.log(err)
+            dispatch(fetchProductsFailure(err));
         }
     }
 }

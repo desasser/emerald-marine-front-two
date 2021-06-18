@@ -4,7 +4,7 @@ const URL_PREFIX = 'https://designly-freelance-back.herokuapp.com'
 
 const fetchMailingListSuccess = mailingList => ({
     type: 'FETCH_MAILING_LIST_SUCCESS',
-    payload: {mailingList}
+    payload: mailingList
 })
 
 const fetchMailingListFailure = err => ({

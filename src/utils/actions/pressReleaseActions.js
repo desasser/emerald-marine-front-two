@@ -4,7 +4,7 @@ const URL_PREFIX = 'https://designly-freelance-back.herokuapp.com'
 
 const fetchPressReleasesSuccess = pressReleases => ({
     type: 'FETCH_PRESS_RELEASES_SUCCESS',
-    payload: {pressReleases}
+    payload: pressReleases
 })
 
 const fetchPressReleasesFailure = err => ({
@@ -15,8 +15,8 @@ const fetchPressReleasesFailure = err => ({
 export const fetchPressReleases = () => {
     return async dispatch => {
         try {
-            let res = axios.get(`${URL_PREFIX}/press`)
-            dispatch(fetchPressReleasesSuccess(res.data))
+            let res = await axios.get(`${URL_PREFIX}/press`)
+            dispatch(fetchPressReleasesSuccess(res))
         }
         catch(err) {
             dispatch(fetchPressReleasesFailure(err));

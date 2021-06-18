@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -32,33 +31,6 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles()
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   API.getAllBlogPosts().then(res => {
-  //     console.log(res.data)
-  //   }).catch(err => {
-  //     console.log(err.message)
-  //   });
-
-  //   API.getAllNewsArticles().then(res => {
-  //     console.log(res.data)
-  //   }).catch(err => {
-  //     console.log(err.message)
-  //   });
-
-  //   API.getAllPressReleases().then(res => {
-  //     console.log(res.data)
-  //   }).catch(err => {
-  //     console.log(err.message)
-  //   });
-
-  //   API.getAllProducts().then(res => {
-  //     console.log(res.data)
-  //   }).catch(err => {
-  //     console.log(err.message)
-  //   });
-  // })
 
   return (
     <ThemeProvider theme={theme}>
