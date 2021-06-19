@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { makeStyles, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles'
-import { updateProducts, updateBlogPosts, updateNewsArticles, updatePressReleases } from './utils/helpers/updateStore';
 import Cart from "./pages/Cart"
 import Contact from "./pages/Contact"
 import Home from "./pages/Home"
@@ -16,7 +15,7 @@ import SingleProduct from "./pages/SingleProduct"
 import SingleBlog from "./pages/SingleBlog"
 import Support from "./pages/Support"
 import theme from './theme-provider'
-import store from './utils/store'
+import API from './utils/API';
 
 const useStyles = makeStyles({
   main: {
@@ -32,18 +31,6 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles()
-  const products = store.getState().products.products;
-  const blog = store.getState().blog.blog;
-  const newsArticles = store.getState().newsArticles.newsArticles;
-  const pressReleases = store.getState().pressReleases.pressReleases;
-
-  useEffect(() => {
-    updateProducts();
-    updateBlogPosts();
-    updateNewsArticles();
-    updatePressReleases();
-  }, [products, blog, newsArticles, pressReleases])
-  // 
 
   return (
     <ThemeProvider theme={theme}>

@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import {useSelector} from 'react-redux';
 import ProductCard from '../components/ProductCard'
 import InputForm from '../components/InputForm'
 import { Container, Grid, Typography } from '@material-ui/core'
@@ -45,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProductContent() {
   const classes = useStyles();
-  const products = store.getState();
+  const products = useSelector(state => state.products.products)
+  const news = useSelector(state => state.blog.blog)
 
   useEffect(() => {
     updateProducts();
@@ -61,7 +63,7 @@ export default function ProductContent() {
       <Grid container className={classes.flexBox} spacing={2}>
         <Grid item xs={12}>
           <Grid container justify='center' spacing={4}>
-            {products.products.products.map(product => (
+            {products.products.products?.map(product => (
               <Grid key={product._id} item>
                 <ProductCard name={product.name} classes={classes} sku={product.SKU} price={product.price} image={product.image} alt={product.alt}>{product.description.split('.')[0]} </ProductCard>
               </Grid>

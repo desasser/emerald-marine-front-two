@@ -1,12 +1,32 @@
 const initialState = {
-    testList: []
+    loading: false,
+    success: false,
+    testList: [],
+    error: ''
 };
 
 const testListReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'GET_TEST_LIST':
+        case 'FETCH_TEST_LIST':
             return {
-                ...action.payload
+                loading: true,
+                success: false,
+                testList: [],
+                error: ''
+            }
+        case 'FETCH_TEST_LIST_SUCCESS':
+            return {
+                loading: false,
+                success: true,
+                testList: action.payload.data,
+                error: ''
+            }
+        case 'FETCH_TEST_LIST_FAILURE':
+            return {
+                loading: false,
+                success: false,
+                testList: [],
+                error: action.payload
             }
         default: 
             return state

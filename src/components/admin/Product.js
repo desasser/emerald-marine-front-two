@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
@@ -6,7 +7,7 @@ import ProductCard from '../ProductCard';
 import AddForm from './AddForm';
 import store from '../../utils/store';
 import API from '../../utils/API';
-import { updateProducts } from "../../utils/helpers/updateStore";
+import {fetchProducts} from '../../utils/actions/productActions';
 
 const useStyles = makeStyles((theme) => ({        
     mediaRoot: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Product = () => {
     const token = localStorage.getItem('token');
-    const products = store.getState().products.products
+    const products = useSelector(state => state.products.products)
     const classes=useStyles();
 
     const [current, setCurrent] = useState({
@@ -54,7 +55,7 @@ const Product = () => {
     const addProduct = () => {
         API.createProduct(current, token).then(res => {
             if(res.data) {
-                updateProducts();
+                store.dispatch(fetchProducts());
             }
         }).catch(err => {
             console.log(err.message)
@@ -101,7 +102,7 @@ const Product = () => {
         e.preventDefault();
         API.updateProduct(currentID, current, token).then(res => {
             if(res) {
-                updateProducts();
+                store.dispatch(fetchProducts());
             }
         }).catch(err => {
             if(err) {
@@ -115,7 +116,7 @@ const Product = () => {
         const id = e.currentTarget.getAttribute('data-id');
         API.deleteProduct(id, token).then(res => {
             if(res) {
-                updateProducts();
+                store.dispatch(fetchProducts());
             }
         }).catch(err => {
             if(err) {
@@ -131,7 +132,7 @@ const Product = () => {
                     <h1>Current Products</h1>
                     <br/>
                     <Grid container spacing={5} justify='space-evenly'>
-                    {products.map(product => 
+                    {products?.map(product => 
                         <Grid item xs={4}>
                         <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent}/>
                         </Grid>
