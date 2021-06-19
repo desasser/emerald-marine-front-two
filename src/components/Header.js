@@ -1,4 +1,5 @@
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types'
 import React from 'react'
 import { AppBar, Toolbar, makeStyles } from '@material-ui/core'
@@ -38,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   linkStyles: {
     color: 'white',
     textDecoration: 'none',
-    padding: 10,
+    padding: 15,
     cursor: 'pointer',
   },
   imgContainer: {
@@ -61,33 +62,33 @@ const Header = () => {
           <a to='/' className={classes.link}>
             <EmeraldMarineLogo className={classes.imgContainer} />
           </a>
-          <Link href="/" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+          <Link to="/" underline='none' className={classes.linkStyles}>
+            <Typography variant='body1'>
               Home
             </Typography>
           </Link>
-          <Link href="/products" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+          <Link to="/products" underline='none' className={classes.linkStyles}>
+            <Typography variant='body1'>
               Products
             </Typography>
           </Link>
-          <Link href="/news" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+          <Link to="/news" underline='none' className={classes.linkStyles}>
+            <Typography variant='body1'>
               News
             </Typography>
           </Link>
-          <Link href="/support" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+          <Link to="/support" underline='none' className={classes.linkStyles}>
+            <Typography variant='body1'>
               Support
             </Typography>
           </Link>
-          <Link href="/contact" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+          <Link to="/contact" underline='none' className={classes.linkStyles}>
+            <Typography variant='body1'>
               Contact
             </Typography>
           </Link>
-          <Link href="/cart" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+          <Link to="/cart" underline='none' className={classes.linkStyles}>
+            <Typography variant='body1'>
               Cart
             </Typography>
           </Link>

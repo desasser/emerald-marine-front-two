@@ -35,9 +35,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header />
-      <main className={classes.main}>
-        <Router>
+      <Router>
+        <Header />
+        <main className={classes.main}>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/cart" component={Cart} />
@@ -48,11 +48,11 @@ function App() {
             <Route path="/product/:sku" component={SingleProduct} />
             <Route path="/products" component={Products} />
             <Route path="/support" component={Support} />
-            <Route path='/login' component={AdminLogin}/>
-            <Route path='/admin' component={Admin}/>
+            <Route path='/login' component={AdminLogin} />
+            <Route path='/admin' component={Admin} />
           </Switch>
-        </Router>
-      </main>
+        </main>
+      </Router>
       <Footer />
     </ThemeProvider>
   );

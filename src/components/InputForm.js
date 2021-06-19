@@ -4,7 +4,6 @@ import { TextField, Button, Typography } from '@material-ui/core';
 
 
 export default function InputForm({ buttonText, classes, label, text }) {
-console.log(classes.formStyle)
 
   return (
     <form className={classes.formStyle}>

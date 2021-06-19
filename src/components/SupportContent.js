@@ -23,13 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
   formStyle: {
     margin: '10px auto',
-    width: '100%'
+    width: '100%',
+    display: 'flex',
   },
   inputStyle: {
     marginTop: 10,
     backgroundColor: 'white',
     borderRadius: '0.5em',
-    width: '70%',
+    flex: '1 0 auto',
     '& label.Mui-focused': {
       color: 'black',
     },
@@ -40,6 +41,39 @@ const useStyles = makeStyles((theme) => ({
     }
   }
 }));
+
+const protectedClients = [
+  {
+    id: 0,
+    title: 'Tow, Tug, and Barge',
+    content: "The ALERT Man-Overboard Alarm System protects crewmembers who ply the swift coastal and inland waters. “Wearing the ALERT2 gives me a real sense of security” has been echoed by employees of major towboat companies. As a member of the American Waterways Operators organization, Emerald Marine Products understands the dangerous yet vital activities of people working the Tow and Tug Industry. We design our products to function in these demanding environments.",
+  },
+  {
+    id: 1,
+    title: 'Singlehander and Blue Water Voyager',
+    content: "The ALERT Man-Overboard Alarm System was originally invented to serve the singlehander and blue water voyager. When sailing or motoring alone or with a small crew, it's imperative that in the event of a fall-overboard the engine can stop, or at a minimum alert someone to the fall-overboard. It's the precious seconds upon immersion that is the life-saving difference between the ALERT System and AIS or range dynamic systems. ALERT products have also been used to protect children and animals while under motor in recreational vessels.",
+  },
+  {
+    id: 2,
+    title: 'Dredging, Marine Construction and Marine Terminals',
+    content: "Maybe your employees aren't on boats, but they work dangerously close to water. Water that could sweep them out of sight or, in cold weather, send them into shock and restrict their muscles within minutes. The ALERT Man-Overboard Alarm System protects employees working near water on dredging, marine construction, or terminal operations. The ALERT Receiver can be mounted in the office or wired to communicate via an auto-dialer of HF Radio to immediately alert rescue operations of a fall-overboard situation.",
+  },
+  {
+    id: 3,
+    title: 'Research Vessels',
+    content: "Though a ship has its safety procedures, sometimes people on vessels are not as savvy about working near water as experienced crew. The ALERT Man-Overboard Alarm System is easily worn by visitors or scientists who are aboard research vessels. If a person loses their balance and falls overboard, the ALERT System instantly notifies the vessel for a quick and successful rescue.",
+  },
+  {
+    id: 4,
+    title: 'Commercial Fishermen',
+    content: "Lore and TV Shows showcase the danger involved in making a living as a commercial fisherman. The ALERT Man-Overboard Alarm System protects crews and solo fisherman who wear the lightweight and durable Transmitter. This device is automatically activated in the event of a fall-overboard, and its Spray-Tight Pouch will protect from false alarms when working in wet conditions. Should a simple mistake take a person over the side of a boat, the ALERT System will instantly notify the vessel.",
+  },
+  {
+    id: 5,
+    title: 'Military and Law Enforcement Vessels',
+    content: "Law enforcement officials operate in high stake and fast-acting environments on the water. It is critical to protect these officials, so they feel confident moving quickly onboard. The ALERT Man-Overboard Alarm System is easy to setup and seamlessly attach to any PFD. The Alert System provides extra confidence and security, making it possible for law enforcement officials to focus on the task at hand.",
+  },
+]
 
 export default function SupportContent() {
   const classes = useStyles();
@@ -54,20 +88,28 @@ export default function SupportContent() {
         </Typography>
       </div>
 
-      <Typography variant='h3' style={{ margin: '50px 0px' }}>Who is protected with the ALERT products?</Typography>
+      <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
+        Who is protected with the ALERT products?
+      </Typography>
       <div className={`${classes.attnBox} ${classes.boxMargin}`}>
         {/* TODO: Make tabs dynamic via props */}
-        <VerticalTabs></VerticalTabs>
+        <VerticalTabs content={protectedClients}></VerticalTabs>
       </div>
-      <Typography variant='h3' style={{ margin: '50px 0px' }}>FAQ</Typography>
+      <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
+        FAQ
+      </Typography>
       <SupportAccordian></SupportAccordian>
-      <Typography variant='h3' style={{ margin: '50px 0px' }}>Video Library</Typography>
+      <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
+        Video Library
+      </Typography>
       <div className={classes.boxMargin}>
-        <VerticalTabs></VerticalTabs>
+        {/* <VerticalTabs></VerticalTabs> */}
       </div>
-      <Typography variant='h3' style={{ margin: '50px 0px' }}>Product Documentation and information</Typography>
+      <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
+        Product Documentation and information
+      </Typography>
       <div className={classes.boxMargin}>
-        <VerticalTabs></VerticalTabs>
+        {/* <VerticalTabs></VerticalTabs> */}
       </div>
     </Container>
   )

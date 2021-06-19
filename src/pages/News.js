@@ -4,7 +4,6 @@ import NewsContent from "../components/NewsContent"
 
 const News = () => (
   <>
-    <Typography variant='h2' style={{marginTop: '50px'}}>News</Typography>
     <NewsContent></NewsContent>
   </>
 )

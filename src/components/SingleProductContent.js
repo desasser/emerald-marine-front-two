@@ -7,16 +7,13 @@ import ReactPlayer from 'react-player/youtube'
 export default function SingleProductContent({ sku }) {
   const products = useSelector(state => state.products.products)
 
-  console.log('i am products', products)
-  console.log('single content sku', sku)
-
   const currentProduct = products?.find(p => p.SKU === sku);
-  console.log('i am the target product', currentProduct)
-// 
+
   return (
     <Grid container style={{ width: '80%' }} spacing={2}>
       <Grid item xs={12}>
         <Typography variant='h3' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left', marginBottom: '20px' }}>
+          {currentProduct.name}
           {/* {currentProduct?.name} */}
         </Typography>
       </Grid>
@@ -43,12 +40,6 @@ export default function SingleProductContent({ sku }) {
         </Typography>
         <Button variant="contained" style={{ height: '56px', width: '100%', backgroundColor: '#f5ed5eff', fontSize: '16px', marginTop: '1.5em' }}>Add to Request for Quote</Button>
       </Grid>
-      {/* <Grid item xs={7}></Grid>
-      <Grid item xs={3}>
-        
-      </Grid>
-      <Grid item xs={2}></Grid> */}
-      
       <Grid item xs={12}>
         <Typography variant="h5" style={{marginTop: '20px'}}>Details</Typography>
         <Container maxWidth='md' style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
