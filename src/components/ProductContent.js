@@ -49,10 +49,6 @@ export default function ProductContent() {
   const products = useSelector(state => state.products.products)
   const news = useSelector(state => state.blog.blog)
 
-  useEffect(() => {
-    updateProducts();
-  }, [products])
-
   return (
     <Container style={{ marginTop: '1.5em' }}>
       <div style={{display:'flex', alignItems:'flex-end', width: '100%', justifyContent: 'space-between'}}>
@@ -63,7 +59,7 @@ export default function ProductContent() {
       <Grid container className={classes.flexBox} spacing={2}>
         <Grid item xs={12}>
           <Grid container justify='center' spacing={4}>
-            {products.products.products?.map(product => (
+            {products?.map(product => (
               <Grid key={product._id} item>
                 <ProductCard name={product.name} classes={classes} sku={product.SKU} price={product.price} image={product.image} alt={product.alt}>{product.description.split('.')[0]} </ProductCard>
               </Grid>
