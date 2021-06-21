@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { Breadcrumbs, Typography, Link } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SingleBlogContent from "../components/SingleBlogContent"
+import Page from "../components/Page"
 
 function handleClick(event) {
   event.preventDefault();
@@ -13,18 +14,21 @@ export default function SingleBlog() {
   const { id } = useParams();
 
   return (
-  <>
-    <div style={{ marginTop: '30px', width: '100%' }}>
-      <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-        <Link color="inherit" href="/" onClick={handleClick}>
-          Home
-        </Link>
-        <Link color="inherit" href="/news" onClick={handleClick}>
-          News
-        </Link>
-        <Typography color="textPrimary">Blog Title</Typography>
-      </Breadcrumbs>
-    </div>
-    <SingleBlogContent id={id}></SingleBlogContent>
-  </>
-)}
+    <>
+      <Page>
+        <div style={{ marginTop: '30px', width: '100%' }}>
+          <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+            <Link color="inherit" href="/" onClick={handleClick}>
+              Home
+            </Link>
+            <Link color="inherit" href="/news" onClick={handleClick}>
+              News
+            </Link>
+            <Typography color="textPrimary">Blog Title</Typography>
+          </Breadcrumbs>
+        </div>
+        <SingleBlogContent id={id}></SingleBlogContent>
+      </Page>
+    </>
+  )
+}
