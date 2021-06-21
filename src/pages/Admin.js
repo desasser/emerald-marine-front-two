@@ -56,7 +56,7 @@ const Admin = () => {
                     ))}
                     <AdminButton text='Logout' handleClick={handleLogout}/>
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item xs={12}>
                     {view==='Home'?
                     <Home/> : view==='Product' ? 
                     <Product/> : view==='Blog' ?
