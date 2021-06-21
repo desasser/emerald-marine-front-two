@@ -186,6 +186,11 @@ const API = {
     },
     removeFromTestList: id => {
         return axios.delete(`${URL_PREFIX}/test/${id}`)
+    },
+
+    // Shippo rate request
+    getShippingRate: addressData => {
+        return axios.post(`${URL_PREFIX}/shippo`, addressData)
     }
 }
 
