@@ -101,14 +101,14 @@ const Blog = () => {
                     <h1>Current Blog Posts</h1>
                     <br/>
                 </Grid>
-                <Grid container spacing={3} justify='space-evenly'>
+                <Grid container spacing={1} justify='space-evenly'>
                     {posts?.map(post => 
-                        <Grid item xs={6}>
+                        <Grid item xs={5}>
                             <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} removeMe={removeCurrent}/>
                         </Grid>)}
-                </Grid>
-                <Grid item xs={12}>
-                    <AddForm section='Blog' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog}/>
+                    <Grid item xs={5}>
+                        <AddForm section='Blog' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog}/>
+                    </Grid>
                 </Grid>
             </Grid>
         </div>
