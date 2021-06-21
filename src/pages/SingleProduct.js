@@ -1,6 +1,6 @@
 import * as React from "react"
-import { useParams } from 'react-router-dom'
-import { Breadcrumbs, Typography, Link } from '@material-ui/core';
+import { useParams, Link } from 'react-router-dom'
+import { Breadcrumbs, Typography } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SingleProductContent from "../components/SingleProductContent"
 import Page from "../components/Page"
@@ -19,10 +19,10 @@ export default function SingleProduct() {
       <Page>
         <div style={{ marginTop: '30px', width: '100%' }}>
           <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-            <Link color="inherit" href="/" onClick={handleClick}>
+            <Link color="inherit" to="/" style={{ textDecoration: 'none', color: 'black' }}>
               Home
             </Link>
-            <Link color="inherit" href="/products" onClick={handleClick}>
+            <Link color="inherit" to="/products" style={{ textDecoration: 'none', color: 'black' }}>
               Products
             </Link>
             <Typography color="textPrimary">Product name</Typography>
