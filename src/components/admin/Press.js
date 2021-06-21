@@ -97,15 +97,15 @@ const Press = () => {
                     <h1>Current Press Releases</h1>
                     <br/>
                 </Grid>
-                <Grid container spacing={3} justify='space-evenly'>
+                <Grid container spacing={1} justify='space-evenly'>
+                    <Grid item xs={6}>
                     {releases?.map(release => 
-                        <Grid item xs={6}>
                             <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
-
-                        </Grid>)}
-                </Grid>
-                <Grid item xs={12}>
+                       )}
+                    </Grid>
+                    <Grid item xs={4}>
                     <AddForm section='Press Releases' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe}/>
+                </Grid>
                 </Grid>
             </Grid>
         </div>
