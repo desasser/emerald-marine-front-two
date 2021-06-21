@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
 import ProductCard from '../ProductCard';
 import AddForm from './AddForm';
 import store from '../../utils/store';
@@ -10,11 +9,8 @@ import API from '../../utils/API';
 import {fetchProducts} from '../../utils/actions/productActions';
 
 const useStyles = makeStyles((theme) => ({        
-    mediaRoot: {
-      width: 200
-    },
     mediaHeight: {
-      height: 170
+      height: 200
     }
   }));
 
@@ -127,21 +123,22 @@ const Product = () => {
     
     return (
         <div>
-            <Grid container spacing={2}>
+            <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <h1>Current Products</h1>
                     <br/>
                     <Grid container spacing={5} justify='space-evenly'>
-                    {products?.map(product => 
                         <Grid item xs={4}>
-                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent}/>
-                        </Grid>
+                    {products?.map(product => 
+                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent} classes={classes}/>
                         )}
-                    </Grid>
-                </Grid>
-                <Grid item xs={12}>
+                        </Grid>
+                        <Grid item xs={6}>
                     <AddForm section='Products' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent}/>
                 </Grid>
+                    </Grid>
+                </Grid>
+                
             </Grid>
         </div>
         
