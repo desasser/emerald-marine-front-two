@@ -1,12 +1,10 @@
 import React, {useState} from "react";
 import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import { Button } from '@material-ui/core';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
 import store from '../../utils/store';
 import API from '../../utils/API';
-import { updateNewsArticles } from "../../utils/helpers/updateStore";
 import {fetchNewsArticles} from '../../utils/actions/newsArticleActions';
 
 const News = () => {
@@ -100,14 +98,15 @@ const News = () => {
                     <h1>Current News Articles</h1>
                     <br/>
                 </Grid>
-                <Grid container spacing={3} justify='space-evenly'>
+                <Grid container spacing={1} justify='space-evenly'>
+                    <Grid item xs={6}>
                     {articles?.map(article => 
-                        <Grid item xs={6}>
                             <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
-                        </Grid>)}
-                </Grid>
-                <Grid item xs={12}>
+                        )}
+                    </Grid>
+                    <Grid item xs={4}>
                     <AddForm section='News' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addNewsArticle} updateMe={updateMe}/>
+                </Grid>
                 </Grid>
             </Grid>
         </div>
