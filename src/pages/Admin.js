@@ -11,7 +11,6 @@ import Blog from '../components/admin/Blog';
 import Mailing from '../components/admin/Mailing';
 import News from '../components/admin/News';
 import Press from '../components/admin/Press';
-import Home from '../components/admin/Home';
 
 const useStyles = makeStyles(() => ({
     logout: {
@@ -32,7 +31,7 @@ const Admin = () => {
     const classes = useStyles();
     const [view, setView] = useState('Welcome');
 
-    const buttonText = ['Home', 'Blog', 'Product', 'News Article', 'Press Release', 'Mailing List']
+    const buttonText = ['Blog', 'Product', 'News Article', 'Press Releases', 'Mailing List']
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -57,14 +56,13 @@ const Admin = () => {
                     <AdminButton text='Logout' handleClick={handleLogout}/>
                 </Grid>
                 <Grid item xs={12}>
-                    {view==='Home'?
-                    <Home/> : view==='Product' ? 
+                    {view==='Product' ? 
                     <Product/> : view==='Blog' ?
                     <Blog/> : view==='News' ?
                     <News/> : view==='Press' ?
                     <Press/> : view==='Mailing' ?
                     <Mailing/> :
-                    <Home/>}
+                    <Product/>}
                 </Grid>
             </Grid>
         </Grid>
