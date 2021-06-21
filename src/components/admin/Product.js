@@ -75,7 +75,6 @@ const Product = () => {
         const width = e.currentTarget.getAttribute('data-width')
         const id = e.currentTarget.getAttribute('data-id')
 
-        const attr = [name, description, price, sku, tags, categories, video, image, alt, weight, height, length, width]
         setCurrent({
             name: name,
             description: description,
