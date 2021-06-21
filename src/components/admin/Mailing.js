@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import MailingCard from './MailingCard';
-import AlertModal from './AlertModal';
 import AddForm from './AddForm';
 import API from '../../utils/API';
 import store from '../../utils/store';
@@ -21,12 +20,6 @@ const Mailing = () => {
     const [currentID, setCurrentID] = useState('')
 
     const fields = [{name: 'name', content: `${current.name}`}, {name: 'email', content: `${current.email}`}];
-
-    const openAlertModal = () => {
-        store.dispatch({
-            type: 'SHOW_MODAL'
-        });
-    }
 
     const handleAddFormChange = e => {
         const {name, value} = e.target;
@@ -64,7 +57,6 @@ const Mailing = () => {
             if(res) {
                 store.dispatch(fetchMailingList(token))
             }
-            openAlertModal();
         }).catch(err => {
             console.log(err.message)
         });
@@ -76,7 +68,6 @@ const Mailing = () => {
             if(res) {
                 store.dispatch(fetchTestList(token))
             }
-            openAlertModal();
         }).catch(err => {
             console.log(err.message)
         });
@@ -117,7 +108,6 @@ const Mailing = () => {
 
     return (
         <div>
-            <AlertModal title={'Unsubscribed successfully!'}/>
             <Grid container spacing={2}>
                 <Grid item xs={6}>
                 <h1>Mailing List Subscribers</h1>

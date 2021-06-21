@@ -15,7 +15,6 @@ import SingleProduct from "./pages/SingleProduct"
 import SingleBlog from "./pages/SingleBlog"
 import Support from "./pages/Support"
 import theme from './theme-provider'
-import API from './utils/API';
 
 const useStyles = makeStyles({
   main: {
