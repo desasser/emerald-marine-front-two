@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import UploadWidget from './UploadWidget';
 
 const AddForm = ({section, message, fields, handleAddFormChange, addMe, updateMe}) => {
     return (
@@ -12,6 +13,9 @@ const AddForm = ({section, message, fields, handleAddFormChange, addMe, updateMe
                 <TextField id="outlined-basic helperText" label={field.name.toUpperCase()} InputLabelProps={{ shrink: true }} onChange={handleAddFormChange} value={field.content} name={field.name} variant="outlined"></TextField>
                 )}
             <br/>
+            {section==='Products' || section==='Press Releases' || section==='Blog' ? 
+            <UploadWidget/> :
+            <></>}
             <Button variant="contained" onClick={addMe}>Add to {section}</Button>
             <Button variant="contained" onClick={updateMe}>Update {section}</Button>
         </div>
