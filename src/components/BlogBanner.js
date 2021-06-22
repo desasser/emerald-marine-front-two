@@ -30,7 +30,7 @@ export default function BlogBanner() {
     return new Date(b.date) - new Date(a.date);
   })
 
-  const post = allSorted[6];
+  const post = allSorted[0];
   console.log('most recent post', post)
 
   return (

@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import ProductCard from '../components/ProductCard'
-import InputForm from '../components/InputForm'
-import { Container, Grid, Typography } from '@material-ui/core'
+import { Container, Grid, Typography, Checkbox } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles((theme) => ({
   flexBox: {
@@ -46,9 +44,9 @@ export default function ProductContent() {
   const classes = useStyles();
   const products = useSelector(state => state.products.products)
   const [state, setState] = useState({
-    'Man-Overboard System': true,
-    'Marine Safety': true,
-    'Water Rescue': true
+    'Alert Man Overboard Products': true,
+    'Water Rescue Training': true,
+    'Accessories': true
   });
   const [filteredState, setFilter] = useState({
     original: products,
@@ -74,18 +72,18 @@ export default function ProductContent() {
             // checked={state.manOverboard}
             onChange={handleChange}
             color="default"
-            name="Man-Overboard System"
+            name="Alert Man Overboard Products"
             inputProps={{ 'aria-label': `Man-Overboard checkbox` }}
           />
-          <Typography component="span">Man-Overboard</Typography>
+          <Typography component="span">Alert Man Overboard Products</Typography>
           <Checkbox
             checked={state.marineSafety}
             onChange={handleChange}
             color="default"
-            name="Marine Safety"
+            name="Water Rescue Training"
             inputProps={{ 'aria-label': `Marine Safety checkbox` }}
           />
-          <Typography component="span">Marine Safety</Typography>
+          <Typography component="span">Water Rescue Training</Typography>
           <Checkbox
             checked={state.waterRescue}
             onChange={handleChange}
@@ -93,7 +91,7 @@ export default function ProductContent() {
             name="Water Rescue"
             inputProps={{ 'aria-label': `Water Rescue Training checkbox` }}
           />
-          <Typography component="span">Water Rescue Training</Typography>
+          <Typography component="span">Accessories</Typography>
         </div>
       </div>
       <hr style={{ marginBottom: '2em' }}></hr>
