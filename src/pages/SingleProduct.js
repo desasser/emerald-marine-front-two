@@ -5,12 +5,6 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SingleProductContent from "../components/SingleProductContent"
 import Page from "../components/Page"
 
-function handleClick(event) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
-
-
 export default function SingleProduct() {
   const { sku } = useParams();
 

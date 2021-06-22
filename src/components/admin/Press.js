@@ -117,7 +117,7 @@ const Press = () => {
                 <Grid container spacing={1} justify='space-evenly'>
                     <Grid item xs={6}>
                     {releases?.map(release => 
-                            <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
+                            <BlogCard title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
                             )}
                     </Grid>
                     <Grid item xs={4}>

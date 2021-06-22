@@ -10,7 +10,6 @@ import ProductBlock from "../components/ProductBlock"
 import API from '../utils/API'
 import Page from "../components/Page"
 import Carousel from 'react-material-ui-carousel'
-import { Typography } from '@material-ui/core'
 
 export default function Home() {
   useEffect(() => {

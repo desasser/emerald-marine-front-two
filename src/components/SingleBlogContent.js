@@ -34,7 +34,7 @@ export default function SingleBlogContent({ id }) {
         }
         <hr style={{marginBottom:'2em'}}></hr>
         {/* TODO: Write a map function to map over state and write the subtitles and sections */}
-        <img src={currentPost.image ? `${currentPost.image}` : `https://place-puppy.com/300x300`} style={{ display: 'inline-block' }} />
+        <img src={currentPost.image ? `${currentPost.image}` : `https://place-puppy.com/300x300`} style={{ display: 'inline-block' }} alt={currentPost.title}/>
         <Typography variant='h5' style={{ color: '#74b4ab', marginTop: '1.5em' }}>
           Subtitle 1
         </Typography>

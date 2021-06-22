@@ -5,11 +5,6 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SingleBlogContent from "../components/SingleBlogContent"
 import Page from "../components/Page"
 
-function handleClick(event) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
-
 export default function SingleBlog() {
   const { id } = useParams();
 

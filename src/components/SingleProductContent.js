@@ -1,13 +1,26 @@
 import React from 'react'
 import {useSelector} from 'react-redux';
 import { Typography, Grid, Button, Container } from '@material-ui/core';
-import store from '../utils/store';
 import ReactPlayer from 'react-player/youtube'
+import store from '../utils/store'
 
 export default function SingleProductContent({ sku }) {
   const products = useSelector(state => state.products.products)
+  const cart = useSelector(state => state.cartReducer.cartProducts.cartProducts)
 
   const currentProduct = products?.find(p => p.SKU === sku);
+
+  console.log('i am a shopping cart!', cart)
+
+  const addToCart = () => {
+    console.log('click', cart.concat(currentProduct))
+    store.dispatch({
+      type: 'FETCH_CART_PRODUCTS',
+      payload: {
+        cartProducts: cart.concat(currentProduct)
+      }
+    })
+  }
 
   return (
     <Grid container style={{ width: '80%' }} spacing={2}>
@@ -38,7 +51,7 @@ export default function SingleProductContent({ sku }) {
         <Typography variant="subtitle2">
           Tags: {currentProduct?.tags.join(', ')}
         </Typography>
-        <Button variant="contained" style={{ height: '56px', width: '100%', backgroundColor: '#f5ed5eff', fontSize: '16px', marginTop: '1.5em' }}>Add to Request for Quote</Button>
+        <Button variant="contained" onClick={addToCart} style={{ height: '56px', width: '100%', backgroundColor: '#f5ed5eff', fontSize: '16px', marginTop: '1.5em' }}>Add to Request for Quote</Button>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h5" style={{marginTop: '20px'}}>Details</Typography>
@@ -48,7 +61,7 @@ export default function SingleProductContent({ sku }) {
       </Grid>
       <Grid item xs={12} ></Grid>
       <Grid item xs={12} >
-        <div style={{ display: 'inline-block', display: 'flex', justifyContent: "space-between" }}>
+        <div style={{ display: 'flex', justifyContent: "space-between" }}>
           <Typography variant="h5" component="span">Specifications</Typography>
           <Typography variant="subtitle2" component="span" style={{ alignSelf: 'flex-end' }}>Download Product Sheet</Typography>
         </div>
