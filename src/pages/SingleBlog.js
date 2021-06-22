@@ -18,10 +18,10 @@ export default function SingleBlog() {
       <Page>
         <div style={{ marginTop: '30px', width: '100%' }}>
           <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-            <Link color="inherit" to="/" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link color="inherit" to="/" style={{ textDecoration: 'none', color: 'grey' }}>
               Home
             </Link>
-            <Link color="inherit" to="/news" style={{ textDecoration: 'none', color: 'black' }}>
+            <Link color="inherit" to="/news" style={{ textDecoration: 'none', color: 'grey' }}>
               News
             </Link>
             <Typography color="textPrimary">Blog Title</Typography>
