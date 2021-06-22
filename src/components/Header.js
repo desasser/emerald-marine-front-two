@@ -59,9 +59,9 @@ const Header = () => {
     <AppBar className={classes.header}>
       <div className={classes.linkContainer}>
         <Toolbar className={classes.toolbar}>
-          <a to='/' className={classes.link}>
+          <Link to='/' className={classes.link}>
             <EmeraldMarineLogo className={classes.imgContainer} />
-          </a>
+          </Link>
           <Link to="/" underline='none' className={classes.linkStyles}>
             <Typography variant='body1'>
               Home
