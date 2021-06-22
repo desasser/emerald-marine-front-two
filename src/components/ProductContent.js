@@ -46,16 +46,23 @@ export default function ProductContent() {
   const classes = useStyles();
   const products = useSelector(state => state.products.products)
   const [state, setState] = useState({
-    checkedA: true,
-    checkedB: true,
-    checkedC: true
+    manOverboard: true,
+    marineSafety: true,
+    waterRescue: true
   });
+  const [filteredState, setFilter] = useState({
+    original: products,
+    filtered: products
+  })
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
+    // TODO: Filter by checked item
+    // search products for all objects with a key matching the category, 
+    // put those in an array and render those
+    console.log('name', event.target.name)
+    console.log('filtered results', products.filter(obj => obj.categories === event.target.name))
   };
-
-  const categories = ['Man-Overboard', 'Marine Safety', 'Water Rescue Training']
 
   return (
     <Container style={{ marginTop: '1.5em' }}>
@@ -63,26 +70,26 @@ export default function ProductContent() {
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', display: 'inline-block' }}>All Products</Typography>
         <div>
           <Checkbox
-            checked={state.checkedA}
+            checked={state.manOverboard}
             onChange={handleChange}
             color="default"
-            name="checkedA"
+            name="manOverboard"
             inputProps={{ 'aria-label': `Man-Overboard checkbox` }}
           />
           <Typography component="span">Man-Overboard</Typography>
           <Checkbox
-            checked={state.checkedB}
+            checked={state.marineSafety}
             onChange={handleChange}
             color="default"
-            name="checkedB"
+            name="marineSafety"
             inputProps={{ 'aria-label': `Marine Safety checkbox` }}
           />
           <Typography component="span">Marine Safety</Typography>
           <Checkbox
-            checked={state.checkedC}
+            checked={state.waterRescue}
             onChange={handleChange}
             color="default"
-            name="checkedC"
+            name="waterRescue"
             inputProps={{ 'aria-label': `Water Rescue Training checkbox` }}
           />
           <Typography component="span">Water Rescue Training</Typography>
