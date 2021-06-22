@@ -3,7 +3,6 @@ import {useSelector} from 'react-redux';
 import BlogCard from '../components/BlogCard';
 import { Container, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import store from '../utils/store';
 
 const useStyles = makeStyles((theme) => ({
   cardWrapper: {
