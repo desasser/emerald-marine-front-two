@@ -1,5 +1,6 @@
 import React from 'react'
 import Carousel from 'react-material-ui-carousel'
+import { Typography } from '@material-ui/core';
 
 export default function BlogBanner() {
   const testimonials = [
@@ -36,8 +37,8 @@ export default function BlogBanner() {
   function Item(props) {
     return (
       <div style={{width: '90%', overflow: 'hidden'}}>
-        <p><em>{props.item.content}</em></p>
-        <p style={{textAlign: 'right'}}>-{props.item.author}</p>
+        <Typography><em>{props.item.content}</em></Typography>
+        <Typography variant="body2" style={{textAlign: 'right', color: 'grey'}}>-{props.item.author}</Typography>
       </div>
     )
   }
@@ -50,8 +51,6 @@ export default function BlogBanner() {
         interval='10000'
         // animation='slide'
         navButtonsAlwaysInvisible={true}
-        next={(now, previous) => console.log(`Next User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
-        prev={(now, previous) => console.log(`Prev User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
       >
         {
           testimonials.map((item, i) => <Item key={i} item={item} />)
