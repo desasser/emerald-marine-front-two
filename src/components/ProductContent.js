@@ -4,8 +4,6 @@ import ProductCard from '../components/ProductCard'
 import InputForm from '../components/InputForm'
 import { Container, Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import store from '../utils/store';
-import { updateProducts } from '../utils/helpers/updateStore';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ProductContent() {
   const classes = useStyles();
   const products = useSelector(state => state.products.products)
-  const news = useSelector(state => state.blog.blog)
 
   return (
     <Container style={{ marginTop: '1.5em' }}>

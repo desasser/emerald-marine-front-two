@@ -15,6 +15,9 @@ import Press from '../components/admin/Press';
 const useStyles = makeStyles(() => ({
     logout: {
        backgroundColor: 'salmon'
+    },
+    buttons: {
+        marginTop: '10vh'
     }
 }))
 
@@ -26,7 +29,9 @@ store.dispatch(fetchTestList(token));
 const Admin = () => {
     let history = useHistory();
     const classes = useStyles();
-    const [view, setView] = useState('Product');
+    const [view, setView] = useState('Welcome');
+
+    const buttonText = ['Blog', 'Product', 'News Article', 'Press Releases', 'Mailing List']
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -39,22 +44,18 @@ const Admin = () => {
         
     }
 
-    const buttonText = ['Blog', 'Product', 'News Article', 'Press Release', 'Mailing List']
     
     return (
         <div>
         <Grid container spacing={3}>
-            <Grid item xs={12}>
-                <h1>Admin Dashboard</h1>
-                <AdminButton text='Logout' handleClick={handleLogout}/>
-            </Grid>
-            <Grid container spacing={1}>
-                <Grid item xs={4}>
+            <Grid container spacing={1} className={classes.buttons}>
+                <Grid item xs={12} style={{'display': 'flex', 'flex-direction': 'row'}}>
                     {buttonText.map(text => (
                         <AdminButton text={text} name={text.split(' ')[0]} handleClick={handleClick}/>
                     ))}
+                    <AdminButton text='Logout' handleClick={handleLogout}/>
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item xs={12}>
                     {view==='Product' ? 
                     <Product/> : view==='Blog' ?
                     <Blog/> : view==='News' ?
