@@ -1,6 +1,7 @@
-import React from 'react'
-import BlogCard from '../components/BlogCard'
-import { Container, Grid, Typography } from '@material-ui/core'
+import React from 'react';
+import {useSelector} from 'react-redux';
+import BlogCard from '../components/BlogCard';
+import { Container, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import store from '../utils/store';
 
@@ -16,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewsContent() {
   const classes = useStyles();
-  const blog = store.getState().blog.blog;
-  const pr = store.getState().pressReleases.pressReleases;
-  const news = store.getState().newsArticles.newsArticles;
+  const blog = useSelector(state => state.blog.blog)
+  const pr = useSelector(state => state.pressReleases.pressReleases)
+  const news = useSelector(state => state.newsArticles.newsArticles)
 
   const allPosts = blog.concat(pr, news);
 
@@ -33,7 +34,7 @@ export default function NewsContent() {
       </div>
       <hr></hr>
       <Grid container className={classes.cardWrapper} spacing={4}>
-        {allSorted.map(post => (
+        {allSorted?.map(post => (
           <Grid item xs={12}>
             <BlogCard title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt}>
               {post.description}

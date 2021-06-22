@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import { Button } from '@material-ui/core';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
 import store from '../../utils/store';
@@ -90,6 +89,24 @@ const Press = () => {
         })
     }
 
+    const uploadSuccess = result => {
+        console.log(result.info.url)
+        store.dispatch({
+            type: 'FETCH_IMAGE_URL',
+            payload: {
+                url: result.info.url
+            }
+        });
+        setCurrent({
+            ...current,
+            image: result.info.url
+        });
+    }
+
+    const uploadFailure = response => {
+        console.log(response)
+    }
+
     return (
         <div>
              <Grid container spacing={2}>
@@ -97,15 +114,15 @@ const Press = () => {
                     <h1>Current Press Releases</h1>
                     <br/>
                 </Grid>
-                <Grid container spacing={3} justify='space-evenly'>
+                <Grid container spacing={1} justify='space-evenly'>
+                    <Grid item xs={6}>
                     {releases?.map(release => 
-                        <Grid item xs={6}>
                             <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
-
-                        </Grid>)}
+                            )}
+                    </Grid>
+                    <Grid item xs={4}>
+                    <AddForm section='Press Releases' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
                 </Grid>
-                <Grid item xs={12}>
-                    <AddForm section='Press Releases' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe}/>
                 </Grid>
             </Grid>
         </div>

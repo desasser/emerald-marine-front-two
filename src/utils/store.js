@@ -2,7 +2,6 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import mailingListReducer from './reducers/mailingListReducer';
 import testListReducer from './reducers/testListReducer';
-import modalReducer from './reducers/modalReducer';
 import productReducer from './reducers/productReducer';
 import blogReducer from './reducers/blogReducer';
 import newsArticleReducer from './reducers/newsArticleReducer';
@@ -12,7 +11,6 @@ import widgetReducer from './reducers/widgetReducer';
 const rootReducer = combineReducers({
     mailingList: mailingListReducer,
     testList: testListReducer,
-    modal: modalReducer,
     products: productReducer,
     blog: blogReducer,
     newsArticles: newsArticleReducer,
