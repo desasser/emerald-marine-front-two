@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Footer = ({ siteTitle, menuLinks }) => {
+const Footer = () => {
   const classes = useStyles()
 
   return (

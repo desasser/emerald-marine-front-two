@@ -14,8 +14,6 @@ const News = () => (
         <Typography color="textPrimary">Contact</Typography>
       </Breadcrumbs>
     </div>
-    <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab' }}>Contact</Typography>
-
     <Contact></Contact>
   </>
 )
