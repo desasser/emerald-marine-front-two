@@ -41,19 +41,6 @@ export default function ProductBlock(props) {
                 <ProductCard name={product.name} classes={classes} sku={product.SKU} price={product.price} image={product.image} alt={product.alt}></ProductCard>
               </Grid>
             ))}
-
-            {/* <Grid item>
-              <ProductCard classes={classes} title='Product 1' sku='1111' price='99.99'></ProductCard>
-            </Grid>
-            <Grid item>
-              <ProductCard classes={classes} title='Product 2' sku='2222' price='99.99'></ProductCard>
-            </Grid>
-            <Grid item>
-              <ProductCard classes={classes} title='Product 3' sku='3333' price='99.99'></ProductCard>
-            </Grid>
-            <Grid item>
-              <ProductCard classes={classes} title='Product 4' sku='4444' price='99.99'></ProductCard>
-            </Grid> */}
           </Grid>
         </Grid>
       </Grid>

@@ -8,7 +8,7 @@ import TestimonialBanner from "../components/TestimonialBanner"
 import MarketingInfo from "../components/MarketingInfo"
 import ProductBlock from "../components/ProductBlock"
 import API from '../utils/API'
-import store from '../utils/store'
+import Page from "../components/Page"
 import Carousel from 'react-material-ui-carousel'
 
 export default function Home() {
@@ -52,7 +52,7 @@ export default function Home() {
   }
 
   return (
-    <>
+    <Page>
       <Carousel 
         indicators={false}
         // timeout='500'
@@ -72,6 +72,6 @@ export default function Home() {
       
       <MarketingInfo />
       <ProductBlock />
-    </>
+    </Page>
   )
 }
