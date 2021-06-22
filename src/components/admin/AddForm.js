@@ -6,7 +6,6 @@ import UploadWidget from './UploadWidget';
 const AddForm = ({section, message, fields, handleAddFormChange, addMe, updateMe, successCallback, failureCallback }) => {
     return (
         <div style={{'display': 'flex', 'flex-direction': 'column'}}>
-            <h1>Add to {section}</h1>
             <h3>{message}</h3>
             <br/>
             {fields.map(field => 

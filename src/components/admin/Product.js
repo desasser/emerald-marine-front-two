@@ -145,7 +145,7 @@ const Product = () => {
                     <h1>Current Products</h1>
                     <br/>
                     <Grid container spacing={5} justify='space-evenly'>
-                        <Grid item xs={4}>
+                        <Grid item xs={4} style={{'overflow': 'scroll'}}>
                     {products?.map(product => 
                         <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent} classes={classes}/>
                         )}
