@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
 export default function NewsContent() {
   const classes = useStyles();
   const [state, setState] = useState({
-    'Alert Man Overboard Products': true,
+    'Man-Overboard': true,
     'Water Rescue Training': true,
-    'Accessories': true
+    'Marine Safety': true
   });
 
   const blog = useSelector(state => state.blog.blog)
@@ -51,10 +51,10 @@ export default function NewsContent() {
             // checked={state.manOverboard}
             onChange={handleChange}
             color="default"
-            name="Alert Man Overboard Products"
+            name="Man-Overboard"
             inputProps={{ 'aria-label': `Man-Overboard checkbox` }}
           />
-          <Typography component="span">Alert Man Overboard Products</Typography>
+          <Typography component="span">Man-Overboard</Typography>
           <Checkbox
             checked={state.marineSafety}
             onChange={handleChange}
@@ -67,10 +67,10 @@ export default function NewsContent() {
             checked={state.waterRescue}
             onChange={handleChange}
             color="default"
-            name="Water Rescue"
-            inputProps={{ 'aria-label': `Water Rescue Training checkbox` }}
+            name="Marine Safety"
+            inputProps={{ 'aria-label': `Marine Safety checkbox` }}
           />
-          <Typography component="span">Accessories</Typography>
+          <Typography component="span">Marine Safety</Typography>
         </div>
       </div>
       <hr></hr>

@@ -44,7 +44,7 @@ export default function ProductContent() {
   const classes = useStyles();
   const products = useSelector(state => state.products.products)
   const [state, setState] = useState({
-    'Alert Man Overboard Products': true,
+    'Overboard Alerting Products': true,
     'Water Rescue Training': true,
     'Accessories': true
   });
@@ -59,7 +59,6 @@ export default function ProductContent() {
     // search products for all objects with a key matching the category, 
     // put those in an array and render those
     console.log('name', event.target.name)
-    console.log('products', products[0].categories)
     console.log('filtered results', products.filter(obj => obj.categories.includes(event.target.name)))
   };
 
@@ -72,24 +71,24 @@ export default function ProductContent() {
             // checked={state.manOverboard}
             onChange={handleChange}
             color="default"
-            name="Alert Man Overboard Products"
-            inputProps={{ 'aria-label': `Man-Overboard checkbox` }}
+            name="Overboard Alerting Products"
+            inputProps={{ 'aria-label': `Overboard Alerting Products checkbox` }}
           />
-          <Typography component="span">Alert Man Overboard Products</Typography>
+          <Typography component="span">Overboard Alerting Products</Typography>
           <Checkbox
             checked={state.marineSafety}
             onChange={handleChange}
             color="default"
             name="Water Rescue Training"
-            inputProps={{ 'aria-label': `Marine Safety checkbox` }}
+            inputProps={{ 'aria-label': `Water Rescue Training checkbox` }}
           />
           <Typography component="span">Water Rescue Training</Typography>
           <Checkbox
             checked={state.waterRescue}
             onChange={handleChange}
             color="default"
-            name="Water Rescue"
-            inputProps={{ 'aria-label': `Water Rescue Training checkbox` }}
+            name="Accessories"
+            inputProps={{ 'aria-label': `Accessories checkbox` }}
           />
           <Typography component="span">Accessories</Typography>
         </div>
