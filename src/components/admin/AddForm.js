@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import UploadWidget from './UploadWidget';
 
-const AddForm = ({section, message, fields, handleAddFormChange, addMe, updateMe}) => {
+const AddForm = ({section, message, fields, handleAddFormChange, addMe, updateMe, successCallback, failureCallback }) => {
     return (
         <div style={{'display': 'flex', 'flex-direction': 'column'}}>
             <h1>Add to {section}</h1>
@@ -15,7 +15,7 @@ const AddForm = ({section, message, fields, handleAddFormChange, addMe, updateMe
             <br/>
             <div style={{'display': 'flex', 'flex-direction': 'row', 'justify-content': 'space-between'}}>
             {section==='Products' || section==='Press Releases' || section==='Blog' ? 
-            <UploadWidget/> :
+            <UploadWidget successCallback={successCallback} failureCallback={failureCallback}/> :
             <></>}
             <Button size='small' style={{'padding': '0', 'max-width': '30%'}} variant="contained" onClick={addMe}>Add to {section}</Button>
             <Button size='small' style={{'padding': '0', 'max-width': '30%'}} variant="contained" onClick={updateMe}>Update {section}</Button>

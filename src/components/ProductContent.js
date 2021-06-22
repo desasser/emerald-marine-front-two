@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ProductContent() {
   const classes = useStyles();
   const products = useSelector(state => state.products.products)
-  const news = useSelector(state => state.blog.blog)
 
   return (
     <Container style={{ marginTop: '1.5em' }}>

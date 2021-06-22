@@ -2,20 +2,7 @@ import React from 'react';
 import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget'
 import store from '../../utils/store';
 
-const UploadWidget = () => {
-    const successCallback = result => {
-        console.log(result.info.url)
-        store.dispatch({
-            type: 'FETCH_IMAGE_URL',
-            payload: {
-                url: result.info.url
-            }
-        });
-    }
-
-    const failureCallback = response => {
-        console.log(response)
-    }
+const UploadWidget = ({successCallback, failureCallback}) => {
 
     return (
         <div>

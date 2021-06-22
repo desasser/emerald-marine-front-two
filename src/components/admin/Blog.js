@@ -16,7 +16,7 @@ const Blog = () => {
         date: '',
         categories: '',
         tags: '',
-        image: 'http://placekitten.com/g/200/300',
+        image: '',
         alt: '',
         intro: '',
         content: ''
@@ -94,6 +94,24 @@ const Blog = () => {
         })
     }
 
+    const uploadSuccess = result => {
+        console.log(result.info.url)
+        store.dispatch({
+            type: 'FETCH_IMAGE_URL',
+            payload: {
+                url: result.info.url
+            }
+        });
+        setCurrent({
+            ...current,
+            image: result.info.url
+        });
+    }
+
+    const uploadFailure = response => {
+        console.log(response)
+    }
+
     return (
         <div>
             <Grid container spacing={2}>
@@ -108,7 +126,7 @@ const Blog = () => {
                             )}
                     </Grid>
                     <Grid item xs={4}>
-                        <AddForm section='Blog' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog}/>
+                        <AddForm section='Blog' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
                     </Grid>
                 </Grid>
                 
