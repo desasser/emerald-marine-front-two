@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import Rescue from '../images/rescue.jpg'
 import cgRescue from '../images/coast_guard_rescue.jpg'
-import constructionBarge from '../images/construction_barge.jpg'
+import constructionBarge from '../images/construction_barge_crop1.jpg'
 import marineTerminal from '../images/marine_terminal.jpg'
 import BlogBanner from "../components/BlogBanner"
 import TestimonialBanner from "../components/TestimonialBanner"
