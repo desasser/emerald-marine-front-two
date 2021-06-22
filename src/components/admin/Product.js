@@ -119,6 +119,24 @@ const Product = () => {
             }
         });
     }
+
+    const uploadSuccess = result => {
+        console.log(result.info.url)
+        store.dispatch({
+            type: 'FETCH_IMAGE_URL',
+            payload: {
+                url: result.info.url
+            }
+        });
+        setCurrent({
+            ...current,
+            image: result.info.url
+        });
+    }
+
+    const uploadFailure = response => {
+        console.log(response)
+    }
     
     return (
         <div>
@@ -133,7 +151,7 @@ const Product = () => {
                         )}
                         </Grid>
                         <Grid item xs={6}>
-                    <AddForm section='Products' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent}/>
+                    <AddForm section='Products' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
                 </Grid>
                     </Grid>
                 </Grid>

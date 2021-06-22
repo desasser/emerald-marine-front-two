@@ -89,6 +89,24 @@ const Press = () => {
         })
     }
 
+    const uploadSuccess = result => {
+        console.log(result.info.url)
+        store.dispatch({
+            type: 'FETCH_IMAGE_URL',
+            payload: {
+                url: result.info.url
+            }
+        });
+        setCurrent({
+            ...current,
+            image: result.info.url
+        });
+    }
+
+    const uploadFailure = response => {
+        console.log(response)
+    }
+
     return (
         <div>
              <Grid container spacing={2}>
@@ -103,7 +121,7 @@ const Press = () => {
                             )}
                     </Grid>
                     <Grid item xs={4}>
-                    <AddForm section='Press Releases' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe}/>
+                    <AddForm section='Press Releases' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
                 </Grid>
                 </Grid>
             </Grid>

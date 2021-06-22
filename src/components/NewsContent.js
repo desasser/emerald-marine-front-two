@@ -34,7 +34,7 @@ export default function NewsContent() {
       </div>
       <hr></hr>
       <Grid container className={classes.cardWrapper} spacing={4}>
-        {allSorted.map(post => (
+        {allSorted?.map(post => (
           <Grid item xs={12}>
             <BlogCard title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt}>
               {post.description}
