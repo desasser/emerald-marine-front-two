@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
     width: '75%',
     '& label.Mui-focused': {
       color: 'black',
+      backgroundColor: 'white'
     },
     '& .MuiOutlinedInput-root': {
       '&.Mui-focused fieldset': {
