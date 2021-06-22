@@ -191,7 +191,19 @@ const API = {
     // Shippo rate request
     getShippingRate: addressData => {
         return axios.post(`${URL_PREFIX}/shippo`, addressData)
+    },
+
+    // AuthJS charge request
+    chargeCreditCard: cardData => {
+        return axios.post(`${URL_PREFIX}/authjs/charge`, cardData)
+    },
+    
+    // AuthJS refund request
+    refundCreditCard: (cardData, transactionID) => {
+        return axios.post(`${URL_PREFIX}/authjs/refund`, transactionID, cardData)
     }
+
+
 }
 
 export default API;
