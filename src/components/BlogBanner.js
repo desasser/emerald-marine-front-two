@@ -36,7 +36,8 @@ export default function BlogBanner() {
   return (
     <div style={{ height: '150px', width: '50vw', padding: '20px',}}>
       <Grid item xs={12} style={{display: 'flex', justifyContent: 'flex-end'}}>
-        <Card className={classes.root} elevation={0}>
+        {post ? 
+        (<Card className={classes.root} elevation={0}>
           <Link to={`/news/${post._id}`} style={{ textDecoration: 'none', color: 'black' }}>
             <CardActionArea >
               <CardContent>
@@ -51,7 +52,9 @@ export default function BlogBanner() {
               </CardContent>
             </CardActionArea>
           </Link>
-        </Card>
+        </Card>)
+        :
+        <Typography variant="h5" style={{color: '#74b4ab'}}>Loading...</Typography>}
       </Grid>
     </div>
   )
