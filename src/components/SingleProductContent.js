@@ -30,7 +30,7 @@ export default function SingleProductContent({ sku }) {
         </Typography>
       </Grid>
       <Grid item xs={6}>
-        <img src={currentProduct?.image} alt={currentProduct?.alt} style={{ display: 'inline-block', margin: '0 auto', maxWidth: '300px' }} />
+        <img src={currentProduct?.image} alt={currentProduct?.alt} style={{ display: 'inline-block', margin: '0 auto', maxWidth: '350px' }} />
       </Grid>
       <Grid item xs={6}>
         <Typography variant="h5" style={{ marginBottom: '1.5rem', textAlign: 'right' }}>

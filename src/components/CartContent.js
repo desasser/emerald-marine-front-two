@@ -1,5 +1,6 @@
 import React from 'react'
 import CartCard from './CartCard';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -39,18 +40,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function CartContent() {
   const classes = useStyles();
+  const cart = useSelector(state => state.cartReducer.cartProducts)
+  console.log(cart)
+
+  const renderCart = cart;
 
   return (
     <div style={{ width: '60vw' }}>
-      <CartCard title='Product 4' classes={classes} sku='4444' price='99.99' shipping='123.12'>
-        This is a custom description for Product 4
-      </CartCard>
-      <CartCard title='Product 4' classes={classes} sku='4444' price='99.99' shipping='123.12'>
-        This is a custom description for Product 4
-      </CartCard>
-      <CartCard title='Product 4' classes={classes} sku='4444' price='99.99' shipping='123.12'>
-        This is a custom description for Product 4
-      </CartCard>
+      <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
+      <hr></hr>
+      {renderCart?.map(item => (
+        <CartCard title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping='123.12' image={item.image} id={item._id}>
+          This is a custom description for Product 4
+        </CartCard>
+      ))}
       <hr></hr>
       <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
         Shipping Estimate Total:
