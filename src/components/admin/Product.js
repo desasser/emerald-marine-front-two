@@ -40,6 +40,7 @@ const Product = () => {
     });
     const [currentID, setCurrentID] = useState('')
     const [editing, setEditing] = useState(false)
+    const [updating, setUpdating] = useState(false);
 
     const warnings = 'Please enter tags and categories as comma-seperated lists.'
     const fields = [{name: 'name', content: `${current.name}`}, {name: 'description', content: `${current.description}`}, {name: 'price', content: `${current.price}`}, {name: 'SKU', content: `${current.SKU}`}, {name: 'tags', content: `${current.tags}`}, {name: 'categories', content: `${current.categories}`}, {name: 'video', content: `${current.video}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'weight', content: `${current.weight}`}, {name: 'length', content: `${current.length}`}, {name: 'width', content: `${current.width}`}, {name: 'height', content: `${current.height}`}]
@@ -79,6 +80,7 @@ const Product = () => {
     }
 
     const addProduct = () => {
+        setUpdating(false);
         API.createProduct(current, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchProducts());
@@ -91,6 +93,7 @@ const Product = () => {
     }
 
     const grabCurrent = e => {
+        setUpdating(true);
         e.preventDefault();
         const name = e.currentTarget.getAttribute('data-name')
         const description = e.currentTarget.getAttribute('data-description')
@@ -134,6 +137,7 @@ const Product = () => {
             }
             clearCurrent();
             hideEditForm();
+            setUpdating(false);
         }).catch(err => {
             if(err) {
                 console.log(err.message)
@@ -187,7 +191,7 @@ const Product = () => {
                         )}
                     </Grid>
                     <Grid item xs={6}>
-                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrent : addProduct} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
                     </Grid>
                 </Grid> : 
                 <Grid container spacing={1}>

@@ -25,6 +25,7 @@ const Mailing = () => {
     const [current, setCurrent] = useState({email: ''});
     const [currentID, setCurrentID] = useState('')
     const [editing, setEditing] = useState(false);
+    const [updating, setUpdating] = useState(false);
 
     const showEditForm = () => {
         setEditing(true)
@@ -49,6 +50,7 @@ const Mailing = () => {
     }
 
     const addToMailingList = e => {
+        setUpdating(false);
         e.preventDefault();
         API.addToMailingList(current).then(res => {
             if(res.data) {
@@ -62,6 +64,7 @@ const Mailing = () => {
     }
 
     const addToTestList = e => {
+        setUpdating(false);
         e.preventDefault();
         API.addToTestList(current).then(res => {
             if(res.data) {
@@ -97,6 +100,7 @@ const Mailing = () => {
     }
 
     const grabCurrent = e => {
+        setUpdating(true)
         const id = e.currentTarget.getAttribute('data-id');
         const name = e.currentTarget.getAttribute('data-name');
         const email = e.currentTarget.getAttribute('data-email');
@@ -116,6 +120,7 @@ const Mailing = () => {
             }
             clearCurrent();
             hideEditForm();
+            setUpdating(false);
         }).catch(err => {
             if(err) {
                 console.log(err.message)
@@ -129,6 +134,7 @@ const Mailing = () => {
             store.dispatch(fetchTestList(token))
             clearCurrent();
             hideEditForm();
+            setUpdating(false);
         }).catch(err => {
             console.log(err.message)
         });
@@ -146,7 +152,7 @@ const Mailing = () => {
             )}
             </Grid>
             <Grid item xs={6}>
-                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList} updateMe={updateCurrentMailing} show={editing} showForm={showEditForm}/>
+                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrentMailing : addToMailingList} show={editing} showForm={showEditForm}/>
             </Grid>
         </Grid> :
         <Grid container spacing={2}>
@@ -157,7 +163,7 @@ const Mailing = () => {
             )}
             </Grid>
             <Grid item xs={2}>
-                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList} updateMe={updateCurrentMailing} show={editing} showForm={showEditForm}/>
+                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrentMailing : addToMailingList} show={editing} showForm={showEditForm}/>
             </Grid>
         </Grid>}
             {editing ? 
@@ -170,7 +176,7 @@ const Mailing = () => {
                 )}
             </Grid>
             <Grid item xs={6}>
-                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList} updateMe={updateCurrentTest} show={editing} showForm={showEditForm}/>
+                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrentTest : addToTestList} show={editing} showForm={showEditForm}/>
             </Grid>
         </Grid> :
         <Grid container spacing={2}>
@@ -181,7 +187,7 @@ const Mailing = () => {
                 )}
             </Grid>
             <Grid item xs={2}>
-                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList} updateMe={updateCurrentTest} show={editing} showForm={showEditForm}/>
+                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrentTest : addToTestList} show={editing} showForm={showEditForm}/>
             </Grid>
         </Grid>}
         

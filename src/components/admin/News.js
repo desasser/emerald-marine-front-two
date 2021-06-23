@@ -28,6 +28,7 @@ const News = () => {
     });
     const [currentID, setCurrentID] = useState('')
     const [editing, setEditing] = useState(false);
+    const [updating, setUpdating] = useState(false);
 
     const showEditForm = () => {
         setEditing(true)
@@ -59,6 +60,7 @@ const News = () => {
     }
 
     const addNewsArticle = () => {
+        setUpdating(false);
         API.createNewsArticle(current, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchNewsArticles())
@@ -71,6 +73,7 @@ const News = () => {
     }
 
     const grabCurrent = e => {
+        setUpdating(true);
         e.preventDefault();
         const title = e.currentTarget.getAttribute('data-title')
         const publication = e.currentTarget.getAttribute('data-publication')
@@ -117,6 +120,7 @@ const News = () => {
             }
             clearCurrent();
             hideEditForm();
+            setUpdating(false);
         }).catch(err => {
             if(err) {
                 console.log(err.message)
@@ -139,7 +143,7 @@ const News = () => {
                     )}
                 </Grid>
                 <Grid item xs={4}>
-                <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addNewsArticle} updateMe={updateMe} show={editing} showForm={showEditForm}/>
+                <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm}/>
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
@@ -149,7 +153,7 @@ const News = () => {
                     )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addNewsArticle} updateMe={updateMe} show={editing} showForm={showEditForm}/>
+                    <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm}/>
                 </Grid>
             </Grid>}
             </Grid>

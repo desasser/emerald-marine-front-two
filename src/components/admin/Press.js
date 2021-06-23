@@ -29,6 +29,7 @@ const Press = () => {
     });
     const [currentID, setCurrentID] = useState('')
     const [editing, setEditing] = useState(false);
+    const [updating, setUpdating] = useState(false);
 
     const showEditForm = () => {
         setEditing(true)
@@ -60,6 +61,7 @@ const Press = () => {
     }
 
     const addPressRelease = () => {
+        setUpdating(false);
         API.createPressRelease(current, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchPressReleases())
@@ -72,6 +74,7 @@ const Press = () => {
     }
 
     const grabCurrent = e => {
+        setUpdating(true);
         e.preventDefault();
         const title = e.currentTarget.getAttribute('data-title')
         const date = e.currentTarget.getAttribute('data-date')
@@ -115,6 +118,7 @@ const Press = () => {
             }
             clearCurrent();
             hideEditForm();
+            setUpdating(false);
         }).catch(err => {
             if(err) {
                 console.log(err.message)
@@ -155,7 +159,7 @@ const Press = () => {
                         )}
                 </Grid>
                 <Grid item xs={4}>
-                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
+                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
@@ -165,7 +169,7 @@ const Press = () => {
                         )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
+                    <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange}  updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
                 </Grid>
             </Grid>}
             </Grid>

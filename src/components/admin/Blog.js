@@ -32,6 +32,7 @@ const Blog = () => {
     });
     const [currentID, setCurrentID] = useState('');
     const [editing, setEditing] = useState(false);
+    const [updating, setUpdating] = useState(false);
 
     const showEditForm = () => {
         setEditing(true)
@@ -65,6 +66,7 @@ const Blog = () => {
     }
 
     const addBlogPost = () => {
+        setUpdating(false);
         API.createBlogPost(current, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchBlog())
@@ -77,6 +79,7 @@ const Blog = () => {
     }
 
     const grabCurrent = e => {
+        setUpdating(true);
         e.preventDefault();
         const title = e.currentTarget.getAttribute('data-title')
         const date = e.currentTarget.getAttribute('data-date')
@@ -123,6 +126,7 @@ const Blog = () => {
             }
             clearCurrent();
             hideEditForm();
+            setUpdating(false);
         }).catch(err => {
             if(err) {
                 console.log(err.message)
@@ -163,7 +167,7 @@ const Blog = () => {
                         )}
                 </Grid>
                 <Grid item xs={4}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
                 </Grid>
             </Grid> :
             <Grid container spacing={1}>
