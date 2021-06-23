@@ -6,19 +6,18 @@ import store from '../utils/store'
 
 export default function SingleProductContent({ sku }) {
   const products = useSelector(state => state.products.products)
-  const cart = useSelector(state => state.cartReducer.cartProducts.cartProducts)
+  const cart = useSelector(state => state.cartReducer.cartProducts)
 
   const currentProduct = products?.find(p => p.SKU === sku);
 
   console.log('i am a shopping cart!', cart)
+  console.log('current product', currentProduct)
+
 
   const addToCart = () => {
-    console.log('click', cart.concat(currentProduct))
     store.dispatch({
       type: 'FETCH_CART_PRODUCTS',
-      payload: {
-        cartProducts: cart.concat(currentProduct)
-      }
+      payload: cart.concat(currentProduct)
     })
   }
 
@@ -31,7 +30,7 @@ export default function SingleProductContent({ sku }) {
         </Typography>
       </Grid>
       <Grid item xs={6}>
-        <img src={currentProduct?.image} alt={currentProduct?.alt} style={{ display: 'inline-block', margin: '0 auto' }} />
+        <img src={currentProduct?.image} alt={currentProduct?.alt} style={{ display: 'inline-block', margin: '0 auto', maxWidth: '300px' }} />
       </Grid>
       <Grid item xs={6}>
         <Typography variant="h5" style={{ marginBottom: '1.5rem', textAlign: 'right' }}>
