@@ -25,14 +25,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CartCard({ children, price, shipping, image, sku, title, id }) {
+export default function CartCard({ price, shipping, image, title, id, quantity }) {
   const classes = useStyles();
   const cart = useSelector(state => state.cartReducer.cartProducts)
+  console.log('cart')
+  console.log('==========================================')
+  console.log(cart)
 
   const removeItem = () => {
     store.dispatch({
       type: 'FETCH_CART_PRODUCTS', 
-      payload: cart.filter(cart => cart._id !== id)
+      payload: cart.filter(cart => cart.product._id !== id)
     })
   }
 
@@ -43,7 +46,7 @@ export default function CartCard({ children, price, shipping, image, sku, title,
           <Grid item>
             <img className={classes.img} alt="complex" src={image} />
           </Grid>
-          <Grid item xs={12} sm container>
+          <Grid item xs={12} sm container style={{height: '200px'}}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs >
                 <Typography gutterBottom variant="h6" style={{ marginTop: '10px', color: '#74b4ab' }}>
@@ -61,6 +64,7 @@ export default function CartCard({ children, price, shipping, image, sku, title,
             </Grid>
             <Grid item style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
               <Typography variant="subtitle1" style={{ textAlign: 'right' }}>${price}</Typography>
+              <Typography variant="subtitle1" style={{textAlign: 'right'}}>Quantity: {quantity}</Typography>
               <Typography variant="subtitle1">Shipping Estimate: ${shipping}</Typography>
               <Button onClick={removeItem} id={id}>
                 Remove

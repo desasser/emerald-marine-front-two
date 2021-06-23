@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 export default function CartContent() {
   const classes = useStyles();
   const cart = useSelector(state => state.cartReducer.cartProducts)
-  console.log(cart)
 
   const renderCart = cart;
 
@@ -24,8 +23,9 @@ export default function CartContent() {
     <div style={{ width: '60vw' }}>
       <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
       <hr></hr>
-      {renderCart?.map((item, index) => (
-        <CartCard title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping='123.12' image={item.image} id={item._id}>
+      {renderCart?.map((item) => (
+
+        <CartCard title={item.product.name} classes={classes} sku={item.product.SKU} price={item.product.price} shipping='123.12' image={item.product.image} id={item.product._id} quantity={item.quantity.quantity}>
           This is a custom description for Product 4
         </CartCard>
       ))}
