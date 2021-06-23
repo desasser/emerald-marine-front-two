@@ -15,6 +15,9 @@ const Mailing = () => {
 
     const [current, setCurrent] = useState({email: ''});
     const [currentID, setCurrentID] = useState('')
+    const clearCurrent = () => {
+        setCurrent({email: ''})
+    }
 
     const fields = [{name: 'email', content: `${current.email}`}];
 
@@ -32,6 +35,7 @@ const Mailing = () => {
             if(res.data) {
                 store.dispatch(fetchMailingList(token))
             }
+            clearCurrent();
         }).catch(err => {
             console.log(err.message)
         })
@@ -43,6 +47,7 @@ const Mailing = () => {
             if(res.data) {
                 store.dispatch(fetchTestList(token))
             }
+            clearCurrent();
         }).catch(err => {
             console.log(err.message)
         })
@@ -87,6 +92,7 @@ const Mailing = () => {
             if(res) {
                 store.dispatch(fetchMailingList(token))
             }
+            clearCurrent();
         }).catch(err => {
             if(err) {
                 console.log(err.message)
@@ -98,6 +104,7 @@ const Mailing = () => {
         e.preventDefault();
         API.updateTestList(current, currentID, token).then(res => {
             store.dispatch(fetchTestList(token))
+            clearCurrent();
         }).catch(err => {
             console.log(err.message)
         });

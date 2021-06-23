@@ -19,6 +19,16 @@ const News = () => {
     });
     const [currentID, setCurrentID] = useState('')
 
+    const clearCurrent = () => {
+        setCurrent({
+        title: '',
+        publication: '',
+        date: '',
+        link: '',
+        description: ''
+        });
+    }
+
     const warnings = 'Date must be in the following format: "YYYY-MM-DD".'
     const fields = [{name: 'title', content: `${current.title}`}, {name: 'publication', content: `${current.publication}`}, {name: 'date', content: `${current.date}`}, {name: 'link', content: `${current.link}`}, {name: 'description', content: `${current.description}`}]
 
@@ -35,6 +45,7 @@ const News = () => {
             if(res.data) {
                 store.dispatch(fetchNewsArticles())
             }
+            clearCurrent();
         }).catch(err => {
             console.log(err.message)
         });
@@ -84,6 +95,7 @@ const News = () => {
                 console.log(res);
                 store.dispatch(fetchNewsArticles())
             }
+            clearCurrent();
         }).catch(err => {
             if(err) {
                 console.log(err.message)

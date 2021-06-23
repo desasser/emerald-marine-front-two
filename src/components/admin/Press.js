@@ -20,6 +20,16 @@ const Press = () => {
     });
     const [currentID, setCurrentID] = useState('')
 
+    const clearCurrent = () => {
+        setCurrent({
+            title: '',
+            image: '',
+            date: '',
+            alt: '',
+            content: ''
+        });
+    }
+
     const warnings = 'Date must be in the following format: "YYYY-MM-DD".'
     const fields = [{name: 'title', content: `${current.title}`}, {name: 'image', content: `${current.image}`}, {name: 'date', content: `${current.date}`}, {name: 'alt', content: `${current.alt}`}, {name: 'content', content: `${current.content}`}]
 
@@ -35,6 +45,7 @@ const Press = () => {
         API.createPressRelease(current, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchPressReleases())
+                clearCurrent();
             }
         }).catch(err => {
             console.log(err.message)
@@ -82,6 +93,7 @@ const Press = () => {
                 console.log(res.data);
                 store.dispatch(fetchPressReleases())
             }
+            clearCurrent();
         }).catch(err => {
             if(err) {
                 console.log(err.message)

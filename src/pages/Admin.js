@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from "react";
+import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import store from '../utils/store';
+import API from '../utils/API';
 import {fetchMailingList} from '../utils/actions/mailingListActions';
 import {fetchTestList} from '../utils/actions/testListActions';
 import AdminButton from '../components/admin/AdminButton';
@@ -30,6 +32,20 @@ const Admin = () => {
     let history = useHistory();
     const classes = useStyles();
     const [view, setView] = useState('Welcome');
+    const [user, setUser] = useState({
+        username: '',
+        isLoggedIn: false
+    });
+
+    useEffect(() => {
+        API.getVip(localStorage.getItem('token')).then(res => {
+            res.data.username ? setUser({username: res.data.username, isLoggedIn: true}) : history.push('/login');
+        }).catch(err => {
+            setUser({username: '', isLoggedIn: false});
+            history.push('/login');
+            localStorage.removeItem('token')
+        });
+    }, [token]);
 
     const buttonText = ['Blog', 'Product', 'News Article', 'Press Releases', 'Mailing List']
 
@@ -43,11 +59,11 @@ const Admin = () => {
         setView(currentView);
         
     }
-
     
     return (
         <div>
-        <Grid container spacing={3}>
+        { user.isLoggedIn ? 
+            <Grid container spacing={3}>
             <Grid container spacing={1} className={classes.buttons}>
                 <Grid item xs={12} style={{'display': 'flex', 'flex-direction': 'row'}}>
                     {buttonText.map(text => (
@@ -65,7 +81,10 @@ const Admin = () => {
                     <Product/>}
                 </Grid>
             </Grid>
-        </Grid>
+        </Grid> :
+        <h1>You must be an administrator to access this page.</h1>
+        }
+        
 
         </div>
     )

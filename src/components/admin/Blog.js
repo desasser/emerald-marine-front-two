@@ -22,6 +22,18 @@ const Blog = () => {
         content: ''
     });
     const [currentID, setCurrentID] = useState('')
+    const clearCurrent = () => {
+        setCurrent({
+        title: '',
+        date: '',
+        categories: '',
+        tags: '',
+        image: '',
+        alt: '',
+        intro: '',
+        content: ''
+        })
+    }
 
     const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}, {name: 'content', content: `${current.content}`}]
 
@@ -38,6 +50,7 @@ const Blog = () => {
             if(res.data) {
                 store.dispatch(fetchBlog())
             }
+            clearCurrent();
         }).catch(err => {
             console.log(err.message)
         });
@@ -87,6 +100,7 @@ const Blog = () => {
                 console.log(res)
                 store.dispatch(fetchBlog())
             }
+            clearCurrent();
         }).catch(err => {
             if(err) {
                 console.log(err.message)

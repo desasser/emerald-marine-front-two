@@ -48,11 +48,30 @@ const Product = () => {
         });
     }
 
+    const clearCurrent = () => {
+        setCurrent({
+        name: '',
+        description: '',
+        price: '',
+        SKU: '',
+        tags: '',
+        categories: '',
+        video: '',
+        image: '',
+        alt: '',
+        weight: '',
+        length: '',
+        width: '',
+        height: ''
+        });
+    }
+
     const addProduct = () => {
         API.createProduct(current, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchProducts());
             }
+            clearCurrent();
         }).catch(err => {
             console.log(err.message)
         });
@@ -99,6 +118,7 @@ const Product = () => {
             if(res) {
                 store.dispatch(fetchProducts());
             }
+            clearCurrent();
         }).catch(err => {
             if(err) {
                 console.log(err.message)

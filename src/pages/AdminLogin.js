@@ -11,10 +11,7 @@ const AdminLogin = () => {
         API.greeting().then(res => {
             console.log(res.data)
         });
-        if(localStorage.getItem('token')) {
-            history.push('/admin')
-        }
-    }, [localStorage.getItem('token')]);
+    });
 
     const [user, setUser] = useState({
         username: '',

@@ -27,6 +27,13 @@ const API = {
     deleteUser: username => {
         return axios.delete(`${URL_PREFIX}/users/${username}`)
     },
+    getVip: token => {
+        return axios.get(`${URL_PREFIX}/vip`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        })
+    },
 
     // Blog post routes
     getAllBlogPosts: () => {
