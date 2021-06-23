@@ -18,6 +18,15 @@ const News = () => {
         description: ''
     });
     const [currentID, setCurrentID] = useState('')
+    const [editing, setEditing] = useState(false);
+
+    const showEditForm = () => {
+        setEditing(true)
+    }
+
+    const hideEditForm = () => {
+        setEditing(false)
+    }
 
     const clearCurrent = () => {
         setCurrent({
@@ -46,6 +55,7 @@ const News = () => {
                 store.dispatch(fetchNewsArticles())
             }
             clearCurrent();
+            hideEditForm();
         }).catch(err => {
             console.log(err.message)
         });
@@ -73,6 +83,7 @@ const News = () => {
             link: link,
         })
         setCurrentID(id)
+        showEditForm();
     }
 
     const removeCurrent = e => {
@@ -96,6 +107,7 @@ const News = () => {
                 store.dispatch(fetchNewsArticles())
             }
             clearCurrent();
+            hideEditForm();
         }).catch(err => {
             if(err) {
                 console.log(err.message)
@@ -110,16 +122,24 @@ const News = () => {
                     <h1>Current News Articles</h1>
                     <br/>
                 </Grid>
+                {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                    <Grid item xs={6}>
-                    {articles?.map(article => 
-                            <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
-                        )}
-                    </Grid>
-                    <Grid item xs={4}>
-                    <AddForm section='News' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addNewsArticle} updateMe={updateMe}/>
+                <Grid item xs={6}>
+                {articles?.map(article => 
+                        <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
+                    )}
                 </Grid>
+                <Grid item xs={4}>
+                <AddForm section='News' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addNewsArticle} updateMe={updateMe}/>
+            </Grid>
+            </Grid> :
+            <Grid container spacing={1}>
+                <Grid item xs={12}>
+                {articles?.map(article => 
+                        <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
+                    )}
                 </Grid>
+            </Grid>}
             </Grid>
         </div>
     )

@@ -15,6 +15,16 @@ const Mailing = () => {
 
     const [current, setCurrent] = useState({email: ''});
     const [currentID, setCurrentID] = useState('')
+    const [editing, setEditing] = useState(false);
+
+    const showEditForm = () => {
+        setEditing(true)
+    }
+
+    const hideEditForm = () => {
+        setEditing(false)
+    }
+
     const clearCurrent = () => {
         setCurrent({email: ''})
     }
@@ -36,6 +46,7 @@ const Mailing = () => {
                 store.dispatch(fetchMailingList(token))
             }
             clearCurrent();
+            hideEditForm();
         }).catch(err => {
             console.log(err.message)
         })
@@ -48,6 +59,7 @@ const Mailing = () => {
                 store.dispatch(fetchTestList(token))
             }
             clearCurrent();
+            hideEditForm();
         }).catch(err => {
             console.log(err.message)
         })
@@ -84,6 +96,7 @@ const Mailing = () => {
             email: email
         });
         setCurrentID(id)
+        showEditForm();
     }
 
     const updateCurrentMailing = e => {
@@ -93,6 +106,7 @@ const Mailing = () => {
                 store.dispatch(fetchMailingList(token))
             }
             clearCurrent();
+            hideEditForm();
         }).catch(err => {
             if(err) {
                 console.log(err.message)
@@ -105,6 +119,7 @@ const Mailing = () => {
         API.updateTestList(current, currentID, token).then(res => {
             store.dispatch(fetchTestList(token))
             clearCurrent();
+            hideEditForm();
         }).catch(err => {
             console.log(err.message)
         });
@@ -112,30 +127,48 @@ const Mailing = () => {
 
     return (
         <div>
+            {editing ? 
             <Grid container spacing={2}>
-                <Grid item xs={6}>
-                <h1>Mailing List Subscribers</h1>
+            <Grid item xs={6}>
+            <h1>Mailing List Subscribers</h1>
+            <br/>
+            {mailingList?.map(list => 
+            <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
+            )}
+            </Grid>
+            <Grid item xs={6}>
+                <AddForm section='Mailing List' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList} updateMe={updateCurrentMailing}/>
+            </Grid>
+        </Grid> :
+        <Grid container spacing={2}>
+            <Grid item xs={12}>
+            <h1>Mailing List Subscribers</h1>
+            {mailingList?.map(list => 
+            <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
+            )}
+            </Grid>
+        </Grid>}
+            {editing ? 
+            <Grid container spacing={2}>
+            <Grid item xs={6}>
+                <h1>Product Test Reminder Subscribers</h1>
                 <br/>
-                {mailingList?.map(list => 
-                <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
+                {testList?.map(list => 
+                <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeTestList} grabMe={grabCurrent}/> 
                 )}
-                </Grid>
-                <Grid item xs={6}>
-                    <AddForm section='Mailing List' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList} updateMe={updateCurrentMailing}/>
-                </Grid>
             </Grid>
-            <Grid container spacing={2}>
-                <Grid item xs={6}>
-                    <h1>Product Test Reminder Subscribers</h1>
-                    <br/>
-                    {testList?.map(list => 
-                    <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeTestList} grabMe={grabCurrent}/> 
-                    )}
-                </Grid>
-                <Grid item xs={6}>
-                    <AddForm section='Testing Reminders List' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList} updateMe={updateCurrentTest}/>
-                </Grid>
+            <Grid item xs={6}>
+                <AddForm section='Testing Reminders List' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList} updateMe={updateCurrentTest}/>
             </Grid>
+        </Grid> :
+        <Grid container spacing={2}>
+            <Grid item xs={12}>
+            <h1>Product Test Reminder Subscribers</h1>
+            {testList?.map(list => 
+                <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeTestList} grabMe={grabCurrent}/> 
+                )}
+            </Grid>
+        </Grid>}
         
     
         </div>
