@@ -10,7 +10,7 @@ import {fetchPressReleases} from '../../utils/actions/pressReleaseActions';
 
 const useStyles = makeStyles((theme) => ({        
     infoCards: {
-        maxHeight: '50vh',
+        maxHeight: '75vh',
         overflow: 'scroll'
     }
   }));
@@ -155,14 +155,17 @@ const Press = () => {
                         )}
                 </Grid>
                 <Grid item xs={4}>
-                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
+                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
-                <Grid item xs={12} className={classes.infoCards}>
+                <Grid item xs={9} className={classes.infoCards}>
                 {releases?.map(release => 
                         <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
                         )}
+                </Grid>
+                <Grid item xs={2}>
+                    <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
                 </Grid>
             </Grid>}
             </Grid>

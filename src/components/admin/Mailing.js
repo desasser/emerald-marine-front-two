@@ -11,7 +11,7 @@ import {fetchTestList} from '../../utils/actions/testListActions';
 
 const useStyles = makeStyles((theme) => ({        
     infoCards: {
-        maxHeight: '50vh',
+        maxHeight: '75vh',
         overflow: 'scroll'
     }
   }));
@@ -146,15 +146,18 @@ const Mailing = () => {
             )}
             </Grid>
             <Grid item xs={6}>
-                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList} updateMe={updateCurrentMailing}/>
+                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList} updateMe={updateCurrentMailing} show={editing} showForm={showEditForm}/>
             </Grid>
         </Grid> :
         <Grid container spacing={2}>
-            <Grid item xs={12} className={classes.infoCards}>
+            <Grid item xs={9} className={classes.infoCards}>
             <h1>Mailing List Subscribers</h1>
             {mailingList?.map(list => 
             <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
             )}
+            </Grid>
+            <Grid item xs={2}>
+                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList} updateMe={updateCurrentMailing} show={editing} showForm={showEditForm}/>
             </Grid>
         </Grid>}
             {editing ? 
@@ -167,15 +170,18 @@ const Mailing = () => {
                 )}
             </Grid>
             <Grid item xs={6}>
-                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList} updateMe={updateCurrentTest}/>
+                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList} updateMe={updateCurrentTest} show={editing} showForm={showEditForm}/>
             </Grid>
         </Grid> :
         <Grid container spacing={2}>
-            <Grid item xs={12} className={classes.infoCards}>
+            <Grid item xs={9} className={classes.infoCards}>
             <h1>Product Test Reminder Subscribers</h1>
             {testList?.map(list => 
                 <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeTestList} grabMe={grabCurrent}/> 
                 )}
+            </Grid>
+            <Grid item xs={2}>
+                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList} updateMe={updateCurrentTest} show={editing} showForm={showEditForm}/>
             </Grid>
         </Grid>}
         

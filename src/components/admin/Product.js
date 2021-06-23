@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
       height: 200
     },
     infoCards: {
-        maxHeight: '50vh',
+        maxHeight: '75vh',
         overflow: 'scroll'
     }
   }));
@@ -187,16 +187,19 @@ const Product = () => {
                         )}
                     </Grid>
                     <Grid item xs={6}>
-                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
                     </Grid>
                 </Grid> : 
                 <Grid container spacing={1}>
-                    <Grid item xs={12} className={classes.infoCards}>
+                    <Grid item xs={9} className={classes.infoCards}>
                         {products?.map(product => 
                         <Grid item xs={5}>
                         <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent} classes={classes}/>
                         </Grid>
                         )}
+                    </Grid>
+                    <Grid item xs={2}>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
                     </Grid>
                 </Grid>}
                 </Grid>   

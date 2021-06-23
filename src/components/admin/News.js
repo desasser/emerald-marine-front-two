@@ -10,7 +10,7 @@ import {fetchNewsArticles} from '../../utils/actions/newsArticleActions';
 
 const useStyles = makeStyles((theme) => ({        
     infoCards: {
-        maxHeight: '50vh',
+        maxHeight: '75vh',
         overflow: 'scroll'
     }
   }));
@@ -139,14 +139,17 @@ const News = () => {
                     )}
                 </Grid>
                 <Grid item xs={4}>
-                <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addNewsArticle} updateMe={updateMe}/>
+                <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addNewsArticle} updateMe={updateMe} show={editing} showForm={showEditForm}/>
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
-                <Grid item xs={12} className={classes.infoCards}>
+                <Grid item xs={9} className={classes.infoCards}>
                 {articles?.map(article => 
                         <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
                     )}
+                </Grid>
+                <Grid item xs={2}>
+                    <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addNewsArticle} updateMe={updateMe} show={editing} showForm={showEditForm}/>
                 </Grid>
             </Grid>}
             </Grid>
