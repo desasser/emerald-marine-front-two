@@ -29,7 +29,7 @@ const token = localStorage.getItem('token')
 const Admin = () => {
     let history = useHistory();
     const classes = useStyles();
-    const [view, setView] = useState('Welcome');
+    const [view, setView] = useState('Product');
     const [user, setUser] = useState({
         username: '',
         isLoggedIn: false

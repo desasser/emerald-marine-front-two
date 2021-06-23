@@ -195,11 +195,11 @@ const Product = () => {
                     </Grid>
                 </Grid> : 
                 <Grid container spacing={1}>
-                    <Grid item xs={9} className={classes.infoCards}>
+                    <Grid item xs={8} className={classes.infoCards}>
                         {products?.map(product => 
-                        <Grid item xs={5}>
+                    
                         <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent} classes={classes}/>
-                        </Grid>
+                        
                         )}
                     </Grid>
                     <Grid item xs={2}>
