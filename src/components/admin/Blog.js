@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
 import store from '../../utils/store';
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const Blog = () => {
     const classes = useStyles();
     const posts = useSelector(state => state.blog.blog);
+
     const token = localStorage.getItem('token');
     const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
     const [current, setCurrent] = useState({
@@ -55,7 +57,7 @@ const Blog = () => {
         })
     }
 
-    const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}, {name: 'content', content: `${current.content}`}]
+    const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}]
 
     const handleAddFormChange = e => {
         const {name, value} = e.target;
@@ -90,6 +92,8 @@ const Blog = () => {
         const intro = e.currentTarget.getAttribute('data-intro')
         const content = e.currentTarget.getAttribute('data-content')
         const id = e.currentTarget.getAttribute('data-id')
+        const contentArray = JSON.parse(e.currentTarget.getAttribute('data-content'))
+        console.log(contentArray)
         setCurrent({
             title: title,
             date: date,

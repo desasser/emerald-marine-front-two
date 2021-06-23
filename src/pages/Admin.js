@@ -45,7 +45,7 @@ const Admin = () => {
             history.push('/login');
             localStorage.removeItem('token')
         });
-    });
+    }, [user.isLoggedIn]);
 
     const buttonText = ['Blog', 'Product', 'News Article', 'Press Releases', 'Mailing List']
 

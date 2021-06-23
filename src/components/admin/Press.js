@@ -11,7 +11,10 @@ import {fetchPressReleases} from '../../utils/actions/pressReleaseActions';
 const useStyles = makeStyles((theme) => ({        
     infoCards: {
         maxHeight: '75vh',
-        overflow: 'scroll'
+        overflow: 'scroll',
+    },
+    cards: {
+        marginTop: '5vh'
     }
   }));
 
@@ -153,9 +156,9 @@ const Press = () => {
                 </Grid>
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                <Grid item xs={6} className={classes.infoCards}>
+                <Grid item xs={6} spacing={2} className={classes.infoCards}>
                 {releases?.map(release => 
-                        <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
+                        <BlogCard id='#' title={release.title} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent} className={classes.cards}/>
                         )}
                 </Grid>
                 <Grid item xs={4}>
@@ -163,9 +166,9 @@ const Press = () => {
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
-                <Grid item xs={9} className={classes.infoCards}>
+                <Grid item xs={9} spacing={2} className={classes.infoCards}>
                 {releases?.map(release => 
-                        <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
+                        <BlogCard id='#' title={release.title} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent} className={classes.cards}/>
                         )}
                 </Grid>
                 <Grid item xs={2}>
