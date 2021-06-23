@@ -13,13 +13,10 @@ const Mailing = () => {
     const mailingList = useSelector(state => state.mailingList.mailingList);
     const testList = useSelector(state => state.testList.testList);
 
-    const [current, setCurrent] = useState({
-        name: '',
-        email: ''
-    });
+    const [current, setCurrent] = useState({email: ''});
     const [currentID, setCurrentID] = useState('')
 
-    const fields = [{name: 'name', content: `${current.name}`}, {name: 'email', content: `${current.email}`}];
+    const fields = [{name: 'email', content: `${current.email}`}];
 
     const handleAddFormChange = e => {
         const {name, value} = e.target;
