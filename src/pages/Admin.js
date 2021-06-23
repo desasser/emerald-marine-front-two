@@ -65,11 +65,13 @@ const Admin = () => {
         { user.isLoggedIn ? 
             <Grid container spacing={3}>
             <Grid container spacing={1} className={classes.buttons}>
-                <Grid item xs={12} style={{'display': 'flex', 'flex-direction': 'row'}}>
+                <Grid item xs={9} style={{'display': 'flex', 'flex-direction': 'row'}}>
                     {buttonText.map(text => (
-                        <AdminButton text={text} name={text.split(' ')[0]} handleClick={handleClick}/>
+                        <AdminButton text={text} name={text.split(' ')[0]} handleClick={handleClick} color={view===text.split(' ')[0] ? '#74b4ab' : 'lightgrey'}/>
                     ))}
-                    <AdminButton text='Logout' handleClick={handleLogout}/>
+                </Grid>
+                <Grid item xs={2}>
+                <AdminButton text='Logout' handleClick={handleLogout} style={{'float': 'left'}}/>
                 </Grid>
                 <Grid item xs={12}>
                     {view==='Product' ? 

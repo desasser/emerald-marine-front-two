@@ -21,7 +21,7 @@ const AddForm = ({section, message, fields, handleAddFormChange, updateMe, succe
         <Button size='small' style={{'padding': '0', 'max-width': '30%'}} variant="contained" onClick={updateMe}>Submit</Button>
         </div>
     </div> :
-    <Button size='small' style={{'padding': '0', 'max-width': '30%'}} variant="contained" onClick={showForm}>Add new {section}</Button>}
+    <Button size='small' style={{'padding': '0', 'max-width': '30%'}} variant="contained" onClick={showForm} style={{'float': 'right', 'margin-top': '10vh'}}>Add new {section}</Button>}
         </div>
     )
 }
