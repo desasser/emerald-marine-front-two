@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Typography, TextField, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
@@ -32,12 +32,12 @@ const useStyles = makeStyles((theme) => ({
 export default function CartCard({ price, shipping, image, title, id, quantity }) {
   const classes = useStyles();
   const cart = useSelector(state => state.cartReducer.cartProducts)
-  // const [quantity, setQuantity] = useState({
-  //   quantity: quantity
-  // })
-  console.log('cart')
+  const [currentQuant, setCurrentQuant] = useState({
+    quantity: quantity
+  })
+  // console.log('cart')
   console.log('==========================================')
-  console.log(cart)
+  // console.log(cart)
 
   const removeItem = () => {
     store.dispatch({
@@ -47,27 +47,32 @@ export default function CartCard({ price, shipping, image, title, id, quantity }
   }
 
   const handleChange = e => {
-    // const { name, value } = e.target;
-    // setQuantity({
-    //   ...quantity,
-    //   [name]: value
-    // });
-    console.log('change')
+    const { name, value } = e.target;
+    setCurrentQuant({
+      ...quantity,
+      [name]: value
+    });
+    console.log('change', currentQuant)
   }
 
   const handleSubmit = e => {
     e.preventDefault();
-    // const productToCart = {
-    //   product: currentProduct,
-    //   quantity: quantity
-    // }
-    // store.dispatch({
-    //   type: 'FETCH_CART_PRODUCTS',
-    //   payload: cart.concat(productToCart)
-    // })
+    
+    // grab index of current product -- num
+    const num = cart.findIndex(item => item.product._id === id)
+    // set the quantity key of the object at index 'num' to currentQuant
+    cart[num].quantity = currentQuant
+    
+    // load in the new array to redux
+    store.dispatch({
+      type: 'FETCH_CART_PRODUCTS',
+      payload: cart
+    })
     console.log('submit')
   }
 
+
+  // TODO: Re-render when quantity is updated
   return (
     <div style={{ display: 'flex' }}>
       <div className={classes.root}>
@@ -97,8 +102,7 @@ export default function CartCard({ price, shipping, image, title, id, quantity }
         </Paper>
       </div>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <Typography>Quantity</Typography>
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' />
+        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' value={currentQuant.quantity} />
         <Button variant="contained" className={classes.buttonStyle} type='submit'>Update</Button>
       </form>
     </div>

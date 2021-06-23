@@ -19,7 +19,14 @@ export default function CartContent() {
 
   const renderCart = cart;
 
+  let totalPrice = 0;
 
+  for (let i = 0; i < cart.length; i++) {
+    totalPrice = parseFloat(cart[i].product.price)*parseFloat(cart[i].quantity.quantity) + totalPrice;
+    // console.log('product price', parseInt(cart[i].product.price))
+    // console.log('product quant', parseInt(cart[i].quantity.quantity))
+    console.log('total price', totalPrice.toFixed(2))
+  }
 
   return (
     <div style={{ width: '60vw' }}>
@@ -31,6 +38,12 @@ export default function CartContent() {
           </CartCard>
       ))}
       <hr></hr>
+      <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
+        Sub-Total:
+      </Typography>
+      <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
+        ${totalPrice.toFixed(2)}
+      </Typography>
       <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
         Shipping Estimate Total:
       </Typography>
