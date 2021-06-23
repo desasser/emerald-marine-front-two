@@ -25,8 +25,6 @@ const useStyles = makeStyles(() => ({
 
 const token = localStorage.getItem('token')
 
-store.dispatch(fetchMailingList(token));
-store.dispatch(fetchTestList(token));
 
 const Admin = () => {
     let history = useHistory();
@@ -40,6 +38,8 @@ const Admin = () => {
     useEffect(() => {
         API.getVip(localStorage.getItem('token')).then(res => {
             res.data.username ? setUser({username: res.data.username, isLoggedIn: true}) : history.push('/login');
+            store.dispatch(fetchMailingList(token));
+            store.dispatch(fetchTestList(token));
         }).catch(err => {
             setUser({username: '', isLoggedIn: false});
             history.push('/login');

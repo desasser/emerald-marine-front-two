@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useSelector} from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
@@ -7,8 +8,16 @@ import store from '../../utils/store';
 import API from '../../utils/API';
 import {fetchPressReleases} from '../../utils/actions/pressReleaseActions';
 
+const useStyles = makeStyles((theme) => ({        
+    infoCards: {
+        maxHeight: '50vh',
+        overflow: 'scroll'
+    }
+  }));
+
 
 const Press = () => {
+    const classes=useStyles();
     const releases = useSelector(state => state.pressReleases.pressReleases)
     const token = localStorage.getItem('token');
     const [current, setCurrent] = useState({
@@ -140,17 +149,17 @@ const Press = () => {
                 </Grid>
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                <Grid item xs={6}>
+                <Grid item xs={6} className={classes.infoCards}>
                 {releases?.map(release => 
                         <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
                         )}
                 </Grid>
                 <Grid item xs={4}>
-                <AddForm section='Press Releases' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
+                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addPressRelease} updateMe={updateMe} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.infoCards}>
                 {releases?.map(release => 
                         <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
                         )}

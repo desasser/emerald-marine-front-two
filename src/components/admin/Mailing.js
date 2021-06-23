@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useSelector} from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import MailingCard from './MailingCard';
 import AddForm from './AddForm';
@@ -8,7 +9,15 @@ import store from '../../utils/store';
 import {fetchMailingList} from '../../utils/actions/mailingListActions';
 import {fetchTestList} from '../../utils/actions/testListActions';
 
+const useStyles = makeStyles((theme) => ({        
+    infoCards: {
+        maxHeight: '50vh',
+        overflow: 'scroll'
+    }
+  }));
+
 const Mailing = () => {
+    const classes=useStyles();
     const token = localStorage.getItem('token');
     const mailingList = useSelector(state => state.mailingList.mailingList);
     const testList = useSelector(state => state.testList.testList);
@@ -129,7 +138,7 @@ const Mailing = () => {
         <div>
             {editing ? 
             <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={6} className={classes.infoCards}>
             <h1>Mailing List Subscribers</h1>
             <br/>
             {mailingList?.map(list => 
@@ -137,11 +146,11 @@ const Mailing = () => {
             )}
             </Grid>
             <Grid item xs={6}>
-                <AddForm section='Mailing List' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList} updateMe={updateCurrentMailing}/>
+                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToMailingList} updateMe={updateCurrentMailing}/>
             </Grid>
         </Grid> :
         <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} className={classes.infoCards}>
             <h1>Mailing List Subscribers</h1>
             {mailingList?.map(list => 
             <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
@@ -150,7 +159,7 @@ const Mailing = () => {
         </Grid>}
             {editing ? 
             <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={6} className={classes.infoCards}>
                 <h1>Product Test Reminder Subscribers</h1>
                 <br/>
                 {testList?.map(list => 
@@ -158,11 +167,11 @@ const Mailing = () => {
                 )}
             </Grid>
             <Grid item xs={6}>
-                <AddForm section='Testing Reminders List' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList} updateMe={updateCurrentTest}/>
+                <AddForm section='Subscriber' fields = {fields} handleAddFormChange={handleAddFormChange} addMe={addToTestList} updateMe={updateCurrentTest}/>
             </Grid>
         </Grid> :
         <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} className={classes.infoCards}>
             <h1>Product Test Reminder Subscribers</h1>
             {testList?.map(list => 
                 <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeTestList} grabMe={grabCurrent}/> 

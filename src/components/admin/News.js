@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useSelector} from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
@@ -7,7 +8,15 @@ import store from '../../utils/store';
 import API from '../../utils/API';
 import {fetchNewsArticles} from '../../utils/actions/newsArticleActions';
 
+const useStyles = makeStyles((theme) => ({        
+    infoCards: {
+        maxHeight: '50vh',
+        overflow: 'scroll'
+    }
+  }));
+
 const News = () => {
+    const classes=useStyles();
     const articles = useSelector(state => state.newsArticles.newsArticles)
     const token = localStorage.getItem('token');
     const [current, setCurrent] = useState({
@@ -124,17 +133,17 @@ const News = () => {
                 </Grid>
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                <Grid item xs={6}>
+                <Grid item xs={6} className={classes.infoCards}>
                 {articles?.map(article => 
                         <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
                     )}
                 </Grid>
                 <Grid item xs={4}>
-                <AddForm section='News' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addNewsArticle} updateMe={updateMe}/>
+                <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addNewsArticle} updateMe={updateMe}/>
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.infoCards}>
                 {articles?.map(article => 
                         <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
                     )}

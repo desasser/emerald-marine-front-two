@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useSelector} from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
@@ -7,7 +8,15 @@ import store from '../../utils/store';
 import API from '../../utils/API';
 import {fetchBlog} from '../../utils/actions/blogActions';
 
+const useStyles = makeStyles((theme) => ({        
+    infoCards: {
+        maxHeight: '50vh',
+        overflow: 'scroll'
+    }
+  }));
+
 const Blog = () => {
+    const classes = useStyles();
     const posts = useSelector(state => state.blog.blog);
     const token = localStorage.getItem('token');
     const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
@@ -148,17 +157,17 @@ const Blog = () => {
                 </Grid>
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                <Grid item xs={6}>
+                <Grid item xs={6} className={classes.infoCards}>
                 {posts?.map(post =>  
                         <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} removeMe={removeCurrent}/>
                         )}
                 </Grid>
                 <Grid item xs={4}>
-                    <AddForm section='Blog' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
                 </Grid>
             </Grid> :
             <Grid container spacing={1}>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.infoCards}>
                 {posts?.map(post =>  
                         <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} removeMe={removeCurrent}/>
                         )}
