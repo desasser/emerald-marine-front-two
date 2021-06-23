@@ -66,7 +66,7 @@ export default function CartCard({ price, shipping, image, title, id, quantity }
     // load in the new array to redux
     store.dispatch({
       type: 'FETCH_CART_PRODUCTS',
-      payload: cart
+      payload: cart.slice()
     })
     console.log('submit')
   }
