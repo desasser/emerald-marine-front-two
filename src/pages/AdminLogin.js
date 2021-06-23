@@ -11,7 +11,7 @@ const AdminLogin = () => {
         API.greeting().then(res => {
             console.log(res.data)
         });
-    });
+    }, [localStorage.getItem('token')]);
 
     const [user, setUser] = useState({
         username: '',
@@ -67,7 +67,7 @@ const AdminLogin = () => {
             <TextField id="outlined-basic" label="Username" variant="outlined" name="username" onChange={handleInputChange} />
             <TextField id="outlined-basic" label="Password" type='password' variant="outlined" name="password" onChange={handleInputChange} />
             <br />
-            <Button variant="contained" onClick={handleSubmit} >Submit</Button>
+            <Button type='submit' variant="contained" onClick={handleSubmit} >Submit</Button>
         </form>
     )
 }
