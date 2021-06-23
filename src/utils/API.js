@@ -27,6 +27,13 @@ const API = {
     deleteUser: username => {
         return axios.delete(`${URL_PREFIX}/users/${username}`)
     },
+    getVip: token => {
+        return axios.get(`${URL_PREFIX}/vip`, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        })
+    },
 
     // Blog post routes
     getAllBlogPosts: () => {
@@ -191,7 +198,19 @@ const API = {
     // Shippo rate request
     getShippingRate: addressData => {
         return axios.post(`${URL_PREFIX}/shippo`, addressData)
+    },
+
+    // AuthJS charge request
+    chargeCreditCard: cardData => {
+        return axios.post(`${URL_PREFIX}/authjs/charge`, cardData)
+    },
+    
+    // AuthJS refund request
+    refundCreditCard: (cardData, transactionID) => {
+        return axios.post(`${URL_PREFIX}/authjs/refund`, transactionID, cardData)
     }
+
+
 }
 
 export default API;

@@ -11,9 +11,12 @@ import {fetchProducts} from '../../utils/actions/productActions';
 const useStyles = makeStyles((theme) => ({        
     mediaHeight: {
       height: 200
+    },
+    infoCards: {
+        maxHeight: '75vh',
+        overflow: 'scroll'
     }
   }));
-
 
 const Product = () => {
     const token = localStorage.getItem('token');
@@ -36,6 +39,8 @@ const Product = () => {
         height: ''
     });
     const [currentID, setCurrentID] = useState('')
+    const [editing, setEditing] = useState(false)
+    const [updating, setUpdating] = useState(false);
 
     const warnings = 'Please enter tags and categories as comma-seperated lists.'
     const fields = [{name: 'name', content: `${current.name}`}, {name: 'description', content: `${current.description}`}, {name: 'price', content: `${current.price}`}, {name: 'SKU', content: `${current.SKU}`}, {name: 'tags', content: `${current.tags}`}, {name: 'categories', content: `${current.categories}`}, {name: 'video', content: `${current.video}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'weight', content: `${current.weight}`}, {name: 'length', content: `${current.length}`}, {name: 'width', content: `${current.width}`}, {name: 'height', content: `${current.height}`}]
@@ -48,17 +53,47 @@ const Product = () => {
         });
     }
 
+    const clearCurrent = () => {
+        setCurrent({
+        name: '',
+        description: '',
+        price: '',
+        SKU: '',
+        tags: '',
+        categories: '',
+        video: '',
+        image: '',
+        alt: '',
+        weight: '',
+        length: '',
+        width: '',
+        height: ''
+        });
+    }
+    
+    const showEditForm = () => {
+        setEditing(true)
+    }
+
+    const hideEditForm = () => {
+        setEditing(false)
+    }
+
     const addProduct = () => {
+        setUpdating(false);
         API.createProduct(current, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchProducts());
             }
+            clearCurrent();
+            hideEditForm();
         }).catch(err => {
             console.log(err.message)
         });
     }
 
     const grabCurrent = e => {
+        setUpdating(true);
         e.preventDefault();
         const name = e.currentTarget.getAttribute('data-name')
         const description = e.currentTarget.getAttribute('data-description')
@@ -91,6 +126,7 @@ const Product = () => {
             image: image
         });
         setCurrentID(id)
+        showEditForm();
     }
 
     const updateCurrent = e => {
@@ -99,6 +135,9 @@ const Product = () => {
             if(res) {
                 store.dispatch(fetchProducts());
             }
+            clearCurrent();
+            hideEditForm();
+            setUpdating(false);
         }).catch(err => {
             if(err) {
                 console.log(err.message)
@@ -144,18 +183,30 @@ const Product = () => {
                 <Grid item xs={12}>
                     <h1>Current Products</h1>
                     <br/>
-                    <Grid container spacing={5} justify='space-evenly'>
-                        <Grid item xs={4}>
-                    {products?.map(product => 
+                    {editing ? 
+                    <Grid container spacing={1} justify='space-evenly'>
+                    <Grid item xs={4} className={classes.infoCards}>
+                        {products?.map(product => 
                         <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent} classes={classes}/>
                         )}
-                        </Grid>
-                        <Grid item xs={6}>
-                    <AddForm section='Products' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
-                </Grid>
                     </Grid>
-                </Grid>
-                
+                    <Grid item xs={6}>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrent : addProduct} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                    </Grid>
+                </Grid> : 
+                <Grid container spacing={1}>
+                    <Grid item xs={8} className={classes.infoCards}>
+                        {products?.map(product => 
+                    
+                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent} classes={classes}/>
+                        
+                        )}
+                    </Grid>
+                    <Grid item xs={2}>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                    </Grid>
+                </Grid>}
+                </Grid>   
             </Grid>
         </div>
         

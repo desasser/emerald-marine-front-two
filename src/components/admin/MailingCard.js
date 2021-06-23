@@ -25,12 +25,6 @@ const MailingCard = ({name, email, id, removeMe, grabMe}) => {
     return ( 
         <Card className={classes.root}>
           <CardContent>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-              Name:
-            </Typography>
-            <Typography variant="h5" component="h2">
-              {name}
-            </Typography>
             <Typography className={classes.title} color="textSecondary">
               Email:
             </Typography>
