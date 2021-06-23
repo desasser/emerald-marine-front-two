@@ -29,12 +29,12 @@ export default function CartCard({ children, price, shipping, image, sku, title,
   const classes = useStyles();
   const cart = useSelector(state => state.cartReducer.cartProducts)
 
-  const removeItem = () => (
+  const removeItem = () => {
     store.dispatch({
       type: 'FETCH_CART_PRODUCTS', 
       payload: cart.filter(cart => cart._id !== id)
     })
-  )
+  }
 
   return (
     <div className={classes.root}>

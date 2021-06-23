@@ -1,23 +1,64 @@
-import React from 'react'
-import {useSelector} from 'react-redux';
-import { Typography, Grid, Button, Container } from '@material-ui/core';
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
+import { Typography, Grid, Button, Container, TextField } from '@material-ui/core';
 import ReactPlayer from 'react-player/youtube'
 import store from '../utils/store'
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles(theme => ({
+  inputStyle: {
+    margin: 10,
+    backgroundColor: 'white',
+    borderRadius: '0.5em',
+    width: '12em',
+    '& label.Mui-focused': {
+      color: 'black',
+      backgroundColor: 'white'
+    },
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: '#74b4ab',
+      },
+    }
+  },
+  buttonStyle: {
+    height: '56px', 
+    width: '100%', 
+    backgroundColor: 'goldenrod', 
+    fontSize: '16px', 
+  }
+}))
 
 export default function SingleProductContent({ sku }) {
+  const classes = useStyles()
   const products = useSelector(state => state.products.products)
   const cart = useSelector(state => state.cartReducer.cartProducts)
+  const [quantity, setQuantity] = useState({
+    quantity: '1'
+  })
 
   const currentProduct = products?.find(p => p.SKU === sku);
 
-  console.log('i am a shopping cart!', cart)
-  console.log('current product', currentProduct)
+  // console.log('i am a shopping cart!', cart)
+  // console.log('current product', currentProduct)
 
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setQuantity({
+      ...quantity,
+      [name]: value
+    });
+  }
 
-  const addToCart = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    const productToCart = {
+      product: currentProduct,
+      quantity: quantity
+    }
     store.dispatch({
       type: 'FETCH_CART_PRODUCTS',
-      payload: cart.concat(currentProduct)
+      payload: cart.concat(productToCart)
     })
   }
 
@@ -40,7 +81,7 @@ export default function SingleProductContent({ sku }) {
           {currentProduct?.description}
         </Typography>
         <br></br>
-        <ReactPlayer url={currentProduct?.video} width={'250px'} height={'150px'} style={{margin: '1.5em 0'}}/>
+        <ReactPlayer url={currentProduct?.video} width={'250px'} height={'150px'} style={{ margin: '1.5em 0' }} />
         <Typography variant="subtitle2">
           SKU: {sku}
         </Typography>
@@ -50,10 +91,14 @@ export default function SingleProductContent({ sku }) {
         <Typography variant="subtitle2">
           Tags: {currentProduct?.tags.join(', ')}
         </Typography>
-        <Button variant="contained" onClick={addToCart} style={{ height: '56px', width: '100%', backgroundColor: '#f5ed5eff', fontSize: '16px', marginTop: '1.5em' }}>Add to Request for Quote</Button>
+        <form style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }} onSubmit={handleSubmit}>
+          <Typography>Quantity</Typography>
+          <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' required/>
+          <Button variant="contained" className={classes.buttonStyle} type='submit'>Add to Quote</Button>
+        </form>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="h5" style={{marginTop: '20px'}}>Details</Typography>
+        <Typography variant="h5" style={{ marginTop: '20px' }}>Details</Typography>
         <Container maxWidth='md' style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
 
         </Container>
