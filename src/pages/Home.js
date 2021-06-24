@@ -1,22 +1,22 @@
-import React, {useEffect} from "react"
+import React, { useEffect } from "react"
 import Rescue from '../images/rescue.jpg'
 import cgRescue from '../images/coast_guard_rescue.jpg'
-import constructionBarge from '../images/construction_barge.jpg'
+import constructionBarge from '../images/construction_barge_crop1.jpg'
 import marineTerminal from '../images/marine_terminal.jpg'
 import BlogBanner from "../components/BlogBanner"
 import TestimonialBanner from "../components/TestimonialBanner"
 import MarketingInfo from "../components/MarketingInfo"
 import ProductBlock from "../components/ProductBlock"
 import API from '../utils/API'
-import store from '../utils/store'
+import Page from "../components/Page"
 import Carousel from 'react-material-ui-carousel'
 
 export default function Home() {
   useEffect(() => {
     API.greeting().then(res => {
-        console.log(res.data)
+      console.log(res.data)
     });
-});
+  });
 
   const items = [
     {
@@ -43,7 +43,7 @@ export default function Home() {
 
   function Item(props) {
     return (
-      <div 
+      <div
         style={{ backgroundImage: `url(${props.item.source})`, height: '450px', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom' }}
         alt={props.item.description}>
 
@@ -52,14 +52,14 @@ export default function Home() {
   }
 
   return (
-    <>
-      <Carousel 
+    <Page>
+      <Carousel
         indicators={false}
         // timeout='500'
         // animation='slide'
         interval='6000'
-        // next={(now, previous) => console.log(`Next User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
-        // prev={(now, previous) => console.log(`Prev User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
+      // next={(now, previous) => console.log(`Next User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
+      // prev={(now, previous) => console.log(`Prev User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
       >
         {
           items.map((item, i) => <Item key={i} item={item} />)
@@ -69,9 +69,9 @@ export default function Home() {
         <BlogBanner />
         <TestimonialBanner />
       </div>
-      
+
       <MarketingInfo />
       <ProductBlock />
-    </>
+    </Page>
   )
 }

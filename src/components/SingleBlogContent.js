@@ -11,6 +11,9 @@ export default function SingleBlogContent({ id }) {
 
   const currentPost = allPosts.find(p => p._id === id);
 
+  console.log('categories', currentPost.categories)
+  console.log('tags', currentPost.tags)
+
   return (
     <>
       <div style={{ width: '100%', marginTop: '3em', }}>
@@ -19,11 +22,19 @@ export default function SingleBlogContent({ id }) {
         </Typography>
         <hr style={{marginTop:'2em'}}></hr>
         <Typography variant='body1'>Published: {currentPost.date}</Typography>
-        <Typography variant='body1'>Categories: {currentPost.categories.join(', ')}</Typography>
-        <Typography variant='body1'>Tags: {currentPost.tags.join(', ')}</Typography>
+        {currentPost.categories ? 
+          <Typography variant='body1'>Categories: {currentPost.categories.join(', ')}</Typography>
+          :
+          <Typography variant='body1'>Categories: n/a</Typography>
+        }
+        {currentPost.tags ? 
+          <Typography variant='body1'>Tags: {currentPost.tags.join(', ')}</Typography>
+          :
+          <Typography variant='body1'>Tags: n/a</Typography>
+        }
         <hr style={{marginBottom:'2em'}}></hr>
         {/* TODO: Write a map function to map over state and write the subtitles and sections */}
-        <img src={currentPost.image ? `${currentPost.image}` : `https://place-puppy.com/300x300`} style={{ display: 'inline-block' }} />
+        <img src={currentPost.image ? `${currentPost.image}` : `https://place-puppy.com/300x300`} style={{ display: 'inline-block' }} alt={currentPost.title}/>
         <Typography variant='h5' style={{ color: '#74b4ab', marginTop: '1.5em' }}>
           Subtitle 1
         </Typography>
@@ -44,8 +55,16 @@ export default function SingleBlogContent({ id }) {
         </Typography>
         <hr style={{marginTop:'2em'}}></hr>
         <Typography variant='body1'>Published: {currentPost.date}</Typography>
-        <Typography variant='body1'>Categories: {currentPost.categories.join(', ')}</Typography>
-        <Typography variant='body1'>Tags: {currentPost.tags.join(', ')}</Typography>
+        {currentPost.categories ? 
+          <Typography variant='body1'>Categories: {currentPost.categories.join(', ')}</Typography>
+          :
+          <Typography variant='body1'>Categories: n/a</Typography>
+        }
+        {currentPost.tags ? 
+          <Typography variant='body1'>Tags: {currentPost.tags.join(', ')}</Typography>
+          :
+          <Typography variant='body1'>Tags: n/a</Typography>
+        }
         <hr></hr>
       </div>
     </>

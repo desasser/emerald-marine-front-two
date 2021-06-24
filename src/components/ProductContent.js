@@ -1,10 +1,8 @@
-import React from 'react'
-import {useSelector} from 'react-redux';
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import ProductCard from '../components/ProductCard'
-import InputForm from '../components/InputForm'
-import { Container, Grid, Typography } from '@material-ui/core'
+import { Container, Grid, Typography, Checkbox } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-
 
 const useStyles = makeStyles((theme) => ({
   flexBox: {
@@ -45,14 +43,57 @@ const useStyles = makeStyles((theme) => ({
 export default function ProductContent() {
   const classes = useStyles();
   const products = useSelector(state => state.products.products)
+  const [state, setState] = useState({
+    'Overboard Alerting Products': true,
+    'Water Rescue Training': true,
+    'Accessories': true
+  });
+  const [filteredState, setFilter] = useState({
+    original: products,
+    filtered: products
+  })
+
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+    // TODO: Filter by checked item
+    // search products for all objects with a key matching the category, 
+    // put those in an array and render those
+    console.log('name', event.target.name)
+    console.log('filtered results', products.filter(obj => obj.categories.includes(event.target.name)))
+  };
 
   return (
     <Container style={{ marginTop: '1.5em' }}>
-      <div style={{display:'flex', alignItems:'flex-end', width: '100%', justifyContent: 'space-between'}}>
+      <div style={{ display: 'flex', alignItems: 'flex-end', width: '100%', justifyContent: 'space-between' }}>
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', display: 'inline-block' }}>All Products</Typography>
-        <InputForm classes={classes} text={''} label={'search...'} buttonText={'search'} />
+        <div>
+          <Checkbox
+            // checked={state.manOverboard}
+            onChange={handleChange}
+            color="default"
+            name="Overboard Alerting Products"
+            inputProps={{ 'aria-label': `Overboard Alerting Products checkbox` }}
+          />
+          <Typography component="span">Overboard Alerting Products</Typography>
+          <Checkbox
+            checked={state.marineSafety}
+            onChange={handleChange}
+            color="default"
+            name="Water Rescue Training"
+            inputProps={{ 'aria-label': `Water Rescue Training checkbox` }}
+          />
+          <Typography component="span">Water Rescue Training</Typography>
+          <Checkbox
+            checked={state.waterRescue}
+            onChange={handleChange}
+            color="default"
+            name="Accessories"
+            inputProps={{ 'aria-label': `Accessories checkbox` }}
+          />
+          <Typography component="span">Accessories</Typography>
+        </div>
       </div>
-      <hr style={{marginBottom: '2em'}}></hr>
+      <hr style={{ marginBottom: '2em' }}></hr>
       <Grid container className={classes.flexBox} spacing={2}>
         <Grid item xs={12}>
           <Grid container justify='center' spacing={4}>

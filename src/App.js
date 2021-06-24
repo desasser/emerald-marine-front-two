@@ -51,8 +51,8 @@ function App() {
             <Route path='/admin' component={Admin} />
           </Switch>
         </main>
+        <Footer />
       </Router>
-      <Footer />
     </ThemeProvider>
   );
 }

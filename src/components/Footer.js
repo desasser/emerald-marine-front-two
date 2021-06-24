@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme => ({
   linkStyles: {
     color: 'white',
     textDecoration: 'none',
-    fontSize: '16px'
+    fontSize: '16px',
+    // display: 'inline-block'
   },
   flexWrapper: {
     display: 'flex',
@@ -57,6 +58,7 @@ const useStyles = makeStyles(theme => ({
     width: '75%',
     '& label.Mui-focused': {
       color: 'black',
+      backgroundColor: 'white'
     },
     '& .MuiOutlinedInput-root': {
       '&.Mui-focused fieldset': {
@@ -66,7 +68,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Footer = ({ siteTitle, menuLinks }) => {
+const Footer = () => {
   const classes = useStyles()
 
   return (
@@ -77,30 +79,44 @@ const Footer = ({ siteTitle, menuLinks }) => {
             src={logo}
             alt='Emerald Marine Products Logo'
             as='div'
-            style={{height: '100px'}}
+            style={{ height: '100px' }}
           />
         </div>
         <Typography style={{ textAlign: 'center' }}> Manufactured in The United States of America.</Typography>
         <InputForm classes={classes} text={'Sign up to receive our newsletter.'} label={'email...'} buttonText={'submit'} />
         <hr style={{ margin: '0' }} />
         <div style={{ backgroundColor: '#78787a50', height: '50px', display: 'flex', alignItems: 'center' }}>
-          <div style={{ margin: '0px auto', width: '50%' }}>
-            {/*TODO: <ul className={classes.flexWrapper} style={{ margin: '0px' }}>
-              {menuLinks.map(link => (
-                <li
-                  key={link.name}
-                  style={{
-                    listStyleType: `none`,
-                    paddingLeft: `1rem`,
-                    paddingRight: `1rem`
-                  }}
-                >
-                  <Link className={classes.linkStyles} to={link.link}>
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul> */}
+          <div style={{ margin: '0px auto', width: '50%', display: 'flex', justifyContent: 'space-between' }}>
+            <Link to="/" underline='none' className={classes.linkStyles}>
+              <Typography variant='body1'>
+                Home
+              </Typography>
+            </Link>
+            <Link to="/products" underline='none' className={classes.linkStyles}>
+              <Typography variant='body1'>
+                Products
+              </Typography>
+            </Link>
+            <Link to="/news" underline='none' className={classes.linkStyles}>
+              <Typography variant='body1'>
+                News
+              </Typography>
+            </Link>
+            <Link to="/support" underline='none' className={classes.linkStyles}>
+              <Typography variant='body1'>
+                Support
+              </Typography>
+            </Link>
+            <Link to="/contact" underline='none' className={classes.linkStyles}>
+              <Typography variant='body1'>
+                Contact
+              </Typography>
+            </Link>
+            <Link to="/cart" underline='none' className={classes.linkStyles}>
+              <Typography variant='body1'>
+                Cart
+              </Typography>
+            </Link>
           </div>
         </div>
         <hr style={{ margin: '0' }} />

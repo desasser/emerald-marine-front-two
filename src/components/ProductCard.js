@@ -17,11 +17,11 @@ export default function ProductCard({ children, view, removeMe, grabMe, classes,
             <Typography gutterBottom variant="h6" component="h2" style={{ color: '#74b4ab', height: '100px' }}>
               {name}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p" style={{ height: '55px', overflow: 'hidden', textOverflow: 'ellipsis'}}>
-              {description}
+            <Typography variant="body2" color="textSecondary" component="p" style={{ height: '55px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {children}
             </Typography>
             {view === 'admin' ?
-              <div style={{'margin-top': '5vh'}}>
+              <div style={{ 'margin-top': '5vh' }}>
                 <Button size="small" data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={removeMe}>Remove Product </Button>
                 <Button size="small" data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={grabMe}>Update Product Info</Button>
               </div> : <div></div>}
