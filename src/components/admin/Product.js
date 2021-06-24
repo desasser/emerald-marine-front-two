@@ -1,0 +1,264 @@
+import React, {useState} from "react";
+import {useSelector} from 'react-redux';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import ProductCard from '../ProductCard';
+import ProgressIndicator from './ProgressIndicator';
+import AddForm from './AddForm';
+import store from '../../utils/store';
+import API from '../../utils/API';
+import {fetchProducts} from '../../utils/actions/productActions';
+
+const useStyles = makeStyles((theme) => ({        
+    mediaHeight: {
+      height: 200
+    },
+    infoCards: {
+        maxHeight: '75vh',
+        overflow: 'scroll'
+    }
+  }));
+
+const Product = () => {
+    const token = localStorage.getItem('token');
+    const products = useSelector(state => state.products.products)
+    const classes=useStyles();
+
+    const [current, setCurrent] = useState({
+        name: '',
+        description: '',
+        price: '',
+        SKU: '',
+        tags: '',
+        categories: '',
+        video: '',
+        image: '',
+        alt: '',
+        weight: '',
+        length: '',
+        width: '',
+        height: ''
+    });
+    const [currentID, setCurrentID] = useState('')
+    const [editing, setEditing] = useState(false)
+    const [updating, setUpdating] = useState(false);
+    const [indicator, setIndicator] = useState({
+        open: false,
+        severity: '',
+        message: ''
+    })
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setIndicator({
+            ...indicator, open: false
+        });
+    };
+
+    const warnings = 'Please enter tags and categories as comma-seperated lists.'
+    const fields = [{name: 'name', content: `${current.name}`}, {name: 'description', content: `${current.description}`}, {name: 'price', content: `${current.price}`}, {name: 'SKU', content: `${current.SKU}`}, {name: 'tags', content: `${current.tags}`}, {name: 'categories', content: `${current.categories}`}, {name: 'video', content: `${current.video}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'weight', content: `${current.weight}`}, {name: 'length', content: `${current.length}`}, {name: 'width', content: `${current.width}`}, {name: 'height', content: `${current.height}`}]
+
+    const handleAddFormChange = e => {
+        const {name, value} = e.target;
+        setCurrent({
+            ...current,
+            [name]: value
+        });
+    }
+
+    const clearCurrent = () => {
+        setCurrent({
+        name: '',
+        description: '',
+        price: '',
+        SKU: '',
+        tags: '',
+        categories: '',
+        video: '',
+        image: '',
+        alt: '',
+        weight: '',
+        length: '',
+        width: '',
+        height: ''
+        });
+    }
+    
+    const showEditForm = () => {
+        setEditing(true)
+    }
+
+    const hideEditForm = () => {
+        setEditing(false)
+    }
+
+    const addProduct = () => {
+        setUpdating(false);
+        API.createProduct(current, token).then(res => {
+            if(res.data) {
+                store.dispatch(fetchProducts());
+            }
+            clearCurrent();
+            hideEditForm();
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully added product.'
+            });
+        }).catch(err => {
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error adding product: ${err.message}`
+            });
+        });
+    }
+
+    const grabCurrent = e => {
+        setUpdating(true);
+        e.preventDefault();
+        const name = e.currentTarget.getAttribute('data-name')
+        const description = e.currentTarget.getAttribute('data-description')
+        const price=e.currentTarget.getAttribute('data-price')
+        const sku=e.currentTarget.getAttribute('data-sku')
+        const tags = e.currentTarget.getAttribute('data-tags')
+        const categories=e.currentTarget.getAttribute('data-categories')
+        const video=e.currentTarget.getAttribute('data-video')
+        const image=e.currentTarget.getAttribute('data-image')
+        const alt=e.currentTarget.getAttribute('data-alt')
+        const weight = e.currentTarget.getAttribute('data-weight')
+        const height = e.currentTarget.getAttribute('data-height')
+        const length = e.currentTarget.getAttribute('data-length')
+        const width = e.currentTarget.getAttribute('data-width')
+        const id = e.currentTarget.getAttribute('data-id')
+
+        setCurrent({
+            name: name,
+            description: description,
+            price: price,
+            SKU: sku,
+            tags: tags,
+            categories: categories,
+            video: video,
+            alt: alt,
+            weight: weight,
+            height: height,
+            width: width,
+            length: length,
+            image: image
+        });
+        setCurrentID(id)
+        showEditForm();
+    }
+
+    const updateCurrent = e => {
+        e.preventDefault();
+        API.updateProduct(currentID, current, token).then(res => {
+            if(res) {
+                store.dispatch(fetchProducts());
+            }
+            clearCurrent();
+            hideEditForm();
+            setUpdating(false);
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully updated product.'
+            });
+        }).catch(err => {
+            if(err) {
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error updating product: ${err.message}`
+                });
+            }
+        });
+    }
+
+    const removeCurrent = e => {
+        e.preventDefault();
+        const id = e.currentTarget.getAttribute('data-id');
+        API.deleteProduct(id, token).then(res => {
+            if(res) {
+                store.dispatch(fetchProducts());
+                setIndicator({
+                    open: true,
+                    severity: 'success',
+                    message: 'Successfully deleted product.'
+                });
+            }
+        }).catch(err => {
+            if(err) {
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error deleting product: ${err.message}`
+                });
+            }
+        });
+    }
+
+    const uploadSuccess = result => {
+        console.log(result.info.url)
+        store.dispatch({
+            type: 'FETCH_IMAGE_URL',
+            payload: {
+                url: result.info.url
+            }
+        });
+        setCurrent({
+            ...current,
+            image: result.info.url
+        });
+    }
+
+    const uploadFailure = response => {
+        setIndicator({
+            open: true,
+            severity: 'error',
+            message: `Error uploading image: ${response}`
+        });
+    }
+    
+    return (
+        <div>
+            <Grid container spacing={3}>
+            <ProgressIndicator open={indicator.open} message={indicator.message} severity={indicator.severity} handleClose={handleClose}></ProgressIndicator>
+                <Grid item xs={12}>
+                    <h1>Current Products</h1>
+                    <br/>
+                    {editing ? 
+                    <Grid container spacing={1} justify='space-evenly'>
+                    <Grid item xs={4} className={classes.infoCards}>
+                        {products?.map(product => 
+                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent} classes={classes}/>
+                        )}
+                    </Grid>
+                    <Grid item xs={6}>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrent : addProduct} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                    </Grid>
+                </Grid> : 
+                <Grid container spacing={1}>
+                    <Grid item xs={8} className={classes.infoCards}>
+                        {products?.map(product => 
+                    
+                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent} classes={classes}/>
+                        
+                        )}
+                    </Grid>
+                    <Grid item xs={2}>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                    </Grid>
+                </Grid>}
+                </Grid>   
+            </Grid>
+        </div>
+        
+    )
+    
+}
+
+export default Product;
