@@ -17,6 +17,15 @@ const useStyles = makeStyles((theme) => ({
 export default function CartContent() {
   const classes = useStyles();
   const cart = useSelector(state => state.cartReducer.cartProducts)
+  const [address, setAddress] = useState({
+    name: '',
+    street1: '',
+    city: '',
+    state: '',
+    zip: '',
+    country: ''
+  })
+  // 
 
   const renderCart = cart;
 
@@ -24,9 +33,25 @@ export default function CartContent() {
 
   for (let i = 0; i < cart.length; i++) {
     totalPrice = parseFloat(cart[i].product.price) * parseFloat(cart[i].quantity.quantity) + totalPrice;
-    // console.log('product price', parseInt(cart[i].product.price))
-    // console.log('product quant', parseInt(cart[i].quantity.quantity))
-    console.log('total price', totalPrice.toFixed(2))
+  }
+
+  const handleAddressSubmit = e => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setAddress({
+      ...address,
+      [name]: value
+    });
+    console.log('submit address', address)
+  }
+
+  const handleAddressChange = e => {
+    const { name, value } = e.target;
+    setAddress({
+      ...address,
+      [name]: value
+    });
+    console.log('change address')
   }
 
   return (
@@ -35,8 +60,7 @@ export default function CartContent() {
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
         <div>
           <Typography variant="h6" style={{ color: 'red' }}>We ship internationally!</Typography>
-          {/* TODO: Add shipping modal */}
-          <AddressModal/>
+          <AddressModal onSubmit={handleAddressSubmit} onChange={handleAddressChange}/>
         </div>
       </div>
       <hr></hr>

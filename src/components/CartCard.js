@@ -35,9 +35,6 @@ export default function CartCard({ price, shipping, image, title, id, quantity }
   const [currentQuant, setCurrentQuant] = useState({
     quantity: quantity
   })
-  // console.log('cart')
-  console.log('==========================================')
-  // console.log(cart)
 
   const removeItem = () => {
     store.dispatch({
@@ -57,12 +54,10 @@ export default function CartCard({ price, shipping, image, title, id, quantity }
 
   const handleSubmit = e => {
     e.preventDefault();
-    
     // grab index of current product -- num
     const num = cart.findIndex(item => item.product._id === id)
     // set the quantity key of the object at index 'num' to currentQuant
     cart[num].quantity = currentQuant
-    
     // load in the new array to redux
     store.dispatch({
       type: 'FETCH_CART_PRODUCTS',
@@ -71,8 +66,6 @@ export default function CartCard({ price, shipping, image, title, id, quantity }
     console.log('submit')
   }
 
-
-  // TODO: Re-render when quantity is updated
   return (
     <div style={{ display: 'flex' }}>
       <div className={classes.root}>
