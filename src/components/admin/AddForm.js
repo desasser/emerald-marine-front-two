@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux';
 import store from '../../utils/store';
 import {fetchBlog} from '../../utils/actions/blogActions';
 
-const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm }) => {
+const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm}) => {
     return (
         <div>
         {show ? 
