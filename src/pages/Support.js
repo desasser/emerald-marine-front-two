@@ -8,18 +8,18 @@ import Page from "../components/Page"
 
 const Support = () => (
   <Page>
-    <div style={{ marginTop: '30px', width: '100%' }}>
+    {/* <div style={{ marginTop: '30px', width: '100%' }}>
       <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
         <Link color="inherit" to="/" style={{ textDecoration: 'none', color: 'grey' }}>
           Home
         </Link>
         <Typography color="textPrimary">Support</Typography>
       </Breadcrumbs>
-    </div>
-    {/* <div
-        style={{ backgroundImage: `url(${HandsUp})`, height: '500px', backgroundSize: 'cover', width: '80%', backgroundPosition: 'bottom' }}
+    </div> */}
+    <div
+        style={{ backgroundImage: `url(${HandsUp})`, height: '450px', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom'  }}
         alt='Man overboard'
-      /> */}
+      />
     <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab' }}>Support</Typography>
     <SupportContent></SupportContent>
   </Page>
