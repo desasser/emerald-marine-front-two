@@ -85,7 +85,7 @@ export default function CartCard({ price, shipping, image, title, id, quantity }
               <Grid item style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
                 <Typography variant="subtitle1" style={{ textAlign: 'right' }}>${price}</Typography>
                 <Typography variant="subtitle1" style={{ textAlign: 'right' }}>Quantity: {quantity}</Typography>
-                <Typography variant="subtitle1">Shipping Estimate: ${shipping}</Typography>
+                <Typography variant="subtitle1">Shipping Estimate: {shipping}</Typography>
                 <Button onClick={removeItem} id={id} variant='outlined'>
                   Remove
                 </Button>

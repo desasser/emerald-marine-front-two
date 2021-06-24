@@ -45,14 +45,6 @@ export default function AddressModal({ onChange, onSubmit }) {
     setOpen(false);
   };
 
-  const handleSubmit = () => {
-    console.log('submit');
-  }
-
-  const handleChange = () => {
-    console.log('change')
-  }
-
   const body = (
     <div style={{    top: `50%`, left: `50%`, transform: `translate(-50%, -50%)`,}} className={classes.paper}>
       <Typography variant="h4" id="address-modal-title" style={{color: '#74b4ab'}}>Enter your shipping address</Typography>

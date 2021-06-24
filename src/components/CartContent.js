@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import AddressModal from './AddressModal';
+import API from '../utils/API';
 
 const useStyles = makeStyles((theme) => ({
   mediaRoot: {
@@ -25,24 +26,13 @@ export default function CartContent() {
     zip: '',
     country: ''
   })
-  // 
-
-  const renderCart = cart;
+  const [shippingRateState, setShippingRateState] = useState([])
+  const [rateReady, setRateReady] = useState(false)
 
   let totalPrice = 0;
 
   for (let i = 0; i < cart.length; i++) {
     totalPrice = parseFloat(cart[i].product.price) * parseFloat(cart[i].quantity.quantity) + totalPrice;
-  }
-
-  const handleAddressSubmit = e => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setAddress({
-      ...address,
-      [name]: value
-    });
-    console.log('submit address', address)
   }
 
   const handleAddressChange = e => {
@@ -51,8 +41,60 @@ export default function CartContent() {
       ...address,
       [name]: value
     });
-    console.log('change address')
+    // console.log('change address')
   }
+
+  const shippingRates = []
+
+  const handleAddressSubmit = e => {
+    e.preventDefault();
+    setShippingRateState([])
+
+    for (let j = 0; j < cart.length; j++) {
+      //Create a new object for each unique item in the cart
+      //Add the item dimensions to the destination address object
+      const shippingObj = {
+        ...address,
+        weight: cart[j].product.weight.split(' ')[0],
+        length: cart[j].product.length,
+        height: cart[j].product.height,
+        width: cart[j].product.width,
+      }
+
+      //Call the API with the new object
+      API.getShippingRate(shippingObj).then(res => {
+        setShippingRateState([...shippingRateState, res.data.rates[0].amount]);
+        setRateReady(true);
+        // console.log('rate ready in API', rateReady)
+      }).catch(err => {
+        console.log(err.message)
+      });
+    }
+  }
+
+  // cart is an array of products and quantities
+  // need to add the shipping rate to each item in the array
+  const renderCart = cart.map((item, index) => {
+    let addShipping = {}
+    console.log('rate ready?', rateReady)
+    {rateReady ? 
+    addShipping = {
+      ...item.product,
+      ...item.quantity,
+      rate: shippingRateState[index]
+    } : 
+    addShipping = {
+      ...item.product,
+      ...item.quantity,
+    }}
+    console.log('inside the map', addShipping)
+    return addShipping;
+  });
+
+  // console.log("========================================")
+  // console.log(renderCart)
+  // console.log("========================================")
+
 
   return (
     <div style={{ width: '60vw', minHeight: '50vh' }}>
@@ -65,7 +107,7 @@ export default function CartContent() {
       </div>
       <hr></hr>
       {renderCart?.map((item) => (
-        <CartCard title={item.product.name} classes={classes} sku={item.product.SKU} price={item.product.price} shipping='123.12' image={item.product.image} id={item.product._id} quantity={item.quantity.quantity}>
+        <CartCard title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}>
           This is a custom description for Product 4
         </CartCard>
       ))}
