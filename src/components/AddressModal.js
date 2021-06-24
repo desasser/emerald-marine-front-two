@@ -2,21 +2,6 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Modal, Typography, TextField } from '@material-ui/core';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
@@ -50,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddressModal() {
   const classes = useStyles();
-  const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -70,7 +54,7 @@ export default function AddressModal() {
   }
 
   const body = (
-    <div style={modalStyle} className={classes.paper}>
+    <div style={{    top: `50%`, left: `50%`, transform: `translate(-50%, -50%)`,}} className={classes.paper}>
       <Typography variant="h4" id="address-modal-title" style={{color: '#74b4ab'}}>Enter your shipping address</Typography>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='street' label='street' required/>

@@ -30,7 +30,7 @@ export default function CartContent() {
   }
 
   return (
-    <div style={{ width: '60vw' }}>
+    <div style={{ width: '60vw', minHeight: '50vh' }}>
       <div style={{ display: 'flex', justifyContent:'space-between', alignItems:'flex-end'}}>
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
         <div>
