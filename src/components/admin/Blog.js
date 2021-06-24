@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useSelector} from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
@@ -7,7 +8,15 @@ import store from '../../utils/store';
 import API from '../../utils/API';
 import {fetchBlog} from '../../utils/actions/blogActions';
 
+const useStyles = makeStyles((theme) => ({        
+    infoCards: {
+        maxHeight: '75vh',
+        overflow: 'scroll'
+    }
+  }));
+
 const Blog = () => {
+    const classes = useStyles();
     const posts = useSelector(state => state.blog.blog);
     const token = localStorage.getItem('token');
     const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
@@ -21,7 +30,30 @@ const Blog = () => {
         intro: '',
         content: ''
     });
-    const [currentID, setCurrentID] = useState('')
+    const [currentID, setCurrentID] = useState('');
+    const [editing, setEditing] = useState(false);
+    const [updating, setUpdating] = useState(false);
+
+    const showEditForm = () => {
+        setEditing(true)
+    }
+
+    const hideEditForm = () => {
+        setEditing(false)
+    }
+
+    const clearCurrent = () => {
+        setCurrent({
+        title: '',
+        date: '',
+        categories: '',
+        tags: '',
+        image: '',
+        alt: '',
+        intro: '',
+        content: ''
+        })
+    }
 
     const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}, {name: 'content', content: `${current.content}`}]
 
@@ -34,16 +66,20 @@ const Blog = () => {
     }
 
     const addBlogPost = () => {
+        setUpdating(false);
         API.createBlogPost(current, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchBlog())
             }
+            clearCurrent();
+            hideEditForm();
         }).catch(err => {
             console.log(err.message)
         });
     }
 
     const grabCurrent = e => {
+        setUpdating(true);
         e.preventDefault();
         const title = e.currentTarget.getAttribute('data-title')
         const date = e.currentTarget.getAttribute('data-date')
@@ -64,7 +100,8 @@ const Blog = () => {
             intro: intro,
             content: content
         });
-        setCurrentID(id)       
+        setCurrentID(id)   
+        showEditForm();    
     }
 
     const removeCurrent = e => {
@@ -87,6 +124,9 @@ const Blog = () => {
                 console.log(res)
                 store.dispatch(fetchBlog())
             }
+            clearCurrent();
+            hideEditForm();
+            setUpdating(false);
         }).catch(err => {
             if(err) {
                 console.log(err.message)
@@ -119,16 +159,27 @@ const Blog = () => {
                     <h1>Current Blog Posts</h1>
                     <br/>
                 </Grid>
+                {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                    <Grid item xs={6}>
-                    {posts?.map(post =>  
-                            <BlogCard view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} removeMe={removeCurrent}/>
-                            )}
-                    </Grid>
-                    <Grid item xs={4}>
-                        <AddForm section='Blog' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure}/>
-                    </Grid>
+                <Grid item xs={6} className={classes.infoCards}>
+                {posts?.map(post =>  
+                        <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} removeMe={removeCurrent}/>
+                        )}
                 </Grid>
+                <Grid item xs={4}>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                </Grid>
+            </Grid> :
+            <Grid container spacing={1}>
+                <Grid item xs={9} className={classes.infoCards}>
+                {posts?.map(post =>  
+                        <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} removeMe={removeCurrent}/>
+                        )}
+                </Grid>
+                <Grid item xs={2}>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                </Grid>
+            </Grid>}
                 
             </Grid>
         </div>
