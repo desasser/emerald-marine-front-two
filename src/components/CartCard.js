@@ -49,7 +49,6 @@ export default function CartCard({ price, shipping, image, title, id, quantity }
       ...quantity,
       [name]: value
     });
-    console.log('change', currentQuant)
   }
 
   const handleSubmit = e => {
@@ -63,7 +62,6 @@ export default function CartCard({ price, shipping, image, title, id, quantity }
       type: 'FETCH_CART_PRODUCTS',
       payload: cart.slice()
     })
-    console.log('submit')
   }
 
   return (

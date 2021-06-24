@@ -29,10 +29,10 @@ export default function CartContent() {
   const [shippingRateState, setShippingRateState] = useState([])
   const [rateReady, setRateReady] = useState(false)
 
-  let totalPrice = 0;
+  let subTotalPrice = 0;
 
   for (let i = 0; i < cart.length; i++) {
-    totalPrice = parseFloat(cart[i].product.price) * parseFloat(cart[i].quantity.quantity) + totalPrice;
+    subTotalPrice = parseFloat(cart[i].product.price) * parseFloat(cart[i].quantity.quantity) + subTotalPrice;
   }
 
   const handleAddressChange = e => {
@@ -41,7 +41,6 @@ export default function CartContent() {
       ...address,
       [name]: value
     });
-    // console.log('change address')
   }
 
   const shippingRates = []
@@ -49,6 +48,14 @@ export default function CartContent() {
   const handleAddressSubmit = e => {
     e.preventDefault();
     setShippingRateState([])
+    setAddress({
+      name: '',
+      street1: '',
+      city: '',
+      state: '',
+      zip: '',
+      country: ''
+    })
 
     for (let j = 0; j < cart.length; j++) {
       //Create a new object for each unique item in the cart
@@ -65,7 +72,6 @@ export default function CartContent() {
       API.getShippingRate(shippingObj).then(res => {
         setShippingRateState([...shippingRateState, res.data.rates[0].amount]);
         setRateReady(true);
-        // console.log('rate ready in API', rateReady)
       }).catch(err => {
         console.log(err.message)
       });
@@ -76,59 +82,68 @@ export default function CartContent() {
   // need to add the shipping rate to each item in the array
   const renderCart = cart.map((item, index) => {
     let addShipping = {}
-    console.log('rate ready?', rateReady)
-    {rateReady ? 
-    addShipping = {
-      ...item.product,
-      ...item.quantity,
-      rate: shippingRateState[index]
-    } : 
-    addShipping = {
-      ...item.product,
-      ...item.quantity,
-    }}
-    console.log('inside the map', addShipping)
+    {
+      rateReady ?
+        addShipping = {
+          ...item.product,
+          ...item.quantity,
+          rate: shippingRateState[index]
+        } :
+        addShipping = {
+          ...item.product,
+          ...item.quantity,
+        }
+    }
     return addShipping;
   });
 
-  // console.log("========================================")
-  // console.log(renderCart)
-  // console.log("========================================")
+  let totalShippingPrice = 0;
 
+  if (rateReady) {
+    for (let i = 0; i < renderCart.length; i++) {
+      if (renderCart[i].rate) {
+        totalShippingPrice = parseFloat(renderCart[i].rate) * parseFloat(renderCart[i].quantity) + totalShippingPrice;
+      } else {
+        totalShippingPrice = totalShippingPrice;
+      }
+    }
+  }
+
+  let totalPrice = subTotalPrice + totalShippingPrice;
 
   return (
     <div style={{ width: '60vw', minHeight: '50vh' }}>
-      <div style={{ display: 'flex', justifyContent:'space-between', alignItems:'flex-end'}}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
         <div>
           <Typography variant="h6" style={{ color: 'red' }}>We ship internationally!</Typography>
-          <AddressModal onSubmit={handleAddressSubmit} onChange={handleAddressChange}/>
+          <AddressModal onSubmit={handleAddressSubmit} onChange={handleAddressChange} name={address.name} street={address.street1} city={address.city} state={address.state} zip={address.zip} country={address.country} />
         </div>
       </div>
       <hr></hr>
-      {renderCart?.map((item) => (
-        <CartCard title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}>
-          This is a custom description for Product 4
-        </CartCard>
-      ))}
+      <div style={{ minHeight: '10em' }}>
+        {renderCart?.map((item) => (
+          <CartCard title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
+        ))}
+      </div>
       <hr></hr>
       <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
         Sub-Total:
       </Typography>
       <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
-        ${totalPrice.toFixed(2)}
+        ${subTotalPrice.toFixed(2)}
       </Typography>
       <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
         Shipping Estimate Total:
       </Typography>
       <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
-        $XXXX.XX
+        ${totalShippingPrice.toFixed(2)}
       </Typography>
       <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
         Total Cost:
       </Typography>
       <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
-        $XXXX.XX
+      ${totalPrice.toFixed(2)}
       </Typography>
     </div>
   )
