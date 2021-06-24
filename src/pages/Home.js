@@ -55,11 +55,7 @@ export default function Home() {
     <Page>
       <Carousel
         indicators={false}
-        // timeout='500'
-        // animation='slide'
         interval='6000'
-      // next={(now, previous) => console.log(`Next User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
-      // prev={(now, previous) => console.log(`Prev User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
       >
         {
           items.map((item, i) => <Item key={i} item={item} />)

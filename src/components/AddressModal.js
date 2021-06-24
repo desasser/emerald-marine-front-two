@@ -2,21 +2,6 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Modal, Typography, TextField } from '@material-ui/core';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
@@ -48,9 +33,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AddressModal() {
+export default function AddressModal({ onChange, onSubmit, name, street, city, state, zip, country }) {
   const classes = useStyles();
-  const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -61,23 +45,17 @@ export default function AddressModal() {
     setOpen(false);
   };
 
-  const handleSubmit = () => {
-    console.log('submit');
-  }
-
-  const handleChange = () => {
-    console.log('change')
-  }
-
   const body = (
-    <div style={modalStyle} className={classes.paper}>
+    <div style={{    top: `50%`, left: `50%`, transform: `translate(-50%, -50%)`,}} className={classes.paper}>
       <Typography variant="h4" id="address-modal-title" style={{color: '#74b4ab'}}>Enter your shipping address</Typography>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='street' label='street' required/>
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='city' label='city' required/>
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='state' label='state/province' required/>
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='postalcode' label='postal code' required/>
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='country' label='country' required/>
+      {/* ${handleClose} */}
+      <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <TextField className={classes.inputStyle} value={name} id="outlined-basic" variant="outlined" onChange={onChange} name='name' label='name' required/>
+        <TextField className={classes.inputStyle} value={street} id="outlined-basic" variant="outlined" onChange={onChange} name='street1' label='street' required/>
+        <TextField className={classes.inputStyle} value={city} id="outlined-basic" variant="outlined" onChange={onChange} name='city' label='city' required/>
+        <TextField className={classes.inputStyle} value={state} id="outlined-basic" variant="outlined" onChange={onChange} name='state' label='state/province' required/>
+        <TextField className={classes.inputStyle} value={zip} id="outlined-basic" variant="outlined" onChange={onChange} name='zip' label='postal code' required/>
+        <TextField className={classes.inputStyle} value={country} id="outlined-basic" variant="outlined" onChange={onChange} name='country' label='country' required/>
         <Button variant="contained" className={classes.buttonStyle} type='submit'>Submit</Button>
       </form>
       {/* <AddressModal /> */}
