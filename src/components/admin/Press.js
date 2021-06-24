@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import BlogCard from '../BlogCard';
+import ProgressIndicator from './ProgressIndicator';
 import AddForm from './AddForm';
 import store from '../../utils/store';
 import API from '../../utils/API';
@@ -33,6 +34,20 @@ const Press = () => {
     const [currentID, setCurrentID] = useState('')
     const [editing, setEditing] = useState(false);
     const [updating, setUpdating] = useState(false);
+    const [indicator, setIndicator] = useState({
+        open: false,
+        severity: '',
+        message: ''
+    })
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setIndicator({
+            ...indicator, open: false
+        });
+    };
 
     const showEditForm = () => {
         setEditing(true)
@@ -70,9 +85,18 @@ const Press = () => {
                 store.dispatch(fetchPressReleases())
                 clearCurrent();
                 hideEditForm();
+                setIndicator({
+                    open: true,
+                    severity: 'success',
+                    message: 'Successfully added press release.'
+                });
             }
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error adding press release: ${err.message}`
+            });
         });
     }
 
@@ -104,10 +128,19 @@ const Press = () => {
             if(res) {
                 console.log(res);
                 store.dispatch(fetchPressReleases())
+                setIndicator({
+                    open: true,
+                    severity: 'success',
+                    message: 'Successfully deleted press release.'
+                });
             }
         }).catch(err => {
             if(err) {
-                console.log(err.message)
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error deleting press release: ${err.message}`
+                });
             }
         });
     }
@@ -122,9 +155,18 @@ const Press = () => {
             clearCurrent();
             hideEditForm();
             setUpdating(false);
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully updated press release.'
+            });
         }).catch(err => {
             if(err) {
-                console.log(err.message)
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error updating press release: ${err.message}`
+                });
             }
         })
     }
@@ -144,13 +186,18 @@ const Press = () => {
     }
 
     const uploadFailure = response => {
-        console.log(response)
+        setIndicator({
+            open: true,
+            severity: 'error',
+            message: `Error uploading image: ${response}`
+        });
     }
 
     return (
         <div>
              <Grid container spacing={2}>
                 <Grid item xs={12}>
+                <ProgressIndicator open={indicator.open} message={indicator.message} severity={indicator.severity} handleClose={handleClose}></ProgressIndicator>
                     <h1>Current Press Releases</h1>
                     <br/>
                 </Grid>

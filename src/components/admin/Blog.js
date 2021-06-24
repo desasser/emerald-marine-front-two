@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import {useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
+import ProgressIndicator from './ProgressIndicator';
 import store from '../../utils/store';
 import API from '../../utils/API';
 import {fetchBlog} from '../../utils/actions/blogActions';
@@ -35,6 +35,20 @@ const Blog = () => {
     const [currentID, setCurrentID] = useState('');
     const [editing, setEditing] = useState(false);
     const [updating, setUpdating] = useState(false);
+    const [indicator, setIndicator] = useState({
+        open: false,
+        severity: '',
+        message: ''
+    })
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setIndicator({
+            ...indicator, open: false
+        });
+    };
     
     const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}, {name: 'content', content: `${current.content}`}]
 
@@ -75,8 +89,17 @@ const Blog = () => {
             }
             clearCurrent();
             hideEditForm();
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Blog post added successfully.'
+            });
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error adding blog post: ${err.message}`
+            });
         });
     }
 
@@ -117,9 +140,18 @@ const Blog = () => {
             if(res) {
                 console.log(res)
                 store.dispatch(fetchBlog())
+                setIndicator({
+                    open: true,
+                    severity: 'success',
+                    message: 'Blog post successfully deleted.'
+                });
             }
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error deleting blog post: ${err.message}`
+            });
         });
     }
 
@@ -133,11 +165,20 @@ const Blog = () => {
             clearCurrent();
             hideEditForm();
             setUpdating(false);
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Blog post successfully updated.'
+            });
         }).catch(err => {
             if(err) {
-                console.log(err.message)
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error updating blog post: ${err.message}`
+                });
             }
-        })
+        });
     }
     
 
@@ -156,13 +197,18 @@ const Blog = () => {
     }
 
     const uploadFailure = response => {
-        console.log(response)
+        setIndicator({
+            open: true,
+            severity: 'error',
+            message: `Error uploading image: ${response}`
+        });
     }
 
     return (
         <div>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
+                    <ProgressIndicator open={indicator.open} message={indicator.message} severity={indicator.severity} handleClose={handleClose}></ProgressIndicator>
                     <h1>Current Blog Posts</h1>
                     <br/>
                 </Grid>
