@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import BlogCard from '../BlogCard';
 import AddForm from './AddForm';
+import ProgressIndicator from './ProgressIndicator';
 import store from '../../utils/store';
 import API from '../../utils/API';
 import {fetchNewsArticles} from '../../utils/actions/newsArticleActions';
@@ -29,6 +30,20 @@ const News = () => {
     const [currentID, setCurrentID] = useState('')
     const [editing, setEditing] = useState(false);
     const [updating, setUpdating] = useState(false);
+    const [indicator, setIndicator] = useState({
+        open: false,
+        severity: '',
+        message: ''
+    })
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setIndicator({
+            ...indicator, open: false
+        });
+    };
 
     const showEditForm = () => {
         setEditing(true)
@@ -67,8 +82,17 @@ const News = () => {
             }
             clearCurrent();
             hideEditForm();
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully added news article.'
+            });
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error adding news article: ${err.message}`
+            });
         });
     }
 
@@ -105,9 +129,18 @@ const News = () => {
             if(res) {
                 console.log(res);
                 store.dispatch(fetchNewsArticles())
+                setIndicator({
+                    open: true,
+                    severity: 'success',
+                    message: 'Successfully deleted news article.'
+                });
             }
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error deleting news article: ${err.message}`
+            });
         });
     }
 
@@ -121,9 +154,18 @@ const News = () => {
             clearCurrent();
             hideEditForm();
             setUpdating(false);
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully updated news article.'
+            });
         }).catch(err => {
             if(err) {
-                console.log(err.message)
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error updating news article: ${err.message}`
+                });
             }
         });
     }
@@ -132,6 +174,7 @@ const News = () => {
         <div>
              <Grid container spacing={2}>
                 <Grid item xs={12}>
+                <ProgressIndicator open={indicator.open} message={indicator.message} severity={indicator.severity} handleClose={handleClose}></ProgressIndicator>
                     <h1>Current News Articles</h1>
                     <br/>
                 </Grid>
@@ -139,7 +182,7 @@ const News = () => {
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={6} className={classes.infoCards}>
                 {articles?.map(article => 
-                        <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
+                        <BlogCard id='#' title={article.title} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
                     )}
                 </Grid>
                 <Grid item xs={4}>
@@ -149,7 +192,7 @@ const News = () => {
             <Grid container spacing={1}>
                 <Grid item xs={9} className={classes.infoCards}>
                 {articles?.map(article => 
-                        <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
+                        <BlogCard id='#' title={article.title} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
                     )}
                 </Grid>
                 <Grid item xs={2}>

@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import BlogCard from '../BlogCard';
+import ProgressIndicator from './ProgressIndicator';
 import AddForm from './AddForm';
 import store from '../../utils/store';
 import API from '../../utils/API';
@@ -11,7 +12,10 @@ import {fetchPressReleases} from '../../utils/actions/pressReleaseActions';
 const useStyles = makeStyles((theme) => ({        
     infoCards: {
         maxHeight: '75vh',
-        overflow: 'scroll'
+        overflow: 'scroll',
+    },
+    cards: {
+        marginTop: '5vh'
     }
   }));
 
@@ -30,6 +34,20 @@ const Press = () => {
     const [currentID, setCurrentID] = useState('')
     const [editing, setEditing] = useState(false);
     const [updating, setUpdating] = useState(false);
+    const [indicator, setIndicator] = useState({
+        open: false,
+        severity: '',
+        message: ''
+    })
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setIndicator({
+            ...indicator, open: false
+        });
+    };
 
     const showEditForm = () => {
         setEditing(true)
@@ -67,9 +85,18 @@ const Press = () => {
                 store.dispatch(fetchPressReleases())
                 clearCurrent();
                 hideEditForm();
+                setIndicator({
+                    open: true,
+                    severity: 'success',
+                    message: 'Successfully added press release.'
+                });
             }
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error adding press release: ${err.message}`
+            });
         });
     }
 
@@ -101,10 +128,19 @@ const Press = () => {
             if(res) {
                 console.log(res);
                 store.dispatch(fetchPressReleases())
+                setIndicator({
+                    open: true,
+                    severity: 'success',
+                    message: 'Successfully deleted press release.'
+                });
             }
         }).catch(err => {
             if(err) {
-                console.log(err.message)
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error deleting press release: ${err.message}`
+                });
             }
         });
     }
@@ -119,9 +155,18 @@ const Press = () => {
             clearCurrent();
             hideEditForm();
             setUpdating(false);
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully updated press release.'
+            });
         }).catch(err => {
             if(err) {
-                console.log(err.message)
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error updating press release: ${err.message}`
+                });
             }
         })
     }
@@ -141,21 +186,26 @@ const Press = () => {
     }
 
     const uploadFailure = response => {
-        console.log(response)
+        setIndicator({
+            open: true,
+            severity: 'error',
+            message: `Error uploading image: ${response}`
+        });
     }
 
     return (
         <div>
              <Grid container spacing={2}>
                 <Grid item xs={12}>
+                <ProgressIndicator open={indicator.open} message={indicator.message} severity={indicator.severity} handleClose={handleClose}></ProgressIndicator>
                     <h1>Current Press Releases</h1>
                     <br/>
                 </Grid>
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                <Grid item xs={6} className={classes.infoCards}>
+                <Grid item xs={6} spacing={2} className={classes.infoCards}>
                 {releases?.map(release => 
-                        <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
+                        <BlogCard id='#' title={release.title} alt={release.alt} image={release.image} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent} className={classes.cards}/>
                         )}
                 </Grid>
                 <Grid item xs={4}>
@@ -163,9 +213,9 @@ const Press = () => {
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
-                <Grid item xs={9} className={classes.infoCards}>
+                <Grid item xs={9} spacing={2} className={classes.infoCards}>
                 {releases?.map(release => 
-                        <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent}/>
+                        <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' removeMe={removeCurrent} grabMe={grabCurrent} className={classes.cards}/>
                         )}
                 </Grid>
                 <Grid item xs={2}>

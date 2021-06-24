@@ -2,8 +2,11 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import UploadWidget from './UploadWidget';
+import {useSelector} from 'react-redux';
+import store from '../../utils/store';
+import {fetchBlog} from '../../utils/actions/blogActions';
 
-const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm }) => {
+const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm}) => {
     return (
         <div>
         {show ? 

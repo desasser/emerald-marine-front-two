@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import ProductCard from '../ProductCard';
+import ProgressIndicator from './ProgressIndicator';
 import AddForm from './AddForm';
 import store from '../../utils/store';
 import API from '../../utils/API';
@@ -41,6 +42,20 @@ const Product = () => {
     const [currentID, setCurrentID] = useState('')
     const [editing, setEditing] = useState(false)
     const [updating, setUpdating] = useState(false);
+    const [indicator, setIndicator] = useState({
+        open: false,
+        severity: '',
+        message: ''
+    })
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setIndicator({
+            ...indicator, open: false
+        });
+    };
 
     const warnings = 'Please enter tags and categories as comma-seperated lists.'
     const fields = [{name: 'name', content: `${current.name}`}, {name: 'description', content: `${current.description}`}, {name: 'price', content: `${current.price}`}, {name: 'SKU', content: `${current.SKU}`}, {name: 'tags', content: `${current.tags}`}, {name: 'categories', content: `${current.categories}`}, {name: 'video', content: `${current.video}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'weight', content: `${current.weight}`}, {name: 'length', content: `${current.length}`}, {name: 'width', content: `${current.width}`}, {name: 'height', content: `${current.height}`}]
@@ -87,8 +102,17 @@ const Product = () => {
             }
             clearCurrent();
             hideEditForm();
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully added product.'
+            });
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error adding product: ${err.message}`
+            });
         });
     }
 
@@ -138,9 +162,18 @@ const Product = () => {
             clearCurrent();
             hideEditForm();
             setUpdating(false);
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully updated product.'
+            });
         }).catch(err => {
             if(err) {
-                console.log(err.message)
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error updating product: ${err.message}`
+                });
             }
         });
     }
@@ -151,10 +184,19 @@ const Product = () => {
         API.deleteProduct(id, token).then(res => {
             if(res) {
                 store.dispatch(fetchProducts());
+                setIndicator({
+                    open: true,
+                    severity: 'success',
+                    message: 'Successfully deleted product.'
+                });
             }
         }).catch(err => {
             if(err) {
-                console.log(err)
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error deleting product: ${err.message}`
+                });
             }
         });
     }
@@ -174,12 +216,17 @@ const Product = () => {
     }
 
     const uploadFailure = response => {
-        console.log(response)
+        setIndicator({
+            open: true,
+            severity: 'error',
+            message: `Error uploading image: ${response}`
+        });
     }
     
     return (
         <div>
             <Grid container spacing={3}>
+            <ProgressIndicator open={indicator.open} message={indicator.message} severity={indicator.severity} handleClose={handleClose}></ProgressIndicator>
                 <Grid item xs={12}>
                     <h1>Current Products</h1>
                     <br/>

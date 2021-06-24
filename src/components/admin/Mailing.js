@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import MailingCard from './MailingCard';
+import ProgressIndicator from './ProgressIndicator';
 import AddForm from './AddForm';
 import API from '../../utils/API';
 import store from '../../utils/store';
@@ -26,6 +27,20 @@ const Mailing = () => {
     const [currentID, setCurrentID] = useState('')
     const [editing, setEditing] = useState(false);
     const [updating, setUpdating] = useState(false);
+    const [indicator, setIndicator] = useState({
+        open: false,
+        severity: '',
+        message: ''
+    })
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setIndicator({
+            ...indicator, open: false
+        });
+    };
 
     const showEditForm = () => {
         setEditing(true)
@@ -58,8 +73,17 @@ const Mailing = () => {
             }
             clearCurrent();
             hideEditForm();
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully subscribed to mailing list.'
+            });
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error subscribing to mailing list: ${err.message}`
+            });
         })
     }
 
@@ -72,8 +96,17 @@ const Mailing = () => {
             }
             clearCurrent();
             hideEditForm();
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully subscribed to testing reminders list.'
+            });
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error subscribing to testing reminders list: ${err.message}`
+            });
         })
     }
 
@@ -83,8 +116,17 @@ const Mailing = () => {
             if(res) {
                 store.dispatch(fetchMailingList(token))
             }
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully unsubscribed from mailing list.'
+            });
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error unsubscribing from mailing list: ${err.message}`
+            });
         });
     }
 
@@ -94,8 +136,17 @@ const Mailing = () => {
             if(res) {
                 store.dispatch(fetchTestList(token))
             }
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully unsubscribed from testing reminders list.'
+            });
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error unsubscribing from testing reminders list: ${err.message}`
+            });
         });
     }
 
@@ -121,9 +172,18 @@ const Mailing = () => {
             clearCurrent();
             hideEditForm();
             setUpdating(false);
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully updated subscriber information.'
+            });
         }).catch(err => {
             if(err) {
-                console.log(err.message)
+                setIndicator({
+                    open: true,
+                    severity: 'error',
+                    message: `Error updating subscriber information: ${err.message}`
+                });
             }
         });
     }
@@ -135,8 +195,17 @@ const Mailing = () => {
             clearCurrent();
             hideEditForm();
             setUpdating(false);
+            setIndicator({
+                open: true,
+                severity: 'success',
+                message: 'Successfully updated subscriber information.'
+            });
         }).catch(err => {
-            console.log(err.message)
+            setIndicator({
+                open: true,
+                severity: 'error',
+                message: `Error updating subscriber information: ${err.message}`
+            });
         });
     }
 
@@ -145,6 +214,7 @@ const Mailing = () => {
             {editing ? 
             <Grid container spacing={2}>
             <Grid item xs={6} className={classes.infoCards}>
+            <ProgressIndicator open={indicator.open} message={indicator.message} severity={indicator.severity} handleClose={handleClose}></ProgressIndicator>
             <h1>Mailing List Subscribers</h1>
             <br/>
             {mailingList?.map(list => 
