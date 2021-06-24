@@ -73,11 +73,12 @@ export default function AddressModal() {
     <div style={modalStyle} className={classes.paper}>
       <Typography variant="h4" id="address-modal-title" style={{color: '#74b4ab'}}>Enter your shipping address</Typography>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='street' label='street' />
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='city' label='city' />
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='state' label='state' />
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='country' label='country' />
-        <Button variant="contained" className={classes.buttonStyle} type='submit'>Enter</Button>
+        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='street' label='street' required/>
+        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='city' label='city' required/>
+        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='state' label='state/province' required/>
+        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='postalcode' label='postal code' required/>
+        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='country' label='country' required/>
+        <Button variant="contained" className={classes.buttonStyle} type='submit'>Submit</Button>
       </form>
       {/* <AddressModal /> */}
     </div>
@@ -85,7 +86,7 @@ export default function AddressModal() {
 
   return (
     <div>
-      <Button type="button" onClick={handleOpen}>
+      <Button type="button" onClick={handleOpen} variant="outlined">
         CHECK SHIPPING
       </Button>
       <Modal
