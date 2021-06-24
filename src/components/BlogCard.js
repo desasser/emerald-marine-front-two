@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardContent, CardMedia, Typography, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import stockPressPhoto from '../images/stock_press_image.jpg';
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +24,7 @@ export default function BlogCard({ children, id, title, image, alt, date, catego
         <CardActionArea >
           <CardMedia
             className={classes.media}
-            image={image ? `${image}` : `https://place-puppy.com/300x300`}
+            image={image ? `${image}` : `${stockPressPhoto}`}
             title={`${alt}`}
           />
           <CardContent>

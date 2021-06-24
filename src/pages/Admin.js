@@ -45,7 +45,7 @@ const Admin = () => {
             history.push('/login');
             localStorage.removeItem('token')
         });
-    }, [token]);
+    }, [user.isLoggedIn]);
 
     const buttonText = ['Blog', 'Product', 'News Article', 'Press Releases', 'Mailing List']
 
@@ -84,7 +84,7 @@ const Admin = () => {
                 </Grid>
             </Grid>
         </Grid> :
-        <h1>You must be an administrator to access this page.</h1>
+        <></>
         }
         
 

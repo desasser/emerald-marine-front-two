@@ -62,8 +62,8 @@ const AdminLogin = () => {
     }
     
     return (
-        <form  noValidate autoComplete="off">
-            <h1>Here's your dumb admin dashboard login dummy</h1>
+        <form  noValidate autoComplete="off" style={{marginTop: '10vh'}}>
+            <h1>Please login as an administrator to proceed.</h1>
             <TextField id="outlined-basic" label="Username" variant="outlined" name="username" onChange={handleInputChange} />
             <TextField id="outlined-basic" label="Password" type='password' variant="outlined" name="password" onChange={handleInputChange} />
             <br />

@@ -139,7 +139,7 @@ const News = () => {
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={6} className={classes.infoCards}>
                 {articles?.map(article => 
-                        <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
+                        <BlogCard id='#' title={article.title} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
                     )}
                 </Grid>
                 <Grid item xs={4}>
@@ -149,7 +149,7 @@ const News = () => {
             <Grid container spacing={1}>
                 <Grid item xs={9} className={classes.infoCards}>
                 {articles?.map(article => 
-                        <BlogCard id='#' title={article.title} image={'http://placekitten.com/g/200/300'} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
+                        <BlogCard id='#' title={article.title} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} removeMe={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
                     )}
                 </Grid>
                 <Grid item xs={2}>
