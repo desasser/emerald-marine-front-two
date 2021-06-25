@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {useSelector} from 'react-redux';
 import BlogCard from '../components/BlogCard';
-import { Container, Grid, Typography, Checkbox } from '@material-ui/core';
+import { Container, Grid, Typography, Checkbox, Radio, RadioGroup, FormControlLabel, FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,68 +16,67 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewsContent() {
   const classes = useStyles();
-  const [state, setState] = useState({
-    'Man-Overboard': true,
-    'Water Rescue Training': true,
-    'Marine Safety': true
-  });
 
+  // grab posts from store
   const blog = useSelector(state => state.blog.blog)
   const pr = useSelector(state => state.pressReleases.pressReleases)
   const news = useSelector(state => state.newsArticles.newsArticles)
 
+  // add all posts to an array
   const allPosts = blog.concat(pr, news);
 
+  // sort that array by most recent
   const allSorted = allPosts.sort(function (a, b) {
     return new Date(b.date) - new Date(a.date);
   })
 
+  const [value, setValue] = useState('All')
+  const [postState, setFilter] = useState({
+    original: allSorted,
+    filtered: allSorted
+  })
+
+  useEffect(() => {
+    setFilter({
+      original: allSorted,
+      filtered: allSorted
+    })
+  }, [blog, pr, news])
+
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-    // TODO: Filter by checked item
-    // search products for all objects with a key matching the category, 
-    // put those in an array and render those
-    console.log('name', event.target.name)
-    // console.log('products', products[0].categories)
-    // console.log('filtered results', products.filter(obj => obj.categories.includes(event.target.name)))
+    setValue(event.target.value)
+    console.log(event.target.value)
+    if (event.target.value !== 'All') {
+      setFilter({
+        ...postState,
+        filtered: allSorted.filter(obj => obj.categories?.includes(event.target.value))
+      })
+    } else {
+      setFilter({
+        ...postState,
+        filtered: allSorted
+      })
+    }
   };
 
   return (
     <Container style={{ marginTop: '20px' }}>
       <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-        <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', display: 'inline-block' }}>News</Typography>
-        <div>
-          <Checkbox
-            // checked={state.manOverboard}
-            onChange={handleChange}
-            color="default"
-            name="Man-Overboard"
-            inputProps={{ 'aria-label': `Man-Overboard checkbox` }}
-          />
-          <Typography component="span">Man-Overboard</Typography>
-          <Checkbox
-            checked={state.marineSafety}
-            onChange={handleChange}
-            color="default"
-            name="Water Rescue Training"
-            inputProps={{ 'aria-label': `Marine Safety checkbox` }}
-          />
-          <Typography component="span">Water Rescue Training</Typography>
-          <Checkbox
-            checked={state.waterRescue}
-            onChange={handleChange}
-            color="default"
-            name="Marine Safety"
-            inputProps={{ 'aria-label': `Marine Safety checkbox` }}
-          />
-          <Typography component="span">Marine Safety</Typography>
-        </div>
+        <Typography variant='h2' style={{ marginTop: '3rem', color: '#74b4ab', display: 'inline-block' }}>News</Typography>
+        <FormControl component="fieldset" style={{alignItems: 'flex-end'}}>
+          <RadioGroup aria-label="posts" name="posts" value={value} onChange={handleChange} style={{flexDirection: 'row', width: '60%'}}>
+            <FormControlLabel value="All" control={<Radio style={{color:'goldenrod'}}/>} label="All Posts" />
+            <FormControlLabel value="Man-Overboard" control={<Radio style={{color:'goldenrod'}} />} label="Man-Overboard" />
+            <FormControlLabel value="Water Rescue Training" control={<Radio style={{color:'goldenrod'}} />} label="Water Rescue Training" />
+            <FormControlLabel value="Marine Safety" control={<Radio style={{color:'goldenrod'}} />} label="Marine Safety" />
+          </RadioGroup>
+        </FormControl>
       </div>
       <hr></hr>
       <Grid container className={classes.cardWrapper} spacing={4}>
-        {allSorted?.map(post => (
+        {postState.filtered?.map(post => (
           <Grid item xs={12}>
-            <BlogCard title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt}>
+            <BlogCard title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt} intro={post.intro} publication={post.publication} link={post.link}>
               {post.description}
             </BlogCard>
           </Grid>

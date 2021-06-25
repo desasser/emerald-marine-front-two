@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import ProductCard from '../components/ProductCard'
-import { Container, Grid, Typography, Checkbox } from '@material-ui/core'
+import { Container, Grid, Typography, Radio, RadioGroup, FormControlLabel, FormControl } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,61 +43,52 @@ const useStyles = makeStyles((theme) => ({
 export default function ProductContent() {
   const classes = useStyles();
   const products = useSelector(state => state.products.products)
-  const [state, setState] = useState({
-    'Overboard Alerting Products': true,
-    'Water Rescue Training': true,
-    'Accessories': true
-  });
-  const [filteredState, setFilter] = useState({
+  const [value, setValue] = useState('All')
+  const [productState, setFilter] = useState({
     original: products,
     filtered: products
   })
 
+  useEffect(() => {
+    setFilter({
+      original: products,
+      filtered: products
+    })
+  }, [products])
+
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-    // TODO: Filter by checked item
-    // search products for all objects with a key matching the category, 
-    // put those in an array and render those
-    console.log('name', event.target.name)
-    console.log('filtered results', products.filter(obj => obj.categories.includes(event.target.name)))
+    setValue(event.target.value)
+    if (event.target.value !== 'All') {
+      setFilter({
+        ...productState,
+        filtered: products.filter(obj => obj.categories.includes(event.target.value))
+      })
+    } else {
+      setFilter({
+        ...productState,
+        filtered: products
+      })
+    }
   };
 
   return (
     <Container style={{ marginTop: '1.5em' }}>
       <div style={{ display: 'flex', alignItems: 'flex-end', width: '100%', justifyContent: 'space-between' }}>
-        <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', display: 'inline-block' }}>All Products</Typography>
-        <div>
-          <Checkbox
-            // checked={state.manOverboard}
-            onChange={handleChange}
-            color="default"
-            name="Overboard Alerting Products"
-            inputProps={{ 'aria-label': `Overboard Alerting Products checkbox` }}
-          />
-          <Typography component="span">Overboard Alerting Products</Typography>
-          <Checkbox
-            checked={state.marineSafety}
-            onChange={handleChange}
-            color="default"
-            name="Water Rescue Training"
-            inputProps={{ 'aria-label': `Water Rescue Training checkbox` }}
-          />
-          <Typography component="span">Water Rescue Training</Typography>
-          <Checkbox
-            checked={state.waterRescue}
-            onChange={handleChange}
-            color="default"
-            name="Accessories"
-            inputProps={{ 'aria-label': `Accessories checkbox` }}
-          />
-          <Typography component="span">Accessories</Typography>
-        </div>
+        <Typography variant='h2' style={{ marginTop: '4rem', color: '#74b4ab', display: 'inline-block', width: '50%' }}>All Products</Typography>
+        <FormControl component="fieldset" style={{alignItems: 'flex-end'}}>
+          <RadioGroup aria-label="products" name="products" value={value} onChange={handleChange} style={{flexDirection: 'row', width: '80%'}}>
+            <FormControlLabel value="All" control={<Radio style={{color:'goldenrod'}}/>} label="All Products" />
+            <FormControlLabel value="Overboard Alerting Products" control={<Radio style={{color:'goldenrod'}} />} label="Overboard Alerting Products" />
+            <FormControlLabel value="Water Rescue Training" control={<Radio style={{color:'goldenrod'}} />} label="Water Rescue Training" />
+            <FormControlLabel value="Accessories" control={<Radio style={{color:'goldenrod'}} />} label="Accessories" />
+          </RadioGroup>
+        </FormControl>
       </div>
       <hr style={{ marginBottom: '2em' }}></hr>
       <Grid container className={classes.flexBox} spacing={2}>
         <Grid item xs={12}>
           <Grid container justify='center' spacing={4}>
-            {products?.map(product => (
+            {productState.filtered?.map(product => (
               <Grid key={product._id} item>
                 <ProductCard name={product.name} classes={classes} sku={product.SKU} price={product.price} image={product.image} alt={product.alt}>{product.description.split('.')[0]} </ProductCard>
               </Grid>

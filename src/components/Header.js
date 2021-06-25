@@ -47,12 +47,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const activeStyles = {
-  background: 'white',
-  color: 'black',
-  padding: 5,
-}
-
 const Header = () => {
   const classes = useStyles()
   return (
