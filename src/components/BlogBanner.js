@@ -44,8 +44,8 @@ export default function BlogBanner() {
                 <Typography gutterBottom variant="h5" component="h2" style={{color: '#74b4ab'}}>
                   {post.title}
                 </Typography>
-                <Typography gutterBottom variant="body1">
-                  {post.intro.substring(0,200) + '...'}
+                <Typography gutterBottom variant="body1" style={{overflow: 'hidden', height: '6em'}}>
+                  {post.intro}
                 </Typography>
                 <Typography gutterBottom variant="body2" style={{ textAlign: 'right' }}>
                   {post.date}
