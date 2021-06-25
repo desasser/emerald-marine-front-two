@@ -34,7 +34,7 @@ export default function BlogBanner() {
   console.log('most recent post', post)
 
   return (
-    <div style={{ height: '150px', width: '50vw', padding: '20px',}}>
+    <div style={{ height: '250px', width: '50vw', padding: '20px',}}>
       <Grid item xs={12} style={{display: 'flex', justifyContent: 'flex-end'}}>
         {post ? 
         (<Card className={classes.root} elevation={0}>
@@ -44,7 +44,10 @@ export default function BlogBanner() {
                 <Typography gutterBottom variant="h5" component="h2" style={{color: '#74b4ab'}}>
                   {post.title}
                 </Typography>
-                <Typography gutterBottom variant="body2" component="h2" style={{ textAlign: 'right' }}>
+                <Typography gutterBottom variant="body1">
+                  {post.intro.substring(0,200) + '...'}
+                </Typography>
+                <Typography gutterBottom variant="body2" style={{ textAlign: 'right' }}>
                   {post.date}
                 </Typography>
                 <Typography variant="body1" color="textSecondary" component="p" style={{ textAlign: 'right', paddingTop: '5px', color: 'black' }}>
