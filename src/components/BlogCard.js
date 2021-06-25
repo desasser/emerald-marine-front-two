@@ -36,9 +36,9 @@ export default function BlogCard({ id, title, image, alt, date, categories, tags
             <Typography variant="body2" color="textSecondary" component="p">
               {intro}
             </Typography>
-            <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', marginTop: '1em' }}>
               <Typography gutterBottom variant="body1" component="h2" style={{ textAlign: 'right', fontStyle: 'italic' }}>
-                {publication}
+                {publication ? publication : 'Emerald Marine Products'}
               </Typography>
               <Typography gutterBottom variant="body1" component="h2" style={{ textAlign: 'right' }}>
                 {date}
