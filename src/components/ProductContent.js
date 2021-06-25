@@ -73,10 +73,10 @@ export default function ProductContent() {
 
   return (
     <Container style={{ marginTop: '1.5em' }}>
-      <div style={{ display: 'flex', alignItems: 'flex-end', width: '100%', justifyContent: 'space-between' }}>
         <Typography variant='h2' style={{ marginTop: '4rem', color: '#74b4ab', display: 'inline-block', width: '50%' }}>All Products</Typography>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
         <FormControl component="fieldset" style={{alignItems: 'flex-end'}}>
-          <RadioGroup aria-label="products" name="products" value={value} onChange={handleChange} style={{flexDirection: 'row', width: '80%'}}>
+          <RadioGroup aria-label="products" name="products" value={value} onChange={handleChange} style={{flexDirection: 'row'}}>
             <FormControlLabel value="All" control={<Radio style={{color:'goldenrod'}}/>} label="All Products" />
             <FormControlLabel value="Overboard Alerting Products" control={<Radio style={{color:'goldenrod'}} />} label="Overboard Alerting Products" />
             <FormControlLabel value="Water Rescue Training" control={<Radio style={{color:'goldenrod'}} />} label="Water Rescue Training" />

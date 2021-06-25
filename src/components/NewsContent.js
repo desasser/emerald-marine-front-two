@@ -61,10 +61,10 @@ export default function NewsContent() {
 
   return (
     <Container style={{ marginTop: '20px' }}>
-      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-        <Typography variant='h2' style={{ marginTop: '3rem', color: '#74b4ab', display: 'inline-block' }}>News</Typography>
+        <Typography variant='h2' style={{ marginTop: '3rem', color: '#74b4ab'}}>News</Typography>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
         <FormControl component="fieldset" style={{alignItems: 'flex-end'}}>
-          <RadioGroup aria-label="posts" name="posts" value={value} onChange={handleChange} style={{flexDirection: 'row', width: '60%'}}>
+          <RadioGroup aria-label="posts" name="posts" value={value} onChange={handleChange} style={{flexDirection: 'row'}}>
             <FormControlLabel value="All" control={<Radio style={{color:'goldenrod'}}/>} label="All Posts" />
             <FormControlLabel value="Man-Overboard" control={<Radio style={{color:'goldenrod'}} />} label="Man-Overboard" />
             <FormControlLabel value="Water Rescue Training" control={<Radio style={{color:'goldenrod'}} />} label="Water Rescue Training" />
