@@ -53,7 +53,7 @@ function App() {
             <Route path="/home" component={Home} />
             <Route path="/oscarwaterrescue" component={Oscar} />
             <Route path="/news/:id">
-              {allPosts.length === 0 ? <Redirect to="/products" /> : <SingleBlog/>}
+              {allPosts.length === 0 ? <Redirect to="/news" /> : <SingleBlog/>}
             </Route>
             <Route path="/news" component={News} />
             <Route path="/product/:sku">
