@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import ProductCard from '../components/ProductCard'
-import { Container, Grid, Typography, Checkbox, Radio, RadioGroup, FormControlLabel, FormControl } from '@material-ui/core'
+import { Container, Grid, Typography, Radio, RadioGroup, FormControlLabel, FormControl } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,16 +43,18 @@ const useStyles = makeStyles((theme) => ({
 export default function ProductContent() {
   const classes = useStyles();
   const products = useSelector(state => state.products.products)
-  // const [state, setState] = useState({
-  //   'Overboard Alerting Products': true,
-  //   'Water Rescue Training': true,
-  //   'Accessories': true
-  // });
   const [value, setValue] = useState('All')
   const [productState, setFilter] = useState({
     original: products,
     filtered: products
   })
+
+  useEffect(() => {
+    setFilter({
+      original: products,
+      filtered: products
+    })
+  }, [products])
 
   const handleChange = (event) => {
     setValue(event.target.value)
