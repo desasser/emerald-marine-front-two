@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import AddressModal from './AddressModal';
 import API from '../utils/API';
+import CloseIcon from '@material-ui/icons/Close';
+import store from '../utils/store'
 
 const useStyles = makeStyles((theme) => ({
   mediaRoot: {
@@ -111,6 +113,16 @@ export default function CartContent() {
 
   let totalPrice = subTotalPrice + totalShippingPrice;
 
+  const emptyCart = () => {
+    // console.log('clicky clicky')
+    // console.log(cart.splice(0, cart.length))
+    cart.splice(0, cart.length)
+    store.dispatch({
+      type: 'FETCH_CART_PRODUCTS',
+      payload: cart.slice()
+    })
+  }
+
   return (
     <div style={{ width: '60vw', minHeight: '50vh' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
@@ -127,24 +139,32 @@ export default function CartContent() {
         ))}
       </div>
       <hr></hr>
-      <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
-        Sub-Total:
-      </Typography>
-      <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
-        ${subTotalPrice.toFixed(2)}
-      </Typography>
-      <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
-        Shipping Estimate Total:
-      </Typography>
-      <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
-        ${totalShippingPrice.toFixed(2)}
-      </Typography>
-      <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
-        Total Cost:
-      </Typography>
-      <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
-      ${totalPrice.toFixed(2)}
-      </Typography>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button variant="outlined" style={{ height: '3em', width: '25%' }} onClick={emptyCart}>
+          <CloseIcon style={{ margin: '0 0.3em 0 -0.5em' }} />
+          Empty Cart
+        </Button>
+        <div>
+          <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
+            Sub-Total:
+          </Typography>
+          <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
+            ${subTotalPrice.toFixed(2)}
+          </Typography>
+          <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
+            Shipping Estimate Total:
+          </Typography>
+          <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
+            ${totalShippingPrice.toFixed(2)}
+          </Typography>
+          <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
+            Total Cost:
+          </Typography>
+          <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
+            ${totalPrice.toFixed(2)}
+          </Typography>
+        </div>
+      </div>
     </div>
   )
 }

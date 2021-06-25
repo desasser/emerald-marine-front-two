@@ -6,6 +6,7 @@ import { makeStyles, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles'
 import Cart from "./pages/Cart"
 import Contact from "./pages/Contact"
+import Oscar from "./pages/Oscar"
 import Home from "./pages/Home"
 import News from "./pages/News"
 import AdminLogin from './pages/AdminLogin'
@@ -42,6 +43,7 @@ function App() {
             <Route path="/cart" component={Cart} />
             <Route path="/contact" component={Contact} />
             <Route path="/home" component={Home} />
+            <Route path="/oscar" component={Oscar} />
             <Route path="/news/:id" component={SingleBlog} />
             <Route path="/news" component={News} />
             <Route path="/product/:sku" component={SingleProduct} />
