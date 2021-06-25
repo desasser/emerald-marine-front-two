@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, Typography, Box } from '@material-ui/core';
+import PDFLibrary from './PDFLibrary';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,6 +79,11 @@ export default function VerticalTabs({ content }) {
           {e.content}
         </TabPanel>
       ))}
+      {/* {content[0].file ? {
+        content.map(e => (
+
+        ))
+      } : null} */}
     </div>
   )
 }
