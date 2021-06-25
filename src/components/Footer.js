@@ -75,12 +75,14 @@ const Footer = () => {
     <div className={classes.footer} >
       <Container className={classes.footerContent}>
         <div className={classes.footerLogoWrapper}>
-          <img
-            src={logo}
-            alt='Emerald Marine Products Logo'
-            as='div'
-            style={{ height: '100px' }}
-          />
+          <Link to="/" underline='none' className={classes.linkStyles}>
+            <img
+              src={logo}
+              alt='Emerald Marine Products Logo'
+              as='div'
+              style={{ height: '100px' }}
+            />
+          </Link>
         </div>
         <Typography style={{ textAlign: 'center' }}> Manufactured in The United States of America.</Typography>
         <InputForm classes={classes} text={'Sign up to receive our newsletter.'} label={'email...'} buttonText={'submit'} />
