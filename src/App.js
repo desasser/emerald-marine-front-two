@@ -5,7 +5,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { makeStyles, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles'
 import Cart from "./pages/Cart"
+import NotFound from './components/NotFound';
 import Contact from "./pages/Contact"
+import Oscar from "./pages/Oscar"
 import Home from "./pages/Home"
 import News from "./pages/News"
 import AdminLogin from './pages/AdminLogin'
@@ -42,6 +44,7 @@ function App() {
             <Route path="/cart" component={Cart} />
             <Route path="/contact" component={Contact} />
             <Route path="/home" component={Home} />
+            <Route path="/oscarwaterrescue" component={Oscar} />
             <Route path="/news/:id" component={SingleBlog} />
             <Route path="/news" component={News} />
             <Route path="/product/:sku" component={SingleProduct} />
@@ -49,6 +52,7 @@ function App() {
             <Route path="/support" component={Support} />
             <Route path='/login' component={AdminLogin} />
             <Route path='/admin' component={Admin} />
+            <Route component={NotFound}/>
           </Switch>
         </main>
         <Footer />
