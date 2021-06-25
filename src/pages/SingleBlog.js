@@ -4,9 +4,17 @@ import { Breadcrumbs, Typography } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SingleBlogContent from "../components/SingleBlogContent"
 import Page from "../components/Page"
+import store from '../utils/store';
 
 export default function SingleBlog() {
   const { id } = useParams();
+  const blog = store.getState().blog.blog;
+  const pr = store.getState().pressReleases.pressReleases;
+  const news = store.getState().newsArticles.newsArticles;
+
+  const allPosts = blog.concat(pr, news);
+
+  const currentPost = allPosts.find(p => p._id === id);
 
   return (
     <Page>
@@ -18,7 +26,7 @@ export default function SingleBlog() {
           <Link color="inherit" to="/news" style={{ textDecoration: 'none', color: 'grey' }}>
             News
           </Link>
-          <Typography color="textPrimary">Blog Title</Typography>
+          <Typography color="textPrimary">{currentPost.title}</Typography>
         </Breadcrumbs>
       </div>
       <SingleBlogContent id={id}></SingleBlogContent>
