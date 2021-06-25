@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Tabs, Tab, Typography, Box } from '@material-ui/core';
-import PDFLibrary from './PDFLibrary';
+import ReactPlayer from 'react-player/youtube'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,15 +75,16 @@ export default function VerticalTabs({ content }) {
         ))}
       </Tabs>
       {content.map(e => (
-        <TabPanel value={value} index={e.id}>
-          {e.content}
-        </TabPanel>
+        (e.content ?
+          <TabPanel value={value} index={e.id}>
+            {e.content}
+          </TabPanel>
+          :
+          <TabPanel value={value} index={e.id}>
+            <ReactPlayer url={e?.video} width={'100%'} style={{ margin: '3.5em 0' }} />
+          </TabPanel>
+        )
       ))}
-      {/* {content[0].file ? {
-        content.map(e => (
-
-        ))
-      } : null} */}
     </div>
   )
 }

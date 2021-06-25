@@ -82,6 +82,64 @@ const protectedClients = [
   },
 ]
 
+const videos = [
+  {
+    id: 0,
+    title: 'ALERT418 Transmitter Pouch Placement',
+    video: "https://www.youtube.com/watch?v=O5K72y2tbHA&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 1,
+    title: 'ALERT418 Man-Overboard Alarm System Introduction',
+    video: "https://www.youtube.com/watch?v=uQ9L2R6GBLU&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 2,
+    title: 'ALERT2 Spraytight Pouch Alteration',
+    video: "https://www.youtube.com/watch?v=x8qh6AobMjQ&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 3,
+    title: 'ALERT2 Portable Direction Finder',
+    video: "https://www.youtube.com/watch?v=7hTGM9L9El4&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 4,
+    title: 'ALERT2 Battery and Circuit Board Replacement',
+    video: "https://www.youtube.com/watch?v=I_tM94CLTCM&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 5,
+    title: 'Proper Storage of ALERT2 Man-Overboard Transmitter',
+    video: "https://www.youtube.com/watch?v=a8cmMlaPxhE&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 6,
+    title: 'Demonstration of the ALERT2 Man-Overboard Alarm System',
+    video: "https://www.youtube.com/watch?v=3u9OY94py8s&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 7,
+    title: 'OSCAR - Water Rescue Training Dummy',
+    video: "https://www.youtube.com/watch?v=grQ30xpWO_8&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 8,
+    title: 'ALERT2 Man-Overboard Alarm System Testimonial',
+    video: "https://www.youtube.com/watch?v=Bnh3caPYvhY&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 9,
+    title: 'Testing the ALERT2 Man-Overboard Alarm System',
+    video: "https://www.youtube.com/watch?v=Qh9KTNwu720&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 10,
+    title: 'ALERT2 Spray-tight Pouch swap out',
+    video: "https://www.youtube.com/watch?v=ooki3zs9g4k&ab_channel=EmeraldMarineProducts",
+  },
+]
+
 export default function SupportContent() {
   const classes = useStyles();
 
@@ -98,24 +156,34 @@ export default function SupportContent() {
       <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
         Who is protected with the ALERT products?
       </Typography>
+      {/* Marketing Info */}
       <div className={`${classes.attnBox} ${classes.boxMargin}`}>
-        {/* TODO: Make tabs dynamic via props */}
         <VerticalTabs content={protectedClients}></VerticalTabs>
       </div>
+      {/* Marketing Info */}
+
+      {/* FAQ */}
       <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
         FAQ
       </Typography>
       <SupportAccordian></SupportAccordian>
+      {/* FAQ */}
+
+      {/* Videos */}
       <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
         Video Library
       </Typography>
+      <VerticalTabs content={videos}></VerticalTabs>
+      {/* Videos */}
+
+      {/* Product Docs */}
       <div className={classes.boxMargin}>
       </div>
       <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
         Product Documentation and information
       </Typography>
       <div style={{ margin: '20px auto', width: '90%' }}>
-        <Typography variant="h4" style={{margin: '1em 0'}}> ALERT Man-Overboard Alarm System Product Documentation </Typography>
+        <Typography variant="h4" style={{ margin: '1em 0' }}> ALERT Man-Overboard Alarm System Product Documentation </Typography>
         <div style={{ width: '85%', margin: '0 auto' }}>
           <Link href="https://drive.google.com/file/d/190S1GkyLBc58WFfIZtvchaOBFNEUSkAx/view?usp=sharing" target="_blank" rel="noopener" variant="h6" className={classes.linkStyle}>
             ALERT2 Man-Overboard Alarm System Owner's Manual
@@ -142,10 +210,10 @@ export default function SupportContent() {
             ALERT418 Product Specification Sheet
           </Link>
         </div>
-        <Typography variant="h4" style={{margin: '1em 0'}}>
+        <Typography variant="h4" style={{ margin: '1em 0' }}>
           ALERT Man-Overboard Receiver Product Documentation
         </Typography>
-        <Typography style={{margin: '1em 0'}}>
+        <Typography style={{ margin: '1em 0' }}>
           ALERT2 and ALERT418 Receivers ship with the same wiring components, therefore these documents apply to both types of ALERT Receivers.
         </Typography>
         <div style={{ width: '85%', margin: '0 auto' }}>
@@ -162,10 +230,10 @@ export default function SupportContent() {
             ALERT2 Receiver Coaxial Cable Specifications Sheet
           </Link>
         </div>
-        <Typography variant="h4" style={{margin: '1em 0'}}>
+        <Typography variant="h4" style={{ margin: '1em 0' }}>
           ALERT Man-Overboard Receiver Wiring Diagrams
         </Typography>
-        <Typography style={{margin: '1em 0'}}>
+        <Typography style={{ margin: '1em 0' }}>
           ALERT2 and ALERT418 Receivers have the same dry contacts on the back of the units, therefore these documents apply to both type of ALERT Receivers.
         </Typography>
         <div style={{ width: '85%', margin: '0 auto' }}>
@@ -186,6 +254,7 @@ export default function SupportContent() {
           </Link>
         </div>
       </div>
+      {/* Product Docs */}
     </Container>
   )
 }
