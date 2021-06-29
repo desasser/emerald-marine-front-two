@@ -35,7 +35,7 @@ export default function ProductBlock(props) {
         </Typography>
         <div>
         <Typography variant="h6" style={{ color: 'red', textAlign: 'right' }}>We accept International Inquiries!</Typography>
-        <Typography style={{textAlign: 'right'}}>Get a shipping estimate in your request for quote.</Typography>
+        <Typography style={{textAlign: 'right'}}>Get a shipping estimate in your cart.</Typography>
         </div>
       </div>
       <Grid container className={classes.flexBox} spacing={2}>

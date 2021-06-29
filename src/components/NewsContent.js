@@ -75,7 +75,7 @@ export default function NewsContent() {
       <hr></hr>
       <Grid container className={classes.cardWrapper} spacing={4}>
         {postState.filtered?.map(post => (
-          <Grid item xs={12}>
+          <Grid item xs={12} key={post._id}>
             <BlogCard title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt} intro={post.intro} publication={post.publication} link={post.link}>
               {post.description}
             </BlogCard>

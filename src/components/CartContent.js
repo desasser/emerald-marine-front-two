@@ -45,8 +45,6 @@ export default function CartContent() {
     });
   }
 
-  const shippingRates = []
-
   const handleAddressSubmit = e => {
     e.preventDefault();
     setShippingRateState([])
@@ -105,8 +103,6 @@ export default function CartContent() {
     for (let i = 0; i < renderCart.length; i++) {
       if (renderCart[i].rate) {
         totalShippingPrice = parseFloat(renderCart[i].rate) * parseFloat(renderCart[i].quantity) + totalShippingPrice;
-      } else {
-        totalShippingPrice = totalShippingPrice;
       }
     }
   }

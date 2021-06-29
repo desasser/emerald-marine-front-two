@@ -55,7 +55,7 @@ export default function BlogCard({ id, title, image, alt, date, categories, tags
         </CardActionArea>
       </Link>
       :
-      <a href={link} style={{ textDecoration: 'none', color: 'black' }} target="_blank">
+      <a href={link} style={{ textDecoration: 'none', color: 'black' }} target="_blank" rel="noreferrer">
         <CardActionArea >
           <CardMedia
             className={classes.media}
