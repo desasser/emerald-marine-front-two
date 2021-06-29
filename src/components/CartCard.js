@@ -37,7 +37,9 @@ export default function CartCard({ price, shipping, image, title, sku, id, quant
     quantity: quantity
   })
 
-  const removeItem = () => {
+  const removeItem = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     store.dispatch({
       type: 'FETCH_CART_PRODUCTS',
       payload: cart.filter(cart => cart.product._id !== id)
