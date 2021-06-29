@@ -57,6 +57,9 @@ export default function CartContent() {
       country: ''
     })
 
+    let promises = [];
+    let shippingRates = [];
+    console.log('before the loop')
     for (let j = 0; j < cart.length; j++) {
       //Create a new object for each unique item in the cart
       //Add the item dimensions to the destination address object
@@ -69,19 +72,25 @@ export default function CartContent() {
       }
 
       //Call the API with the new object
-      API.getShippingRate(shippingObj).then(res => {
-        setShippingRateState([...shippingRateState, res.data.rates[0].amount]);
-        setRateReady(true);
-      }).catch(err => {
-        console.log(err.message)
-      });
+      promises.push(
+        API.getShippingRate(shippingObj).then(res => {
+          shippingRates.push(res.data.rates[0].amount)
+          setRateReady(true);
+          console.log('we are inside the shipping rate call', shippingRates)
+        }).catch(err => {
+          console.log(err.message)
+        })
+      )
     }
+
+    console.log('after the loop')
+    Promise.all(promises).then(() => setShippingRateState(shippingRates))
   }
 
   // cart is an array of products and quantities
   // need to add the shipping rate to each item in the array
   const renderCart = cart.map((item, index) => {
-    let addShipping = {}
+    let addShipping = {};
     {
       rateReady ?
         addShipping = {
@@ -96,6 +105,11 @@ export default function CartContent() {
     }
     return addShipping;
   });
+
+  console.log('renderCart object, cart plus shipping info')
+  console.log('==========================================')
+  console.log(renderCart)
+  console.log('==========================================')
 
   let totalShippingPrice = 0;
 
@@ -131,7 +145,7 @@ export default function CartContent() {
       <hr></hr>
       <div style={{ minHeight: '10em' }}>
         {renderCart?.map((item) => (
-          <CartCard title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
+          <CartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
         ))}
       </div>
       <hr></hr>
