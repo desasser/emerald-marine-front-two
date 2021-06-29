@@ -233,7 +233,7 @@ const Mailing = () => {
             <h1>Mailing List Subscribers</h1>
             <br/>
             {mailingList?.map(list => 
-            <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
+            <MailingCard first={list.first} last={list.last} company={list.company} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
             )}
             </Grid>
             <Grid item xs={6}>
@@ -244,7 +244,7 @@ const Mailing = () => {
             <Grid item xs={9} className={classes.infoCards}>
             <h1>Mailing List Subscribers</h1>
             {mailingList?.map(list => 
-            <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
+            <MailingCard first={list.first} last={list.last} company={list.company} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
             )}
             </Grid>
             <Grid item xs={2}>
@@ -268,7 +268,7 @@ const Mailing = () => {
             <Grid item xs={9} className={classes.infoCards}>
             <h1>Product Test Reminder Subscribers</h1>
             {testList?.map(list => 
-                <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeTestList} grabMe={grabCurrent}/> 
+                <MailingCard first={list.first} last={list.last} company={list.company} email={list.email} id={list._id} removeMe={removeTestList} grabMe={grabCurrent}/> 
                 )}
             </Grid>
             <Grid item xs={2}>

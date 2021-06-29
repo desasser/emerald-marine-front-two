@@ -37,6 +37,12 @@ const MailingCard = ({first, last, company, email, id, removeMe, grabMe}) => {
             <Typography variant="h5" component="h2">
               {company}
             </Typography>
+            <Typography className={classes.title} color="textSecondary">
+              Name:
+            </Typography>
+            <Typography variant="h5" component="h2">
+              {`${first} ${last}`}
+            </Typography>
           </CardContent>
           <CardActions>
             <Button size="small" data-first={first} data-last={last} data-company={company} data-email={email} data-id={id} onClick={removeMe}>Remove from List</Button>
