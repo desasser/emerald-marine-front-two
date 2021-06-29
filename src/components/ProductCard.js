@@ -1,12 +1,13 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Typography, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom'
+import DeleteConfirmation from '../components/admin/DeleteConfirmation';
 
-export default function ProductCard({ children, view, removeMe, grabMe, classes, price, sku, name, image, alt, description, tags, categories, video, weight, length, width, height, id }) {
+export default function ProductCard({ children, view, grabMe, classes, price, sku, name, image, alt, description, tags, categories, video, weight, length, width, height, id, confirm }) {
 
   return (
     <Card className={classes.mediaRoot}>
-      <Link to={`/product/${sku}`} style={{ textDecoration: 'none', color: 'black' }}>
+      {/* <Link to={`/product/${sku}`} style={{ textDecoration: 'none', color: 'black' }}> */}
         <CardActionArea>
           <CardMedia
             className={classes.mediaHeight}
@@ -22,8 +23,8 @@ export default function ProductCard({ children, view, removeMe, grabMe, classes,
             </Typography>
             {view === 'admin' ?
               <div style={{ 'margin-top': '5vh' }}>
-                <Button size="small" data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={removeMe}>Remove Product </Button>
-                <Button size="small" data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={grabMe}>Update Product Info</Button>
+                <DeleteConfirmation text='Delete Product' confirm={confirm} id={id}/>
+                <Button size="small" variant='outlined' data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={grabMe}>Update Product Info</Button>
               </div> : <div></div>}
           </CardContent>
           <CardContent>
@@ -32,7 +33,7 @@ export default function ProductCard({ children, view, removeMe, grabMe, classes,
             </Typography>
           </CardContent>
         </CardActionArea>
-      </Link>
+      {/* </Link> */}
     </Card>
   );
 }
