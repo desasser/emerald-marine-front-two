@@ -7,33 +7,56 @@ export default function ProductCard({ children, view, grabMe, classes, price, sk
 
   return (
     <Card className={classes.mediaRoot}>
-      {/* <Link to={`/product/${sku}`} style={{ textDecoration: 'none', color: 'black' }}> */}
-        <CardActionArea>
-          <CardMedia
-            className={classes.mediaHeight}
-            image={`${image}`}
-            title={`${alt}`}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h6" component="h2" style={{ color: '#74b4ab', height: '100px' }}>
-              {name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p" style={{ height: '55px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-              {children}
-            </Typography>
-            {view === 'admin' ?
-              <div style={{ 'margin-top': '5vh' }}>
-                <DeleteConfirmation text='Delete Product' confirm={confirm} id={id}/>
-                <Button size="small" variant='outlined' data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={grabMe}>Update Product Info</Button>
-              </div> : <div></div>}
-          </CardContent>
-          <CardContent>
-            <Typography variant="body1" color="textSecondary" component="p" style={{ textAlign: 'right', paddingTop: '5px', color: 'black' }}>
-              {`$${price}`}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      {/* </Link> */}
+      {view==='admin' ? 
+       <CardActionArea>
+       <CardMedia
+         className={classes.mediaHeight}
+         image={`${image}`}
+         title={`${alt}`}
+       />
+       <CardContent>
+         <Typography gutterBottom variant="h6" component="h2" style={{ color: '#74b4ab', height: '100px' }}>
+           {name}
+         </Typography>
+         <Typography variant="body2" color="textSecondary" component="p" style={{ height: '55px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+           {children}
+         </Typography>
+           <div style={{ 'margin-top': '5vh' }}>
+             <DeleteConfirmation text='Delete Product' confirm={confirm} id={id}/>
+             <Button size="small" variant='outlined' data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={grabMe}>Update Product Info</Button>
+           </div> 
+       </CardContent>
+       <CardContent>
+         <Typography variant="body1" color="textSecondary" component="p" style={{ textAlign: 'right', paddingTop: '5px', color: 'black' }}>
+           {`$${price}`}
+         </Typography>
+       </CardContent>
+     </CardActionArea> : 
+
+    //  Non-admin view
+     <Link to={`/product/${sku}`} style={{ textDecoration: 'none', color: 'black' }}>
+     <CardActionArea>
+       <CardMedia
+         className={classes.mediaHeight}
+         image={`${image}`}
+         title={`${alt}`}
+       />
+       <CardContent>
+         <Typography gutterBottom variant="h6" component="h2" style={{ color: '#74b4ab', height: '100px' }}>
+           {name}
+         </Typography>
+         <Typography variant="body2" color="textSecondary" component="p" style={{ height: '55px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+           {children}
+         </Typography>
+       </CardContent>
+       <CardContent>
+         <Typography variant="body1" color="textSecondary" component="p" style={{ textAlign: 'right', paddingTop: '5px', color: 'black' }}>
+           {`$${price}`}
+         </Typography>
+       </CardContent>
+     </CardActionArea>
+   </Link>}
     </Card>
+  
   );
 }
