@@ -122,8 +122,8 @@ const Mailing = () => {
     }
 
     const removeMailingList = e => {
-        const email = e.currentTarget.getAttribute('data-email');
-        API.removeFromMailingList(email).then(res => {
+        const id = e.currentTarget.getAttribute('data-id');
+        API.removeFromMailingList(id).then(res => {
             if(res) {
                 store.dispatch(fetchMailingList(token))
             }
@@ -142,8 +142,8 @@ const Mailing = () => {
     }
 
     const removeTestList = e => {
-        const email = e.currentTarget.getAttribute('data-email');
-        API.removeFromTestList(email).then(res => {
+        const id = e.currentTarget.getAttribute('data-id');
+        API.removeFromTestList(id).then(res => {
             if(res) {
                 store.dispatch(fetchTestList(token))
             }
@@ -233,7 +233,7 @@ const Mailing = () => {
             <h1>Mailing List Subscribers</h1>
             <br/>
             {mailingList?.map(list => 
-            <MailingCard first={list.first} last={list.last} company={list.company} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
+            <MailingCard first={list.first} last={list.last} company={list.company} email={list.email} id={list._id} confirm={removeMailingList} grabMe={grabCurrent}/>   
             )}
             </Grid>
             <Grid item xs={6}>
@@ -244,7 +244,7 @@ const Mailing = () => {
             <Grid item xs={9} className={classes.infoCards}>
             <h1>Mailing List Subscribers</h1>
             {mailingList?.map(list => 
-            <MailingCard first={list.first} last={list.last} company={list.company} email={list.email} id={list._id} removeMe={removeMailingList} grabMe={grabCurrent}/>   
+            <MailingCard first={list.first} last={list.last} company={list.company} email={list.email} id={list._id} confirm={removeMailingList} grabMe={grabCurrent}/>   
             )}
             </Grid>
             <Grid item xs={2}>
@@ -257,7 +257,7 @@ const Mailing = () => {
                 <h1>Product Test Reminder Subscribers</h1>
                 <br/>
                 {testList?.map(list => 
-                <MailingCard name={list.name} email={list.email} id={list._id} removeMe={removeTestList} grabMe={grabCurrent}/> 
+                <MailingCard name={list.name} email={list.email} id={list._id} confirm={removeTestList} grabMe={grabCurrent}/> 
                 )}
             </Grid>
             <Grid item xs={6}>
@@ -268,7 +268,7 @@ const Mailing = () => {
             <Grid item xs={9} className={classes.infoCards}>
             <h1>Product Test Reminder Subscribers</h1>
             {testList?.map(list => 
-                <MailingCard first={list.first} last={list.last} company={list.company} email={list.email} id={list._id} removeMe={removeTestList} grabMe={grabCurrent}/> 
+                <MailingCard first={list.first} last={list.last} company={list.company} email={list.email} id={list._id} confirm={removeTestList} grabMe={grabCurrent}/> 
                 )}
             </Grid>
             <Grid item xs={2}>

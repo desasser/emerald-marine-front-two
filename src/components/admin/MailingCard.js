@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActions, CardContent, Typography, Button } from '@material-ui/core';
+import DeleteConfirmation from './DeleteConfirmation';
 
 const useStyles = makeStyles({
     root: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
     },
   });
 
-const MailingCard = ({first, last, company, email, id, removeMe, grabMe}) => {
+const MailingCard = ({first, last, company, email, id, grabMe, confirm}) => {
     const classes = useStyles();
 
     return ( 
@@ -45,8 +46,8 @@ const MailingCard = ({first, last, company, email, id, removeMe, grabMe}) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" data-first={first} data-last={last} data-company={company} data-email={email} data-id={id} onClick={removeMe}>Remove from List</Button>
-            <Button size="small" data-first={first} data-last={last} data-company={company} data-email={email} data-id={id} onClick={grabMe}>Edit Subscriber Info</Button>
+          <DeleteConfirmation text='Unsubscribe' confirm={confirm} id={email}/>
+            <Button size="small" variant='outlined' data-first={first} data-last={last} data-company={company} data-email={email} data-id={id} onClick={grabMe}>Edit Subscriber Info</Button>
           </CardActions>
         </Card>
       ); 
