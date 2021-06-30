@@ -59,7 +59,6 @@ export default function CartContent() {
 
     let promises = [];
     let shippingRates = [];
-    console.log('before the loop')
     for (let j = 0; j < cart.length; j++) {
       //Create a new object for each unique item in the cart
       //Add the item dimensions to the destination address object
@@ -76,14 +75,12 @@ export default function CartContent() {
         API.getShippingRate(shippingObj).then(res => {
           shippingRates.push(res.data.rates[0].amount)
           setRateReady(true);
-          console.log('we are inside the shipping rate call', shippingRates)
         }).catch(err => {
           console.log(err.message)
         })
       )
     }
 
-    console.log('after the loop')
     Promise.all(promises).then(() => setShippingRateState(shippingRates))
   }
 
@@ -106,11 +103,6 @@ export default function CartContent() {
     return addShipping;
   });
 
-  console.log('renderCart object, cart plus shipping info')
-  console.log('==========================================')
-  console.log(renderCart)
-  console.log('==========================================')
-
   let totalShippingPrice = 0;
 
   if (rateReady) {
@@ -124,8 +116,6 @@ export default function CartContent() {
   let totalPrice = subTotalPrice + totalShippingPrice;
 
   const emptyCart = () => {
-    // console.log('clicky clicky')
-    // console.log(cart.splice(0, cart.length))
     cart.splice(0, cart.length)
     store.dispatch({
       type: 'FETCH_CART_PRODUCTS',
@@ -143,11 +133,16 @@ export default function CartContent() {
         </div>
       </div>
       <hr></hr>
-      <div style={{ minHeight: '10em' }}>
-        {renderCart?.map((item) => (
-          <CartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
-        ))}
-      </div>
+      {renderCart.length === 0 ?
+        <div style={{ height: '20vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Typography variant='h3'>Your cart is empty!</Typography>
+        </div>
+        :
+        <div style={{ minHeight: '10em' }}>
+          {renderCart?.map((item) => (
+            <CartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
+          ))}
+        </div>}
       <hr></hr>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button variant="outlined" style={{ height: '3em', width: '25%' }} onClick={emptyCart}>
@@ -174,6 +169,9 @@ export default function CartContent() {
             ${totalPrice.toFixed(2)}
           </Typography>
         </div>
+      </div>
+      <div style={{display:'flex', width: '100%', justifyContent: 'flex-end', marginTop: '2rem'}}>
+        <Button variant="contained" style={{backgroundColor:'goldenrod', fontSize: '1.1rem'}} elevation={2}>Submit Request for Quote</Button>
       </div>
     </div>
   )

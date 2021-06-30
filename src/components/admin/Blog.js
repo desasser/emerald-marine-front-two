@@ -116,8 +116,7 @@ const Blog = () => {
         const intro = e.currentTarget.getAttribute('data-intro')
         const content = e.currentTarget.getAttribute('data-content')
         const id = e.currentTarget.getAttribute('data-id')
-        // const contentArray = JSON.parse(e.currentTarget.getAttribute('data-content'))
-        // console.log(contentArray)
+
         setCurrent({
             title: title,
             date: date,

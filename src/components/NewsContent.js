@@ -45,7 +45,6 @@ export default function NewsContent() {
 
   const handleChange = (event) => {
     setValue(event.target.value)
-    console.log(event.target.value)
     if (event.target.value !== 'All') {
       setFilter({
         ...postState,

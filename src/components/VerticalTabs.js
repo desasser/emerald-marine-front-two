@@ -59,8 +59,6 @@ export default function VerticalTabs({ content }) {
     setValue(newValue)
   };
 
-  console.log('contents', content);
-
   return (
     <div className={classes.root}>
       <Tabs

@@ -1,9 +1,9 @@
-import React from 'react'
-import InputForm from '../components/InputForm'
+import React, { useState } from 'react'
 import SupportAccordian from '../components/SupportAccordian'
 import { Container, Typography, Link } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import VerticalTabs from './VerticalTabs';
+import SearchBar from './SearchBar';
 
 const useStyles = makeStyles((theme) => ({
   flexBox: {
@@ -142,10 +142,20 @@ const videos = [
 
 export default function SupportContent() {
   const classes = useStyles();
+  const [input, setInput] = useState('');
+  const supportContent = [];
+
+  const updateInput = (input) => {
+    const filtered = supportContent.filter(item => {
+      return item.title.toLowerCase().includes(input.toLowerCase())
+    });
+    // setFilteredMaps(filtered);
+    setInput(input);
+  }
 
   return (
     <Container style={{ marginTop: '20px' }}>
-      <InputForm classes={classes} text={''} label={'search...'} buttonText={'search'} />
+      <SearchBar input={input} onChange={updateInput} />
       <hr></hr>
       <div className={`${classes.attnBox} ${classes.boxMargin}`}>
         <Typography>

@@ -31,7 +31,6 @@ export default function BlogBanner() {
   })
 
   const post = allSorted[0];
-  console.log('most recent post', post)
 
   return (
     <div style={{ height: '250px', width: '50vw', padding: '20px',}}>
