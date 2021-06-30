@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import ProductCard from '../ProductCard';
 import ProgressIndicator from './ProgressIndicator';
+import DeleteConfirmation from './DeleteConfirmation';
 import AddForm from './AddForm';
 import store from '../../utils/store';
 import API from '../../utils/API';
@@ -46,9 +47,10 @@ const Product = () => {
         open: false,
         severity: '',
         message: ''
-    })
+    });
+    const [confirmation, setConfirmation] = useState(false)
 
-    const handleClose = (event, reason) => {
+    const handleIndicatorClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
@@ -56,6 +58,14 @@ const Product = () => {
             ...indicator, open: false
         });
     };
+
+    const handleConfirmationClose = () => {
+        setConfirmation(false);
+    }
+    const handleConfirmationOpen = e => {
+        setConfirmation(true);
+        setCurrentID(e.currentTarget.getAttribute('data-id'))
+    }
 
     const warnings = 'Please enter tags and categories as comma-seperated lists.'
     const fields = [{name: 'name', content: `${current.name}`}, {name: 'description', content: `${current.description}`}, {name: 'price', content: `${current.price}`}, {name: 'SKU', content: `${current.SKU}`}, {name: 'tags', content: `${current.tags}`}, {name: 'categories', content: `${current.categories}`}, {name: 'video', content: `${current.video}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'weight', content: `${current.weight}`}, {name: 'length', content: `${current.length}`}, {name: 'width', content: `${current.width}`}, {name: 'height', content: `${current.height}`}]
@@ -180,7 +190,7 @@ const Product = () => {
 
     const removeCurrent = e => {
         e.preventDefault();
-        const id = e.currentTarget.getAttribute('data-id');
+        const id = e.currentTarget.getAttribute('data-id')
         API.deleteProduct(id, token).then(res => {
             if(res) {
                 store.dispatch(fetchProducts());
@@ -226,7 +236,7 @@ const Product = () => {
     return (
         <div>
             <Grid container spacing={3}>
-            <ProgressIndicator open={indicator.open} message={indicator.message} severity={indicator.severity} handleClose={handleClose}></ProgressIndicator>
+            <ProgressIndicator open={indicator.open} message={indicator.message} severity={indicator.severity} handleClose={handleIndicatorClose}></ProgressIndicator>
                 <Grid item xs={12}>
                     <h1>Current Products</h1>
                     <br/>
@@ -234,7 +244,7 @@ const Product = () => {
                     <Grid container spacing={1} justify='space-evenly'>
                     <Grid item xs={4} className={classes.infoCards}>
                         {products?.map(product => 
-                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent} classes={classes}/>
+                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} classes={classes} confirm={removeCurrent}/>
                         )}
                     </Grid>
                     <Grid item xs={6}>
@@ -244,8 +254,7 @@ const Product = () => {
                 <Grid container spacing={1}>
                     <Grid item xs={8} className={classes.infoCards}>
                         {products?.map(product => 
-                    
-                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={removeCurrent} classes={classes}/>
+                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={handleConfirmationOpen} classes={classes} confirm={removeCurrent}/>
                         
                         )}
                     </Grid>
