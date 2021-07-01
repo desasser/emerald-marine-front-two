@@ -48,15 +48,7 @@ export default function CartContent() {
   const handleAddressSubmit = e => {
     e.preventDefault();
     setShippingRateState([])
-    setAddress({
-      name: '',
-      street1: '',
-      city: '',
-      state: '',
-      zip: '',
-      country: ''
-    })
-
+    
     let promises = [];
     let shippingRates = [];
     for (let j = 0; j < cart.length; j++) {
@@ -82,6 +74,14 @@ export default function CartContent() {
     }
 
     Promise.all(promises).then(() => setShippingRateState(shippingRates))
+    setAddress({
+      name: '',
+      street1: '',
+      city: '',
+      state: '',
+      zip: '',
+      country: ''
+    })
   }
 
   // cart is an array of products and quantities
