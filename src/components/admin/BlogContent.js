@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const BlogContent = ({postContent, addSection}) => {
-    const content = useSelector(state => state.blogContent.blogContent)
+const BlogContent = () => {
+    const blogContent = useSelector(state => state.blogContent.blogContent)
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [post, setPost] = useState({
@@ -54,7 +54,7 @@ const BlogContent = ({postContent, addSection}) => {
 
     const finishSection = e => {
       e.preventDefault();
-      const newContent = [...content, post]
+      const newContent = [...blogContent, post]
       store.dispatch({
         type: 'ADD_CONTENT',
         payload: newContent
@@ -65,6 +65,7 @@ const BlogContent = ({postContent, addSection}) => {
         heading: '',
         content: ''
       })
+      handleClose()
     }
 
     return (
@@ -79,7 +80,6 @@ const BlogContent = ({postContent, addSection}) => {
             <form className={classes.dialog} onSubmit={finishSection}>
             <TextField className={classes.inputStyle} id="outlined-basic helperText" label={'heading'} onChange={handleInputChange} value={post.heading} name={'heading'} variant="outlined" multiline={true} style={{'margin-bottom': '2vh'}}></TextField>
             <TextField className={classes.inputStyle} id="outlined-basic helperText" label={'content'} onChange={handleInputChange} value={post.content} name={'content'} variant="outlined" multiline={true} rows={10} style={{'margin-bottom': '2vh'}}></TextField>
-            <Button onClick={addSection}>Add Section</Button>
             <Button type='submit' onClick={finishSection}>Save Current Section</Button>
             </form>
         </Dialog>

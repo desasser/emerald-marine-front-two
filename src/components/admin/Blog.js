@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const Blog = () => {
     const classes = useStyles();
     const posts = useSelector(state => state.blog.blog);
+    const blogContent = useSelector(state => state.blogContent.blogContent)
 
     const token = localStorage.getItem('token');
     const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
@@ -29,8 +30,7 @@ const Blog = () => {
         tags: '',
         image: '',
         alt: '',
-        intro: '',
-        content: ''
+        intro: ''
     });
     const [currentID, setCurrentID] = useState('');
     const [editing, setEditing] = useState(false);
@@ -72,7 +72,6 @@ const Blog = () => {
         image: '',
         alt: '',
         intro: '',
-        content: ''
         })
     }
 
@@ -87,7 +86,8 @@ const Blog = () => {
 
     const addBlogPost = () => {
         setUpdating(false);
-        API.createBlogPost(current, token).then(res => {
+        const currentPost = {...current, content: JSON.stringify(blogContent)}
+        API.createBlogPost(currentPost, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchBlog())
             }
@@ -127,8 +127,8 @@ const Blog = () => {
             tags: tags,
             image: image,
             alt: alt,
-            intro: intro,
-            content: ''
+            intro: intro
+
         });
         setCurrentID(id)   
         showEditForm();    
