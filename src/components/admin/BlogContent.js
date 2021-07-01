@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, DialogTitle, Dialog} from '@material-ui/core';
 import {useSelector} from 'react-redux';
@@ -28,18 +28,13 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const BlogContent = ({postContent, addSection}) => {
-
-
-    const posts = useSelector(state => state.blog.blog);
+    const content = useSelector(state => state.blogContent.blogContent)
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [post, setPost] = useState({
         heading: '',
         content: ''
     });
-    const [currentSection, setCurrentSection] = useState([])
-    
-    // const postContent = posts.map(post => JSON.parse(post.content))
 
     const handleInputChange = e => {
         const {name, value} = e.target;
@@ -59,14 +54,17 @@ const BlogContent = ({postContent, addSection}) => {
 
     const finishSection = e => {
       e.preventDefault();
-      setCurrentSection([...currentSection, post])
-      console.log(currentSection)
+      const newContent = [...content, post]
+      store.dispatch({
+        type: 'ADD_CONTENT',
+        payload: newContent
+      })
+      console.log(newContent)
       setPost({
         ...post,
         heading: '',
         content: ''
       })
-      // console.log(currentSection);
     }
 
     return (
