@@ -41,13 +41,12 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#cfcfcf84',
     display: 'flex',
     width: '100%',
     margin: 20
   },
   tabs: {
-    borderRight: `1px solid green`,
+    borderRight: `1px solid black`,
   },
 }));
 
@@ -67,19 +66,22 @@ export default function VerticalTabs({ content }) {
         onChange={handleChange}
         aria-label="Vertical tabs for marketing info"
         className={classes.tabs}
+        indicatorColor="primary"
+        elevation={0}
       >
         {content.map(e => (
           <Tab label={e.title} {...a11yProps(e.id)} />
         ))}
       </Tabs>
-      {content.map((e,index) => (
+      {content.map((e, index) => (
         (e.content ?
-          <TabPanel value={value} index={index}>
+          <TabPanel value={value} index={index} style={{backgroundColor: 'salmon'}}>
+            <img src={e.photo} style={{ width: '100%', margin: '1rem auto', display: 'block', maxWidth: '100%', maxHeight: '100%', }} />
             {e.content}
           </TabPanel>
           :
           <TabPanel value={value} index={index}>
-            <ReactPlayer url={e.video} width={'100%'} style={{ margin: '3.5em 0',  }} />
+            <ReactPlayer url={e.video} width={'100%'} style={{ margin: '3.5em 0', }} />
           </TabPanel>
         )
       ))}

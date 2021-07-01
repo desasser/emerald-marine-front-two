@@ -74,7 +74,7 @@ export default function CartCard({ price, shipping, image, title, sku, id, quant
           <Paper className={classes.paper}>
             <Grid container spacing={2}>
               <Grid item>
-                <img className={classes.img} alt="complex" src={image} />
+                <img className={classes.img} alt={title} src={image} />
               </Grid>
               <Grid item xs={12} sm container style={{ height: '200px' }}>
                 <Grid item xs container direction="column" spacing={2}>
