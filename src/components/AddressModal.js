@@ -47,8 +47,8 @@ export default function AddressModal({ onChange, onSubmit, name, street, city, s
 
   const body = (
     <div style={{    top: `50%`, left: `50%`, transform: `translate(-50%, -50%)`,}} className={classes.paper}>
-      <Typography variant="h4" id="address-modal-title" style={{color: '#74b4ab'}}>Enter your shipping address</Typography>
-      {/* ${handleClose} */}
+      <Typography variant="h4" id="address-modal-title" style={{color: '#74b4ab', marginBottom: '1rem'}}>Enter your shipping address</Typography>
+      <Typography variant="body2">This shipping estimate is based on UPS shipping rates and is subject to change at the time of order.</Typography>
       <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <TextField className={classes.inputStyle} value={name} id="outlined-basic" variant="outlined" onChange={onChange} name='name' label='name' required/>
         <TextField className={classes.inputStyle} value={street} id="outlined-basic" variant="outlined" onChange={onChange} name='street1' label='street' required/>

@@ -116,8 +116,7 @@ const Blog = () => {
         const intro = e.currentTarget.getAttribute('data-intro')
         const content = e.currentTarget.getAttribute('data-content')
         const id = e.currentTarget.getAttribute('data-id')
-        // const contentArray = JSON.parse(e.currentTarget.getAttribute('data-content'))
-        // console.log(contentArray)
+
         setCurrent({
             title: title,
             date: date,
@@ -204,6 +203,7 @@ const Blog = () => {
         });
     }
 
+
     return (
         <div>
             <Grid container spacing={2}>
@@ -216,7 +216,7 @@ const Blog = () => {
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={6} className={classes.infoCards}>
                 {posts?.map(post =>  
-                        <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} removeMe={removeCurrent}/>
+                        <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
                         )}
                 </Grid>
                 <Grid item xs={4}>
@@ -226,7 +226,7 @@ const Blog = () => {
             <Grid container spacing={1}>
                 <Grid item xs={9} className={classes.infoCards}>
                 {posts?.map(post =>  
-                        <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} removeMe={removeCurrent}/>
+                        <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
                         )}
                 </Grid>
                 <Grid item xs={2}>

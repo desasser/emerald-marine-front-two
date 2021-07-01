@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import { Typography, Grid, Button, Container, TextField } from '@material-ui/core';
+import { Typography, Grid, Button, Container, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import ReactPlayer from 'react-player/youtube'
 import store from '../utils/store'
 import { makeStyles } from '@material-ui/core'
@@ -22,12 +22,19 @@ const useStyles = makeStyles(theme => ({
     }
   },
   buttonStyle: {
-    height: '56px', 
-    width: '100%', 
-    backgroundColor: 'goldenrod', 
-    fontSize: '16px', 
-  }
+    height: '56px',
+    width: '100%',
+    backgroundColor: 'goldenrod',
+    fontSize: '16px',
+  },
+  table: {
+    minWidth: 650,
+  },
 }))
+
+function createData(name, calories, fat, carbs, protein) {
+  return { name, calories, fat, carbs, protein };
+}
 
 export default function SingleProductContent({ sku }) {
   const classes = useStyles()
@@ -39,8 +46,12 @@ export default function SingleProductContent({ sku }) {
 
   const currentProduct = products?.find(p => p.SKU === sku);
 
-  // console.log('i am a shopping cart!', cart)
-  // console.log('current product', currentProduct)
+  const rows = [
+    createData('Length', `${currentProduct.length} in`),
+    createData('Width', `${currentProduct.width} in`),
+    createData('Height', `${currentProduct.height} in`),
+    createData('Weight', `${currentProduct.weight}`),
+  ];
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -93,25 +104,34 @@ export default function SingleProductContent({ sku }) {
         </Typography>
         <form style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }} onSubmit={handleSubmit}>
           <Typography>Quantity</Typography>
-          <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' required/>
+          <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' required />
           <Button variant="contained" className={classes.buttonStyle} type='submit'>Add to Quote</Button>
         </form>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="h5" style={{ marginTop: '20px' }}>Details</Typography>
+        <Typography variant="h5" style={{ color: '#74b4ab', margin: '1em' }}>Details</Typography>
         <Container maxWidth='md' style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
 
         </Container>
       </Grid>
       <Grid item xs={12} ></Grid>
       <Grid item xs={12} >
-        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-          <Typography variant="h5" component="span">Specifications</Typography>
-          <Typography variant="subtitle2" component="span" style={{ alignSelf: 'flex-end' }}>Download Product Sheet</Typography>
-        </div>
-        <Container maxWidth='md' style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
+        <Typography variant="h5" component="span" style={{ color: '#74b4ab', margin: '1em' }}>Specifications</Typography>
+        <TableContainer component={Paper} style={{marginTop: '1em'}}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow key={row.name}>
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell>{row.calories}</TableCell>
 
-        </Container>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Grid>
     </Grid>
   )
