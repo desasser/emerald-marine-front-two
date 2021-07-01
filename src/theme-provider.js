@@ -15,7 +15,27 @@ const theme = createMuiTheme({
     },
     palette: {
       primary: {
-        main: '#ff8001'
+        main: '#DAA520'
+      },
+    },
+    typography: {
+      h1: {
+        fontFamily: 'Noto Serif'
+      },
+      h2: {
+        fontFamily: 'Noto Serif'
+      },
+      h3: {
+        fontFamily: 'Noto Serif'
+      },
+      h4: {
+        fontFamily: 'Abel'
+      },
+      h5: {
+        fontFamily: 'Abel'
+      },
+      h6: {
+        fontFamily: 'Abel'
       },
     }
   })

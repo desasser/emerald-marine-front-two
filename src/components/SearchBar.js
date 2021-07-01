@@ -42,27 +42,15 @@ export default function SearchBar({keyword, onChange}) {
       className={classes.root} 
       noValidate 
       autoComplete="off" 
-      // onSubmit={(event) => updateInput(event.target.value)} 
     >
       <TextField 
         id="variant-basic" 
-        label="search..." 
+        label="begin typing to search..." 
         variant="outlined" 
         onChange={(event) => onChange(event.target.value)} 
         value={keyword} 
         className={classes.input} 
       />
-      <div>
-        <Button
-          // onClick={(event) => updateInput(event.target.value)}
-          variant="contained"
-          color="primary"
-          className={classes.button}
-        >
-          <SearchIcon fontSize="large" />
-          Search
-        </Button>
-      </div>
     </form>
   );
 }

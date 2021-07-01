@@ -9,9 +9,6 @@ const useStyles = makeStyles((theme) => ({
   flexBox: {
     flexGrow: 1,
   },
-  blockWrapper: {
-    margin: 20,
-  },
   control: {
     padding: theme.spacing(2),
   },
@@ -28,7 +25,7 @@ export default function ProductBlock(props) {
   const products = useSelector(state => state.products.products)
 
   return (
-    <Container className={classes.blockWrapper}>
+    <Container>
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '95%', alignItems: 'flex-end', margin: '20px'}}>
         <Typography variant='h3' style={{ color: '#74b4ab' }}>
           Our Best Sellers

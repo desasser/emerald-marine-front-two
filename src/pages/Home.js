@@ -10,6 +10,7 @@ import ProductBlock from "../components/ProductBlock"
 import API from '../utils/API'
 import Page from "../components/Page"
 import Carousel from 'react-material-ui-carousel'
+import { Typography } from '@material-ui/core'
 
 export default function Home() {
   useEffect(() => {
@@ -62,10 +63,13 @@ export default function Home() {
         }
       </Carousel>
       <div style={{ display: 'flex', minWidth: '80%', }}>
+
         <BlogBanner />
         <TestimonialBanner />
       </div>
-
+      <Typography variant='h3' style={{color: '#74b4ab', textAlign: 'left', width: '95%'}}>
+        Why Emerald Marine?
+      </Typography>
       <MarketingInfo />
       <ProductBlock />
     </Page>
