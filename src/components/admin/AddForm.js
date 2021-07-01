@@ -2,11 +2,12 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import UploadWidget from './UploadWidget';
+import BlogContent from './BlogContent';
 import {useSelector} from 'react-redux';
 import store from '../../utils/store';
 import {fetchBlog} from '../../utils/actions/blogActions';
 
-const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm}) => {
+const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, postContent, addSection, blogContentChange}) => {
     return (
         <div>
         {show ? 
@@ -21,10 +22,12 @@ const AddForm = ({section, message, fields, handleAddFormChange, updateMe, succe
         {section==='Product' || section==='Press Release' || section==='Blog Post' ? 
         <UploadWidget successCallback={successCallback} failureCallback={failureCallback}/> :
         <></>}
-        <Button size='small' style={{'padding': '0', 'max-width': '30%'}} variant="contained" onClick={updateMe}>Submit</Button>
+        {section==='Blog Post'? 
+        <BlogContent postContent={postContent} addSection={addSection}/> : <></>}
+        <Button size='small' varient='contained' style={{'padding': '0', 'max-width': '30%'}} onClick={updateMe}>Submit</Button>
         </div>
     </div> :
-    <Button size='small' style={{'padding': '0', 'max-width': '30%'}} variant="contained" onClick={showForm} style={{'float': 'right', 'margin-top': '10vh'}}>Add new {section}</Button>}
+    <Button size='small' variant="contained" onClick={showForm} style={{'float': 'right', 'margin-top': '10vh', 'padding': '0', 'max-width': '30%'}}>Add new {section}</Button>}
         </div>
     )
 }

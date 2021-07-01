@@ -41,6 +41,7 @@ const Blog = () => {
         message: ''
     })
 
+
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -50,7 +51,9 @@ const Blog = () => {
         });
     };
     
-    const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}, {name: 'content', content: `${current.content}`}]
+    const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}]
+
+    let postContent = [{heading: '', content: ''}]
 
     const showEditForm = () => {
         setEditing(true)
@@ -69,7 +72,7 @@ const Blog = () => {
         image: '',
         alt: '',
         intro: '',
-        content: [{heading: '', content: ''}]
+        content: ''
         })
     }
 
@@ -80,6 +83,7 @@ const Blog = () => {
             [name]: value
         });
     }
+
 
     const addBlogPost = () => {
         setUpdating(false);
@@ -103,7 +107,6 @@ const Blog = () => {
         });
     }
 
-
     const grabCurrent = e => {
         setUpdating(true);
         e.preventDefault();
@@ -114,10 +117,9 @@ const Blog = () => {
         const image = e.currentTarget.getAttribute('data-image')
         const alt = e.currentTarget.getAttribute('data-alt')
         const intro = e.currentTarget.getAttribute('data-intro')
-        const content = e.currentTarget.getAttribute('data-content')
+        const content = JSON.parse(e.currentTarget.getAttribute('data-content'))
         const id = e.currentTarget.getAttribute('data-id')
-        // const contentArray = JSON.parse(e.currentTarget.getAttribute('data-content'))
-        // console.log(contentArray)
+        postContent = content;
         setCurrent({
             title: title,
             date: date,
@@ -126,7 +128,7 @@ const Blog = () => {
             image: image,
             alt: alt,
             intro: intro,
-            content: content
+            content: ''
         });
         setCurrentID(id)   
         showEditForm();    
@@ -204,7 +206,6 @@ const Blog = () => {
         });
     }
 
-
     return (
         <div>
             <Grid container spacing={2}>
@@ -217,24 +218,23 @@ const Blog = () => {
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={6} className={classes.infoCards}>
                 {posts?.map(post =>  
-                        <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
-                        )}
+                    <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
+                    )}
                 </Grid>
                 <Grid item xs={4}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} postContent={postContent}/>
                 </Grid>
             </Grid> :
             <Grid container spacing={1}>
                 <Grid item xs={9} className={classes.infoCards}>
                 {posts?.map(post =>  
-                        <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
-                        )}
+                    <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
+                    )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} postContent={postContent}/>
                 </Grid>
             </Grid>}
-                
             </Grid>
         </div>
     )
