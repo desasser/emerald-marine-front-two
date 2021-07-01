@@ -18,6 +18,7 @@ import SingleBlog from "./pages/SingleBlog"
 import Support from "./pages/Support"
 import theme from './theme-provider'
 import { useSelector } from 'react-redux';
+import ResponsiveDrawer from './components/ResponsiveDrawer';
 
 const useStyles = makeStyles({
   main: {
@@ -44,7 +45,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <Header />
+        {/* <Header /> */}
+        <ResponsiveDrawer />
         <main className={classes.main}>
           <Switch>
             <Route exact path="/" component={Home} />
