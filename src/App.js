@@ -42,12 +42,15 @@ function App() {
 
   const allPosts = blog.concat(pr, news);
 
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        {/* <Header /> */}
-        <ResponsiveDrawer />
+      { isMobile ? <ResponsiveDrawer /> : <Header />}
         <main className={classes.main}>
           <Switch>
             <Route exact path="/" component={Home} />

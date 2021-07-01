@@ -1,32 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import PersonIcon from '@material-ui/icons/Person';
-import PetsIcon from '@material-ui/icons/Pets';
-import SettingsIcon from '@material-ui/icons/Settings';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import DescriptionIcon from '@material-ui/icons/Description';
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
-import PermDataSettingIcon from '@material-ui/icons/PermDataSetting';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from "@material-ui/core/Button";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import EmeraldMarineLogo from './EmeraldMarineLogo';
 
-// import logo from "../assets/logo.svg";
-
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
             width: `calc(100% - ${drawerWidth}px)`,
             marginLeft: drawerWidth,
         },
+        backgroundColor: '#78787a'
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -54,21 +43,22 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
         width: drawerWidth,
-        backgroundColor: theme.palette.common.main
+        backgroundColor: '#78787a',
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        padding: theme.spacing(5),
     },
     listItem: {
-        color: theme.palette.common.second
+        color: '#78787a'
     },
     logo: {
-        height: "12em",
+        height: "5em",
         [theme.breakpoints.down("md")]: {
-            height: "10em"
+            height: "5em"
         },
-        marginLeft: "2em"
+        marginLeft: "2em", 
+        marginBottom: "2em"
     },
     logoContainer: {
         alignItems: "center",
@@ -77,10 +67,10 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     link: {
-        color: theme.palette.common.second,
+        color: '#fff',
         textDecoration: "none",
         fontWeight: 900,
-        fontSize: "1.15em"
+        fontSize: "1.75em"
     }
 }));
 
@@ -94,37 +84,32 @@ function ResponsiveDrawer(props) {
         setMobileOpen(!mobileOpen);
     };
 
-    const handleLogout = () =>{
-        localStorage.removeItem("user")
-    }
-
     const drawer = (
         <div>
-            {/* <div className={classes.toolbar} /> */}
-            <NavLink to="/My-Dashboard" className={classes.logoContainer} onClick={() => setMobileOpen(false)}>
-                {/* <img src={} className={classes.logo}/> */}
+            <div className={classes.toolbar} />
+            <NavLink to="/" className={classes.logoContainer} onClick={() => setMobileOpen(false)}>
+                <EmeraldMarineLogo className={classes.logo} />
             </NavLink>
-            <List>
-                {/* {['My-Dashboard', 'My-Profile'].map((text, index) => (
-                    <ListItem button key={text} className={classes.listItem} onClick={() => setMobileOpen(false)}>
-                        <ListItemIcon className={classes.listItem}>{index === 0 ? <PersonIcon /> : <PetsIcon /> }</ListItemIcon>
-                        <NavLink className={classes.link} to={`/${text}`}>{`${text.replace("-", " ")}`}</NavLink>
-                    </ListItem>
-                ))} */}
-                <ListItem button className={classes.listItem} onClick={() => {setMobileOpen(false); handleLogout()}}>
-                    <ListItemIcon className={classes.listItem}><ExitToAppIcon /></ListItemIcon>
-                    <NavLink className={classes.link} to={"/"}>Logout</NavLink>
-                </ListItem>
-            </List>
             <Divider />
             <List>
-                {/* {['Dog-Dossiers', 'View-ASF-Users'].map((text, index) => (
-                    <ListItem button key={text} className={classes.listItem} onClick={() => setMobileOpen(false)}>
-                        <ListItemIcon className={classes.listItem}>{index === 0 ? <DescriptionIcon /> : index === 1 ? <SupervisorAccountIcon /> : <PermDataSettingIcon />}</ListItemIcon>
-                        <NavLink className={classes.link} to={`/${text}`}>{`${text.replace("-", " ")}`}</NavLink>
-                    </ListItem>
-                ))} */}
+                <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
+                    <NavLink className={classes.link} to='/'>Home</NavLink>
+                </ListItem>
+                <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
+                    <NavLink className={classes.link} to='/products'>Products</NavLink>
+                </ListItem>
+                <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
+                    <NavLink className={classes.link} to='/news'>News</NavLink>
+                </ListItem>
+                <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
+                    <NavLink className={classes.link} to='/support'>Support</NavLink>
+                </ListItem>
+                <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
+                    <NavLink className={classes.link} to='/cart'>Cart</NavLink>
+                </ListItem>
+
             </List>
+
         </div>
     );
 
