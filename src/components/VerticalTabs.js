@@ -59,8 +59,6 @@ export default function VerticalTabs({ content }) {
     setValue(newValue)
   };
 
-  console.log('contents', content);
-
   return (
     <div className={classes.root}>
       <Tabs
@@ -74,14 +72,14 @@ export default function VerticalTabs({ content }) {
           <Tab label={e.title} {...a11yProps(e.id)} />
         ))}
       </Tabs>
-      {content.map(e => (
+      {content.map((e,index) => (
         (e.content ?
-          <TabPanel value={value} index={e.id}>
+          <TabPanel value={value} index={index}>
             {e.content}
           </TabPanel>
           :
-          <TabPanel value={value} index={e.id}>
-            <ReactPlayer url={e?.video} width={'100%'} style={{ margin: '3.5em 0' }} />
+          <TabPanel value={value} index={index}>
+            <ReactPlayer url={e.video} width={'100%'} style={{ margin: '3.5em 0',  }} />
           </TabPanel>
         )
       ))}

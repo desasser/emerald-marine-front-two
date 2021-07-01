@@ -75,7 +75,6 @@ export default function Contact() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log('email submitted', email)
     setEmail('')
     API.addToMailingList(email).then(res => {
     }).catch(err => {

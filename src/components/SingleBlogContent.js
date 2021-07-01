@@ -11,9 +11,6 @@ export default function SingleBlogContent({ id }) {
 
   const currentPost = allPosts.find(p => p._id === id);
 
-  console.log('categories', currentPost.categories)
-  console.log('tags', currentPost.tags)
-
   return (
     <>
       <div style={{ width: '100%', marginTop: '3em', }}>

@@ -20,6 +20,11 @@ export default function InputForm({ buttonText, classes, label, text }) {
     e.preventDefault();
     setEmail('')
     API.addToMailingList(email).then(res => {
+      setIndicator({
+        open: true,
+        severity: 'success',
+        message: 'Successfully subscribed to mailing list.'
+      });
     }).catch(err => {
       console.log(err.message)
       setIndicator({
@@ -27,11 +32,6 @@ export default function InputForm({ buttonText, classes, label, text }) {
         severity: 'error',
         message: `Error subscribing to mailing list: ${err.message}`
       });
-    });
-    setIndicator({
-      open: true,
-      severity: 'success',
-      message: 'Successfully subscribed to mailing list.'
     });
   }
 
