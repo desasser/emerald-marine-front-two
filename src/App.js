@@ -19,6 +19,7 @@ import SingleBlog from "./pages/SingleBlog"
 import Support from "./pages/Support"
 import theme from './theme-provider'
 import { useSelector } from 'react-redux';
+import ResponsiveDrawer from './components/ResponsiveDrawer';
 
 const useStyles = makeStyles({
   main: {
@@ -41,11 +42,15 @@ function App() {
 
   const allPosts = blog.concat(pr, news);
 
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <Header />
+      { isMobile ? <ResponsiveDrawer /> : <Header />}
         <main className={classes.main}>
           <Switch>
             <Route exact path="/" component={Home} />
