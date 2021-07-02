@@ -6,7 +6,6 @@ import { AppBar, Toolbar, makeStyles } from '@material-ui/core'
 import EmeraldMarineLogo from './EmeraldMarineLogo';
 import Typography from '@material-ui/core/Typography';
 
-
 const useStyles = makeStyles(theme => ({
   link: {
     textDecoration: 'none',
@@ -48,11 +47,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Header = () => {
+
   const classes = useStyles()
   return (
     <AppBar className={classes.header}>
+      
       <div className={classes.linkContainer}>
-        <Toolbar className={classes.toolbar}>
+         <Toolbar className={classes.toolbar}>
           <Link to='/' className={classes.link}>
             <EmeraldMarineLogo className={classes.imgContainer} />
           </Link>
