@@ -94,6 +94,11 @@ const Footer = () => {
                 Home
               </Typography>
             </Link>
+            <Link to="/oscarwaterrescue" underline='none' className={classes.linkStyles}>
+            <Typography variant='body1'>
+              Oscar
+            </Typography>
+          </Link>
             <Link to="/products" underline='none' className={classes.linkStyles}>
               <Typography variant='body1'>
                 Products
