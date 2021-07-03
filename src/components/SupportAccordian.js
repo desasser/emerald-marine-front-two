@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -106,12 +106,25 @@ const faq = [
   },
 ]
 
-export default function SimpleAccordion() {
+export default function SimpleAccordion({ input }) {
   const classes = useStyles();
+  const [filteredFaq, setFilteredFaq] = useState([]);
+
+  // console.log('input search term', input)
+  useEffect(() => {
+    if (input.length > 0) {
+      const filtered = filteredFaq.filter(item => {
+        return item.question.toLowerCase().includes(input.toLowerCase())
+      });
+      setFilteredFaq(filtered)
+    } else {
+      setFilteredFaq(faq)
+    }
+  }, [input])
 
   return (
     <div className={classes.root}>
-      {faq.map(question => (
+      {filteredFaq.map(question => (
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

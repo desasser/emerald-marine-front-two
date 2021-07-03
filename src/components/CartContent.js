@@ -45,20 +45,12 @@ export default function CartContent() {
     });
   }
 
-  const shippingRates = []
-
   const handleAddressSubmit = e => {
     e.preventDefault();
     setShippingRateState([])
-    setAddress({
-      name: '',
-      street1: '',
-      city: '',
-      state: '',
-      zip: '',
-      country: ''
-    })
-
+    
+    let promises = [];
+    let shippingRates = [];
     for (let j = 0; j < cart.length; j++) {
       //Create a new object for each unique item in the cart
       //Add the item dimensions to the destination address object
@@ -71,19 +63,31 @@ export default function CartContent() {
       }
 
       //Call the API with the new object
-      API.getShippingRate(shippingObj).then(res => {
-        setShippingRateState([...shippingRateState, res.data.rates[0].amount]);
-        setRateReady(true);
-      }).catch(err => {
-        console.log(err.message)
-      });
+      promises.push(
+        API.getShippingRate(shippingObj).then(res => {
+          shippingRates.push(res.data.rates[0].amount)
+          setRateReady(true);
+        }).catch(err => {
+          console.log(err.message)
+        })
+      )
     }
+
+    Promise.all(promises).then(() => setShippingRateState(shippingRates))
+    setAddress({
+      name: '',
+      street1: '',
+      city: '',
+      state: '',
+      zip: '',
+      country: ''
+    })
   }
 
   // cart is an array of products and quantities
   // need to add the shipping rate to each item in the array
   const renderCart = cart.map((item, index) => {
-    let addShipping = {}
+    let addShipping = {};
     {
       rateReady ?
         addShipping = {
@@ -105,8 +109,6 @@ export default function CartContent() {
     for (let i = 0; i < renderCart.length; i++) {
       if (renderCart[i].rate) {
         totalShippingPrice = parseFloat(renderCart[i].rate) * parseFloat(renderCart[i].quantity) + totalShippingPrice;
-      } else {
-        totalShippingPrice = totalShippingPrice;
       }
     }
   }
@@ -114,8 +116,6 @@ export default function CartContent() {
   let totalPrice = subTotalPrice + totalShippingPrice;
 
   const emptyCart = () => {
-    // console.log('clicky clicky')
-    // console.log(cart.splice(0, cart.length))
     cart.splice(0, cart.length)
     store.dispatch({
       type: 'FETCH_CART_PRODUCTS',
@@ -133,11 +133,16 @@ export default function CartContent() {
         </div>
       </div>
       <hr></hr>
-      <div style={{ minHeight: '10em' }}>
-        {renderCart?.map((item) => (
-          <CartCard title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
-        ))}
-      </div>
+      {renderCart.length === 0 ?
+        <div style={{ height: '20vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Typography variant='h3'>Your cart is empty!</Typography>
+        </div>
+        :
+        <div style={{ minHeight: '10em' }}>
+          {renderCart?.map((item) => (
+            <CartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
+          ))}
+        </div>}
       <hr></hr>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button variant="outlined" style={{ height: '3em', width: '25%' }} onClick={emptyCart}>
@@ -164,6 +169,9 @@ export default function CartContent() {
             ${totalPrice.toFixed(2)}
           </Typography>
         </div>
+      </div>
+      <div style={{display:'flex', width: '100%', justifyContent: 'flex-end', marginTop: '2rem'}}>
+        <Button variant="contained" style={{backgroundColor:'goldenrod', fontSize: '1.1rem'}} elevation={2}>Submit Request for Quote</Button>
       </div>
     </div>
   )
