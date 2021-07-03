@@ -30,17 +30,17 @@ export default function BlogCard({ id, title, image, alt, date, categories, tags
             title={`${alt}`}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" style={{ color: '#74b4ab' }}>
+            <Typography gutterBottom variant="h4" style={{ color: '#74b4ab' }}>
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {intro}
             </Typography>
             <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', marginTop: '1em' }}>
-              <Typography gutterBottom variant="body1" component="h2" style={{ textAlign: 'right', fontStyle: 'italic' }}>
+              <Typography gutterBottom variant="body1" style={{ textAlign: 'right', fontStyle: 'italic' }}>
                 {publication ? publication : 'Emerald Marine Products'}
               </Typography>
-              <Typography gutterBottom variant="body1" component="h2" style={{ textAlign: 'right' }}>
+              <Typography gutterBottom variant="body1" style={{ textAlign: 'right' }}>
                 {date.split('T')[0]}
               </Typography>
             </div>
@@ -62,7 +62,7 @@ export default function BlogCard({ id, title, image, alt, date, categories, tags
                 title={`${alt}`}
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2" style={{ color: '#74b4ab' }}>
+                <Typography gutterBottom variant="h4" component="h2" style={{ color: '#74b4ab' }}>
                   {title}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -88,7 +88,7 @@ export default function BlogCard({ id, title, image, alt, date, categories, tags
                 title={`${alt}`}
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2" style={{ color: '#74b4ab' }}>
+                <Typography gutterBottom variant="h4" component="h2" style={{ color: '#74b4ab' }}>
                   {title}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">

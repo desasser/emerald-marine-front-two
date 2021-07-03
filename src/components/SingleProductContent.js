@@ -109,15 +109,25 @@ export default function SingleProductContent({ sku }) {
         </form>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="h5" style={{ color: '#74b4ab', margin: '1em' }}>Details</Typography>
-        <Container maxWidth='md' style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
-
+        <Typography variant="h3" style={{ color: '#74b4ab', marginBottom: '1rem' }}>Details</Typography>
+        <Container maxWidth='md' style={{ backgroundColor: 'LightGray', borderRadius: '0.5rem' }}>
+          {JSON.parse(currentProduct.details).map(text =>
+            <div style={{ padding: '1rem 0' }}>
+              <Typography variant='h4' style={{ color: '#74b4ab'}}>
+                {text.heading}
+              </Typography>
+              <br></br>
+              <Typography variant="body1" style={{ marginBottom: '1.5em' }}>
+                {text.content}
+              </Typography>
+            </div>
+          )}
         </Container>
       </Grid>
       <Grid item xs={12} ></Grid>
       <Grid item xs={12} >
-        <Typography variant="h5" component="span" style={{ color: '#74b4ab', margin: '1em' }}>Specifications</Typography>
-        <TableContainer component={Paper} style={{marginTop: '1em'}}>
+        <Typography variant="h3" component="span" style={{ color: '#74b4ab', marginBottom: '1rem' }}>Specifications</Typography>
+        <TableContainer component={Paper} style={{ marginTop: '1em' }}>
           <Table className={classes.table} aria-label="simple table">
             <TableBody>
               {rows.map((row) => (
