@@ -107,6 +107,10 @@ const Blog = () => {
                 message: `Error adding blog post: ${err.message}`
             });
         });
+        store.dispatch({
+            type: 'ADD_CONTENT',
+            payload: []
+        });
     }
 
     const grabCurrent = e => {
@@ -164,7 +168,8 @@ const Blog = () => {
 
     const updateBlog = e => {
         e.preventDefault();
-        API.updateBlogPost(currentID, current, token).then(res => {
+        const currentPost = {...current, content: JSON.stringify(blogContent)}
+        API.updateBlogPost(currentID, currentPost, token).then(res => {
             if(res) {
                 console.log(res)
                 store.dispatch(fetchBlog())
@@ -185,6 +190,10 @@ const Blog = () => {
                     message: `Error updating blog post: ${err.message}`
                 });
             }
+        });
+        store.dispatch({
+            type: 'ADD_CONTENT',
+            payload: []
         });
     }
     
