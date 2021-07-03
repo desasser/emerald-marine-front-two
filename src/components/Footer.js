@@ -130,7 +130,7 @@ const Footer = () => {
               />
             </Grid>
 
-          <Grid container className={classes.siteNav}>
+          <Grid container className={classes.siteNav} >
             <Grid item xs={1}>
               <Link to="/" underline="none" className={classes.linkStyles}>
                 <Typography variant="body1">Home</Typography>
