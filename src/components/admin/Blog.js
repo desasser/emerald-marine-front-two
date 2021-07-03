@@ -40,6 +40,7 @@ const Blog = () => {
         severity: '',
         message: ''
     })
+    const [editorText, setEditorText] = useState('Add Content')
 
 
     const handleClose = (event, reason) => {
@@ -85,6 +86,7 @@ const Blog = () => {
 
 
     const addBlogPost = () => {
+        setEditorText('Add Content')
         setUpdating(false);
         const currentPost = {...current, content: JSON.stringify(blogContent)}
         API.createBlogPost(currentPost, token).then(res => {
@@ -119,7 +121,6 @@ const Blog = () => {
         const intro = e.currentTarget.getAttribute('data-intro')
         const content = JSON.parse(e.currentTarget.getAttribute('data-content'))
         const id = e.currentTarget.getAttribute('data-id')
-        postContent = content;
         setCurrent({
             title: title,
             date: date,
@@ -128,7 +129,11 @@ const Blog = () => {
             image: image,
             alt: alt,
             intro: intro
-
+        });
+        setEditorText('Edit Content')
+        store.dispatch({
+            type: 'ADD_CONTENT',
+            payload: content
         });
         setCurrentID(id)   
         showEditForm();    
@@ -222,7 +227,7 @@ const Blog = () => {
                     )}
                 </Grid>
                 <Grid item xs={4}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} postContent={postContent}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} postContent={postContent} text={editorText}/>
                 </Grid>
             </Grid> :
             <Grid container spacing={1}>

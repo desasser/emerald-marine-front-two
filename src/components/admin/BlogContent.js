@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const BlogContent = () => {
+const BlogContent = ({text}) => {
     const blogContent = useSelector(state => state.blogContent.blogContent)
     const classes = useStyles();
     const [open, setOpen] = useState(false);
@@ -70,7 +70,7 @@ const BlogContent = () => {
 
     return (
         <div>
-        <Button size='small' variant="outlined" onClick={handleOpen}>Add Content</Button>
+        <Button size='small' variant="outlined" onClick={handleOpen}>{text}</Button>
         <Dialog
         open={open}
         onClose={handleClose}

@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux';
 import store from '../../utils/store';
 import {fetchBlog} from '../../utils/actions/blogActions';
 
-const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, postContent, addSection, blogContentChange}) => {
+const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, postContent, addSection, text}) => {
     return (
         <div>
         {show ? 
@@ -23,7 +23,7 @@ const AddForm = ({section, message, fields, handleAddFormChange, updateMe, succe
         <UploadWidget successCallback={successCallback} failureCallback={failureCallback}/> :
         <></>}
         {section==='Blog Post'? 
-        <BlogContent postContent={postContent} addSection={addSection}/> : <></>}
+        <BlogContent postContent={postContent} addSection={addSection} text={text}/> : <></>}
         <Button size='small' varient='contained' style={{'padding': '0', 'max-width': '30%'}} onClick={updateMe}>Submit</Button>
         </div>
     </div> :
