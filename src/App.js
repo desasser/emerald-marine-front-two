@@ -27,9 +27,10 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     margin: '0 auto',
-    maxWidth: '80%',
+    // maxWidth: '80%',
     marginTop: '64px',
     // minHeight: '50vh'
+    overflow: 'hidden'
   },
 })
 

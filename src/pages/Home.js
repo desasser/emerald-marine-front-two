@@ -116,16 +116,18 @@ export default function Home() {
           items.map((item, i) => <Item key={i} item={item} />)
         }
       </Carousel>
-      <div style={{ display: 'flex', minWidth: '80%', }}>
+      <div style={{ display: 'flex', width: '100vw' }}>
 
         <BlogBanner />
-        <TestimonialBanner testimonials={testimonials}/>
+        <TestimonialBanner testimonials={testimonials} />
       </div>
-      <Typography variant='h3' style={{color: '#74b4ab', textAlign: 'left', width: '95%'}}>
-        Why Emerald Marine?
-      </Typography>
-      <MarketingInfo marketing={marketing}/>
-      <ProductBlock />
+      <div style={{maxWidth: '80%'}}>
+        <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%' }}>
+          Why Emerald Marine?
+        </Typography>
+        <MarketingInfo marketing={marketing} />
+        <ProductBlock />
+      </div>
     </Page>
   )
 }

@@ -15,7 +15,9 @@ const Products = () => (
         <Typography color="textPrimary">Products</Typography>
       </Breadcrumbs>
     </div>
-    <ProductContent></ProductContent>
+    <div style={{ maxWidth: '80%' }}>
+      <ProductContent></ProductContent>
+    </div>
   </Page>
 )
 

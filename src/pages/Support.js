@@ -11,7 +11,9 @@ const Support = () => (
         alt='Man overboard'
       />
     <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab' }}>Support</Typography>
-    <SupportContent></SupportContent>
+    <div style={{maxWidth: '80%'}}>
+      <SupportContent></SupportContent>
+    </div>
   </Page>
 )
 

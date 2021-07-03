@@ -29,7 +29,9 @@ export default function SingleBlog() {
           <Typography color="textPrimary">{currentPost.title}</Typography>
         </Breadcrumbs>
       </div>
-      <SingleBlogContent id={id}></SingleBlogContent>
+      <div style={{ maxWidth: '80%' }}>
+        <SingleBlogContent id={id}></SingleBlogContent>
+      </div>
     </Page>
   )
 }

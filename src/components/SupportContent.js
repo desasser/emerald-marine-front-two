@@ -14,13 +14,9 @@ import waterVoyager from '../images/water_voyager.jpg'
 const useStyles = makeStyles((theme) => ({
   flexBox: {
     flexGrow: 1,
-    // backgroundColor: 'salmon',
-    // height: 200,
   },
   boxMargin: {
-    width: '80%',
     margin: '20px auto',
-    // height: '50px'
   },
   mediaRoot: {
     maxWidth: 350,
@@ -265,8 +261,9 @@ export default function SupportContent() {
         null
         :
         <>
-          <div className={`${classes.attnBox} ${classes.boxMargin}`}>
-            <Typography>
+          <div className={classes.boxMargin}>
+            <Typography variant='h3' style={{ marginTop: '3rem', marginBottom: '1rem', color: '#74b4ab' }}>We are here to help.</Typography>
+            <Typography style={{ width: '80%', margin: '0 auto' }}>
               Whether you have questions about the ALERT man-overboard system or the OSCAR Water Rescue Training Dummy, the experts at Emerald Marine Products are here for you. From answers to frequently asked questions to live support for our marine safety equipment, you'll find what you need here. We offer a variety of helpful information on our website, including documentation for our man-overboard systems and other marine safety equipment. If your question is not answered in the list below or in our product documentation, don't hesitate to contact us. We can be reached over the phone at 206.965.8207 and online via email.
             </Typography>
           </div>
@@ -275,16 +272,16 @@ export default function SupportContent() {
             Who is protected with the ALERT products?
           </Typography>
           {/* Marketing Info */}
-          <div className={`${classes.attnBox} ${classes.boxMargin}`}>
+          <div className={classes.boxMargin}>
             <VerticalTabs content={protectedClients}></VerticalTabs>
           </div>
         </>}
       {/* Marketing Info */}
 
       {/* FAQ */}
-      <Typography variant='h3' style={{ margin: '1rem 0px', color: '#74b4ab' }}>
-        FAQ
-      </Typography>
+        <Typography variant='h3' style={{ margin: '1rem 0px', color: '#74b4ab' }}>
+          FAQ
+        </Typography>
       <SupportAccordian input={input}></SupportAccordian>
       {/* FAQ */}
 
@@ -307,43 +304,43 @@ export default function SupportContent() {
             {item.title}
           </Link>
         ))
-      :
-      <div style={{ margin: '20px auto', width: '90%' }}>
-        <Typography variant="h4" style={{ margin: '1rem 0' }}> ALERT Man-Overboard Alarm System Product Documentation </Typography>
-        <div style={{ width: '85%', margin: '0 auto' }}>
-          {productsOne.map(item => (
-            <Link href={item.link} target="_blank" rel="noopener" variant="h6" className={classes.linkStyle}>
-              {item.title}
-            </Link>
-          ))}
+        :
+        <div style={{ margin: '20px auto', width: '90%' }}>
+          <Typography variant="h4" style={{ margin: '1rem 0' }}> ALERT Man-Overboard Alarm System Product Documentation </Typography>
+          <div style={{ width: '85%', margin: '0 auto' }}>
+            {productsOne.map(item => (
+              <Link href={item.link} target="_blank" rel="noopener" variant="h6" className={classes.linkStyle}>
+                {item.title}
+              </Link>
+            ))}
+          </div>
+          <Typography variant="h4" style={{ margin: '1em 0' }}>
+            ALERT Man-Overboard Receiver Product Documentation
+          </Typography>
+          <Typography style={{ margin: '1em 0' }}>
+            ALERT2 and ALERT418 Receivers ship with the same wiring components, therefore these documents apply to both types of ALERT Receivers.
+          </Typography>
+          <div style={{ width: '85%', margin: '0 auto' }}>
+            {productsTwo.map(item => (
+              <Link href={item.link} target="_blank" rel="noopener" variant="h6" className={classes.linkStyle}>
+                {item.title}
+              </Link>
+            ))}
+          </div>
+          <Typography variant="h4" style={{ margin: '1em 0' }}>
+            ALERT Man-Overboard Receiver Wiring Diagrams
+          </Typography>
+          <Typography style={{ margin: '1em 0' }}>
+            ALERT2 and ALERT418 Receivers have the same dry contacts on the back of the units, therefore these documents apply to both type of ALERT Receivers.
+          </Typography>
+          <div style={{ width: '85%', margin: '0 auto' }}>
+            {productsThree.map(item => (
+              <Link href={item.link} target="_blank" rel="noopener" variant="h6" className={classes.linkStyle}>
+                {item.title}
+              </Link>
+            ))}
+          </div>
         </div>
-        <Typography variant="h4" style={{ margin: '1em 0' }}>
-          ALERT Man-Overboard Receiver Product Documentation
-        </Typography>
-        <Typography style={{ margin: '1em 0' }}>
-          ALERT2 and ALERT418 Receivers ship with the same wiring components, therefore these documents apply to both types of ALERT Receivers.
-        </Typography>
-        <div style={{ width: '85%', margin: '0 auto' }}>
-          {productsTwo.map(item => (
-            <Link href={item.link} target="_blank" rel="noopener" variant="h6" className={classes.linkStyle}>
-              {item.title}
-            </Link>
-          ))}
-        </div>
-        <Typography variant="h4" style={{ margin: '1em 0' }}>
-          ALERT Man-Overboard Receiver Wiring Diagrams
-        </Typography>
-        <Typography style={{ margin: '1em 0' }}>
-          ALERT2 and ALERT418 Receivers have the same dry contacts on the back of the units, therefore these documents apply to both type of ALERT Receivers.
-        </Typography>
-        <div style={{ width: '85%', margin: '0 auto' }}>
-          {productsThree.map(item => (
-            <Link href={item.link} target="_blank" rel="noopener" variant="h6" className={classes.linkStyle}>
-              {item.title}
-            </Link>
-          ))}
-        </div>
-      </div>
       }
     </Container>
   )
