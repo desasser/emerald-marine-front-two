@@ -2,9 +2,45 @@ import React, { useState } from 'react'
 import { TextField, Button, Typography } from '@material-ui/core';
 import API from '../utils/API';
 import ProgressIndicator from './admin/ProgressIndicator';
+import { makeStyles } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
+const useStyles = makeStyles((theme) => ({
+  text: {
+    textAlign: 'center', 
+    marginBottom: '0px', 
+    color: 'white'
+  },
+  button: {
+    marginTop: '10px', 
+    height: '56px', 
+    width: '75%', 
+    backgroundColor: 'goldenrod', 
+    fontSize: '16px',
+    boxShadow: '0 1px 4px 0 #BDC9D7',
+    '&:hover': {
+      borderColor: '#74b4ab',
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+      margin:"1em"
+    },
+  }, 
+  containerClass: {
+    margin: "0 auto",
+    justifyContent: "center",
+    alignItems: "center", 
+    direction: "column",
+    wrap: 'wrap',
+    flexGrow: 1,
+  }
+}));
 
 export default function InputForm({ buttonText, classes, label, text }) {
+
+  const customClasses = useStyles();
+  console.log(classes)
+
   const [email, setEmail] = useState('');
   const [indicator, setIndicator] = useState({
     open: false,
@@ -46,10 +82,18 @@ export default function InputForm({ buttonText, classes, label, text }) {
 
   return (
     <form className={classes.formStyle} onSubmit={handleSubmit}>
-      <Typography style={{ textAlign: 'center', marginBottom: '0px' }}>{text}</Typography>
-      <TextField className={classes.inputStyle} id="outlined-basic" label={label} variant="outlined" onChange={handleChange} name='email' value={email} />
-      <Button variant="contained" style={{ marginTop: '10px', height: '56px', marginLeft: '10px', width: '100px', backgroundColor: 'goldenrod', fontSize: '16px' }} type="submit" >{buttonText}</Button>
+      <Grid container className={customClasses.containerClass}>
+      <Grid item xs={12}>
+        <Typography className={customClasses.text}><strong>{text}</strong></Typography>
+      </Grid>
+      <Grid item md={8} xs={12}>
+        <TextField className={classes.inputStyle} id="outlined-basic" label={label} variant="outlined" onChange={handleChange} name='email' value={email} />
+      </Grid>
+      <Grid item xs={12} md={2}>
+        <Button className={customClasses.button} variant="contained"  type="submit" >{buttonText}</Button>
+      </Grid>
       <ProgressIndicator open={indicator.open} message={indicator.message} severity={indicator.severity} handleClose={handleClose}></ProgressIndicator>
+      </Grid>
     </form>
   )
 }
