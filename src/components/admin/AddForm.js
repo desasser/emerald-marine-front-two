@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import UploadWidget from './UploadWidget';
@@ -9,6 +9,11 @@ import {fetchBlog} from '../../utils/actions/blogActions';
 
 const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, postContent, addSection, text}) => {
     const blogContent = useSelector(state => state.blogContent.blogContent)
+    const ref = useRef(null);
+
+    useEffect(() => {
+        ref.current.editExistingContent()
+    })
 
     return (
         <div>

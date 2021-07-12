@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, forwardRef, useImperativeHandle} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, DialogTitle, Dialog} from '@material-ui/core';
 import {useSelector} from 'react-redux';
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const BlogContent = ({text}) => {
+const BlogContent = forwardRef(({text}, ref) => {
     const blogContent = useSelector(state => state.blogContent.blogContent)
     const classes = useStyles();
     const [open, setOpen] = useState(false);
@@ -68,6 +68,20 @@ const BlogContent = ({text}) => {
       handleClose()
     }
 
+    const editExistingContent = (heading, content) => {
+      setPost({
+        ...post,
+        heading: heading,
+        content: content
+      })
+    }
+    
+    useImperativeHandle(ref, () => {
+      return {
+        editExistingContent: editExistingContent
+      }
+    });
+
     return (
         <div>
         <Button size='small' variant="outlined" onClick={handleOpen}>{text}</Button>
@@ -85,6 +99,6 @@ const BlogContent = ({text}) => {
         </Dialog>
         </div>
     )
-}
+})
 
 export default BlogContent;
