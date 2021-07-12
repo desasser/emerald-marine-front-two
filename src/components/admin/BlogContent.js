@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useImperativeHandle} from 'react';
+import React, { useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, DialogTitle, Dialog} from '@material-ui/core';
 import {useSelector} from 'react-redux';
@@ -27,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const BlogContent = forwardRef(({text}, ref) => {
-    const blogContent = useSelector(state => state.blogContent.blogContent)
+const BlogContent = ({text, heading, content}) => {
+    const blogContent = useSelector(state => state.blogContent.blogContent);
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [post, setPost] = useState({
-        heading: '',
-        content: ''
+        heading: heading,
+        content: content
     });
 
     const handleInputChange = e => {
@@ -68,19 +68,7 @@ const BlogContent = forwardRef(({text}, ref) => {
       handleClose()
     }
 
-    const editExistingContent = (heading, content) => {
-      setPost({
-        ...post,
-        heading: heading,
-        content: content
-      })
-    }
     
-    useImperativeHandle(ref, () => {
-      return {
-        editExistingContent: editExistingContent
-      }
-    });
 
     return (
         <div>
@@ -99,6 +87,6 @@ const BlogContent = forwardRef(({text}, ref) => {
         </Dialog>
         </div>
     )
-})
+}
 
 export default BlogContent;

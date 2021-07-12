@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import UploadWidget from './UploadWidget';
@@ -9,11 +9,7 @@ import {fetchBlog} from '../../utils/actions/blogActions';
 
 const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, postContent, addSection, text}) => {
     const blogContent = useSelector(state => state.blogContent.blogContent)
-    const ref = useRef(null);
-
-    useEffect(() => {
-        ref.current.editExistingContent()
-    })
+    const content = useSelector(state => state.content)
 
     return (
         <div>
@@ -30,7 +26,7 @@ const AddForm = ({section, message, fields, handleAddFormChange, updateMe, succe
             <div> 
             <TextField disabled variant="outlined" multiline={true} label='Heading' style={{'margin-bottom': '2vh', 'margin-top': '4vh', 'width': '100%'}} value={content.heading}></TextField>
             <TextField disabled variant="outlined" multiline={true} label='Content' style={{'margin-bottom': '1vh', 'width': '100%'}} value={content.content}></TextField>
-            <BlogContent postContent={postContent} text='Edit This Section'></BlogContent></div>)}</div> : <></>}
+            <BlogContent postContent={postContent} heading={content.heading} content={content.content} text='Edit This Section'></BlogContent></div>)}</div> : <></>}
         <br/>
         <div style={{'display': 'flex', 'flex-direction': 'row', 'justify-content': 'space-between'}}>
         {section==='Product' || section==='Press Release' || section==='Blog Post' ? 
