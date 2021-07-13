@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { Tabs, Tab, Typography, Box } from '@material-ui/core';
+import { Tabs, Tab, Typography, Box, AppBar } from '@material-ui/core';
 import ReactPlayer from 'react-player/youtube'
 
 function TabPanel(props) {
@@ -11,8 +11,8 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
       style={{ width: '80%' }}
     >
@@ -33,24 +33,20 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    id: `scrollable-auto-tab-${index}`,
+    'aria-controls': `scrollable-auto-tabpanel-${index}`,
   };
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    display: 'flex',
     width: '100%',
     margin: 20
   },
-  tabs: {
-    borderRight: `1px solid black`,
-  },
 }));
 
-export default function VerticalTabs({ content }) {
+export default function SimpleTabs({ content }) {
   const classes = useStyles();
   const [value, setValue] = useState(0)
 
@@ -60,19 +56,21 @@ export default function VerticalTabs({ content }) {
 
   return (
     <div className={classes.root}>
-      <Tabs
-        orientation="vertical"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs for marketing info"
-        className={classes.tabs}
-        indicatorColor="primary"
-        elevation={0}
-      >
-        {content.map(e => (
-          <Tab label={e.title} {...a11yProps(e.id)} />
-        ))}
-      </Tabs>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          aria-label="Scrollable tabs for marketing info"
+          indicatorColor="primary"
+          scrollButtons="on"
+          elevation={0}
+        >
+          {content.map(e => (
+            <Tab label={e.title} {...a11yProps(e.id)} />
+          ))}
+        </Tabs>
+      </AppBar>
       {content.map((e, index) => (
         (e.content ?
           <TabPanel value={value} index={index}>

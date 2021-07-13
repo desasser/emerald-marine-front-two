@@ -62,6 +62,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "2em",
     marginBottom: "2em"
   },
+  logoSmall: {
+    [theme.breakpoints.down("md")]: {
+      height: "3.5em"
+    },
+  },
   logoContainer: {
     alignItems: "center",
     "&:hover": {
@@ -88,8 +93,8 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <div style={{display: 'flex', justifyContent: 'flex-end', width: '95vw', paddingTop:'1em'}}>
-        <CloseIcon style={{fontSize: '3em', color: 'white'}} onClick={handleDrawerToggle} />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', paddingTop: '1em', paddingRight: '1em' }}>
+        <CloseIcon style={{ fontSize: '3em', color: 'white' }} onClick={handleDrawerToggle} />
       </div>
       <div className={classes.toolbar} />
       <NavLink to="/" className={classes.logoContainer} onClick={() => setMobileOpen(false)}>
@@ -132,8 +137,11 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            <MenuIcon />
+            <MenuIcon style={{ fontSize: '3rem' }} />
           </IconButton>
+          <div style={{display: 'flex', width:'100%', justifyContent: 'flex-end'}}>
+            <EmeraldMarineLogo className={classes.logoSmall} />
+          </div>
           <Typography variant="h6" noWrap></Typography>
         </Toolbar>
       </AppBar>

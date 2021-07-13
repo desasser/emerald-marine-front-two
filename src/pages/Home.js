@@ -10,7 +10,7 @@ import ProductBlock from "../components/ProductBlock"
 import API from '../utils/API'
 import Page from "../components/Page"
 import Carousel from 'react-material-ui-carousel'
-import { Typography } from '@material-ui/core'
+import { Typography, Grid } from '@material-ui/core'
 
 export default function Home() {
   useEffect(() => {
@@ -116,12 +116,17 @@ export default function Home() {
           items.map((item, i) => <Item key={i} item={item} />)
         }
       </Carousel>
-      <div style={{ display: 'flex', width: '100vw' }}>
-
-        <BlogBanner />
-        <TestimonialBanner testimonials={testimonials} />
-      </div>
-      <div style={{maxWidth: '80%'}}>
+      <Grid container >
+        <Grid item xs={12} sm={1} />
+        <Grid item xs={12} sm={5} >
+          <BlogBanner />
+        </Grid>
+        <Grid item xs={12} sm={5} >
+          <TestimonialBanner testimonials={testimonials} />
+        </Grid>
+        <Grid item xs={12} sm={1} />
+      </Grid>
+      <div style={{ maxWidth: '80%' }}>
         <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%' }}>
           Why Emerald Marine?
         </Typography>
@@ -131,3 +136,5 @@ export default function Home() {
     </Page>
   )
 }
+
+// style={{ display: 'flex', width: '100vw' }}
