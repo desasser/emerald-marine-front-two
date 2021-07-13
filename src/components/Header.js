@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   toolbar: {
-    width: '80%',
+    width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center'

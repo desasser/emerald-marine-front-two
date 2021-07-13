@@ -15,7 +15,9 @@ const News = () => (
         <Typography color="textPrimary">News</Typography>
       </Breadcrumbs>
     </div>
-    <NewsContent></NewsContent>
+    <div style={{ maxWidth: '80%' }}>
+      <NewsContent></NewsContent>
+    </div>
   </Page>
 )
 

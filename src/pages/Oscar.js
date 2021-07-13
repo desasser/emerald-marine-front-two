@@ -9,6 +9,7 @@ import ProductBlock from "../components/ProductBlock"
 import API from '../utils/API'
 import Page from "../components/Page"
 import Carousel from 'react-material-ui-carousel'
+import { Typography } from '@material-ui/core'
 
 export default function Home() {
   useEffect(() => {
@@ -99,9 +100,13 @@ export default function Home() {
         <BlogBanner />
         <TestimonialBanner testimonials={testimonials} />
       </div>
-
+      <div style={{maxWidth: '80%'}}>
+        <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%' }}>
+          Why Oscar Water Rescue?
+        </Typography>
       <MarketingInfo marketing={marketing}/>
       <ProductBlock />
+      </div>
     </Page>
   )
 }
