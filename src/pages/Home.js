@@ -10,7 +10,7 @@ import ProductBlock from "../components/ProductBlock"
 import API from '../utils/API'
 import Page from "../components/Page"
 import Carousel from 'react-material-ui-carousel'
-import { Typography, Grid } from '@material-ui/core'
+import { Typography, Grid, Hidden } from '@material-ui/core'
 import coastGuard from '../images/coast_guard.jpg'
 import dredgingBarge from '../images/dredging_barge.jpg'
 import researchVessel from '../images/research_vessel.jpg'
@@ -18,6 +18,7 @@ import towAndTug from '../images/tow_and_tug.jpg'
 import commercialFishing from '../images/commercial_fishing.jpg'
 import waterVoyager from '../images/water_voyager.jpg'
 import VerticalTabs from '../components/VerticalTabs';
+import SimpleTabs from '../components/SimpleTabs';
 
 export default function Home() {
   useEffect(() => {
@@ -178,12 +179,18 @@ export default function Home() {
         </Typography>
         <MarketingInfo marketing={marketing} />
         <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
-            Who is protected with the ALERT products?
-          </Typography>
-          {/* Marketing Info */}
-          <div style={{margin: '20px auto'}}>
+          Who is protected with the ALERT products?
+        </Typography>
+        {/* Marketing Info */}
+        <div style={{ margin: '20px auto' }}>
+          <Hidden xsDown>
             <VerticalTabs content={protectedClients}></VerticalTabs>
-          </div>
+          </Hidden>
+
+          <Hidden smUp>
+            <SimpleTabs content={protectedClients}></SimpleTabs>
+          </Hidden>
+        </div>
         <ProductBlock />
       </div>
     </Page>
