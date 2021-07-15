@@ -79,7 +79,7 @@ export default function SimpleTabs({ content }) {
           </TabPanel>
           :
           <TabPanel value={value} index={index}>
-            <ReactPlayer url={e.video} width={'100%'} style={{ margin: '3.5em 0', }} />
+            <ReactPlayer url={e.video} width={'100%'} height={'100%'} style={{ margin: '3.5em 0', }} />
           </TabPanel>
         )
       ))}
