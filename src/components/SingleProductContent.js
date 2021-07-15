@@ -27,13 +27,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'goldenrod',
     fontSize: '16px',
   },
-  table: {
-    minWidth: 650,
-  },
 }))
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(name, dimension) {
+  return { name, dimension };
 }
 
 export default function SingleProductContent({ sku }) {
@@ -73,18 +70,22 @@ export default function SingleProductContent({ sku }) {
     })
   }
 
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
   return (
     <Grid container style={{ width: '80%' }} spacing={2}>
       <Grid item xs={12}>
-        <Typography variant='h3' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left', marginBottom: '20px' }}>
+        <Typography variant={isMobile ? 'h4' : 'h3'} style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left', marginBottom: '20px' }}>
           {currentProduct.name}
           {/* {currentProduct?.name} */}
         </Typography>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <img src={currentProduct?.image} alt={currentProduct?.alt} style={{ display: 'inline-block', margin: '0 auto', maxWidth: '350px' }} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <Typography variant="h5" style={{ marginBottom: '1.5rem', textAlign: 'right' }}>
           ${currentProduct?.price}
         </Typography>
@@ -128,14 +129,14 @@ export default function SingleProductContent({ sku }) {
       <Grid item xs={12} >
         <Typography variant="h3" component="span" style={{ color: '#74b4ab', marginBottom: '1rem' }}>Specifications</Typography>
         <TableContainer component={Paper} style={{ marginTop: '1em' }}>
-          <Table className={classes.table} aria-label="simple table">
+          <Table aria-label="simple table">
             <TableBody>
               {rows.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row">
                     {row.name}
                   </TableCell>
-                  <TableCell>{row.calories}</TableCell>
+                  <TableCell style={{textAlign: 'right', paddingRight: '2rem'}}>{row.dimension}</TableCell>
 
                 </TableRow>
               ))}
