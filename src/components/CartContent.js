@@ -6,7 +6,8 @@ import { Typography, Button, Grid } from '@material-ui/core';
 import AddressModal from './AddressModal';
 import API from '../utils/API';
 import CloseIcon from '@material-ui/icons/Close';
-import store from '../utils/store'
+import store from '../utils/store';
+import SmallCartCard from './SmallCartCard';
 
 const useStyles = makeStyles((theme) => ({
   mediaRoot: {
@@ -123,6 +124,10 @@ export default function CartContent() {
     })
   }
 
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
   return (
     <Grid container style={{ width: '80%' }} spacing={3}>
       <Grid item xs={12} sm={6}>
@@ -142,7 +147,11 @@ export default function CartContent() {
         :
         <Grid item xs={12} style={{ minHeight: '10em' }}>
           {renderCart?.map((item) => (
-            <CartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
+            (isMobile ? 
+              <SmallCartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></SmallCartCard>
+              :
+              <CartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
+            )
           ))}
         </Grid>}
       <Grid item xs={12}>
