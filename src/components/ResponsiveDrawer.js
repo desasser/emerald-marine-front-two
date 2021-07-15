@@ -106,6 +106,9 @@ function ResponsiveDrawer(props) {
           <NavLink className={classes.link} to='/'>Home</NavLink>
         </ListItem>
         <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
+          <NavLink className={classes.link} to='/oscarwaterrescue'>Oscar</NavLink>
+        </ListItem>
+        <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
           <NavLink className={classes.link} to='/products'>Products</NavLink>
         </ListItem>
         <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
@@ -113,6 +116,9 @@ function ResponsiveDrawer(props) {
         </ListItem>
         <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
           <NavLink className={classes.link} to='/support'>Support</NavLink>
+        </ListItem>
+        <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
+          <NavLink className={classes.link} to='/contact'>Contact</NavLink>
         </ListItem>
         <ListItem button className={classes.listItem} onClick={() => setMobileOpen(false)}>
           <NavLink className={classes.link} to='/cart'>Cart</NavLink>

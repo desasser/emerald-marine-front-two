@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import SupportAccordian from '../components/SupportAccordian'
-import { Container, Typography, Link } from '@material-ui/core'
+import { Container, Typography, Link, Hidden } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import VerticalTabs from './VerticalTabs';
+import SimpleTabs from './SimpleTabs';
 import SearchBar from './SearchBar';
 
 
@@ -239,7 +240,14 @@ export default function SupportContent() {
       <Typography variant='h3' style={{ margin: '1rem 0px', color: '#74b4ab' }}>
         Video Library
       </Typography>
-      <VerticalTabs content={videoState}></VerticalTabs>
+
+      <Hidden  xsDown>
+        <VerticalTabs content={videoState}></VerticalTabs>
+      </Hidden>
+
+      <Hidden smUp>
+        <SimpleTabs content={videoState}></SimpleTabs>
+      </Hidden>
       {/* Videos */}
 
       {/* Product Docs */}

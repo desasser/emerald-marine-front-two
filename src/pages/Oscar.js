@@ -9,7 +9,9 @@ import ProductBlock from "../components/ProductBlock"
 import API from '../utils/API'
 import Page from "../components/Page"
 import Carousel from 'react-material-ui-carousel'
-import { Typography } from '@material-ui/core'
+import SimpleTabs from "../components/SimpleTabs"
+import VerticalTabs from "../components/VerticalTabs"
+import { Typography, Grid, Hidden } from '@material-ui/core'
 
 export default function Home() {
   useEffect(() => {
@@ -60,7 +62,7 @@ export default function Home() {
       </div>
     )
   }
-  
+
   const marketing = [
     {
       id: 0,
@@ -87,6 +89,12 @@ export default function Home() {
   ]
 
   return (
+    //   <div style={{maxWidth: '80%'}}>
+
+    //   <MarketingInfo marketing={marketing}/>
+    //   <ProductBlock />
+    //   </div>
+
     <Page>
       <Carousel
         indicators={false}
@@ -96,16 +104,31 @@ export default function Home() {
           items.map((item, i) => <Item key={i} item={item} />)
         }
       </Carousel>
-      <div style={{ display: 'flex', minWidth: '80%', }}>
-        <BlogBanner />
-        <TestimonialBanner testimonials={testimonials} />
-      </div>
-      <div style={{maxWidth: '80%'}}>
+      <Grid container >
+        <Grid item xs={12} sm={1} />
+        <Grid item xs={12} sm={5} >
+          <BlogBanner />
+        </Grid>
+        <Grid item xs={12} sm={5} >
+          <TestimonialBanner testimonials={testimonials} />
+        </Grid>
+        <Grid item xs={12} sm={1} />
+      </Grid>
+      <div style={{ maxWidth: '80%' }}>
         <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%' }}>
           Why Oscar Water Rescue?
         </Typography>
-      <MarketingInfo marketing={marketing}/>
-      <ProductBlock />
+        {/* Marketing Info */}
+        <div style={{ margin: '20px auto' }}>
+          <Hidden xsDown>
+            <VerticalTabs content={marketing}></VerticalTabs>
+          </Hidden>
+
+          <Hidden smUp>
+            <SimpleTabs content={marketing}></SimpleTabs>
+          </Hidden>
+        </div>
+        <ProductBlock />
       </div>
     </Page>
   )
