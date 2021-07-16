@@ -20,6 +20,7 @@ import Support from "./pages/Support"
 import theme from './theme-provider'
 import { useSelector } from 'react-redux';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
+import {Helmet} from 'react-helmet';
 
 const useStyles = makeStyles({
   main: {
@@ -51,6 +52,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
+        <Helmet>
+          <title>Emerald Marine Products</title>
+          <meta
+            name="description"
+            content="Keeping employees as safe as possible working on water, marine safety, and man-overboard protection need to be built-in to the culture of the organization."
+          />
+        </Helmet>
       { isMobile ? <ResponsiveDrawer /> : <Header />}
         <main className={classes.main}>
           <Switch>
