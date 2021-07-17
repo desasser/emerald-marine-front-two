@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const BlogContent = ({text, heading, content}) => {
+const BlogContent = ({text, heading, content, number}) => {
     const blogContent = useSelector(state => state.blogContent.blogContent);
     const classes = useStyles();
     const [open, setOpen] = useState(false);
@@ -54,19 +54,30 @@ const BlogContent = ({text, heading, content}) => {
 
     const finishSection = e => {
       e.preventDefault();
-      const newContent = [...blogContent, post]
+      console.log(number)
+      let newContent = blogContent;
+      if(number < 0) {
+       newContent = [...blogContent, post]
+      } else {
+        newContent.splice(number, 1, post)
+        
+      }
       store.dispatch({
         type: 'ADD_CONTENT',
-        payload: newContent
+        payload: [...newContent]
       })
       console.log(newContent)
-      setPost({
-        ...post,
-        heading: '',
-        content: ''
-      })
+      console.log(blogContent)
+      if(!number || number!==0) {
+        setPost({
+          ...post,
+          heading: '',
+          content: ''
+        })
+      }
       handleClose()
     }
+
 
     
 
