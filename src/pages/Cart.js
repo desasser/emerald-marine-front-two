@@ -7,7 +7,7 @@ import Page from "../components/Page"
 
 const Cart = () => (
   <Page>
-    <div style={{ marginTop: '30px', width: '100%' }}>
+    <div style={{ marginTop: '30px', width: '80%' }}>
       <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
         <Link color="inherit" to="/" style={{ textDecoration: 'none', color: 'grey' }}>
           Home

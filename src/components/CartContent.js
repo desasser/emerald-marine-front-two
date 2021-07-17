@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import CartCard from './CartCard';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, Grid } from '@material-ui/core';
 import AddressModal from './AddressModal';
 import API from '../utils/API';
 import CloseIcon from '@material-ui/icons/Close';
-import store from '../utils/store'
+import store from '../utils/store';
+import SmallCartCard from './SmallCartCard';
 
 const useStyles = makeStyles((theme) => ({
   mediaRoot: {
@@ -45,20 +46,12 @@ export default function CartContent() {
     });
   }
 
-  const shippingRates = []
-
   const handleAddressSubmit = e => {
     e.preventDefault();
     setShippingRateState([])
-    setAddress({
-      name: '',
-      street1: '',
-      city: '',
-      state: '',
-      zip: '',
-      country: ''
-    })
 
+    let promises = [];
+    let shippingRates = [];
     for (let j = 0; j < cart.length; j++) {
       //Create a new object for each unique item in the cart
       //Add the item dimensions to the destination address object
@@ -71,19 +64,31 @@ export default function CartContent() {
       }
 
       //Call the API with the new object
-      API.getShippingRate(shippingObj).then(res => {
-        setShippingRateState([...shippingRateState, res.data.rates[0].amount]);
-        setRateReady(true);
-      }).catch(err => {
-        console.log(err.message)
-      });
+      promises.push(
+        API.getShippingRate(shippingObj).then(res => {
+          shippingRates.push(res.data.rates[0].amount)
+          setRateReady(true);
+        }).catch(err => {
+          console.log(err.message)
+        })
+      )
     }
+
+    Promise.all(promises).then(() => setShippingRateState(shippingRates))
+    setAddress({
+      name: '',
+      street1: '',
+      city: '',
+      state: '',
+      zip: '',
+      country: ''
+    })
   }
 
   // cart is an array of products and quantities
   // need to add the shipping rate to each item in the array
   const renderCart = cart.map((item, index) => {
-    let addShipping = {}
+    let addShipping = {};
     {
       rateReady ?
         addShipping = {
@@ -105,8 +110,6 @@ export default function CartContent() {
     for (let i = 0; i < renderCart.length; i++) {
       if (renderCart[i].rate) {
         totalShippingPrice = parseFloat(renderCart[i].rate) * parseFloat(renderCart[i].quantity) + totalShippingPrice;
-      } else {
-        totalShippingPrice = totalShippingPrice;
       }
     }
   }
@@ -114,8 +117,6 @@ export default function CartContent() {
   let totalPrice = subTotalPrice + totalShippingPrice;
 
   const emptyCart = () => {
-    // console.log('clicky clicky')
-    // console.log(cart.splice(0, cart.length))
     cart.splice(0, cart.length)
     store.dispatch({
       type: 'FETCH_CART_PRODUCTS',
@@ -123,48 +124,68 @@ export default function CartContent() {
     })
   }
 
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
   return (
-    <div style={{ width: '60vw', minHeight: '50vh' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+    <Grid container style={{ width: '80%' }} spacing={3}>
+      <Grid item xs={12} sm={6}>
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
-        <div>
-          <Typography variant="h6" style={{ color: 'red' }}>We ship internationally!</Typography>
-          <AddressModal onSubmit={handleAddressSubmit} onChange={handleAddressChange} name={address.name} street={address.street1} city={address.city} state={address.state} zip={address.zip} country={address.country} />
-        </div>
-      </div>
-      <hr></hr>
-      <div style={{ minHeight: '10em' }}>
-        {renderCart?.map((item) => (
-          <CartCard title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
-        ))}
-      </div>
-      <hr></hr>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Button variant="outlined" style={{ height: '3em', width: '25%' }} onClick={emptyCart}>
+      </Grid>
+      <Grid item xs={12} sm={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', flexDirection: 'column' }}>
+        <Typography variant="h6" style={{ color: 'red' }}>We ship internationally!</Typography>
+        <AddressModal onSubmit={handleAddressSubmit} onChange={handleAddressChange} name={address.name} street={address.street1} city={address.city} state={address.state} zip={address.zip} country={address.country} />
+      </Grid>
+      <Grid item xs={12}>
+        <hr></hr>
+      </Grid>
+      {renderCart.length === 0 ?
+        <Grid item xs={12} style={{ height: '20vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Typography variant='h3'>Your cart is empty!</Typography>
+        </Grid>
+        :
+        <Grid item xs={12} style={{ minHeight: '10em' }}>
+          {renderCart?.map((item) => (
+            (isMobile ? 
+              <SmallCartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></SmallCartCard>
+              :
+              <CartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
+            )
+          ))}
+        </Grid>}
+      <Grid item xs={12}>
+        <hr></hr>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Button variant="outlined" style={{ height: '3em', width: '15em' }} onClick={emptyCart}>
           <CloseIcon style={{ margin: '0 0.3em 0 -0.5em' }} />
           Empty Cart
         </Button>
-        <div>
-          <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
-            Sub-Total:
-          </Typography>
-          <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
-            ${subTotalPrice.toFixed(2)}
-          </Typography>
-          <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
-            Shipping Estimate Total:
-          </Typography>
-          <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
-            ${totalShippingPrice.toFixed(2)}
-          </Typography>
-          <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
-            Total Cost:
-          </Typography>
-          <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
-            ${totalPrice.toFixed(2)}
-          </Typography>
-        </div>
-      </div>
-    </div>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
+          Sub-Total:
+        </Typography>
+        <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
+          ${subTotalPrice.toFixed(2)}
+        </Typography>
+        <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
+          Shipping Estimate Total:
+        </Typography>
+        <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
+          ${totalShippingPrice.toFixed(2)}
+        </Typography>
+        <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
+          Total Cost:
+        </Typography>
+        <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
+          ${totalPrice.toFixed(2)}
+        </Typography>
+      </Grid>
+      <Grid item style={{ display: 'flex', width: '100%', justifyContent: 'flex-end', marginTop: '2rem' }}>
+        <Button variant="contained" style={{ backgroundColor: 'goldenrod', fontSize: '1.1rem' }} elevation={2}>Submit Request for Quote</Button>
+      </Grid>
+    </Grid>
   )
 }

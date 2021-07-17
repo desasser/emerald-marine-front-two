@@ -1,3 +1,4 @@
+import './fonts.css'
 import React from 'react';
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -18,6 +19,8 @@ import SingleBlog from "./pages/SingleBlog"
 import Support from "./pages/Support"
 import theme from './theme-provider'
 import { useSelector } from 'react-redux';
+import ResponsiveDrawer from './components/ResponsiveDrawer';
+import {Helmet} from 'react-helmet';
 
 const useStyles = makeStyles({
   main: {
@@ -25,9 +28,10 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     margin: '0 auto',
-    maxWidth: '80%',
+    // maxWidth: '80%',
     marginTop: '64px',
     // minHeight: '50vh'
+    overflow: 'hidden'
   },
 })
 
@@ -40,11 +44,22 @@ function App() {
 
   const allPosts = blog.concat(pr, news);
 
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <Header />
+        <Helmet>
+          <title>Emerald Marine Products</title>
+          <meta
+            name="description"
+            content="Keeping employees as safe as possible working on water, marine safety, and man-overboard protection need to be built-in to the culture of the organization."
+          />
+        </Helmet>
+      { isMobile ? <ResponsiveDrawer /> : <Header />}
         <main className={classes.main}>
           <Switch>
             <Route exact path="/" component={Home} />

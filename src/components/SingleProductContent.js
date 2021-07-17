@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import { Typography, Grid, Button, Container, TextField } from '@material-ui/core';
+import { Typography, Grid, Button, Container, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import ReactPlayer from 'react-player/youtube'
 import store from '../utils/store'
 import { makeStyles } from '@material-ui/core'
@@ -22,12 +22,16 @@ const useStyles = makeStyles(theme => ({
     }
   },
   buttonStyle: {
-    height: '56px', 
-    width: '100%', 
-    backgroundColor: 'goldenrod', 
-    fontSize: '16px', 
-  }
+    height: '56px',
+    width: '100%',
+    backgroundColor: 'goldenrod',
+    fontSize: '16px',
+  },
 }))
+
+function createData(name, dimension) {
+  return { name, dimension };
+}
 
 export default function SingleProductContent({ sku }) {
   const classes = useStyles()
@@ -39,8 +43,12 @@ export default function SingleProductContent({ sku }) {
 
   const currentProduct = products?.find(p => p.SKU === sku);
 
-  // console.log('i am a shopping cart!', cart)
-  // console.log('current product', currentProduct)
+  const rows = [
+    createData('Length', `${currentProduct.length} in`),
+    createData('Width', `${currentProduct.width} in`),
+    createData('Height', `${currentProduct.height} in`),
+    createData('Weight', `${currentProduct.weight}`),
+  ];
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -62,18 +70,22 @@ export default function SingleProductContent({ sku }) {
     })
   }
 
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
   return (
     <Grid container style={{ width: '80%' }} spacing={2}>
       <Grid item xs={12}>
-        <Typography variant='h3' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left', marginBottom: '20px' }}>
+        <Typography variant={isMobile ? 'h4' : 'h3'} style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left', marginBottom: '20px' }}>
           {currentProduct.name}
           {/* {currentProduct?.name} */}
         </Typography>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <img src={currentProduct?.image} alt={currentProduct?.alt} style={{ display: 'inline-block', margin: '0 auto', maxWidth: '350px' }} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <Typography variant="h5" style={{ marginBottom: '1.5rem', textAlign: 'right' }}>
           ${currentProduct?.price}
         </Typography>
@@ -93,25 +105,44 @@ export default function SingleProductContent({ sku }) {
         </Typography>
         <form style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }} onSubmit={handleSubmit}>
           <Typography>Quantity</Typography>
-          <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' required/>
+          <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' required />
           <Button variant="contained" className={classes.buttonStyle} type='submit'>Add to Quote</Button>
         </form>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="h5" style={{ marginTop: '20px' }}>Details</Typography>
-        <Container maxWidth='md' style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
-
+        <Typography variant="h3" style={{ color: '#74b4ab', marginBottom: '1rem' }}>Details</Typography>
+        <Container maxWidth='md' style={{ backgroundColor: 'LightGray', borderRadius: '0.5rem' }}>
+          {JSON.parse(currentProduct.details).map(text =>
+            <div style={{ padding: '1rem 0' }}>
+              <Typography variant='h4' style={{ color: '#74b4ab'}}>
+                {text.heading}
+              </Typography>
+              <br></br>
+              <Typography variant="body1" style={{ marginBottom: '1.5em' }}>
+                {text.content}
+              </Typography>
+            </div>
+          )}
         </Container>
       </Grid>
       <Grid item xs={12} ></Grid>
       <Grid item xs={12} >
-        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-          <Typography variant="h5" component="span">Specifications</Typography>
-          <Typography variant="subtitle2" component="span" style={{ alignSelf: 'flex-end' }}>Download Product Sheet</Typography>
-        </div>
-        <Container maxWidth='md' style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
+        <Typography variant="h3" component="span" style={{ color: '#74b4ab', marginBottom: '1rem' }}>Specifications</Typography>
+        <TableContainer component={Paper} style={{ marginTop: '1em' }}>
+          <Table aria-label="simple table">
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow key={row.name}>
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell style={{textAlign: 'right', paddingRight: '2rem'}}>{row.dimension}</TableCell>
 
-        </Container>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Grid>
     </Grid>
   )
