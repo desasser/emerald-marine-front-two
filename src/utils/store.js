@@ -9,7 +9,8 @@ import pressReleaseReducer from './reducers/pressReleaseReducer';
 import widgetReducer from './reducers/widgetReducer';
 import cartReducer from './reducers/cartReducer';
 import blogContentReducer from './reducers/blogContentReducer';
-import contentReducer from './reducers/contentReducer'
+import contentReducer from './reducers/contentReducer';
+import productSpecsReducer from './reducers/productSpecsReducer'
 
 const rootReducer = combineReducers({
     mailingList: mailingListReducer,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     widgetReducer: widgetReducer,
     cartReducer: cartReducer,
     blogContent: blogContentReducer,
-    content: contentReducer
+    content: contentReducer,
+    productSpecs: productSpecsReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

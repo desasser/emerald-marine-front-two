@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const Product = () => {
     const token = localStorage.getItem('token');
     const products = useSelector(state => state.products.products)
+    const productSpecs = useSelector(state => state.productSpecs.productSpecs)
     const classes=useStyles();
 
     const [current, setCurrent] = useState({
@@ -38,7 +39,8 @@ const Product = () => {
         weight: '',
         length: '',
         width: '',
-        height: ''
+        height: '',
+        details: ''
     });
     const [currentID, setCurrentID] = useState('')
     const [editing, setEditing] = useState(false)
@@ -106,7 +108,8 @@ const Product = () => {
 
     const addProduct = () => {
         setUpdating(false);
-        API.createProduct(current, token).then(res => {
+        const currentProduct = {...current, details: JSON.stringify(productSpecs)}
+        API.createProduct(currentProduct, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchProducts());
             }
@@ -124,6 +127,10 @@ const Product = () => {
                 message: `Error adding product: ${err.message}`
             });
         });
+        store.dispatch({
+            type: 'EDIT_SPECS',
+            payload: []
+        })
     }
 
     const grabCurrent = e => {
@@ -143,6 +150,7 @@ const Product = () => {
         const length = e.currentTarget.getAttribute('data-length')
         const width = e.currentTarget.getAttribute('data-width')
         const id = e.currentTarget.getAttribute('data-id')
+        const details = JSON.parse(e.currentTarget.getAttribute('data-details'))
 
         setCurrent({
             name: name,
@@ -157,15 +165,21 @@ const Product = () => {
             height: height,
             width: width,
             length: length,
-            image: image
+            image: image,
+            details: details
         });
+        store.dispatch({
+            type: 'EDIT_SPECS',
+            payload: [...details]
+        })
         setCurrentID(id)
         showEditForm();
     }
 
     const updateCurrent = e => {
         e.preventDefault();
-        API.updateProduct(currentID, current, token).then(res => {
+        const currentProduct = {...current, details: JSON.stringify(productSpecs)}
+        API.updateProduct(currentID, currentProduct, token).then(res => {
             if(res) {
                 store.dispatch(fetchProducts());
             }
@@ -254,7 +268,7 @@ const Product = () => {
                 <Grid container spacing={1}>
                     <Grid item xs={8} className={classes.infoCards}>
                         {products?.map(product => 
-                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={handleConfirmationOpen} classes={classes} confirm={removeCurrent}/>
+                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} details={product.details} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={handleConfirmationOpen} classes={classes} confirm={removeCurrent}/>
                         
                         )}
                     </Grid>

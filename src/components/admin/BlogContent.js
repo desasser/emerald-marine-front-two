@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, TextField, DialogTitle, Dialog} from '@material-ui/core';
+import { Button, TextField, Dialog} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 import store from '../../utils/store';
 
@@ -54,7 +54,6 @@ const BlogContent = ({text, heading, content, number}) => {
 
     const finishSection = e => {
       e.preventDefault();
-      console.log(number)
       let newContent = blogContent;
       if(number < 0) {
        newContent = [...blogContent, post]
@@ -66,8 +65,6 @@ const BlogContent = ({text, heading, content, number}) => {
         type: 'ADD_CONTENT',
         payload: [...newContent]
       })
-      console.log(newContent)
-      console.log(blogContent)
       if(!number || number!==0) {
         setPost({
           ...post,

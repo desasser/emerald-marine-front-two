@@ -30,7 +30,8 @@ const Blog = () => {
         tags: '',
         image: '',
         alt: '',
-        intro: ''
+        intro: '',
+        content: ''
     });
     const [currentID, setCurrentID] = useState('');
     const [editing, setEditing] = useState(false);
@@ -54,8 +55,6 @@ const Blog = () => {
     
     const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}]
 
-    let postContent = [{heading: '', content: ''}]
-
     const showEditForm = () => {
         setEditing(true)
     }
@@ -73,6 +72,7 @@ const Blog = () => {
         image: '',
         alt: '',
         intro: '',
+        content: ''
         })
     }
 
@@ -125,7 +125,6 @@ const Blog = () => {
         const intro = e.currentTarget.getAttribute('data-intro')
         const content = JSON.parse(e.currentTarget.getAttribute('data-content'))
         const id = e.currentTarget.getAttribute('data-id')
-        console.log(content)
 
         setCurrent({
             title: title,
@@ -239,7 +238,7 @@ const Blog = () => {
                     )}
                 </Grid>
                 <Grid item xs={4}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} postContent={postContent} text={editorText}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} text={editorText}/>
                 </Grid>
             </Grid> :
             <Grid container spacing={1}>
@@ -249,7 +248,7 @@ const Blog = () => {
                     )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} postContent={postContent}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
                 </Grid>
             </Grid>}
             </Grid>
