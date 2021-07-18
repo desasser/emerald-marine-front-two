@@ -125,6 +125,7 @@ const Blog = () => {
         const intro = e.currentTarget.getAttribute('data-intro')
         const content = JSON.parse(e.currentTarget.getAttribute('data-content'))
         const id = e.currentTarget.getAttribute('data-id')
+        console.log(content)
 
         setCurrent({
             title: title,
@@ -133,12 +134,13 @@ const Blog = () => {
             tags: tags,
             image: image,
             alt: alt,
-            intro: intro
+            intro: intro,
+            content: content
         });
         setEditorText('Edit Content')
         store.dispatch({
             type: 'ADD_CONTENT',
-            payload: content
+            payload: [...content]
         });
         setCurrentID(id)   
         showEditForm();    

@@ -7,18 +7,23 @@ import {useSelector} from 'react-redux';
 import store from '../../utils/store';
 import DeleteConfirmation from './DeleteConfirmation';
 
-const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, postContent, addSection, text}) => {
+const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, postContent, text}) => {
     const blogContent = useSelector(state => state.blogContent.blogContent)
 
-    const deleteSection = index => {
-        console.log(index)
-        const newContent = blogContent.slice(index, 1)
-        console.log(newContent)
+    const deleteSection = e => {
+        const index = e.currentTarget.getAttribute('data-id');
+        const newContent = blogContent.filter(blog => blogContent.indexOf(blog) != index)
         store.dispatch({
             type: 'ADD_CONTENT',
-            payload: [...newContent]
+            payload: newContent
           })
-        console.log(blogContent)
+    }
+
+    const addSection = () => {
+        store.dispatch({
+            type: 'ADD_CONTENT',
+            payload: [...blogContent, {heading: '', content: ''}]
+        })
     }
 
     return (
@@ -37,14 +42,14 @@ const AddForm = ({section, message, fields, handleAddFormChange, updateMe, succe
             <TextField disabled variant="outlined" multiline={true} label='Heading' style={{'margin-bottom': '2vh', 'margin-top': '4vh', 'width': '100%'}} value={content.heading}></TextField>
             <TextField disabled variant="outlined" multiline={true} label='Content' style={{'margin-bottom': '1vh', 'width': '100%'}} value={content.content}></TextField>
             <BlogContent number={index} postContent={postContent} heading={content.heading} content={content.content} text='Edit This Section'></BlogContent>
-            <DeleteConfirmation size='small' variant='contained' style={{'padding': '0', 'max-width': '30%'}} confirm={deleteSection(index)} text={'Delete This Section'} /></div>)}</div> : <></>}
+            <DeleteConfirmation size='small' variant='contained' style={{'padding': '0', 'max-width': '30%'}} confirm={deleteSection} text={'Delete This Section'} id={index} />
+            </div>)}
+            <Button variant='contained' style={{'padding': '0', 'max-width': '30%'}} onClick={addSection}>Add A Section</Button></div> : <></>}
         <br/>
         <div style={{'display': 'flex', 'flex-direction': 'row', 'justify-content': 'space-between'}}>
         {section==='Product' || section==='Press Release' || section==='Blog Post' ? 
         <UploadWidget successCallback={successCallback} failureCallback={failureCallback}/> :
         <></>}
-        {section==='Blog Post'? 
-        <BlogContent postContent={postContent} addSection={addSection} text={text}/> : <></>}
         <Button size='small' variant='contained' style={{'padding': '0', 'max-width': '30%'}} onClick={updateMe}>Submit</Button>
         </div>
     </div> :
