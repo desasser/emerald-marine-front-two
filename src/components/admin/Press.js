@@ -204,12 +204,7 @@ const Press = () => {
                 </Grid>
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                <Grid item xs={6} spacing={2} className={classes.infoCards}>
-                {releases?.map(release => 
-                        <BlogCard id='#' title={release.title} alt={release.alt} image={release.image} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' confirm={removeCurrent} grabMe={grabCurrent} className={classes.cards}/>
-                        )}
-                </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                 <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
             </Grid>
             </Grid> :

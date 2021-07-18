@@ -256,16 +256,11 @@ const Product = () => {
                     <br/>
                     {editing ? 
                     <Grid container spacing={1} justify='space-evenly'>
-                    <Grid item xs={4} className={classes.infoCards}>
-                        {products?.map(product => 
-                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} classes={classes} confirm={removeCurrent}/>
-                        )}
-                    </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                         <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrent : addProduct} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
                     </Grid>
                 </Grid> : 
-                <Grid container spacing={1}>
+                <Grid container spacing={4}>
                     <Grid item xs={8} className={classes.infoCards}>
                         {products?.map(product => 
                         <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} details={product.details} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={handleConfirmationOpen} classes={classes} confirm={removeCurrent}/>

@@ -181,12 +181,7 @@ const News = () => {
                 </Grid>
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                <Grid item xs={6} className={classes.infoCards}>
-                {articles?.map(article => 
-                        <BlogCard id='#' title={article.title} alt={'not a cat'} publication={article.publication} date = {article.date} link={article.link} description = {article.description} id={article._id} confirm={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article'/>
-                    )}
-                </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                 <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm}/>
             </Grid>
             </Grid> :
