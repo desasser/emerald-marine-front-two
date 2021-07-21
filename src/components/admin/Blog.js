@@ -233,7 +233,7 @@ const Blog = () => {
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={10}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} text={editorText}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} text={editorText} current={current}/>
                 </Grid>
             </Grid> :
             <Grid container spacing={4}>
@@ -243,7 +243,7 @@ const Blog = () => {
                     )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} current={current}/>
                 </Grid>
             </Grid>}
             </Grid>

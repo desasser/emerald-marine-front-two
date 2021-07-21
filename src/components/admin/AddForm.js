@@ -8,7 +8,7 @@ import {useSelector} from 'react-redux';
 import store from '../../utils/store';
 import DeleteConfirmation from './DeleteConfirmation';
 
-const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, postContent, text}) => {
+const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, current}) => {
     const blogContent = useSelector(state => state.blogContent.blogContent)
     const productSpecs = useSelector(state => state.productSpecs.productSpecs)
 
@@ -42,6 +42,11 @@ const AddForm = ({section, message, fields, handleAddFormChange, updateMe, succe
             type: 'EDIT_SPECS',
             payload: [...productSpecs, {heading: '', content: ''}]
         })
+    }
+
+    const saveCurrent = e => {
+        e.preventDefault();
+        localStorage.setItem('current', JSON.stringify)
     }
 
     return (
@@ -82,6 +87,7 @@ const AddForm = ({section, message, fields, handleAddFormChange, updateMe, succe
         {section==='Product' || section==='Press Release' || section==='Blog Post' ? 
         <UploadWidget successCallback={successCallback} failureCallback={failureCallback}/> :
         <></>}
+        <Button size='small' variant="contained" onClick={saveCurrent} style={{'float': 'right', 'margin-top': '10vh', 'padding': '0', 'max-width': '30%'}}>Save</Button>
         <Button size='small' variant='contained' style={{'padding': '0', 'max-width': '30%'}} onClick={updateMe}>Submit</Button>
         </div>
     </div> :

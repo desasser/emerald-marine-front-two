@@ -257,18 +257,18 @@ const Product = () => {
                     {editing ? 
                     <Grid container spacing={1} justify='space-evenly'>
                     <Grid item xs={12}>
-                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrent : addProduct} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrent : addProduct} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} current={current}/>
                     </Grid>
                 </Grid> : 
                 <Grid container spacing={4}>
                     <Grid item xs={8} className={classes.infoCards}>
                         {products?.map(product => 
-                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} details={product.details} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={handleConfirmationOpen} classes={classes} confirm={removeCurrent}/>
+                        <ProductCard view='admin' id={product._id} price={product.price} sku={product.SKU} name={product.name} image={product.image} alt={product.alt} classes={classes} description={product.description} tags={product.tags} categories={product.categories} video={product.video} weight={product.weight} details={product.details} height={product.height} length={product.length} width={product.width} grabMe={grabCurrent} removeMe={handleConfirmationOpen} classes={classes} confirm={removeCurrent} />
                         
                         )}
                     </Grid>
                     <Grid item xs={2}>
-                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm}/>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} current={current}/>
                     </Grid>
                 </Grid>}
                 </Grid>   

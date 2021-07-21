@@ -205,7 +205,7 @@ const Press = () => {
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={12}>
-                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
+                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} current={current} />
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
@@ -215,7 +215,7 @@ const Press = () => {
                         )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange}  updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
+                    <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange}  updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} current={current} />
                 </Grid>
             </Grid>}
             </Grid>

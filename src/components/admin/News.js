@@ -182,7 +182,7 @@ const News = () => {
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={12}>
-                <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm}/>
+                <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm} current={current}/>
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
@@ -192,7 +192,7 @@ const News = () => {
                     )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm}/>
+                    <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm} current={current}/>
                 </Grid>
             </Grid>}
             </Grid>
