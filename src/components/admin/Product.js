@@ -246,6 +246,31 @@ const Product = () => {
             message: `Error uploading image: ${response}`
         });
     }
+
+    const saveCurrentProduct = e => {
+        e.preventDefault();
+        setUpdating(false)
+        const savedProduct = JSON.stringify(current)
+        localStorage.setItem('currentProduct', savedProduct)
+        setIndicator({
+            open: true, 
+            severity: 'success', 
+            message: 'Product successfully saved.'
+        });
+        hideEditForm();
+    }
+
+    const grabSavedProduct = e => {
+        e.preventDefault();
+        setUpdating(true);
+        const savedProduct = JSON.parse(localStorage.getItem('currentProduct'));
+        store.dispatch({
+            type: 'ADD_CONTENT',
+            payload: [...savedProduct.details]
+        });
+        setCurrent({...savedProduct});
+        showEditForm();
+    }
     
     return (
         <div>
@@ -257,7 +282,7 @@ const Product = () => {
                     {editing ? 
                     <Grid container spacing={1} justify='space-evenly'>
                     <Grid item xs={12}>
-                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrent : addProduct} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} current={current}/>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateCurrent : addProduct} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentProduct} grabSaved={grabSavedProduct}/>
                     </Grid>
                 </Grid> : 
                 <Grid container spacing={4}>
@@ -268,7 +293,7 @@ const Product = () => {
                         )}
                     </Grid>
                     <Grid item xs={2}>
-                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} current={current}/>
+                        <AddForm section='Product' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addProduct} updateMe={updateCurrent} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentProduct} grabSaved={grabSavedProduct}/>
                     </Grid>
                 </Grid>}
                 </Grid>   

@@ -169,6 +169,27 @@ const News = () => {
         });
     }
 
+    const saveCurrentNews = e => {
+        e.preventDefault();
+        setUpdating(false)
+        const savedArticle = JSON.stringify(current)
+        localStorage.setItem('currentArticle', savedArticle)
+        setIndicator({
+            open: true, 
+            severity: 'success', 
+            message: 'News Article successfully saved.'
+        });
+        hideEditForm();
+    }
+
+    const grabSavedNews = e => {
+        e.preventDefault();
+        setUpdating(true);
+        const savedArticle = JSON.parse(localStorage.getItem('currentArticle'));
+        setCurrent({...savedArticle});
+        showEditForm();
+    }
+
     
 
     return (
@@ -182,7 +203,7 @@ const News = () => {
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={12}>
-                <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm} current={current}/>
+                <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm} saveCurrent={saveCurrentNews} grabSaved={grabSavedNews}/>
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
@@ -192,7 +213,7 @@ const News = () => {
                     )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm} current={current}/>
+                    <AddForm section='News Article' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addNewsArticle} show={editing} showForm={showEditForm} saveCurrent={saveCurrentNews} grabSaved={grabSavedNews}/>
                 </Grid>
             </Grid>}
             </Grid>

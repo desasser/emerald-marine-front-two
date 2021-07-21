@@ -222,6 +222,31 @@ const Blog = () => {
         });
     }
 
+    const saveCurrentBlog = e => {
+        e.preventDefault();
+        setUpdating(false)
+        const savedPost = JSON.stringify(current)
+        localStorage.setItem('currentBlog', savedPost)
+        setIndicator({
+            open: true, 
+            severity: 'success', 
+            message: 'Blog post successfully saved.'
+        });
+        hideEditForm();
+    }
+
+    const grabSavedBlog = e => {
+        e.preventDefault();
+        setUpdating(true);
+        const savedPost = JSON.parse(localStorage.getItem('currentBlog'));
+        store.dispatch({
+            type: 'ADD_CONTENT',
+            payload: [...savedPost.content]
+        });
+        setCurrent({...savedPost});
+        showEditForm();
+    }
+
     return (
         <div>
             <Grid container spacing={2}>
@@ -233,7 +258,7 @@ const Blog = () => {
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={10}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} text={editorText} current={current}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} text={editorText} saveCurrent={saveCurrentBlog} grabSaved={grabSavedBlog}/>
                 </Grid>
             </Grid> :
             <Grid container spacing={4}>
@@ -243,7 +268,7 @@ const Blog = () => {
                     )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} current={current}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentBlog} grabSaved={grabSavedBlog}/>
                 </Grid>
             </Grid>}
             </Grid>

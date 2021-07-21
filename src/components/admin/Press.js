@@ -194,6 +194,27 @@ const Press = () => {
         });
     }
 
+    const saveCurrentPress = e => {
+        e.preventDefault();
+        setUpdating(false)
+        const savedPress = JSON.stringify(current)
+        localStorage.setItem('currentPress', savedPress)
+        setIndicator({
+            open: true, 
+            severity: 'success', 
+            message: 'Press release successfully saved.'
+        });
+        hideEditForm();
+    }
+
+    const grabSavedPress = e => {
+        e.preventDefault();
+        setUpdating(true);
+        const savedPress = JSON.parse(localStorage.getItem('currentPress'));
+        setCurrent({...savedPress});
+        showEditForm();
+    }
+
     return (
         <div>
              <Grid container spacing={2}>
@@ -205,7 +226,7 @@ const Press = () => {
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={12}>
-                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} current={current} />
+                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentPress} grabSaved={grabSavedPress} />
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
@@ -215,7 +236,7 @@ const Press = () => {
                         )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange}  updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} current={current} />
+                    <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange}  updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentPress} grabSaved={grabSavedPress} />
                 </Grid>
             </Grid>}
             </Grid>

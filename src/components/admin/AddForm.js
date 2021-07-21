@@ -8,7 +8,7 @@ import {useSelector} from 'react-redux';
 import store from '../../utils/store';
 import DeleteConfirmation from './DeleteConfirmation';
 
-const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, current}) => {
+const AddForm = ({section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, saveCurrent, grabSaved}) => {
     const blogContent = useSelector(state => state.blogContent.blogContent)
     const productSpecs = useSelector(state => state.productSpecs.productSpecs)
 
@@ -44,10 +44,6 @@ const AddForm = ({section, message, fields, handleAddFormChange, updateMe, succe
         })
     }
 
-    const saveCurrent = e => {
-        e.preventDefault();
-        localStorage.setItem('current', JSON.stringify)
-    }
 
     return (
         <div>
@@ -91,7 +87,10 @@ const AddForm = ({section, message, fields, handleAddFormChange, updateMe, succe
         <Button size='small' variant='contained' style={{'padding': '0', 'max-width': '30%'}} onClick={updateMe}>Submit</Button>
         </div>
     </div> :
-    <Button size='small' variant="contained" onClick={showForm} style={{'float': 'right', 'margin-top': '10vh', 'padding': '0', 'max-width': '30%'}}>Add new {section}</Button>}
+    <div>
+    <Button size='small' variant="contained" onClick={showForm} style={{'float': 'right', 'margin-top': '10vh', 'padding': '0', 'max-width': '30%'}}>Add new {section}</Button>
+    <Button size='small' variant="contained" onClick={grabSaved} style={{'float': 'right', 'margin-top': '10vh', 'padding': '0', 'max-width': '30%'}}>Load Saved {section}</Button>
+    </div>}
         </div>
     )
 }
