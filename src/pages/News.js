@@ -14,7 +14,7 @@ const News = () => (
       name="description"
       content="From the launch of brand-new marine rescue equipment to the many ways our man-overboard signals can alert a vessel if someone falls overboard, you’ll find our latest company news and updates here."/>
     </Helmet>
-    <div style={{ marginTop: '30px', width: '80%' }}>
+    <div style={{ marginTop: '2rem', width: '80%' }}>
       <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
         <Link color="inherit" to="/" style={{ textDecoration: 'none', color: 'grey' }}>
           Home
