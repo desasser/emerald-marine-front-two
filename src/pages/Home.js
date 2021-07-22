@@ -19,6 +19,7 @@ import commercialFishing from '../images/commercial_fishing.jpg'
 import waterVoyager from '../images/water_voyager.jpg'
 import VerticalTabs from '../components/VerticalTabs';
 import SimpleTabs from '../components/SimpleTabs';
+import {Helmet} from 'react-helmet';
 
 export default function Home() {
   useEffect(() => {
@@ -155,6 +156,13 @@ export default function Home() {
 
   return (
     <Page>
+      <Helmet>
+          <title>Emerald Marine Products</title>
+          <meta
+            name="description"
+            content="Keeping employees as safe as possible working on water, marine safety, and man-overboard protection need to be built-in to the culture of the organization."
+          />
+        </Helmet>
       <Carousel
         indicators={false}
         interval='6000'

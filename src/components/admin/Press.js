@@ -194,6 +194,27 @@ const Press = () => {
         });
     }
 
+    const saveCurrentPress = e => {
+        e.preventDefault();
+        setUpdating(false)
+        const savedPress = JSON.stringify(current)
+        localStorage.setItem('currentPress', savedPress)
+        setIndicator({
+            open: true, 
+            severity: 'success', 
+            message: 'Press release successfully saved.'
+        });
+        hideEditForm();
+    }
+
+    const grabSavedPress = e => {
+        e.preventDefault();
+        setUpdating(true);
+        const savedPress = JSON.parse(localStorage.getItem('currentPress'));
+        setCurrent({...savedPress});
+        showEditForm();
+    }
+
     return (
         <div>
              <Grid container spacing={2}>
@@ -204,13 +225,8 @@ const Press = () => {
                 </Grid>
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                <Grid item xs={6} spacing={2} className={classes.infoCards}>
-                {releases?.map(release => 
-                        <BlogCard id='#' title={release.title} alt={release.alt} image={release.image} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' confirm={removeCurrent} grabMe={grabCurrent} className={classes.cards}/>
-                        )}
-                </Grid>
-                <Grid item xs={4}>
-                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
+                <Grid item xs={12}>
+                <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentPress} grabSaved={grabSavedPress} />
             </Grid>
             </Grid> :
             <Grid container spacing={1}>
@@ -220,7 +236,7 @@ const Press = () => {
                         )}
                 </Grid>
                 <Grid item xs={2}>
-                    <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange}  updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} />
+                    <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange}  updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentPress} grabSaved={grabSavedPress} />
                 </Grid>
             </Grid>}
             </Grid>

@@ -59,7 +59,7 @@ const Admin = () => {
     }
     
     return (
-        <div>
+        <div style={{ marginTop: '30px', width: '90%', overflow: 'scroll' }}>
         { user.isLoggedIn ? 
             <Grid container spacing={3}>
             <Grid container spacing={1} className={classes.buttons}>

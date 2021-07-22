@@ -12,6 +12,7 @@ import Carousel from 'react-material-ui-carousel'
 import SimpleTabs from "../components/SimpleTabs"
 import VerticalTabs from "../components/VerticalTabs"
 import { Typography, Grid, Hidden } from '@material-ui/core'
+import { Helmet } from 'react-helmet'
 
 export default function Home() {
   useEffect(() => {
@@ -96,6 +97,12 @@ export default function Home() {
     //   </div>
 
     <Page>
+      <Helmet>
+        <title>OSCAR Water Rescue</title>
+        <meta 
+        name="description"
+        content="The simplicity of OSCAR’s construction makes it the best water rescue dummy and the best value for your man-overboard, swift water, and other rescue training procedures. Using a training dummy that weighs and floats like a human adult will make sure your rescue team is ready for the realities of a rescue operation." />
+      </Helmet>
       <Carousel
         indicators={false}
         interval='6000'
