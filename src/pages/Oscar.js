@@ -2,10 +2,10 @@ import React, { useEffect } from "react"
 import oscarOne from '../images/oscar_rescue_1_crop.jpg'
 import oscarTwo from '../images/oscar_rescue_2_crop.jpg'
 import oscarThree from '../images/oscar_rescue_3_crop.jpg'
-import BlogBanner from "../components/BlogBanner"
-import TestimonialBanner from "../components/TestimonialBanner"
-import MarketingInfo from "../components/MarketingInfo"
-import ProductBlock from "../components/ProductBlock"
+// import BlogBanner from "../components/BlogBanner"
+// import TestimonialBanner from "../components/TestimonialBanner"
+import ReactPlayer from 'react-player/youtube'
+import OscarProductBlock from "../components/OscarProductBlock"
 import API from '../utils/API'
 import Page from "../components/Page"
 import Carousel from 'react-material-ui-carousel'
@@ -104,17 +104,7 @@ export default function Home() {
           items.map((item, i) => <Item key={i} item={item} />)
         }
       </Carousel>
-      <Grid container >
-        <Grid item xs={12} sm={1} />
-        <Grid item xs={12} sm={5} >
-          <BlogBanner />
-        </Grid>
-        <Grid item xs={12} sm={5} >
-          <TestimonialBanner testimonials={testimonials} />
-        </Grid>
-        <Grid item xs={12} sm={1} />
-      </Grid>
-      <div style={{ maxWidth: '80%' }}>
+      <div style={{ maxWidth: '80%', marginTop: '3rem' }}>
         <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%' }}>
           Why Oscar Water Rescue?
         </Typography>
@@ -128,8 +118,33 @@ export default function Home() {
             <SimpleTabs content={marketing}></SimpleTabs>
           </Hidden>
         </div>
-        <ProductBlock />
+        <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%',}}>
+          Oscar in Action
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <div style={{ display: 'flex', flex: '1' }}>
+              <ReactPlayer url={'https://youtu.be/JL-WsothXAc'} style={{ margin: '1.5em 0' }} />
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <div style={{ display: 'flex', flex: '1' }}>
+              <ReactPlayer url={'https://youtu.be/grQ30xpWO_8'} style={{ margin: '1.5em 0' }} />
+            </div>
+          </Grid>
+        </Grid>
+        <OscarProductBlock/>
       </div>
+      {/* <Grid container >
+        <Grid item xs={12} sm={1} />
+        <Grid item xs={12} sm={5} >
+          <BlogBanner />
+        </Grid>
+        <Grid item xs={12} sm={5} >
+          <TestimonialBanner testimonials={testimonials} />
+        </Grid>
+        <Grid item xs={12} sm={1} />
+      </Grid> */}
     </Page>
   )
 }

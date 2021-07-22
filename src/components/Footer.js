@@ -65,6 +65,8 @@ const useStyles = makeStyles((theme) => ({
     direction: 'row',
     justify: 'space-between',
     alignItems: 'center',
+    width: '80%',
+    margin: '0 auto'
   },
   linkStyles: {
     color: "white",
@@ -195,16 +197,16 @@ const Footer = () => {
                 <Grid item style={{display: 'flex',flexDirection: 'row',alignItems: 'center', justifyContent: 'center', margin: '2rem',}}>
                   <MadeInUsa className={classes.logoUSA} />
                 </Grid>
-                <Typography style={{textAlign: 'center', color: 'white',}}>
-                  &#169; 2021 Full House Ventures, Inc. All Rights Reserved.
-                </Typography>
-                <Typography style={{textAlign: 'center', color: 'white',}} >
-                  Site design by Outer Limits Design and Designly LLC
-                </Typography>
               </Grid>
             <Grid item md={4} xs={12} style={{marginTop: '0.5em'}}>
               <ContactInfo />
             </Grid>
+                <Typography style={{textAlign: 'center', color: 'white', width: '100%'}}>
+                  &#169; 2021 Full House Ventures, Inc. All Rights Reserved.
+                </Typography>
+                <Typography style={{textAlign: 'center', color: 'white', width: '100%'}} >
+                  Site design by Outer Limits Design and Designly LLC
+                </Typography>
           </Grid>
     </div>
   );
