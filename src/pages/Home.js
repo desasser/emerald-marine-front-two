@@ -171,18 +171,8 @@ export default function Home() {
           items.map((item, i) => <Item key={i} item={item} />)
         }
       </Carousel>
-      <Grid container >
-        <Grid item xs={12} sm={1} />
-        <Grid item xs={12} sm={5} >
-          <BlogBanner />
-        </Grid>
-        <Grid item xs={12} sm={5} >
-          <TestimonialBanner testimonials={testimonials} />
-        </Grid>
-        <Grid item xs={12} sm={1} />
-      </Grid>
       <div style={{ maxWidth: '80%' }}>
-        <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%' }}>
+        <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%', marginTop: '2rem' }}>
           Why Emerald Marine?
         </Typography>
         <MarketingInfo marketing={marketing} />
@@ -201,6 +191,16 @@ export default function Home() {
         </div>
         <ProductBlock />
       </div>
+      <Grid container style={{marginTop: '3rem'}} >
+        <Grid item xs={12} sm={1} />
+        <Grid item xs={12} sm={5} >
+          <BlogBanner />
+        </Grid>
+        <Grid item xs={12} sm={5} >
+          <TestimonialBanner testimonials={testimonials} />
+        </Grid>
+        <Grid item xs={12} sm={1} />
+      </Grid>
     </Page>
   )
 }

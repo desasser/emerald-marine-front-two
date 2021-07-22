@@ -133,10 +133,7 @@ export default function CartContent() {
       <Grid item xs={12} sm={6}>
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
       </Grid>
-      <Grid item xs={12} sm={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', flexDirection: 'column' }}>
-        <Typography variant="h6" style={{ color: 'red' }}>We ship internationally!</Typography>
-        <AddressModal onSubmit={handleAddressSubmit} onChange={handleAddressChange} name={address.name} street={address.street1} city={address.city} state={address.state} zip={address.zip} country={address.country} />
-      </Grid>
+
       <Grid item xs={12}>
         <hr></hr>
       </Grid>
@@ -147,7 +144,7 @@ export default function CartContent() {
         :
         <Grid item xs={12} style={{ minHeight: '10em' }}>
           {renderCart?.map((item) => (
-            (isMobile ? 
+            (isMobile ?
               <SmallCartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></SmallCartCard>
               :
               <CartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
@@ -170,6 +167,9 @@ export default function CartContent() {
         <Typography variant='h6' style={{ display: 'inline-block', textAlign: 'center', width: '20%' }}>
           ${subTotalPrice.toFixed(2)}
         </Typography>
+        <Grid item xs={12} style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem' }}>
+          <AddressModal onSubmit={handleAddressSubmit} onChange={handleAddressChange} name={address.name} street={address.street1} city={address.city} state={address.state} zip={address.zip} country={address.country} />
+        </Grid>
         <Typography variant='h5' style={{ display: 'inline-block', textAlign: 'right', color: '#74b4ab', width: '80%' }}>
           Shipping Estimate Total:
         </Typography>
@@ -184,7 +184,7 @@ export default function CartContent() {
         </Typography>
       </Grid>
       <Grid item style={{ display: 'flex', width: '100%', justifyContent: 'flex-end', marginTop: '2rem' }}>
-        <Button variant="contained" style={{ backgroundColor: 'goldenrod', fontSize: '1.1rem' }} elevation={2}>Submit Request for Quote</Button>
+        <Button variant="contained" style={{ backgroundColor: 'goldenrod', fontSize: '1.1rem' }} >Submit Request for Quote</Button>
       </Grid>
     </Grid>
   )

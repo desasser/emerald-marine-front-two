@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: "5em",
+    margin: '1rem',
     [theme.breakpoints.down("md")]: {
         height: "4em"
     },
@@ -74,15 +75,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16px",
   },
   iconStyle: {
-    fontSize: "50px",
+    fontSize: "4rem",
     color: "#78787a",
   },
   inputStyle: {
     marginTop: 10,
-    marginLeft: 190,
     backgroundColor: "white",
     borderRadius: "0.5em",
-    width: "75%",
+    width: "100%",
     "& label.Mui-focused": {
       color: "black",
       backgroundColor: "white",
@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logoUSA: {
-    height: '8rem'
+    height: '9rem'
   }
 }));
 
@@ -134,7 +134,7 @@ const Footer = () => {
               </Link>
             </Grid>
           </Grid>
-            <Grid item /* s={12} md={4} className={classes.inputFormStyle} */>
+            <Grid item style={{width: '50%', margin: '0 auto'}}>
               <InputForm
                 classes={classes}
                 text={"Sign up to receive our newsletter."}

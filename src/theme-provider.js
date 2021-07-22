@@ -20,13 +20,16 @@ const theme = createMuiTheme({
     },
     typography: {
       h1: {
-        fontFamily: 'Noto Serif'
+        fontFamily: 'Noto Serif',
+        fontSize: '3rem',
       },
       h2: {
-        fontFamily: 'Noto Serif'
+        fontFamily: 'Noto Serif',
+        fontSize: '2.5rem',
       },
       h3: {
-        fontFamily: 'Noto Serif'
+        fontFamily: 'Noto Serif',
+        fontSize: '2rem',
       },
       h4: {
         fontFamily: 'Abel'
