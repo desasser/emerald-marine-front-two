@@ -74,79 +74,97 @@ export default function Purchase() {
         <Typography variant='h2' style={{ color: '#74b4ab' }}>Purchase Form</Typography>
         <hr style={{ width: '80vw' }}></hr>
         <form style={{ display: 'flex', flexDirection: 'column', marginTop: '2rem' }}>
-          <Grid container>
-            <Grid item xs={12} >
-              <Typography variant="h4" style={{ color: '#74b4ab' }}>Payment Info</Typography>
-              <Grid container>
-                <Grid item xs={12}>
-                  <FormControl required style={{ width: '80%', marginTop: '1rem', marginLeft: '1rem' }}>
-                    <InputLabel id="demo-simple-select-required-label">Select Credit Card Type</InputLabel>
-                    <Select
-                      labelId="select-label-credit-card-type"
-                      id="credit-card-type-select"
-                      value={details.ccType}
-                      onChange={handleSelectChange}
-                      variant="filled"
-                      required
-                    >
-                      <MenuItem value='MasterCard'>MasterCard</MenuItem>
-                      <MenuItem value='Visa'>Visa</MenuItem>
-                      <MenuItem value='AmericanExpress'>AmericanExpress</MenuItem>
-                      <MenuItem value='Discover'>Discover</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField className={classes.inputStyle} id="outlined-basic" label='credit card number' variant="outlined" onChange={handleChange} name='ccNum' value={details.ccNum} required style={{ width: '80%' }} />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField className={classes.inputStyle} id="outlined-basic" label='expiration date' variant="outlined" onChange={handleChange} name='ccExp' value={details.ccExp} required style={{ width: '80%' }} />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField className={classes.inputStyle} id="outlined-basic" label='credit card code' variant="outlined" onChange={handleChange} name='ccCode' value={details.ccCode} required style={{ width: '80%' }} />
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Grid item xs={12} >
+                <Typography variant="h4" style={{ color: '#74b4ab' }}>Payment Info</Typography>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <FormControl required style={{ width: '80%', marginTop: '1rem', marginLeft: '1rem' }}>
+                      <InputLabel id="demo-simple-select-required-label">Select Credit Card Type</InputLabel>
+                      <Select
+                        labelId="select-label-credit-card-type"
+                        id="credit-card-type-select"
+                        value={details.ccType}
+                        onChange={handleSelectChange}
+                        variant="filled"
+                        required
+                      >
+                        <MenuItem value='MasterCard'>MasterCard</MenuItem>
+                        <MenuItem value='Visa'>Visa</MenuItem>
+                        <MenuItem value='AmericanExpress'>AmericanExpress</MenuItem>
+                        <MenuItem value='Discover'>Discover</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='credit card number' variant="outlined" onChange={handleChange} name='ccNum' value={details.ccNum} required style={{ width: '80%' }} />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='expiration date' variant="outlined" onChange={handleChange} name='ccExp' value={details.ccExp} required style={{ width: '80%' }} />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='credit card code' variant="outlined" onChange={handleChange} name='ccCode' value={details.ccCode} required style={{ width: '80%' }} />
+                  </Grid>
                 </Grid>
               </Grid>
+              <Grid item xs={12} >
+                <Typography variant="h4" style={{ color: '#74b4ab' }}>Billing Info</Typography>
+                <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='first name' variant="outlined" onChange={handleChange} name='firstName' value={details.firstName} required />
+                <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='last name' variant="outlined" onChange={handleChange} name='lastName' value={details.lastName} required />
+                <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='shipping address' variant="outlined" onChange={handleChange} name='streetAddress' value={details.streetAddress} required />
+                <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='city' variant="outlined" onChange={handleChange} name='city' value={details.city} required />
+                <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='state/province' variant="outlined" onChange={handleChange} name='state' value={details.state} required />
+                <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='zip/postal code' variant="outlined" onChange={handleChange} name='zip' value={details.zip} required />
+                <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='country' variant="outlined" onChange={handleChange} name='country' value={details.country} required />
+                <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='email' variant="outlined" onChange={handleChange} name='email' value={details.email} required />
+                <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='phone number' variant="outlined" onChange={handleChange} name='phone' value={details.phone} required />
+              </Grid>
+              <Grid item xs={12} >
+                <div style={{ display: 'flex' }}>
+                  <Typography variant="h4" style={{ color: '#74b4ab', marginRight: '2rem' }}>Shipping Info</Typography>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={checked}
+                        onChange={handleCheck}
+                        style={{ color: 'goldenrod' }}
+                      />
+                    }
+                    label="Same as billing"
+                  />
+                </div>
+                {!checked ?
+                  (
+                    <>
+                      <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='first name' variant="outlined" onChange={handleShippingChange} name='firstName' value={details.firstName} required />
+                      <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='last name' variant="outlined" onChange={handleShippingChange} name='lastName' value={details.lastName} required />
+                      <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='shipping address' variant="outlined" onChange={handleShippingChange} name='streetAddress' value={details.streetAddress} required />
+                      <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='city' variant="outlined" onChange={handleShippingChange} name='city' value={details.city} required />
+                      <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='state/province' variant="outlined" onChange={handleShippingChange} name='state' value={details.state} required />
+                      <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='zip/postal code' variant="outlined" onChange={handleShippingChange} name='zip' value={details.zip} required />
+                      <TextField size='small' className={classes.inputStyle} id="outlined-basic" label='country' variant="outlined" onChange={handleShippingChange} name='country' value={details.country} required />
+                    </>
+                  )
+                  : null
+                }
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={6} >
-              <Typography variant="h4" style={{ color: '#74b4ab' }}>Billing Info</Typography>
-              <TextField className={classes.inputStyle} id="outlined-basic" label='first name' variant="outlined" onChange={handleChange} name='firstName' value={details.firstName} required />
-              <TextField className={classes.inputStyle} id="outlined-basic" label='last name' variant="outlined" onChange={handleChange} name='lastName' value={details.lastName} required />
-              <TextField className={classes.inputStyle} id="outlined-basic" label='shipping address' variant="outlined" onChange={handleChange} name='streetAddress' value={details.streetAddress} required />
-              <TextField className={classes.inputStyle} id="outlined-basic" label='city' variant="outlined" onChange={handleChange} name='city' value={details.city} required />
-              <TextField className={classes.inputStyle} id="outlined-basic" label='state/province' variant="outlined" onChange={handleChange} name='state' value={details.state} required />
-              <TextField className={classes.inputStyle} id="outlined-basic" label='zip/postal code' variant="outlined" onChange={handleChange} name='zip' value={details.zip} required />
-              <TextField className={classes.inputStyle} id="outlined-basic" label='country' variant="outlined" onChange={handleChange} name='country' value={details.country} required />
-              <TextField className={classes.inputStyle} id="outlined-basic" label='email' variant="outlined" onChange={handleChange} name='email' value={details.email} required />
-              <TextField className={classes.inputStyle} id="outlined-basic" label='phone number' variant="outlined" onChange={handleChange} name='phone' value={details.phone} required />
-            </Grid>
-            <Grid item xs={12} sm={6} >
-              <div style={{ display: 'flex' }}>
-                <Typography variant="h4" style={{ color: '#74b4ab', marginRight: '2rem' }}>Shipping Info</Typography>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={checked}
-                      onChange={handleCheck}
-                      style={{ color: 'goldenrod' }}
-                    />
-                  }
-                  label="Same as billing"
-                />
-              </div>
-              {!checked ?
-                (
-                  <>
-                    <TextField className={classes.inputStyle} id="outlined-basic" label='first name' variant="outlined" onChange={handleShippingChange} name='firstName' value={details.firstName} required />
-                    <TextField className={classes.inputStyle} id="outlined-basic" label='last name' variant="outlined" onChange={handleShippingChange} name='lastName' value={details.lastName} required />
-                    <TextField className={classes.inputStyle} id="outlined-basic" label='shipping address' variant="outlined" onChange={handleShippingChange} name='streetAddress' value={details.streetAddress} required />
-                    <TextField className={classes.inputStyle} id="outlined-basic" label='city' variant="outlined" onChange={handleShippingChange} name='city' value={details.city} required />
-                    <TextField className={classes.inputStyle} id="outlined-basic" label='state/province' variant="outlined" onChange={handleShippingChange} name='state' value={details.state} required />
-                    <TextField className={classes.inputStyle} id="outlined-basic" label='zip/postal code' variant="outlined" onChange={handleShippingChange} name='zip' value={details.zip} required />
-                    <TextField className={classes.inputStyle} id="outlined-basic" label='country' variant="outlined" onChange={handleShippingChange} name='country' value={details.country} required />
-                  </>
-                )
-                : null
-              }
+            <Grid item xs={12} sm={6}>
+              <Typography variant="h4" style={{ color: '#74b4ab', marginRight: '2rem' }}>
+                Items
+              </Typography>
+              <Grid container>
+                <Grid item xs={12} sm={3}>
+                  Item Picture
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  Item Name
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  Quantity and Price
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
               <Button type="submit" style={{ backgroundColor: 'goldenrod', width: '100px' }}>Submit</Button>
