@@ -3,14 +3,21 @@ import { TextField, Button, Typography, Select, MenuItem, FormControl, InputLabe
 import API from '../utils/API';
 import { makeStyles } from "@material-ui/core";
 import Page from "../components/Page"
+import CartCard from "../components/CartCard"
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   inputStyle: {
     margin: '1rem',
   },
-  button: {
-
-  }
+  img: {
+    width: 128,
+    // height: 128,
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
 }));
 
 export default function Purchase() {
@@ -40,6 +47,7 @@ export default function Purchase() {
   });
   const [checked, setChecked] = useState(false)
   const classes = useStyles();
+  const toPurchase = useSelector(state => state.purchaseReducer.purchaseProducts)
 
   const handleCheck = (event) => {
     setChecked(event.target.checked);
@@ -68,6 +76,8 @@ export default function Purchase() {
     console.log('submit');
   }
 
+  console.log('tuPurchase', toPurchase)
+
   return (
     <Page>
       <div style={{ maxWidth: '80%', minHeight: '60vh', marginTop: '3rem' }}>
@@ -75,6 +85,39 @@ export default function Purchase() {
         <hr style={{ width: '80vw' }}></hr>
         <form style={{ display: 'flex', flexDirection: 'column', marginTop: '2rem' }}>
           <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Typography variant="h4" style={{ color: '#74b4ab', marginRight: '2rem' }}>
+                Items
+              </Typography>
+              {toPurchase.map(item =>
+                // <CartCard key={item.SKU} title={item.name} classes={classes} sku={item.SKU} price={item.price} shipping={item.rate ? `$${item.rate}` : 'n/a'} image={item.image} id={item._id} quantity={item.quantity}></CartCard>
+                <Grid container style={{ disaply: 'flex', alignItems: 'center' }} spacing={2}>
+                  <Grid item xs={12} sm={2}>
+                    <img className={classes.img} alt={item.product.name} src={item.product.image} />
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    {item.product.name}
+                  </Grid>
+                  <Grid item xs={12} sm={2}>
+                    <Typography>{item.color}</Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <div style={{display:'flex', justifyContent: 'space-between'}}>
+                      <Typography>Quantity:</Typography>
+                      <Typography>{item.quantity.quantity}</Typography>
+                    </div>
+                    <div style={{display:'flex', justifyContent: 'space-between'}}>
+                      <Typography>Price:</Typography>
+                      <Typography>{`$${item.product.price}`}</Typography>
+                    </div>
+                    <div style={{display:'flex', justifyContent: 'space-between'}}>
+                      <Typography>Total Price:</Typography>
+                      <Typography>{`$${(item.product.price * item.quantity.quantity).toFixed(2)}`}</Typography >
+                    </div>
+                  </Grid>
+                </Grid>
+              )}
+            </Grid>
             <Grid item xs={12} sm={6}>
               <Grid item xs={12} >
                 <Typography variant="h4" style={{ color: '#74b4ab' }}>Payment Info</Typography>
@@ -148,22 +191,6 @@ export default function Purchase() {
                   )
                   : null
                 }
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Typography variant="h4" style={{ color: '#74b4ab', marginRight: '2rem' }}>
-                Items
-              </Typography>
-              <Grid container>
-                <Grid item xs={12} sm={3}>
-                  Item Picture
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  Item Name
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  Quantity and Price
-                </Grid>
               </Grid>
             </Grid>
             <Grid item style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>

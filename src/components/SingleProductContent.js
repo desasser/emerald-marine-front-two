@@ -88,6 +88,10 @@ export default function SingleProductContent({ sku }) {
       quantity: quantity,
       color: color
     }
+    store.dispatch({
+      type: 'FETCH_PURCHASE_PRODUCTS',
+      payload: cart.concat(directPurchase)
+    })
     history.push('/purchase')
   }
 
@@ -139,8 +143,8 @@ export default function SingleProductContent({ sku }) {
                     onChange={handleSelectChange}
                     required
                   >
-                    <MenuItem value='green'>green</MenuItem>
-                    <MenuItem value='orange'>orange</MenuItem>
+                    <MenuItem value='Green'>Green</MenuItem>
+                    <MenuItem value='Orange'>Orange</MenuItem>
                   </Select>
                 </FormControl> : null
               }

@@ -37,10 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function InputForm({ buttonText, classes, label, text }) {
-
   const customClasses = useStyles();
-  console.log(classes)
-
   const [email, setEmail] = useState('');
   const [indicator, setIndicator] = useState({
     open: false,
