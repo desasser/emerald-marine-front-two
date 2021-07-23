@@ -4,6 +4,7 @@ import { Typography, Grid, Button, Container, TextField, Table, TableBody, Table
 import ReactPlayer from 'react-player/youtube'
 import store from '../utils/store'
 import { makeStyles } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   inputStyle: {
@@ -35,6 +36,7 @@ function createData(name, dimension) {
 
 export default function SingleProductContent({ sku }) {
   const classes = useStyles()
+  const history = useHistory();
   const products = useSelector(state => state.products.products)
   const cart = useSelector(state => state.cartReducer.cartProducts)
   const [quantity, setQuantity] = useState({
@@ -68,6 +70,7 @@ export default function SingleProductContent({ sku }) {
       type: 'FETCH_CART_PRODUCTS',
       payload: cart.concat(productToCart)
     })
+    history.push('/cart')
   }
 
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
