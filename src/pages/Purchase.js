@@ -3,7 +3,6 @@ import { TextField, Button, Typography, Select, MenuItem, FormControl, InputLabe
 import API from '../utils/API';
 import { makeStyles } from "@material-ui/core";
 import Page from "../components/Page"
-import CartCard from "../components/CartCard"
 import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
@@ -73,10 +72,13 @@ export default function Purchase() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (checked) {
+      // submit to API with just billing info
+    } else {
+      // submit to API with billing and shipping info
+    }
     console.log('submit');
   }
-
-  console.log('tuPurchase', toPurchase)
 
   return (
     <Page>
