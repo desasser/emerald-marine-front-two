@@ -14,6 +14,7 @@ import News from "./pages/News"
 import AdminLogin from './pages/AdminLogin'
 import Admin from './pages/Admin'
 import Products from "./pages/Products"
+import Purchase from "./pages/Purchase"
 import SingleProduct from "./pages/SingleProduct"
 import SingleBlog from "./pages/SingleBlog"
 import Support from "./pages/Support"
@@ -75,6 +76,7 @@ function App() {
               {products.length === 0 ? <Redirect to="/products" /> : <SingleProduct/>}
             </Route>
             <Route path="/products" component={Products} />
+            <Route path="/purchase" component={Purchase} />
             <Route path="/support" component={Support} />
             <Route path='/login' component={AdminLogin} />
             <Route path='/admin' component={Admin} />
