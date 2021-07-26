@@ -40,12 +40,11 @@ export default function SingleProductContent({ sku }) {
   const history = useHistory();
   const products = useSelector(state => state.products.products)
   const cart = useSelector(state => state.cartReducer.cartProducts)
+  const toPurchase = useSelector(state => state.purchaseReducer.purchaseProducts)
   const [quantity, setQuantity] = useState({
     quantity: '1'
   })
-  const [color, setColor] = useState({
-    color: 'green'
-  })
+  const [color, setColor] = useState('Green')
 
   const currentProduct = products?.find(p => p.SKU === sku);
 
@@ -83,16 +82,19 @@ export default function SingleProductContent({ sku }) {
 
   const handlePurchase = e => {
     e.preventDefault();
-    const directPurchase = {
-      product: currentProduct,
-      quantity: quantity,
-      color: color
+    console.log(color)
+    if (color === 'Orange' || color === 'Green') {
+      const directPurchase = {
+        product: currentProduct,
+        quantity: quantity,
+        color: color
+      }
+      store.dispatch({
+        type: 'FETCH_PURCHASE_PRODUCTS',
+        payload: toPurchase.concat(directPurchase)
+      })
+      history.push('/purchase')
     }
-    store.dispatch({
-      type: 'FETCH_PURCHASE_PRODUCTS',
-      payload: cart.concat(directPurchase)
-    })
-    history.push('/purchase')
   }
 
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -132,7 +134,7 @@ export default function SingleProductContent({ sku }) {
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', width: '50%' }}>
               <Typography style={{ alignSelf: 'center', marginLeft: '1rem' }}>Quantity</Typography>
-              <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' required />
+              <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' value={quantity.quantity} required />
               {currentProduct.SKU === 'OT100' ?
                 <FormControl required style={{ width: '80%', marginTop: '1rem', marginLeft: '1rem' }}>
                   <InputLabel id="color-selection-label">Select Color</InputLabel>
