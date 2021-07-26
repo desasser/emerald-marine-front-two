@@ -80,12 +80,15 @@ export default function Purchase() {
     console.log('submit');
   }
 
+  const totalQuant = toPurchase.map(item => parseFloat(item.quantity.quantity)).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+  const totalPrice = toPurchase.map(item => parseFloat(item.product.price)).reduce((accumulator, currentValue) => accumulator + currentValue, 0).toFixed(2)
+
   return (
     <Page>
       <div style={{ maxWidth: '80%', minHeight: '60vh', marginTop: '3rem' }}>
         <Typography variant='h2' style={{ color: '#74b4ab' }}>Purchase Form</Typography>
         <hr style={{ width: '80vw' }}></hr>
-        <form style={{ display: 'flex', flexDirection: 'column', marginTop: '2rem' }}>
+        <form style={{ display: 'flex', flexDirection: 'column', marginTop: '2rem' }} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <Typography variant="h4" style={{ color: '#74b4ab', marginRight: '2rem' }}>
@@ -104,21 +107,33 @@ export default function Purchase() {
                     <Typography>{item.color}</Typography>
                   </Grid>
                   <Grid item xs={12} sm={4}>
-                    <div style={{display:'flex', justifyContent: 'space-between'}}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <Typography>Quantity:</Typography>
                       <Typography>{item.quantity.quantity}</Typography>
                     </div>
-                    <div style={{display:'flex', justifyContent: 'space-between'}}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <Typography>Price:</Typography>
                       <Typography>{`$${item.product.price}`}</Typography>
                     </div>
-                    <div style={{display:'flex', justifyContent: 'space-between'}}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <Typography>Total Price:</Typography>
                       <Typography>{`$${(item.product.price * item.quantity.quantity).toFixed(2)}`}</Typography >
                     </div>
                   </Grid>
                 </Grid>
               )}
+              <Grid item xs={12} style={{ marginTop: '2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-end', flexDirection:'column', width:'100%'}}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', width: '50%' }}>
+                    <Typography>Total Quantity: </Typography>
+                    <Typography>{totalQuant}</Typography>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', width: '50%' }}>
+                    <Typography>Total Price: </Typography>
+                    <Typography>{`$${totalPrice}`}</Typography>
+                  </div>
+                </div>
+              </Grid>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Grid item xs={12} >
