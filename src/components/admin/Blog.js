@@ -12,7 +12,7 @@ import {fetchBlog} from '../../utils/actions/blogActions';
 const useStyles = makeStyles((theme) => ({        
     infoCards: {
         maxHeight: '75vh',
-        overflow: 'scroll'
+        overflowY: 'scroll'
     }
   }));
 
@@ -257,17 +257,17 @@ const Blog = () => {
                 </Grid>
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
-                <Grid item xs={10}>
+                <Grid item xs={10} sm={10}>
                     <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} text={editorText} saveCurrent={saveCurrentBlog} grabSaved={grabSavedBlog}/>
                 </Grid>
             </Grid> :
             <Grid container spacing={4}>
-                <Grid item xs={10} className={classes.infoCards}>
+                <Grid item xs={11} sm={10} className={classes.infoCards}>
                 {posts?.map(post =>  
                     <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
                     )}
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={12} sm={2}>
                     <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentBlog} grabSaved={grabSavedBlog}/>
                 </Grid>
             </Grid>}

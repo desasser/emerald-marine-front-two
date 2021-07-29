@@ -5,7 +5,7 @@ import DeleteConfirmation from './DeleteConfirmation';
 
 const useStyles = makeStyles({
     root: {
-      minWidth: 275,
+      minWidth: 250,
     },
     bullet: {
       display: 'inline-block',
@@ -29,19 +29,19 @@ const MailingCard = ({first, last, company, email, id, grabMe, confirm}) => {
             <Typography className={classes.title} color="textSecondary">
               Email:
             </Typography>
-            <Typography variant="h5" component="h2">
+            <Typography variant="body1">
               {email}
             </Typography>
             <Typography className={classes.title} color="textSecondary">
               Company:
             </Typography>
-            <Typography variant="h5" component="h2">
+            <Typography variant="body1">
               {company}
             </Typography>
             <Typography className={classes.title} color="textSecondary">
               Name:
             </Typography>
-            <Typography variant="h5" component="h2">
+            <Typography variant="body1">
               {`${first} ${last}`}
             </Typography>
           </CardContent>

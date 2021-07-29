@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     maxHeight: '100%',
   },
+  buttonStyle: {
+    backgroundColor: theme.palette.secondary.main,
+    width: '150px',
+    height: '50px',
+    boxShadow: '1px 2px 1px 1px rgba(0, 0, 0, 0.5)'
+  }
 }));
 
 export default function Purchase() {
@@ -211,7 +217,7 @@ export default function Purchase() {
               </Grid>
             </Grid>
             <Grid item style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
-              <Button type="submit" style={{ backgroundColor: 'goldenrod', width: '100px' }}>Submit</Button>
+              <Button type="submit" className={classes.buttonStyle}>Submit</Button>
             </Grid>
           </Grid>
         </form>

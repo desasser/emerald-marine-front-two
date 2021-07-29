@@ -48,7 +48,7 @@ export default function BlogCard({ id, title, image, alt, date, categories, tags
             </Typography>
             <div>
               <DeleteConfirmation text={`Delete ${type}`} confirm={confirm} id={id} />
-              <Button size="small" variant='outlined' data-id={id} data-title={title} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-date={date} data-intro={intro} data-content={content} data-publication={publication} data-link={link} onClick={grabMe}>Update {type}</Button>
+              <Button size="small" variant='outlined' data-id={id} data-title={title} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-date={date} data-intro={intro} data-content={content} data-publication={publication} data-link={link} onClick={grabMe} style={{ backgroundColor: '#f5ed5e', margin: '5px', boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, .3)', border: 'none' }}>Update {type}</Button>
             </div>
           </CardContent>
         </CardActionArea>

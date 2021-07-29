@@ -80,7 +80,7 @@ const BlogContent = ({text, heading, content, number}) => {
 
     return (
         <div>
-        <Button size='small' variant="outlined" onClick={handleOpen}>{text}</Button>
+        <Button style={{ backgroundColor: '#f5ed5e', margin: '5px', boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, .3)', border: 'none' }} variant="outlined" onClick={handleOpen}>{text}</Button>
         <Dialog
         open={open}
         onClose={handleClose}

@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     background: "linear-gradient(7.5deg, #74b4ab 50%, #78787a 50.5%)",
     minHeight: 400,
-    marginTop: 50,
   },
   logo: {
     height: "5em",

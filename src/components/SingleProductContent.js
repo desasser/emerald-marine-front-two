@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   buttonStyle: {
     height: '56px',
     width: '100%',
-    backgroundColor: 'goldenrod',
+    backgroundColor: theme.palette.secondary.main,
     fontSize: '16px',
     margin: '0.5rem'
   },
@@ -133,7 +133,6 @@ export default function SingleProductContent({ sku }) {
         <form style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }} onSubmit={handleSubmit}>
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', width: '50%' }}>
-              <Typography style={{ alignSelf: 'center', marginLeft: '1rem' }}>Quantity</Typography>
               <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' value={quantity.quantity} required />
               {currentProduct.SKU === 'OT100' ?
                 <FormControl required style={{ width: '80%', marginTop: '1rem', marginLeft: '1rem' }}>
