@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import BlogCard from '../components/BlogCard';
-import { Container, Grid, Typography, Checkbox, Radio, RadioGroup, FormControlLabel, FormControl } from '@material-ui/core';
+import MobileBlogCard from '../components/MobileBlogCard';
+import { Container, Grid, Typography, Checkbox, Radio, RadioGroup, FormControlLabel, FormControl, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -80,9 +81,18 @@ export default function NewsContent() {
       <Grid container className={classes.cardWrapper} spacing={4}>
         {postState.filtered?.map(post => (
           <Grid item xs={12} key={post._id}>
-            <BlogCard title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt} intro={post.intro} publication={post.publication} link={post.link}>
-              {post.description}
-            </BlogCard>
+            <Hidden smUp>
+              {/* Big screens */}
+              <BlogCard title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt} intro={post.intro} publication={post.publication} link={post.link}>
+                {post.description}
+              </BlogCard>
+            </Hidden>
+            {/* Mobile screens */}
+            <Hidden xsDown>
+              <MobileBlogCard title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt} intro={post.intro} publication={post.publication} link={post.link}>
+                {post.description}
+              </MobileBlogCard>
+            </Hidden>
           </Grid>
         ))}
       </Grid>

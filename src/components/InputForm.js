@@ -14,10 +14,8 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: '10px',
     height: '40px',
-    // width: '50%', 
-    backgroundColor: 'goldenrod',
+    backgroundColor: theme.palette.secondary.main,
     fontSize: '16px',
-    boxShadow: '0 1px 4px 0 #BDC9D7',
     '&:hover': {
       borderColor: '#74b4ab',
     },

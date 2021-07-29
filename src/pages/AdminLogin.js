@@ -67,7 +67,7 @@ const AdminLogin = () => {
             <TextField id="outlined-basic" label="Username" variant="outlined" name="username" onChange={handleInputChange} style={{margin: '1rem'}}/>
             <TextField id="outlined-basic" label="Password" type='password' variant="outlined" name="password" onChange={handleInputChange} style={{margin: '1rem'}}/>
             <br />
-            <Button type='submit' variant="contained"  style={{ backgroundColor: 'goldenrod', margin: '2rem', width: '25%', height: '3rem'}} >Submit</Button>
+            <Button type='submit' variant="contained"  style={{ backgroundColor: '#f5ed5e', margin: '2rem', width: '25%', height: '3rem'}} >Submit</Button>
         </form>
     )
 }

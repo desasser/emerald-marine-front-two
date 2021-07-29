@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
   mediaHeight: {
     height: 250
   },
+  buttonStyle: {
+    backgroundColor: theme.palette.secondary.main,
+    fontSize: '1.1rem'
+  }
 }));
 
 export default function CartContent() {
@@ -129,7 +133,7 @@ export default function CartContent() {
   );
 
   return (
-    <Grid container style={{ width: '80%' }} spacing={3}>
+    <Grid container style={{ width: '80%', marginBottom: '1rem' }} spacing={3}>
       <Grid item xs={12} sm={6}>
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
       </Grid>
@@ -184,7 +188,7 @@ export default function CartContent() {
         </Typography>
       </Grid>
       <Grid item style={{ display: 'flex', width: '100%', justifyContent: 'flex-end', marginTop: '2rem' }}>
-        <Button variant="contained" style={{ backgroundColor: 'goldenrod', fontSize: '1.1rem' }} >Submit Request for Quote</Button>
+        <Button variant="contained" className={classes.buttonStyle} >Submit Request for Quote</Button>
       </Grid>
     </Grid>
   )
