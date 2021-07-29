@@ -16,10 +16,11 @@ import dredgingBarge from '../images/dredging_barge.jpg'
 import researchVessel from '../images/research_vessel.jpg'
 import towAndTug from '../images/tow_and_tug.jpg'
 import commercialFishing from '../images/commercial_fishing.jpg'
+import EMPJstackTimeline from '../images/EMP_JStack_timeline_72821.png'
 import waterVoyager from '../images/water_voyager.jpg'
 import VerticalTabs from '../components/VerticalTabs';
 import SimpleTabs from '../components/SimpleTabs';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 export default function Home() {
   useEffect(() => {
@@ -157,12 +158,12 @@ export default function Home() {
   return (
     <Page>
       <Helmet>
-          <title>Emerald Marine Products</title>
-          <meta
-            name="description"
-            content="Keeping employees as safe as possible working on water, marine safety, and man-overboard protection need to be built-in to the culture of the organization."
-          />
-        </Helmet>
+        <title>Emerald Marine Products</title>
+        <meta
+          name="description"
+          content="Keeping employees as safe as possible working on water, marine safety, and man-overboard protection need to be built-in to the culture of the organization."
+        />
+      </Helmet>
       <Carousel
         indicators={false}
         interval='6000'
@@ -189,9 +190,13 @@ export default function Home() {
             <SimpleTabs content={protectedClients}></SimpleTabs>
           </Hidden>
         </div>
+        <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
+          How does ALERT work?
+        </Typography>
+        <img src={EMPJstackTimeline} style={{ maxWidth: '100%' }} />
         <ProductBlock />
       </div>
-      <Grid container style={{marginTop: '3rem'}} >
+      <Grid container style={{ marginTop: '3rem' }} >
         <Grid item xs={12} sm={1} />
         <Grid item xs={12} sm={5} >
           <BlogBanner />
