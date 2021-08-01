@@ -66,7 +66,7 @@ export default function BlogCard({ id, title, image, alt, date, categories, tags
                   {title}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {intro}
+                  {intro?.substring(0,200)}
                 </Typography>
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', marginTop: '1em' }}>
                   <Typography gutterBottom variant="body1" component="h2" style={{ textAlign: 'right', fontStyle: 'italic' }}>

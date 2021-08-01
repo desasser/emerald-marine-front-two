@@ -5,6 +5,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SingleProductContent from "../components/SingleProductContent"
 import Page from "../components/Page"
 import { useSelector } from 'react-redux';
+import {Helmet} from 'react-helmet'
 
 export default function SingleProduct() {
   const { sku } = useParams();
@@ -13,7 +14,13 @@ export default function SingleProduct() {
 
   return (
     <Page>
-      <div style={{ marginTop: '30px', width: '100%' }}>
+      <Helmet>
+        <title>{currentProduct.name}</title>
+        <meta
+        name="description"
+        content={`${currentProduct.description.split('.')[0]}`}/>
+      </Helmet>
+      <div style={{ marginTop: '30px', width: '80%' }}>
         <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
           <Link color="inherit" to="/" style={{ textDecoration: 'none', color: 'grey' }}>
             Home

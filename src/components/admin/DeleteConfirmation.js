@@ -20,7 +20,7 @@ const DeleteConfirmation = ({text, confirm, id}) => {
 
   return (
     <div>
-    <Button size='small' variant="outlined" onClick={handleOpen}>
+    <Button variant="outlined" onClick={handleOpen} style={{backgroundColor: '#f5ed5e', margin: '5px', boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, .3)', border: 'none'}}>
         {text}
     </Button>
       <Dialog

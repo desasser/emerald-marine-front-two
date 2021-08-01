@@ -3,7 +3,7 @@ import { Card, CardActionArea, CardContent, CardMedia, Typography, Button } from
 import { Link } from 'react-router-dom'
 import DeleteConfirmation from '../components/admin/DeleteConfirmation';
 
-export default function ProductCard({ children, view, grabMe, classes, price, sku, name, image, alt, description, tags, categories, video, weight, length, width, height, id, confirm }) {
+export default function ProductCard({ children, view, grabMe, classes, price, sku, name, image, alt, description, tags, categories, video, weight, length, width, height, id, confirm, details }) {
 
   return (
     <Card className={classes.mediaRoot}>
@@ -23,7 +23,7 @@ export default function ProductCard({ children, view, grabMe, classes, price, sk
          </Typography>
            <div style={{ 'margin-top': '5vh' }}>
              <DeleteConfirmation text='Delete Product' confirm={confirm} id={id}/>
-             <Button size="small" variant='outlined' data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={grabMe}>Update Product Info</Button>
+             <Button size="small" variant='outlined' data-id={id} data-name={name} data-price={price} data-image={image} data-alt={alt} data-description={description} data-tags={tags} data-categories={categories} data-video={video} data-weight={weight} data-details={details} data-length={length} data-width={width} data-height={height} data-sku={sku} onClick={grabMe} style={{backgroundColor: '#f5ed5e', margin: '5px', border: 'none', boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, .3)'}}>Update Product Info</Button>
            </div> 
        </CardContent>
        <CardContent>

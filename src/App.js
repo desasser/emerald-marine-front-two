@@ -14,12 +14,14 @@ import News from "./pages/News"
 import AdminLogin from './pages/AdminLogin'
 import Admin from './pages/Admin'
 import Products from "./pages/Products"
+import Purchase from "./pages/Purchase"
 import SingleProduct from "./pages/SingleProduct"
 import SingleBlog from "./pages/SingleBlog"
 import Support from "./pages/Support"
 import theme from './theme-provider'
 import { useSelector } from 'react-redux';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
+import {Helmet} from 'react-helmet';
 
 const useStyles = makeStyles({
   main: {
@@ -27,9 +29,10 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     margin: '0 auto',
-    maxWidth: '80%',
+    // maxWidth: '80%',
     marginTop: '64px',
     // minHeight: '50vh'
+    overflow: 'hidden'
   },
 })
 
@@ -50,6 +53,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
+        <Helmet>
+          <title>Emerald Marine Products</title>
+          <meta
+            name="description"
+            content="Keeping employees as safe as possible working on water, marine safety, and man-overboard protection need to be built-in to the culture of the organization."
+          />
+        </Helmet>
       { isMobile ? <ResponsiveDrawer /> : <Header />}
         <main className={classes.main}>
           <Switch>
@@ -66,6 +76,7 @@ function App() {
               {products.length === 0 ? <Redirect to="/products" /> : <SingleProduct/>}
             </Route>
             <Route path="/products" component={Products} />
+            <Route path="/purchase" component={Purchase} />
             <Route path="/support" component={Support} />
             <Route path='/login' component={AdminLogin} />
             <Route path='/admin' component={Admin} />

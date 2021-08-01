@@ -12,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
   control: {
     padding: theme.spacing(2),
   },
-  root: {
-    width: '80%',
-
-  }
 }));
 
 export default function BlogBanner() {
@@ -33,8 +29,8 @@ export default function BlogBanner() {
   const post = allSorted[0];
 
   return (
-    <div style={{ height: '250px', width: '50vw', padding: '20px', }}>
-      <Grid item xs={12} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+    <div style={{ height: '250px', padding: '20px', }}>
+      <Grid item xs={12}>
         {post ?
           (<Card className={classes.root} elevation={0}>
             <Link to={`/news/${post._id}`} style={{ textDecoration: 'none', color: 'black' }}>

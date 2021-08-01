@@ -10,19 +10,18 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import ExternalLink from "./ExternalLink";
 import InputForm from "./InputForm";
-import logo from "../images/EMP-Logo_white_480.png";
 import Grid from "@material-ui/core/Grid";
 import EmeraldMarineLogo from './EmeraldMarineLogo';
-import Box from '@material-ui/core/Box';
+import MadeInUsa from './MadeInUsa';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
     background: "linear-gradient(7.5deg, #74b4ab 50%, #78787a 50.5%)",
     minHeight: 400,
-    marginTop: 50,
   },
   logo: {
     height: "5em",
+    margin: '1rem',
     [theme.breakpoints.down("md")]: {
         height: "4em"
     },
@@ -49,31 +48,25 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   rights: {
+    margin: "0 auto",
     maxWidth: '50vw',
     [theme.breakpoints.down("sm")]: {
       maxWidth: '100vw',
-    },
-    margin: "0 auto",
-    // justifyContent: "center",
-    // alignItems: "center", 
-    // direction: "column",
-    // wrap: 'wrap'
+    }
   },
   siteNav: {
     margin: "0 auto",
     justifyContent: "center",
     alignItems: "center", 
     direction: "column",
-    wrap: 'wrap'
+    wrap: 'wrap',
   },
   rowContent: {
     direction: 'row',
-    margin: "0 auto",
     justify: 'space-between',
     alignItems: 'center',
-    maxWidth: "100%",
-    justifyContent: "center",
-    wrap: 'wrap'
+    width: '80%',
+    margin: '0 auto'
   },
   linkStyles: {
     color: "white",
@@ -81,14 +74,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16px",
   },
   iconStyle: {
-    fontSize: "50px",
+    fontSize: "4rem",
     color: "#78787a",
   },
   inputStyle: {
     marginTop: 10,
     backgroundColor: "white",
     borderRadius: "0.5em",
-    width: "75%",
+    width: "100%",
     "& label.Mui-focused": {
       color: "black",
       backgroundColor: "white",
@@ -98,7 +91,34 @@ const useStyles = makeStyles((theme) => ({
         borderColor: "#74b4ab",
       },
     },
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+      marginLeft: 15,
+    },
   },
+  siteNavBtns: {
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    marginTop: "1em",
+    marginBottom: "1em",
+    backgroundColor: "rgba(46, 46, 46, 0.1)",
+    padding: "0.5em",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "1.5em",
+      marginBottom: "0em",
+    },
+  },
+  socialButtonsContainer: {
+    [theme.breakpoints.down("sm")]: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center', 
+      justifyContent: 'center'
+    },
+  },
+  logoUSA: {
+    height: '9rem'
+  }
 }));
 
 const Footer = () => {
@@ -112,16 +132,8 @@ const Footer = () => {
                 <EmeraldMarineLogo className={classes.logo} />
               </Link>
             </Grid>
-            <Grid item>
-              <Typography component="div">
-                <Box textAlign="center">
-                  {" "}
-                  Manufactured in The United States of America.
-                </Box>
-              </Typography>
-            </Grid>
           </Grid>
-            <Grid item s={12} md={4} className={classes.inputFormStyle}>
+            <Grid item style={{width: '50%', margin: '0 auto'}}>
               <InputForm
                 classes={classes}
                 text={"Sign up to receive our newsletter."}
@@ -131,39 +143,40 @@ const Footer = () => {
             </Grid>
 
           <Grid container className={classes.siteNav} >
-            <Grid item xs={1}>
+            <Grid item xs={3} md={1}>
               <Link to="/" underline="none" className={classes.linkStyles}>
-                <Typography variant="body1">Home</Typography>
+                <Typography variant="body1" className={classes.siteNavBtns}>Home</Typography>
               </Link>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={3} md={1}>
               <Link to="/products" underline="none" className={classes.linkStyles}>
-                <Typography variant="body1">Products</Typography>
+                <Typography variant="body1" className={classes.siteNavBtns}>Products</Typography>
               </Link>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={3} md={1}>
               <Link to="/news" underline="none" className={classes.linkStyles}>
-                <Typography variant="body1">News</Typography>
+                <Typography variant="body1" className={classes.siteNavBtns}>News</Typography>
               </Link>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={3} md={1}>
               <Link to="/support" underline="none" className={classes.linkStyles}>
-                <Typography variant="body1">Support</Typography>
+                <Typography variant="body1" className={classes.siteNavBtns}>Support</Typography>
               </Link>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={3} md={1}>
               <Link to="/contact" underline="none" className={classes.linkStyles}>
-                <Typography variant="body1">Contact</Typography>
+                <Typography variant="body1" className={classes.siteNavBtns}>Contact</Typography>
               </Link>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={3} md={1}>
               <Link to="/cart" underline="none" className={classes.linkStyles}>
-                <Typography variant="body1">Cart</Typography>
+                <Typography variant="body1" className={classes.siteNavBtns}>Cart</Typography>
               </Link>
             </Grid>
           </Grid>
           <Grid container className={classes.rowContent}>
-              <Grid item md={3} xs={12}>
+              <Grid item md={4} xs={12} style={{marginTop: '0.5em'}}>
+                <Container className={classes.socialButtonsContainer}>
                 <ExternalLink href="https://www.facebook.com/Emerald-Marine-Products-124794697574367/">
                   <FacebookIcon className={classes.iconStyle} />
                 </ExternalLink>
@@ -176,18 +189,23 @@ const Footer = () => {
                 <ExternalLink href="https://www.youtube.com/channel/UCe3J3Kq-V16eD2MXD3SKI-w/feed">
                   <YouTubeIcon className={classes.iconStyle} />
                 </ExternalLink>
+                </Container>
               </Grid>
-              <Grid item md={3} xs={12}>
-                <Typography style={{textAlign: 'center'}}>
-                  &#169; 2021 Full House Ventures, Inc. All Rights Reserved.
-                </Typography>
-                <Typography style={{textAlign: 'center'}} >
-                  Site design by Outer Limits Design and Designly LLC
-                </Typography>
+              
+              <Grid item md={4} xs={12}>
+                <Grid item style={{display: 'flex',flexDirection: 'row',alignItems: 'center', justifyContent: 'center', margin: '2rem',}}>
+                  <MadeInUsa className={classes.logoUSA} />
+                </Grid>
               </Grid>
-            <Grid item md={3} xs={12}>
+            <Grid item md={4} xs={12} style={{marginTop: '0.5em'}}>
               <ContactInfo />
             </Grid>
+                <Typography style={{textAlign: 'center', color: 'white', width: '100%'}}>
+                  &#169; 2021 Full House Ventures, Inc. All Rights Reserved.
+                </Typography>
+                <Typography style={{textAlign: 'center', color: 'white', width: '100%'}} >
+                  Site design by Outer Limits Design and Designly LLC
+                </Typography>
           </Grid>
     </div>
   );

@@ -17,16 +17,22 @@ const theme = createMuiTheme({
       primary: {
         main: '#DAA520'
       },
+      secondary: {
+        main: '#f5ed5e'
+      }
     },
     typography: {
       h1: {
-        fontFamily: 'Noto Serif'
+        fontFamily: 'Noto Serif',
+        fontSize: '3rem',
       },
       h2: {
-        fontFamily: 'Noto Serif'
+        fontFamily: 'Noto Serif',
+        fontSize: '2.5rem',
       },
       h3: {
-        fontFamily: 'Noto Serif'
+        fontFamily: 'Noto Serif',
+        fontSize: '2rem',
       },
       h4: {
         fontFamily: 'Abel'

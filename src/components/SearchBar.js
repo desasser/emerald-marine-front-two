@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const onSubmit = e => {
+  e.preventDefault();
+}
+
 export default function SearchBar({keyword, onChange}) {
   const classes = useStyles();
 
@@ -42,6 +46,7 @@ export default function SearchBar({keyword, onChange}) {
       className={classes.root} 
       noValidate 
       autoComplete="off" 
+      onSubmit={onSubmit}
     >
       <TextField 
         id="variant-basic" 

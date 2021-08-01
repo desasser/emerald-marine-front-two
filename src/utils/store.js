@@ -8,6 +8,10 @@ import newsArticleReducer from './reducers/newsArticleReducer';
 import pressReleaseReducer from './reducers/pressReleaseReducer';
 import widgetReducer from './reducers/widgetReducer';
 import cartReducer from './reducers/cartReducer';
+import purchaseReducer from './reducers/purchaseReducer';
+import blogContentReducer from './reducers/blogContentReducer';
+import contentReducer from './reducers/contentReducer';
+import productSpecsReducer from './reducers/productSpecsReducer'
 
 const rootReducer = combineReducers({
     mailingList: mailingListReducer,
@@ -18,6 +22,10 @@ const rootReducer = combineReducers({
     pressReleases: pressReleaseReducer,
     widgetReducer: widgetReducer,
     cartReducer: cartReducer,
+    purchaseReducer: purchaseReducer,
+    blogContent: blogContentReducer,
+    content: contentReducer,
+    productSpecs: productSpecsReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

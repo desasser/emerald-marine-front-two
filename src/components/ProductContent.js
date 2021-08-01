@@ -72,15 +72,20 @@ export default function ProductContent() {
   };
 
   return (
-    <Container style={{ marginTop: '1.5em' }}>
-        <Typography variant='h2' style={{ marginTop: '4rem', color: '#74b4ab', display: 'inline-block', width: '50%' }}>All Products</Typography>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
-        <FormControl component="fieldset" style={{alignItems: 'flex-end'}}>
-          <RadioGroup aria-label="products" name="products" value={value} onChange={handleChange} style={{flexDirection: 'row'}}>
-            <FormControlLabel value="All" control={<Radio style={{color:'goldenrod'}}/>} label="All Products" />
-            <FormControlLabel value="Overboard Alerting Products" control={<Radio style={{color:'goldenrod'}} />} label="Overboard Alerting Products" />
-            <FormControlLabel value="Water Rescue Training" control={<Radio style={{color:'goldenrod'}} />} label="Water Rescue Training" />
-            <FormControlLabel value="Accessories" control={<Radio style={{color:'goldenrod'}} />} label="Accessories" />
+    <Container>
+      <Typography variant='h2' style={{ marginTop: '3rem', marginBottom: '2rem', color: '#74b4ab', display: 'inline-block', width: '50%' }}>
+        All Products
+      </Typography>
+      <Typography style={{width: '80%', marginBottom: '2rem' }}>
+        Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.
+      </Typography>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+        <FormControl component="fieldset" style={{ alignItems: 'flex-end' }}>
+          <RadioGroup aria-label="products" name="products" value={value} onChange={handleChange} style={{ flexDirection: 'row' }}>
+            <FormControlLabel value="All" control={<Radio style={{ color: 'goldenrod' }} />} label="All Products" />
+            <FormControlLabel value="Overboard Alerting Products" control={<Radio style={{ color: 'goldenrod' }} />} label="Overboard Alerting Products" />
+            <FormControlLabel value="Water Rescue Training" control={<Radio style={{ color: 'goldenrod' }} />} label="Water Rescue Training" />
+            <FormControlLabel value="Accessories" control={<Radio style={{ color: 'goldenrod' }} />} label="Accessories" />
           </RadioGroup>
         </FormControl>
       </div>

@@ -15,7 +15,7 @@ export default function BlogBanner({ testimonials }) {
   }
 
   return (
-    <div style={{ height: '150px', width: '50vw', padding: '20px' }}>
+    <div style={{ height: '350px', padding: '20px' }}>
       <Typography variant='h5' style={{ marginBottom: '1rem', fontStyle: 'italic', color: '#74b4ab'}}>
         Testimonials
       </Typography>

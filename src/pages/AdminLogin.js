@@ -62,12 +62,12 @@ const AdminLogin = () => {
     }
     
     return (
-        <form  noValidate autoComplete="off" style={{marginTop: '10vh'}}>
+        <form  noValidate autoComplete="off" style={{marginTop: '10vh', minHeight: '50vh'}} onSubmit={handleSubmit}>
             <h1>Please login as an administrator to proceed.</h1>
-            <TextField id="outlined-basic" label="Username" variant="outlined" name="username" onChange={handleInputChange} />
-            <TextField id="outlined-basic" label="Password" type='password' variant="outlined" name="password" onChange={handleInputChange} />
+            <TextField id="outlined-basic" label="Username" variant="outlined" name="username" onChange={handleInputChange} style={{margin: '1rem'}}/>
+            <TextField id="outlined-basic" label="Password" type='password' variant="outlined" name="password" onChange={handleInputChange} style={{margin: '1rem'}}/>
             <br />
-            <Button type='submit' variant="contained" onClick={handleSubmit} >Submit</Button>
+            <Button type='submit' variant="contained"  style={{ backgroundColor: '#f5ed5e', margin: '2rem', width: '25%', height: '3rem'}} >Submit</Button>
         </form>
     )
 }

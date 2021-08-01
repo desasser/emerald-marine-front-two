@@ -5,6 +5,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SingleBlogContent from "../components/SingleBlogContent"
 import Page from "../components/Page"
 import store from '../utils/store';
+import {Helmet} from 'react-helmet'
 
 export default function SingleBlog() {
   const { id } = useParams();
@@ -18,7 +19,13 @@ export default function SingleBlog() {
 
   return (
     <Page>
-      <div style={{ marginTop: '30px', width: '100%' }}>
+      <Helmet>
+        <title>{currentPost.title}</title>
+        <meta
+        name='description'
+        content={`${currentPost.intro.split('.')[0]}`}/>
+      </Helmet>
+      <div style={{ marginTop: '30px', width: '80%' }}>
         <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
           <Link color="inherit" to="/" style={{ textDecoration: 'none', color: 'grey' }}>
             Home
@@ -29,7 +36,9 @@ export default function SingleBlog() {
           <Typography color="textPrimary">{currentPost.title}</Typography>
         </Breadcrumbs>
       </div>
-      <SingleBlogContent id={id}></SingleBlogContent>
+      <div style={{ maxWidth: '80%' }}>
+        <SingleBlogContent id={id}></SingleBlogContent>
+      </div>
     </Page>
   )
 }
