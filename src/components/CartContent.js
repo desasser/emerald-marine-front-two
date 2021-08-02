@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import CartCard from './CartCard';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Button, Grid } from '@material-ui/core';
+import { Typography, Button, Grid, Link } from '@material-ui/core';
 import AddressModal from './AddressModal';
 import API from '../utils/API';
 import CloseIcon from '@material-ui/icons/Close';
 import store from '../utils/store';
 import SmallCartCard from './SmallCartCard';
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   mediaRoot: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CartContent() {
   const classes = useStyles();
   const cart = useSelector(state => state.cartReducer.cartProducts)
+  const history = useHistory();
   const [address, setAddress] = useState({
     name: '',
     street1: '',
@@ -132,12 +134,19 @@ export default function CartContent() {
     navigator.userAgent
   );
 
+  const handleClick = e => {
+    e.preventDefault();
+    history.push('/thank')
+  }
+
   return (
     <Grid container style={{ width: '80%', marginBottom: '1rem' }} spacing={3}>
       <Grid item xs={12} sm={6}>
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
       </Grid>
-
+      <Grid item xs={12} sm={6} style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+        <Link href='/products' style={{cursor: 'pointer', fontSize:'1.5rem'}}>Continue Shopping</Link>
+      </Grid>
       <Grid item xs={12}>
         <hr></hr>
       </Grid>
@@ -188,7 +197,7 @@ export default function CartContent() {
         </Typography>
       </Grid>
       <Grid item style={{ display: 'flex', width: '100%', justifyContent: 'flex-end', marginTop: '2rem' }}>
-        <Button variant="contained" className={classes.buttonStyle} >Submit Request for Quote</Button>
+        <Button variant="contained" className={classes.buttonStyle} onClick={handleClick} >Submit Request for Quote</Button>
       </Grid>
     </Grid>
   )

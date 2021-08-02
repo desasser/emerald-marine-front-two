@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 400,
   },
   logo: {
-    height: "5em",
+    height: "6em",
     margin: '1rem',
     [theme.breakpoints.down("md")]: {
-        height: "4em"
+        height: "5em"
     },
   },
   logoAndNewsLetterContainer: {

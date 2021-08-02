@@ -18,6 +18,7 @@ import Purchase from "./pages/Purchase"
 import SingleProduct from "./pages/SingleProduct"
 import SingleBlog from "./pages/SingleBlog"
 import Support from "./pages/Support"
+import Thank from "./pages/Thank"
 import theme from './theme-provider'
 import { useSelector } from 'react-redux';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
@@ -78,6 +79,7 @@ function App() {
             <Route path="/products" component={Products} />
             <Route path="/purchase" component={Purchase} />
             <Route path="/support" component={Support} />
+            <Route path="/thank" component={Thank} />
             <Route path='/login' component={AdminLogin} />
             <Route path='/admin' component={Admin} />
             <Route component={NotFound}/>
