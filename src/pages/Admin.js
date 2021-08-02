@@ -13,6 +13,7 @@ import Blog from '../components/admin/Blog';
 import Mailing from '../components/admin/Mailing';
 import News from '../components/admin/News';
 import Press from '../components/admin/Press';
+import CreateNewUser from '../components/admin/CreateNewUser';
 
 const useStyles = makeStyles(() => ({
   logout: {
@@ -55,7 +56,6 @@ const Admin = () => {
   const handleClick = e => {
     const currentView = e.currentTarget.getAttribute('name');
     setView(currentView);
-
   }
 
   return (
@@ -67,9 +67,10 @@ const Admin = () => {
               {buttonText.map(text => (
                 <AdminButton text={text} name={text.split(' ')[0]} handleClick={handleClick} color={view === text.split(' ')[0] ? '#74b4ab' : 'lightgrey'} />
               ))}
+              <CreateNewUser />
+              <AdminButton text='Logout' handleClick={handleLogout} />
             </Grid>
             <Grid item xs={12} sm={2} style={{margin: '20px'}}>
-              <AdminButton text='Logout' handleClick={handleLogout} />
             </Grid>
             <Grid item xs={12} style={{ marginLeft: '20px', marginBottom: '5rem' }}>
               { view === 'Product' ? <Product /> 

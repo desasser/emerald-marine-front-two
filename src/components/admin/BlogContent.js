@@ -75,9 +75,6 @@ const BlogContent = ({text, heading, content, number}) => {
       handleClose()
     }
 
-
-    
-
     return (
         <div>
         <Button style={{ backgroundColor: '#f5ed5e', margin: '5px', boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, .3)', border: 'none' }} variant="outlined" onClick={handleOpen}>{text}</Button>
