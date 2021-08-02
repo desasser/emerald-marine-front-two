@@ -33,21 +33,25 @@ export default function Home() {
     {
       name: "Rescue Practice",
       description: "Two coast guard members practice marine rescue techniques",
+      text: 'An immediate alert ensures a quick response to launch a locally-managed rescue.',
       source: Rescue
     },
     {
       name: "Marine Terminal",
       description: "A marine terminal where goods are loaded onto barges",
+      text: 'Companies can alert help when employees are working in remote Marine Terminals',
       source: marineTerminal
     },
     {
       name: "Coast Guard Rescue",
       description: "Coast guard rescuing an individual from open waters",
+      text: 'The ALERT System can be wired to the boat engine to shut down the engine in the event that someone falls overboard, giving the man-overboard the chance to get back to the vessel',
       source: cgRescue
     },
     {
       name: "Construction Barge",
       description: "A barge with a crane on it used for construction in marine environments",
+      text: 'When a person falls overboard, every seconds counts. The ALERT System immediately notifies the crew of a man-overboard for quick rescue.',
       source: constructionBarge
     },
   ]
@@ -55,9 +59,16 @@ export default function Home() {
   function Item(props) {
     return (
       <div
-        style={{ backgroundImage: `url(${props.item.source})`, height: '450px', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom' }}
+        style={{ backgroundImage: `url(${props.item.source})`, height: '450px', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         alt={props.item.description}>
-
+        <div style={{width:'100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))'}}>
+          <Typography variant='h5' style={{ color: 'white', padding: '50px', width: '80%', fontSize: '1.5rem' }}>
+            {props.item.text}
+          </Typography>
+        </div>
+        {/* <Typography variant='h5' style={{ color: 'white', padding: '50px', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', boxShadow: '0 0 25px 25px rgba(0, 0, 0, 0.5)', borderRadius: '2rem', fontSize: '1.75rem', textAlign: 'center' }}>
+          {props.item.text}
+        </Typography> */}
       </div>
     )
   }

@@ -195,6 +195,35 @@ export default function SingleProductContent({ sku }) {
           </Table>
         </TableContainer>
       </Grid>
+      <form style={{ marginTop: '1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', width: '100%' }} onSubmit={handleSubmit}>
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', width: '50%' }}>
+              <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' value={quantity.quantity} required />
+              {currentProduct.SKU === 'OT100' ?
+                <FormControl required style={{ width: '80%', marginTop: '1rem', marginLeft: '1rem' }}>
+                  <InputLabel id="color-selection-label">Select Color</InputLabel>
+                  <Select
+                    labelId="select-label-color"
+                    id="color-select"
+                    value={color}
+                    onChange={handleSelectChange}
+                    required
+                  >
+                    <MenuItem value='Green'>Green</MenuItem>
+                    <MenuItem value='Orange'>Orange</MenuItem>
+                  </Select>
+                </FormControl> : null
+              }
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <Button variant="contained" className={classes.buttonStyle} type='submit'>Add to Quote</Button>
+              {currentProduct.SKU === 'OT100' ?
+                <Button variant="contained" className={classes.buttonStyle} onClick={handlePurchase}>Purchase Now</Button>
+                : null
+              }
+            </div>
+          </div>
+        </form>
     </Grid>
   )
 }
