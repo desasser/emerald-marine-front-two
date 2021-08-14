@@ -7,14 +7,13 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   flexBox: {
     flexGrow: 1,
-    // backgroundColor: 'salmon',
-    // height: 200,
+    marginBottom: '2rem'
   },
   control: {
     padding: theme.spacing(2),
   },
   mediaRoot: {
-    maxWidth: 350,
+    maxWidth: 275,
     height: 500
   },
   mediaHeight: {
@@ -76,8 +75,11 @@ export default function ProductContent() {
       <Typography variant='h2' style={{ marginTop: '3rem', marginBottom: '2rem', color: '#74b4ab', display: 'inline-block', width: '50%' }}>
         All Products
       </Typography>
-      <Typography style={{width: '80%', marginBottom: '2rem' }}>
-        Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.
+      <Typography style={{ width: '90%', marginBottom: '1rem' }}>
+        Click on any of the products listed below to “Add to Your Cart.” Once you add up the items you'd like to purchase you can get a shipping estimate. Click on the “Submit Request For a Quote” button and our staff will look over your configuration and provide you with a quote specific to your needs.
+      </Typography>
+      <Typography style={{ width: '90%', marginBottom: '1rem' }}>
+        Emerald Marine Products ships internationally. We also have a list of Signed Dealers that sell our life-saving products. Use our "Contact" page to get in touch to discuss the buying and shipping arrangements that work best for you.
       </Typography>
       <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
         <FormControl component="fieldset" style={{ alignItems: 'flex-end' }}>

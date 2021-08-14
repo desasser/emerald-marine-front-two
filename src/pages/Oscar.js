@@ -113,7 +113,7 @@ export default function Home() {
       </Carousel>
       <div style={{ maxWidth: '80%', marginTop: '3rem' }}>
         <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%' }}>
-          Why Oscar Water Rescue?
+          Why OSCAR?
         </Typography>
         {/* Marketing Info */}
         <div style={{ margin: '20px auto' }}>
@@ -126,7 +126,7 @@ export default function Home() {
           </Hidden>
         </div>
         <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%',}}>
-          Oscar in Action
+          OSCAR in Action
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
@@ -142,16 +142,6 @@ export default function Home() {
         </Grid>
         <OscarProductBlock/>
       </div>
-      {/* <Grid container >
-        <Grid item xs={12} sm={1} />
-        <Grid item xs={12} sm={5} >
-          <BlogBanner />
-        </Grid>
-        <Grid item xs={12} sm={5} >
-          <TestimonialBanner testimonials={testimonials} />
-        </Grid>
-        <Grid item xs={12} sm={1} />
-      </Grid> */}
     </Page>
   )
 }

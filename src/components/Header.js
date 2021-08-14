@@ -14,9 +14,9 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
   },
   header: {
-    backgroundColor: '#78787a',
+    backgroundColor: 'white',
     position: 'fixed',
-    height: 80,
+    height: 120,
     display: 'flex',
     justifyContent: 'center',
   },
@@ -37,13 +37,16 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   linkStyles: {
-    color: 'white',
+    color: 'black',
     textDecoration: 'none',
     padding: 12,
     cursor: 'pointer',
   },
+  linkTextStyle: {
+    fontWeight: 'bold',
+  },
   imgContainer: {
-    maxHeight: 50,
+    maxHeight: 70,
   }
 }))
 
@@ -59,37 +62,37 @@ const Header = () => {
             <EmeraldMarineLogo className={classes.imgContainer} />
           </Link>
           <Link to="/" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='h6' className={classes.linkTextStyle}>
               Home
             </Typography>
           </Link>
           <Link to="/oscarwaterrescue" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
-              Oscar
+            <Typography variant='h6' className={classes.linkTextStyle}>
+              OSCAR
             </Typography>
           </Link>
           <Link to="/products" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='h6' className={classes.linkTextStyle}>
               Products
             </Typography>
           </Link>
           <Link to="/news" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='h6' className={classes.linkTextStyle}>
               News
             </Typography>
           </Link>
           <Link to="/support" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='h6' className={classes.linkTextStyle}>
               Support
             </Typography>
           </Link>
           <Link to="/contact" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='h6' className={classes.linkTextStyle}>
               Contact
             </Typography>
           </Link>
           <Link to="/cart" underline='none' className={classes.linkStyles}>
-            <Typography variant='h6'>
+            <Typography variant='h6' className={classes.linkTextStyle}>
               Cart
             </Typography>
           </Link>

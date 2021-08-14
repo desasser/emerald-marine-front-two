@@ -52,18 +52,18 @@ const useStyles = makeStyles((theme) => ({
 const videos = [
   {
     id: 0,
-    title: 'ALERT418 Transmitter Pouch Placement',
-    video: "https://www.youtube.com/watch?v=O5K72y2tbHA&ab_channel=EmeraldMarineProducts",
+    title: 'ALERT2 Man-Overboard Alarm System Testimonial',
+    video: "https://www.youtube.com/watch?v=Bnh3caPYvhY&ab_channel=EmeraldMarineProducts",
   },
   {
     id: 1,
-    title: 'ALERT418 Man-Overboard Alarm System Introduction',
-    video: "https://www.youtube.com/watch?v=uQ9L2R6GBLU&ab_channel=EmeraldMarineProducts",
+    title: 'Demonstration of the ALERT2 Man-Overboard Alarm System',
+    video: "https://www.youtube.com/watch?v=3u9OY94py8s&ab_channel=EmeraldMarineProducts",
   },
   {
     id: 2,
-    title: 'ALERT2 Spraytight Pouch Alteration',
-    video: "https://www.youtube.com/watch?v=x8qh6AobMjQ&ab_channel=EmeraldMarineProducts",
+    title: 'Testing the ALERT2 Man-Overboard Alarm System',
+    video: "https://www.youtube.com/watch?v=Qh9KTNwu720&ab_channel=EmeraldMarineProducts",
   },
   {
     id: 3,
@@ -72,38 +72,38 @@ const videos = [
   },
   {
     id: 4,
-    title: 'ALERT2 Battery and Circuit Board Replacement',
-    video: "https://www.youtube.com/watch?v=I_tM94CLTCM&ab_channel=EmeraldMarineProducts",
+    title: 'ALERT418 Man-Overboard Alarm System Introduction',
+    video: "https://www.youtube.com/watch?v=uQ9L2R6GBLU&ab_channel=EmeraldMarineProducts",
   },
   {
     id: 5,
-    title: 'Proper Storage of ALERT2 Man-Overboard Transmitter',
-    video: "https://www.youtube.com/watch?v=a8cmMlaPxhE&ab_channel=EmeraldMarineProducts",
-  },
-  {
-    id: 6,
-    title: 'Demonstration of the ALERT2 Man-Overboard Alarm System',
-    video: "https://www.youtube.com/watch?v=3u9OY94py8s&ab_channel=EmeraldMarineProducts",
-  },
-  {
-    id: 7,
     title: 'OSCAR - Water Rescue Training Dummy',
     video: "https://www.youtube.com/watch?v=grQ30xpWO_8&ab_channel=EmeraldMarineProducts",
   },
   {
+    id: 6,
+    title: 'Proper Storage of ALERT2 Man-Overboard Transmitter',
+    video: "https://www.youtube.com/watch?v=a8cmMlaPxhE&ab_channel=EmeraldMarineProducts",
+  },
+  {
+    id: 7,
+    title: 'ALERT2 Battery and Circuit Board Replacement',
+    video: "https://www.youtube.com/watch?v=I_tM94CLTCM&ab_channel=EmeraldMarineProducts",
+  },
+  {
     id: 8,
-    title: 'ALERT2 Man-Overboard Alarm System Testimonial',
-    video: "https://www.youtube.com/watch?v=Bnh3caPYvhY&ab_channel=EmeraldMarineProducts",
+    title: 'ALERT2 Spray-tight Pouch swap out',
+    video: "https://www.youtube.com/watch?v=ooki3zs9g4k&ab_channel=EmeraldMarineProducts",
   },
   {
     id: 9,
-    title: 'Testing the ALERT2 Man-Overboard Alarm System',
-    video: "https://www.youtube.com/watch?v=Qh9KTNwu720&ab_channel=EmeraldMarineProducts",
+    title: 'ALERT2 Spraytight Pouch Alteration',
+    video: "https://www.youtube.com/watch?v=x8qh6AobMjQ&ab_channel=EmeraldMarineProducts",
   },
   {
     id: 10,
-    title: 'ALERT2 Spray-tight Pouch swap out',
-    video: "https://www.youtube.com/watch?v=ooki3zs9g4k&ab_channel=EmeraldMarineProducts",
+    title: 'ALERT418 Transmitter Pouch Placement',
+    video: "https://www.youtube.com/watch?v=O5K72y2tbHA&ab_channel=EmeraldMarineProducts",
   },
 ]
 
@@ -197,7 +197,6 @@ const allProducts = [
 ]
 
 const allProductLinks = allProducts[0].links.concat(allProducts[1].links,allProducts[2].links)
-console.log(allProductLinks)
 
 const faq = [
   {
@@ -330,11 +329,11 @@ export default function SupportContent() {
             <Typography variant="h3" style={{ color: '#74b4ab', marginBottom: '1rem' }}>
               Contents
             </Typography>
-            <Link href="#videos" style={{ display: 'block', fontSize: '1.5rem', marginLeft: '3rem' }}>Videos</Link>
-            <Link href="#docs" style={{ display: 'block', fontSize: '1.5rem', marginLeft: '3rem' }}>Docs</Link>
-            <Link href="#faq" style={{ display: 'block', fontSize: '1.5rem', marginLeft: '3rem' }}>FAQ</Link>
+            <Link href="#videos" style={{ display: 'block', fontSize: '1.5rem', marginLeft: '3rem' }}>Product Video Library</Link>
+            <Link href="#docs" style={{ display: 'block', fontSize: '1.5rem', marginLeft: '3rem' }}>Product Documentation and information</Link>
+            <Link href="#faq" style={{ display: 'block', fontSize: '1.5rem', marginLeft: '3rem' }}>Frequently Asked Questions</Link>
 
-            <Typography variant='h3' style={{ marginTop: '3rem', marginBottom: '1rem', color: '#74b4ab' }}>We are here to help.</Typography>
+            <Typography variant='h3' style={{ marginTop: '3rem', marginBottom: '1rem', color: '#74b4ab' }}>We are here to help</Typography>
             <Typography style={{ width: '80%', margin: '0 auto' }}>
               Whether you have questions about the ALERT man-overboard system or the OSCAR Water Rescue Training Dummy, the experts at Emerald Marine Products are here for you. From answers to frequently asked questions to live support for our marine safety equipment, you'll find what you need here. We offer a variety of helpful information on our website, including documentation for our man-overboard systems and other marine safety equipment. If your question is not answered in the list below or in our product documentation, don't hesitate to contact us. We can be reached over the phone at 206.965.8207 and online via email.
             </Typography>
@@ -344,7 +343,7 @@ export default function SupportContent() {
 
       {/* Videos */}
       <Typography variant='h3' style={{ margin: '1rem 0px', color: '#74b4ab' }} id="videos">
-        Video Library
+        Product Video Library
       </Typography>
 
       <Hidden xsDown>
@@ -383,7 +382,7 @@ export default function SupportContent() {
 
       {/* FAQ */}
       <Typography variant='h3' style={{ margin: '1rem 0px', color: '#74b4ab' }}>
-        FAQ
+        Frequently Asked Questions
       </Typography>
       <SupportAccordian input={input} content={faq}></SupportAccordian>
       {/* FAQ */}
