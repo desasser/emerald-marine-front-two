@@ -145,8 +145,8 @@ export default function CartContent() {
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
       </Grid>
       <Grid item xs={12} sm={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-        <Link to='/products' style={{ cursor: 'pointer' }}>
-          <Typography variant="h5" style={{ fontSize: '1.8rem'}}>
+        <Link to='/products' style={{ cursor: 'pointer', textDecoration: 'none', color: 'goldenrod'}}>
+          <Typography variant="h5" style={{ fontSize: '1.8rem', }}>
             Continue Shopping
           </Typography>
         </Link>
