@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mediaRoot: {
     minWidth: 200,
-    minHeight: 250,
+    minHeight: 325,
     display: 'flex',
     alignItems: 'center',
     flex: 1
@@ -56,7 +56,7 @@ export default function ProductBlock(props) {
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'flex-end', margin: '20px' }}>
         <Typography variant='h3' style={{ color: '#74b4ab' }}>
-          Oscar Water Rescue Products
+          OSCAR Water Rescue Products
         </Typography>
         <div>
           <Typography variant="h6" style={{ color: 'red', textAlign: 'right' }}>We accept International Inquiries!</Typography>
@@ -76,7 +76,7 @@ export default function ProductBlock(props) {
       </Grid>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Link to='/products' style={{ textDecoration: 'none' }}>
-          <Button style={{ marginTop: '20px' }} >View All Products</Button>
+          <Button style={{ margin: '2rem 0' }} >View All Products</Button>
         </Link>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 // import { StaticImage } from "gatsby-plugin-image";
-import logo from '../images/EMP-Logo_white.png'
+import logo from '../images/EMP-logo_color.png'
 
 export default function emeraldMarineLogo( { className }) {
   return (

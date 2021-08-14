@@ -1,4 +1,4 @@
-import { Typography, Button, TextField, TextareaAutosize } from '@material-ui/core'
+import { Typography, Button, TextField, Grid } from '@material-ui/core'
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import API from '../utils/API';
@@ -73,30 +73,35 @@ export default function Contact() {
     });
   }
 
-  const handleClick = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    setEmail('')
-    API.addToMailingList(email).then(res => {
-    }).catch(err => {
-      console.log(err.message)
-    });
-
+    // setEmail('')
+    // API.addToMailingList(email).then(res => {
+    // }).catch(err => {
+    //   console.log(err.message)
+    // });
+    console.log('submit')
   }
 
   return (
     <div>
       <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Contact</Typography>
       <hr></hr>
-      <p>Emerald Marine Products is an industry leader in industrial-grade, USA-made, Man Overboard Alerting, Water Rescue Dummy, and Retrieval Products. Please contact us through the contact form below, by telephone, or email.</p>
-      <TextField className={classes.inputStyle} id="outlined-basic" label='Your Name' variant="outlined" onChange={handleChange} name='name' required />
-      <TextField className={classes.inputStyle} id="outlined-basic" label='Your Email' variant="outlined" onChange={handleChange} name='email' required />
-      <TextField className={classes.inputStyle} id="outlined-basic" label='Your Phone Number' variant="outlined" onChange={handleChange} name='phone' />
-      <TextField className={classes.inputStyle} id="outlined-basic" label='Subject' variant="outlined" onChange={handleChange} name='subject' />
-      <TextField className={classes.inputStyle} id="outlined-basic" label='Your Message' variant="outlined" onChange={handleChange} name='message' multiline rows={10} />
-      <div style={{display:'flex', justifyContent: 'flex-end'}}>
-        <Button variant="contained" style={{ marginTop: '10px', height: '56px', marginLeft: '10px', width: '100px', backgroundColor: '#74b4ab', fontSize: '16px' }} onClick={handleClick} >Submit</Button>
-      </div>
-      {/* <ContactInfo /> */}
+      <Typography variant='body1' style={{ margin: '1rem 0' }}>
+        Emerald Marine Products is an industry leader in industrial-grade, USA-made, Man Overboard Alerting, Water Rescue Dummy, and Retrieval Products. Please contact us through the contact form below, by telephone, or email.
+      </Typography>
+      <ContactInfo color='black' />
+      <form onSubmit={onSubmit}>
+        <TextField className={classes.inputStyle} id="outlined-basic" label='Your Name' variant="outlined" onChange={handleChange} name='name' required />
+        <TextField className={classes.inputStyle} id="outlined-basic" label='Preferred Contact Method' variant="outlined" onChange={handleChange} name='contactMethod' required />
+        <TextField className={classes.inputStyle} id="outlined-basic" label='Your Email' variant="outlined" onChange={handleChange} name='email' required />
+        <TextField className={classes.inputStyle} id="outlined-basic" label='Your Phone Number' variant="outlined" onChange={handleChange} name='phone' />
+        <TextField className={classes.inputStyle} id="outlined-basic" label='Subject' variant="outlined" onChange={handleChange} name='subject' />
+        <TextField className={classes.inputStyle} id="outlined-basic" label='Your Message' variant="outlined" onChange={handleChange} name='message' multiline rows={10} />
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button variant="contained" style={{ margin: '1rem 0', height: '56px', width: '100px', backgroundColor: '#f5ed5e', fontSize: '16px' }} type='submit'>Submit</Button>
+        </div>
+      </form>
     </div>
   )
 }
