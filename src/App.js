@@ -28,8 +28,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    margin: '0 auto',
-    margin: '8rem 0 2rem',
+    margin: '7rem 0 2rem',
     overflow: 'hidden'
   },
 })

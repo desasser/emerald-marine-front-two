@@ -21,8 +21,11 @@ import waterVoyager from '../images/water_voyager.jpg'
 import VerticalTabs from '../components/VerticalTabs';
 import SimpleTabs from '../components/SimpleTabs';
 import { Helmet } from 'react-helmet';
+import EmeraldMarineLogo from "../components/EmeraldMarineLogo"
+
 
 export default function Home() {
+
   useEffect(() => {
     API.greeting().then(res => {
       console.log(res.data)
@@ -61,7 +64,7 @@ export default function Home() {
       <div
         style={{ backgroundImage: `url(${props.item.source})`, height: '50vh', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         alt={props.item.description}>
-        <div style={{ width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))' }}>
+        <div style={{ width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.9) 100%)'}}>
           <Typography variant='h5' style={{ color: 'white', padding: '50px', width: '80%', fontSize: '1.5rem', textAlign: 'center' }}>
             {props.item.text}
           </Typography>
