@@ -16,7 +16,7 @@ import dredgingBarge from '../images/dredging_barge.jpg'
 import researchVessel from '../images/research_vessel.jpg'
 import towAndTug from '../images/tow_and_tug.jpg'
 import commercialFishing from '../images/commercial_fishing.jpg'
-import EMPJstackTimeline from '../images/EMP_JStack_timeline_72821.png'
+import EMPJstackTimeline from '../images/EMP_JStack_timeline_final.png'
 import waterVoyager from '../images/water_voyager.jpg'
 import VerticalTabs from '../components/VerticalTabs';
 import SimpleTabs from '../components/SimpleTabs';
