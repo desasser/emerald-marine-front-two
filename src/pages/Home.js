@@ -21,6 +21,8 @@ import waterVoyager from '../images/water_voyager.jpg'
 import VerticalTabs from '../components/VerticalTabs';
 import SimpleTabs from '../components/SimpleTabs';
 import { Helmet } from 'react-helmet';
+import EmeraldMarineLogo from "../components/EmeraldMarineLogo"
+
 
 export default function Home() {
 
