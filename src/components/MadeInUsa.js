@@ -1,6 +1,6 @@
 import React from 'react';
 // import { StaticImage } from "gatsby-plugin-image";
-import madeInUsa from '../images/MadeInUsa_grey.png'
+import madeInUsa from '../images/MadeInUsa_grey_solid.png'
 
 export default function emeraldMarineLogo( { className }) {
   return (

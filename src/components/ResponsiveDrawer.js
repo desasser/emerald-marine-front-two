@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor: '#78787a'
+    backgroundColor: 'white'
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: 'white',
+    color: 'black',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
@@ -45,26 +45,26 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: '#78787a',
+    backgroundColor: 'white',
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(5),
   },
   listItem: {
-    color: '#78787a'
+    color: 'white'
   },
   logo: {
-    height: "5em",
+    height: "4em",
     [theme.breakpoints.down("md")]: {
-      height: "5em"
+      height: "4em"
     },
     marginLeft: "2em",
     marginBottom: "2em"
   },
   logoSmall: {
     [theme.breakpoints.down("md")]: {
-      height: "3.5em"
+      height: "3em"
     },
   },
   logoContainer: {
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   link: {
-    color: '#fff',
+    color: 'black',
     textDecoration: "none",
     fontWeight: 900,
     fontSize: "1.75em"
@@ -94,7 +94,7 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', paddingTop: '1em', paddingRight: '1em' }}>
-        <CloseIcon style={{ fontSize: '3em', color: 'white' }} onClick={handleDrawerToggle} />
+        <CloseIcon style={{ fontSize: '3em', color: 'black' }} onClick={handleDrawerToggle} />
       </div>
       <div className={classes.toolbar} />
       <NavLink to="/" className={classes.logoContainer} onClick={() => setMobileOpen(false)}>
@@ -145,7 +145,7 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon style={{ fontSize: '3rem' }} />
           </IconButton>
-          <div style={{display: 'flex', width:'100%', justifyContent: 'flex-end'}}>
+          <div style={{ display: 'flex', width: '100%', justifyContent: 'flex-end' }}>
             <EmeraldMarineLogo className={classes.logoSmall} />
           </div>
           <Typography variant="h6" noWrap></Typography>

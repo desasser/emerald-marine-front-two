@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import CartCard from './CartCard';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Button, Grid, Link } from '@material-ui/core';
+import { Typography, Button, Grid } from '@material-ui/core';
 import AddressModal from './AddressModal';
 import API from '../utils/API';
 import CloseIcon from '@material-ui/icons/Close';
 import store from '../utils/store';
 import SmallCartCard from './SmallCartCard';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link  } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   mediaRoot: {
@@ -144,8 +144,12 @@ export default function CartContent() {
       <Grid item xs={12} sm={6}>
         <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
       </Grid>
-      <Grid item xs={12} sm={6} style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
-        <Link href='/products' style={{cursor: 'pointer', fontSize:'1.5rem'}}>Continue Shopping</Link>
+      <Grid item xs={12} sm={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+        <Link to='/products' style={{ cursor: 'pointer', textDecoration: 'none', color: 'goldenrod'}}>
+          <Typography variant="h5" style={{ fontSize: '1.8rem', }}>
+            Continue Shopping
+          </Typography>
+        </Link>
       </Grid>
       <Grid item xs={12}>
         <hr></hr>

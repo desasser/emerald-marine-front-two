@@ -55,20 +55,25 @@ export default function BlogCard({ id, title, image, alt, date, categories, tags
         : !link ?
 
           <Link to={`/news/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
-            <CardActionArea style={{display: 'flex'}}>
+            <CardActionArea style={{ display: 'flex' }}>
               <CardMedia
                 className={classes.media}
                 image={image ? `${image}` : `${stockPressPhoto}`}
                 title={`${alt}`}
-                style={{minWidth: 245, margin: '1rem'}}
+                style={{ minWidth: 245, margin: '1rem' }}
               />
               <CardContent>
                 <Typography gutterBottom variant="h4" component="h2" style={{ color: '#74b4ab' }}>
                   {title}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {intro?.substring(0,500)}
-                </Typography>
+                {intro ?
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    {intro?.substring(0, 500)}...
+                  </Typography>
+                  :
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    Read More...
+                  </Typography>}
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', marginTop: '1em' }}>
                   <Typography gutterBottom variant="body1" component="h2" style={{ textAlign: 'right', fontStyle: 'italic' }}>
                     {publication ? publication : 'Emerald Marine Products'}
@@ -82,19 +87,19 @@ export default function BlogCard({ id, title, image, alt, date, categories, tags
           </Link>
           :
           <a href={link} style={{ textDecoration: 'none', color: 'black' }} target="_blank" rel="noreferrer">
-            <CardActionArea style={{display: 'flex'}}>
+            <CardActionArea style={{ display: 'flex' }}>
               <CardMedia
                 className={classes.media}
                 image={image ? `${image}` : `${stockPressPhoto}`}
                 title={`${alt}`}
-                style={{minWidth: 245, margin: '1rem'}}
+                style={{ minWidth: 245, margin: '1rem' }}
               />
               <CardContent>
                 <Typography gutterBottom variant="h4" component="h2" style={{ color: '#74b4ab' }}>
                   {title}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {intro}
+                  Read More...
                 </Typography>
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
                   <Typography gutterBottom variant="body1" component="h2" style={{ textAlign: 'right', fontStyle: 'italic' }}>
