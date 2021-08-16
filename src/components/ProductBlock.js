@@ -30,29 +30,21 @@ export default function ProductBlock(props) {
       SKU:'AR100'
     },
     {
-      name:'ALERT418® Man-Overboard Transmitter with Spray Tight Pouch',
-      SKU:'AT401'
-    },
-    {
-      name:'ALERT Portable, DIY Man-Overboard Alarm System',
-      SKU:'AS100'
-    },
-    {
       name:'OSCAR Water Rescue Training Dummy™ Now available for direct purchase!',
       SKU:'OT100'
     },
     {
-      name:'ALERT2 Man-Overboard Transmitter™',
-      SKU:'AT101'
+      name:'ALERT2 Man-Overboard Transmitter™ with Spray Tight Pouch',
+      SKU:'AT102'
     },
     {
-      name:'ALERT2 Man-Overboard Transmitter™ Intrinsically Safe Model',
-      SKU:'AT201'
+      name:'ALERT418® Man-Overboard Transmitter with Spray Tight Pouch',
+      SKU:'AT401'
     },
   ]
 
   const checkSKU = (product) => {
-    if (product.name === bestSellers[0].name || product.name === bestSellers[1].name || product.name === bestSellers[2].name || product.name === bestSellers[3].name || product.name === bestSellers[4].name || product.name === bestSellers[5].name) {
+    if (product.name === bestSellers[0].name || product.name === bestSellers[1].name || product.name === bestSellers[2].name || product.name === bestSellers[3].name) {
       return true
     }
   }

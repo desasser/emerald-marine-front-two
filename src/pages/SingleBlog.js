@@ -23,7 +23,7 @@ export default function SingleBlog() {
         <title>{currentPost.title}</title>
         <meta
         name='description'
-        content={`${currentPost.intro.split('.')[0]}`}/>
+        content={currentPost.intro ? `${currentPost.intro.split('.')[0]}` : currentPost.title}/>
       </Helmet>
       <div style={{ marginTop: '30px', width: '80%' }}>
         <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">

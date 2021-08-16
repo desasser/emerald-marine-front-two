@@ -76,7 +76,7 @@ export default function VerticalTabs({ content }) {
       {content.map((e, index) => (
         (e.content ?
           <TabPanel value={value} index={index}>
-            <img src={e.photo} style={{ width: '60%', margin: '1rem auto', display: 'block', maxWidth: '100%', maxHeight: '100%', }} />
+            <img src={e.photo} style={{ width: '40%', margin: '1rem auto', display: 'block', maxWidth: '100%', maxHeight: '100%', }} />
             {e.content}
           </TabPanel>
           :

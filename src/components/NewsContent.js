@@ -59,13 +59,15 @@ export default function NewsContent() {
     }
   };
 
+  console.log(postState.original)
+
   return (
-    <Container>
+    <Container style={{marginBottom: '2rem'}}>
       <Typography variant='h2' style={{ marginTop: '3rem', marginBottom: '2rem', color: '#74b4ab' }}>
         News
       </Typography>
-      <Typography style={{ width: '80%', marginBottom: '2rem' }}>
-        Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.
+      <Typography style={{ width: '90%', marginBottom: '2rem' }}>
+        Over the years, Emerald Marine Products has written many articles pertaining to water safety, specifically in the areas of Man-Overboard awareness, training, and retrieval. Here is a collection of articles written by Emerald Marine Products and other leading maritime publications.
       </Typography>
       <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
         <FormControl component="fieldset" style={{ alignItems: 'flex-end' }}>

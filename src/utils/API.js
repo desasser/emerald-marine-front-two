@@ -8,8 +8,12 @@ const API = {
         return axios.get(`${URL_PREFIX}/`)
     },
     // User routes
-    addNewUser: userData => {
-        return axios.post(`${URL_PREFIX}/users/new`, userData)
+    addNewUser: (token, userData) => {
+        return axios.post(`${URL_PREFIX}/users/new`, userData, {
+            headers: {
+                authorization: `Bearer: ${token}`
+            }
+        })
     },
     loginUser: userData => {
         return axios.post(`${URL_PREFIX}/users`, userData)
@@ -209,7 +213,6 @@ const API = {
     refundCreditCard: (cardData, transactionID) => {
         return axios.post(`${URL_PREFIX}/authjs/refund`, transactionID, cardData)
     }
-
 
 }
 

@@ -14,7 +14,6 @@ import News from "./pages/News"
 import AdminLogin from './pages/AdminLogin'
 import Admin from './pages/Admin'
 import Products from "./pages/Products"
-import Purchase from "./pages/Purchase"
 import SingleProduct from "./pages/SingleProduct"
 import SingleBlog from "./pages/SingleBlog"
 import Support from "./pages/Support"
@@ -29,10 +28,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    margin: '0 auto',
-    // maxWidth: '80%',
-    marginTop: '64px',
-    // minHeight: '50vh'
+    margin: '7rem 0 2rem',
     overflow: 'hidden'
   },
 })
@@ -77,7 +73,6 @@ function App() {
               {products.length === 0 ? <Redirect to="/products" /> : <SingleProduct/>}
             </Route>
             <Route path="/products" component={Products} />
-            <Route path="/purchase" component={Purchase} />
             <Route path="/support" component={Support} />
             <Route path="/thank" component={Thank} />
             <Route path='/login' component={AdminLogin} />
