@@ -90,6 +90,7 @@ const News = () => {
         severity: 'success',
         message: 'Successfully added news article.'
       });
+      console.log(res);
     }).catch(err => {
       setIndicator({
         open: true,
@@ -221,7 +222,7 @@ const News = () => {
           <Grid container spacing={1}>
             <Grid item xs={11} sm={10} className={classes.infoCards}>
               {articles?.map(article =>
-                <BlogCard id='#' title={article.title} alt={'not a cat'} publication={article.publication} date={article.date} link={article.link} description={article.description} id={article._id} confirm={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article' />
+                <BlogCard id='#' title={article.title} alt={'not a cat'} publication={article.publication} date={article.date} link={article.link} description={article.description} id={article._id} image={article.image} alt={article.alt} tags={article.tags} confirm={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article' />
               )}
             </Grid>
             <Grid item xs={12} sm={2}>
