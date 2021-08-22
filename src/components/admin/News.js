@@ -25,7 +25,10 @@ const News = () => {
     publication: '',
     date: '',
     link: '',
-    description: ''
+    description: '',
+    tags: '',
+    image: '',
+    alt: '',
   });
   const [currentID, setCurrentID] = useState('')
   const [editing, setEditing] = useState(false);
@@ -63,8 +66,8 @@ const News = () => {
     });
   }
 
-  const warnings = 'Date must be in the following format: "YYYY-MM-DD".'
-  const fields = [{ name: 'title', content: `${current.title}` }, { name: 'publication', content: `${current.publication}` }, { name: 'date', content: `${current.date}` }, { name: 'link', content: `${current.link}` }, { name: 'description', content: `${current.description}` }]
+  const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
+  const fields = [{ name: 'title', content: `${current.title}` }, { name: 'publication', content: `${current.publication}` }, { name: 'date', content: `${current.date}` }, { name: 'link', content: `${current.link}` }, { name: 'description', content: `${current.description}` }, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}]
 
   const handleAddFormChange = e => {
     const { name, value } = e.target;
@@ -105,18 +108,27 @@ const News = () => {
     const link = e.currentTarget.getAttribute('data-link')
     const description = e.currentTarget.getAttribute('data-description')
     const id = e.currentTarget.getAttribute('data-id')
+    const tags = e.currentTarget.getAttribute('data-tags')
+    const image = e.currentTarget.getAttribute('data-image')
+    const alt = e.currentTarget.getAttribute('data-alt')
 
     description ? setCurrent({
       title: title,
       publication: publication,
       date: date,
       link: link,
-      description: description
+      description: description,
+      tags: tags,
+      image: image,
+      alt: alt
     }) : setCurrent({
       title: title,
       publication: publication,
       date: date,
       link: link,
+      tags: tags,
+      image: image,
+      alt: alt
     })
     setCurrentID(id)
     showEditForm();
