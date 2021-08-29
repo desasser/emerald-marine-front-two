@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   header: {
-    backgroundColor: 'white',
+    backgroundColor: '#78787a',
     position: 'fixed',
     height: 120,
     display: 'flex',
@@ -30,13 +30,13 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   linkStyles: {
-    color: 'black',
+    color: 'white',
     textDecoration: 'none',
     padding: 12,
     cursor: 'pointer',
   },
   linkTextStyle: {
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
   },
   imgContainer: {
     // maxHeight: 70,

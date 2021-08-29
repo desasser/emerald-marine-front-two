@@ -57,7 +57,7 @@ export default function Home() {
   function Item(props) {
     return (
       <div
-        style={{ backgroundImage: `url(${props.item.source})`, height: '450px', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom', backgroundRepeat: 'no-repeat' }}
+        style={{ backgroundImage: `url(${props.item.source})`, height: '40vh', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom', backgroundRepeat: 'no-repeat' }}
         alt={props.item.description}>
 
       </div>
@@ -80,7 +80,7 @@ export default function Home() {
     {
       id: 2,
       title: 'Transportable and Easy to Store',
-      content: `Don't settle for sub-par training victims to teach your personnel water rescue operations. As a water rescue training dummy, OSCAR replicates a 180-pound victim, yet its storage weight is only 35 pounds, so you can easily transport it to your point of training operations. Its solid, heavy-duty vinyl and stainless-steel construction withstands repeated tosses and rescues for years of use.`,
+      content: `Don't settle for sub-par training victims to teach your personnel water rescue operations. As a water rescue training dummy, OSCAR replicates up to a 180-pound victim, yet its storage weight is only 35 pounds, so you can easily transport it to your point of training operations. Its solid, heavy-duty vinyl and stainless-steel construction withstands repeated tosses and rescues for years of use.`,
     },
     {
       id: 3,
@@ -113,7 +113,7 @@ export default function Home() {
       </Carousel>
       <div style={{ maxWidth: '80%', marginTop: '3rem' }}>
         <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%' }}>
-          Why OSCAR?
+          Why OSCAR - Water Rescue Training Dummy?
         </Typography>
         {/* Marketing Info */}
         <div style={{ margin: '20px auto' }}>

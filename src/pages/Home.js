@@ -21,8 +21,6 @@ import waterVoyager from '../images/water_voyager.jpg'
 import VerticalTabs from '../components/VerticalTabs';
 import SimpleTabs from '../components/SimpleTabs';
 import { Helmet } from 'react-helmet';
-import EmeraldMarineLogo from "../components/EmeraldMarineLogo"
-
 
 export default function Home() {
 
@@ -62,7 +60,7 @@ export default function Home() {
   function Item(props) {
     return (
       <div
-        style={{ backgroundImage: `url(${props.item.source})`, height: '50vh', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        style={{ backgroundImage: `url(${props.item.source})`, height: '40vh', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         alt={props.item.description}>
         <div style={{ width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.9) 100%)'}}>
           <Typography variant='h5' style={{ color: 'white', padding: '50px', width: '80%', fontSize: '1.5rem', textAlign: 'center' }}>
@@ -111,22 +109,27 @@ export default function Home() {
     {
       id: 0,
       title: 'Alerts in Seconds',
-      content: "When every second counts, the ALERT system instantaneously alarms the vessel, providing the crew the critical time needed for a successful man-overboard rescue. Unlike AIS, the response of the ALERT System is immediate. There is no lag time connecting with satellites, and there is no reliance on another product to turn on our automatic water-activated alerting device.",
+      content: "When every second counts in a man-overboard rescue, the Emerald Marine Products’ ALERT system instantaneously alarms the vessel upon hitting water. This immediate alarm provides the crew the critical time needed for a successful man-overboard rescue. Unlike AIS, the response of the ALERT System is immediate. There is no lag time connecting with satellites, and there is no reliance on another product to turn on our automatic water-activated alerting device.",
     },
     {
       id: 1,
-      title: 'Automatically Activated',
-      content: "The lightweight, water-activated Transmitter easily attaches to a personal flotation device. Upon immersion, the Transmitter instantly alerts the crew of a man-overboard. The proprietary 418Mhz frequency allows it to be automatically activated so it doesn’t have to rely on additional equipment to be triggered.",
+      title: 'SIMPLE TO USE, AUTOMATICALLY ACTIVATED',
+      content: "The automatic water-activated ALERT Transmitter easily attaches to a Personal Flotation Device. It is extremely light and small, making it easy to set it and forget it. There are no antennas or complicated set-up to get in the way of everyday activity.",
     },
     {
       id: 2,
-      title: 'Wired for Engine Kill',
-      content: "For Singlehanders and Solo Fisherman, the ALERT System can be wired to the boat engine. In the event that someone falls overboard, the ALERT System can shut down the engine, giving the man-overboard the opportunity to get back to the vessel.",
+      title: 'AFFORDABLE',
+      content: "The ALERT Man-Overboard Alarm System is the lowest priced commercial grade fall overboard alarm system on the market. Over a three year period, it only costs $1 per day to protect a life. With more crew members, it costs even less per person. Systems have been in use for an average of five years, saving lives everyday.",
     },
     {
       id: 3,
-      title: 'Plots Overboard Waypoint',
-      content: "The ALERT Receiver can be connected to a compatible GPS plotter to instantly mark the boat’s location at the time of the fall overboard. This makes for a speedy and successful water rescue.",
+      title: 'MADE IN THE USA, USED AROUND THE WORLD',
+      content: "Emerald Marine Products have been manufactured to exact industrial specifications made with high quality materials in the USA since 1996. The ALERT Man-Overboard Alarm System has been protecting hundreds of ships and locations around the world for over 25 years.",
+    },
+    {
+      id: 4,
+      title: 'WIRED FOR ENGINE KILL',
+      content: "For Singlehanders and Solo Fisherman, the ALERT System can be wired to the boat engine. In the event that someone falls overboard, the ALERT System can shut down the engine, giving the man-overboard the opportunity to get back to the vessel.",
     },
   ]
 
@@ -134,38 +137,38 @@ export default function Home() {
     {
       id: 0,
       photo: towAndTug,
-      title: 'Tow, Tug, and Barge',
+      title: 'TOW, TUG, AND BARGE',
       content: "The ALERT Man-Overboard Alarm System protects crewmembers who ply the swift coastal and inland waters. “Wearing the ALERT2 gives me a real sense of security” has been echoed by employees of major towboat companies. As a member of the American Waterways Operators organization, Emerald Marine Products understands the dangerous yet vital activities of people working the Tow and Tug Industry. We design our products to function in these demanding environments.",
     },
     {
       id: 1,
-      photo: waterVoyager,
-      title: 'Singlehander and Blue Water Voyager',
-      content: "The ALERT Man-Overboard Alarm System was originally invented to serve the singlehander and blue water voyager. When sailing or motoring alone or with a small crew, it's imperative that in the event of a fall-overboard the engine can stop, or at a minimum alert someone to the fall-overboard. It's the precious seconds upon immersion that is the life-saving difference between the ALERT System and AIS or range dynamic systems. ALERT products have also been used to protect children and animals while under motor in recreational vessels.",
-    },
-    {
-      id: 2,
       photo: dredgingBarge,
-      title: 'Dredging, Marine Construction and Marine Terminals',
+      title: 'DREDGING, MARINE CONSTRUCTION AND MARINE TERMINALS',
       content: "Maybe your employees aren't on boats, but they work dangerously close to water. Water that could sweep them out of sight or, in cold weather, send them into shock and restrict their muscles within minutes. The ALERT Man-Overboard Alarm System protects employees working near water on dredging, marine construction, or terminal operations. The ALERT Receiver can be mounted in the office or wired to communicate via an auto-dialer of HF Radio to immediately alert rescue operations of a fall-overboard situation.",
     },
     {
-      id: 3,
+      id: 2,
       photo: researchVessel,
-      title: 'Research Vessels',
+      title: 'RESEARCH VESSELS',
       content: "Though a ship has its safety procedures, sometimes people on vessels are not as savvy about working near water as experienced crew. The ALERT Man-Overboard Alarm System is easily worn by visitors or scientists who are aboard research vessels. If a person loses their balance and falls overboard, the ALERT System instantly notifies the vessel for a quick and successful rescue.",
     },
     {
-      id: 4,
+      id: 3,
       photo: commercialFishing,
-      title: 'Commercial Fishermen',
-      content: "Lore and TV Shows showcase the danger involved in making a living as a commercial fisherman. The ALERT Man-Overboard Alarm System protects crews and solo fisherman who wear the lightweight and durable Transmitter. This device is automatically activated in the event of a fall-overboard, and its Spray-Tight Pouch will protect from false alarms when working in wet conditions. Should a simple mistake take a person over the side of a boat, the ALERT System will instantly notify the vessel.",
+      title: 'COMMERCIAL FISHERMEN',
+      content: "Lore and TV Shows showcase the danger involved in making a living as a commercial fisherman. The ALERT Man-Overboard Alarm System protects crews and solo fishermen who wear the lightweight and durable Transmitter. This device is automatically activated in the event of a fall-overboard, and its Spray-Tight Pouch will protect from false alarms when working in wet conditions. Should a simple mistake take a person over the side of a boat, the ALERT System will instantly notify the vessel.",
+    },
+    {
+      id: 4,
+      photo: coastGuard,
+      title: 'MILITARY AND LAW ENFORCEMENT VESSELS',
+      content: "Law enforcement officials operate in high stake and fast-acting environments on the water. It is critical to protect these officials, so they feel confident moving quickly onboard. The ALERT Man-Overboard Alarm System is easy to set up and seamlessly attached to any PFD. The Alert System provides extra confidence and security, making it possible for law enforcement officials to focus on the task at hand.",
     },
     {
       id: 5,
-      photo: coastGuard,
-      title: 'Military and Law Enforcement Vessels',
-      content: "Law enforcement officials operate in high stake and fast-acting environments on the water. It is critical to protect these officials, so they feel confident moving quickly onboard. The ALERT Man-Overboard Alarm System is easy to setup and seamlessly attach to any PFD. The Alert System provides extra confidence and security, making it possible for law enforcement officials to focus on the task at hand.",
+      photo: waterVoyager,
+      title: 'SINGLEHANDER AND BLUE WATER VOYAGER',
+      content: "When sailing or motoring alone or with a small crew, it's imperative that in the event of a fall-overboard the engine can stop, or at a minimum alert someone to the fall-overboard. It's the precious seconds upon immersion that is the life-saving difference between the ALERT System and AIS or range dynamic systems. ALERT products have also been used to protect children and animals while under motor in recreational vessels.",
     },
   ]
 
