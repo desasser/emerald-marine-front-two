@@ -38,6 +38,9 @@ const API = {
             }
         })
     },
+    validateHuman: token => {
+      return axios.post(`${URL_PREFIX}/hooman`, token)
+    },
 
     // Blog post routes
     getAllBlogPosts: () => {
