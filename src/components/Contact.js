@@ -1,8 +1,9 @@
-import { Typography, Button, TextField, Grid } from '@material-ui/core'
+import { Typography, Button, TextField, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core'
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import API from '../utils/API';
 import ContactInfo from './ContactInfo';
+import ReCaptchaV2 from 'react-google-recaptcha';
 
 const useStyles = makeStyles(theme => ({
   footer: {
@@ -57,22 +58,52 @@ const useStyles = makeStyles(theme => ({
         borderColor: '#74b4ab',
       },
     }
-  }
+  },
+  formControl: {
+    minWidth: '100%',
+    marginTop: 10,
+    backgroundColor: 'white',
+    borderRadius: '0.5em',
+    width: '100%',
+    '& label.Mui-focused': {
+      color: 'black',
+      backgroundColor: 'white'
+    },
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: '#74b4ab',
+      },
+    }
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }))
 
 export default function Contact() {
   const classes = useStyles()
 
   const [email, setEmail] = useState('');
+  const [preferredContact, setPreferredContact] = useState('');
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setEmail({
-      ...email,
-      [name]: value
-    });
+  // const handleChange = e => {
+  //   const { name, value } = e.target;
+  //   setEmail({
+  //     ...email,
+  //     [name]: value
+  //   });
+  // }
+  // 
+  const [age, setAge] = useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
+  const handleSelect = e => {
+    setPreferredContact(e.target.value);
   }
-
+  // 
   const onSubmit = (e) => {
     e.preventDefault();
     // setEmail('')
@@ -82,6 +113,8 @@ export default function Contact() {
     // });
     console.log('submit')
   }
+
+  console.log(process.env)
 
   return (
     <div>
@@ -93,12 +126,30 @@ export default function Contact() {
       <ContactInfo color='black' />
       <form onSubmit={onSubmit}>
         <TextField className={classes.inputStyle} id="outlined-basic" label='Your Name' variant="outlined" onChange={handleChange} name='name' required />
-        <TextField className={classes.inputStyle} id="outlined-basic" label='Preferred Contact Method' variant="outlined" onChange={handleChange} name='contactMethod' required />
+
+        <FormControl className={classes.formControl} required>
+          <InputLabel id="contact-method-select-label" style={{ marginLeft: '15px' }}>Preferred Contact Method</InputLabel>
+          <Select
+            labelId="contact-method-select-label"
+            id="contact-method-select"
+            value={preferredContact}
+            onChange={handleSelect}
+            variant="outlined"
+          >
+            <MenuItem value="Phone">Phone</MenuItem>
+            <MenuItem value="Email">Email</MenuItem>
+            <MenuItem value="Text">Text</MenuItem>
+          </Select>
+        </FormControl>
+
         <TextField className={classes.inputStyle} id="outlined-basic" label='Your Email' variant="outlined" onChange={handleChange} name='email' required />
         <TextField className={classes.inputStyle} id="outlined-basic" label='Your Phone Number' variant="outlined" onChange={handleChange} name='phone' />
-        <TextField className={classes.inputStyle} id="outlined-basic" label='Subject' variant="outlined" onChange={handleChange} name='subject' />
-        <TextField className={classes.inputStyle} id="outlined-basic" label='Your Message' variant="outlined" onChange={handleChange} name='message' multiline rows={10} />
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <TextField className={classes.inputStyle} id="outlined-basic" label='Subject' variant="outlined" onChange={handleChange} name='subject' required />
+        <TextField className={classes.inputStyle} id="outlined-basic" label='Your Message' variant="outlined" onChange={handleChange} name='message' multiline rows={10} required />
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '2rem' }}>
+          <div style={{marginRight: '1rem'}}>
+            <ReCaptchaV2 sitekey={process.env.REACT_APP_SITE_KEY} />
+          </div>
           <Button variant="contained" style={{ margin: '1rem 0', height: '56px', width: '100px', backgroundColor: '#f5ed5e', fontSize: '16px' }} type='submit'>Submit</Button>
         </div>
       </form>
