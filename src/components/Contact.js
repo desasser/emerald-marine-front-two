@@ -113,7 +113,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    API.validateHuman(form.token)
+    API.validateHuman({token: form.token})
     .then(res => {
       console.log(res.data)
     })
