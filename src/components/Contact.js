@@ -80,41 +80,59 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const defaultForm = {
+  name: '',
+  preferredContact: '',
+  email: '',
+  phone: '',
+  subject: '',
+  message: '',
+  token: '',
+}
+
 export default function Contact() {
   const classes = useStyles()
-
-  const [email, setEmail] = useState('');
+  const [form, setForm] = useState(defaultForm)
   const [preferredContact, setPreferredContact] = useState('');
 
-  // const handleChange = e => {
-  //   const { name, value } = e.target;
-  //   setEmail({
-  //     ...email,
-  //     [name]: value
-  //   });
-  // }
-  // 
-  const [age, setAge] = useState('');
-
   const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+    const { name, value } = event.target
+    setForm((currentForm) => ({
+      ...currentForm,
+      [name]: value,
+    }))
+  }
 
   const handleSelect = e => {
     setPreferredContact(e.target.value);
-  }
-  // 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    // setEmail('')
-    // API.addToMailingList(email).then(res => {
-    // }).catch(err => {
-    //   console.log(err.message)
-    // });
-    console.log('submit')
+    setForm((currentForm) => ({
+      ...currentForm,
+      preferredContact: e.target.value,
+    }))
   }
 
-  console.log(process.env)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    API.validateHuman(form.token)
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(err => {
+      console.log(err.message)
+    });
+  }
+
+  const handleToken = (token) => {
+    setForm((currentForm) => {
+      return { ...currentForm, token }
+    })
+  }
+
+  const handleExpire = () => {
+    setForm((currentForm) => {
+      return { ...currentForm, token: null }
+    })
+  }
 
   return (
     <div>
@@ -124,7 +142,7 @@ export default function Contact() {
         Emerald Marine Products is an industry leader in industrial-grade, USA-made, Man Overboard Alerting, Water Rescue Dummy, and Retrieval Products. Please contact us through the contact form below, by telephone, or email.
       </Typography>
       <ContactInfo color='black' />
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <TextField className={classes.inputStyle} id="outlined-basic" label='Your Name' variant="outlined" onChange={handleChange} name='name' required />
 
         <FormControl className={classes.formControl} required>
@@ -142,13 +160,17 @@ export default function Contact() {
           </Select>
         </FormControl>
 
-        <TextField className={classes.inputStyle} id="outlined-basic" label='Your Email' variant="outlined" onChange={handleChange} name='email' required />
-        <TextField className={classes.inputStyle} id="outlined-basic" label='Your Phone Number' variant="outlined" onChange={handleChange} name='phone' />
-        <TextField className={classes.inputStyle} id="outlined-basic" label='Subject' variant="outlined" onChange={handleChange} name='subject' required />
-        <TextField className={classes.inputStyle} id="outlined-basic" label='Your Message' variant="outlined" onChange={handleChange} name='message' multiline rows={10} required />
+        <TextField className={classes.inputStyle} id="outlined-email" label='Your Email' variant="outlined" onChange={handleChange} name='email' required />
+        <TextField className={classes.inputStyle} id="outlined-phone" label='Your Phone Number' variant="outlined" onChange={handleChange} name='phone' />
+        <TextField className={classes.inputStyle} id="outlined-subject" label='Subject' variant="outlined" onChange={handleChange} name='subject' required />
+        <TextField className={classes.inputStyle} id="outlined-message" label='Your Message' variant="outlined" onChange={handleChange} name='message' multiline rows={10} required />
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '2rem' }}>
-          <div style={{marginRight: '1rem'}}>
-            <ReCaptchaV2 sitekey={process.env.REACT_APP_SITE_KEY} />
+          <div style={{ marginRight: '1rem' }}>
+            <ReCaptchaV2
+              sitekey={process.env.REACT_APP_SITE_KEY}
+              onChange={handleToken}
+              onExpire={handleExpire}
+            />
           </div>
           <Button variant="contained" style={{ margin: '1rem 0', height: '56px', width: '100px', backgroundColor: '#f5ed5e', fontSize: '16px' }} type='submit'>Submit</Button>
         </div>
