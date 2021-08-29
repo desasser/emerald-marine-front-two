@@ -128,7 +128,7 @@ export default function Contact() {
         <TextField className={classes.inputStyle} id="outlined-basic" label='Your Name' variant="outlined" onChange={handleChange} name='name' required />
 
         <FormControl className={classes.formControl} required>
-          <InputLabel id="contact-method-select-label" style={{marginLeft: '15px'}}>Preferred Contact Method</InputLabel>
+          <InputLabel id="contact-method-select-label" style={{ marginLeft: '15px' }}>Preferred Contact Method</InputLabel>
           <Select
             labelId="contact-method-select-label"
             id="contact-method-select"
@@ -146,8 +146,10 @@ export default function Contact() {
         <TextField className={classes.inputStyle} id="outlined-basic" label='Your Phone Number' variant="outlined" onChange={handleChange} name='phone' />
         <TextField className={classes.inputStyle} id="outlined-basic" label='Subject' variant="outlined" onChange={handleChange} name='subject' required />
         <TextField className={classes.inputStyle} id="outlined-basic" label='Your Message' variant="outlined" onChange={handleChange} name='message' multiline rows={10} required />
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <ReCaptchaV2 sitekey={process.env.REACT_APP_SITE_KEY} />
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '2rem' }}>
+          <div style={{marginRight: '1rem'}}>
+            <ReCaptchaV2 sitekey={process.env.REACT_APP_SITE_KEY} />
+          </div>
           <Button variant="contained" style={{ margin: '1rem 0', height: '56px', width: '100px', backgroundColor: '#f5ed5e', fontSize: '16px' }} type='submit'>Submit</Button>
         </div>
       </form>
