@@ -116,6 +116,7 @@ export default function Contact() {
     API.validateHuman({token: form.token})
     .then(res => {
       console.log(res.data)
+      // TODO: if true, send email
     })
     .catch(err => {
       console.log(err.message)
@@ -169,7 +170,7 @@ export default function Contact() {
             <ReCaptchaV2
               sitekey={process.env.REACT_APP_SITE_KEY}
               onChange={handleToken}
-              onExpire={handleExpire}
+              onExpired={handleExpire}
             />
           </div>
           <Button variant="contained" style={{ margin: '1rem 0', height: '56px', width: '100px', backgroundColor: '#f5ed5e', fontSize: '16px' }} type='submit'>Submit</Button>

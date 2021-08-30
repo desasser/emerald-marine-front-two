@@ -12,7 +12,7 @@ import {fetchBlog} from '../../utils/actions/blogActions';
 const useStyles = makeStyles((theme) => ({        
     infoCards: {
         maxHeight: '75vh',
-        overflowY: 'scroll'
+        overflowY: 'scroll',
     }
   }));
 
@@ -264,7 +264,7 @@ const Blog = () => {
             <Grid container spacing={4}>
                 <Grid item xs={11} sm={10} className={classes.infoCards}>
                 {posts?.map(post =>  
-                    <BlogCard id='#' view='admin' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
+                    <BlogCard id='#' view='admin' margin='1rem' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
                     )}
                 </Grid>
                 <Grid item xs={12} sm={2}>
