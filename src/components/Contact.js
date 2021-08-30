@@ -113,8 +113,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form.token)
-    API.validateHuman(form.token)
+    API.validateHuman({token: form.token})
     .then(res => {
       console.log(res.data)
       // TODO: if true, send email
