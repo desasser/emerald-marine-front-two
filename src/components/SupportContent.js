@@ -203,91 +203,91 @@ const faq = [
     ariaControls: 'panel1a-content',
     id: "panel1a-header",
     question: 'What is the ALERT Man-Overboard Alarm System?',
-    answer: "The ALERT Man-Overboard Alarm System is a marine safety system designed to notify the vessel if someone falls overboard within seconds, and locate the Crew Member Overboard (MOB). It includes an automatic, water-activated Transmitter and an on-vessel Receiver. Additionally, a Portable Direction Finder can be utilized to home in on the Transmitter's transmission. Upon hitting the water, the Transmitter immediately transmits to the Receiver on the boat, alerting the crew of a fall overboard. The Receiver sounds an internal siren and can be wired for additional Man-Overboard alerting functions. The Receiver can also shutdown the engine, and mark a position on a compatible chart-plotter system. There are two types of ALERT Man-Overboard Alarm System Products. Both work with each other's devices and have features and benefits that works best for your safety budget."
+    answer: "The ALERT Man-Overboard Alarm System is a marine safety system designed to notify if someone falls unintentionally into water. Because the product works within seconds, it is much easier to locate the Person Overboard (MOB). The ALERT Man-Overboard Alarm System consists of an automatic, water-activated Transmitter and a Receiver. Additionally, a Portable Direction Finder can be utilized to home in on the Transmitter's transmission. Upon hitting the water, the Transmitter immediately transmits to the Receiver on the boat or shoreside operation, alerting others of a fall overboard. The Receiver sounds an internal siren and can be wired for additional alerting functions. The Receiver can also shutdown the engine of the vessel, and mark a position on a compatible chartplotter system."
   },
   {
     ariaControls: 'panel2a-content',
     id: "panel2a-header",
-    question: 'What is the ALERT Transmitter?',
-    answer: "The ALERT2™ and ALERT418 Transmitters transmits to the vessel upon hitting water, immediately notifying the crew of a fall overboard. Because the transmitters are automatically water activated, they will perform the duty of fall overboard notification even if the person in the water is incapacitated or panicked."
+    question: 'What is the difference between the ALERT Man-Overboard Alarm System and an EPIRB?',
+    answer: "The ALERT Man-Overboard Alarm System is a local transmission beacon for the boat and provides quick notification for the fastest rescue because it's automatic water activation alerts the boat as the MOB is coming up for their first breath of fresh air.  An EPIRB is designed to transmit to a satellite which will retransmit a position to the authorities. It may take many hours before a search effort is coordinated. Best way to think of this is, if you know you are going to be leaving your boat (sinking, fire, etc.) an EPIRB is a must have. However, the act of falling in the water is usually not planned and an EPIRB is not the best device for that scenario but the ALERT Man-Overboard Alarm System is."
   },
   {
     ariaControls: 'panel3a-content',
     id: "panel3a-header",
-    question: 'What is the difference between the ALERT2 and ALERT418 Transmitters?',
-    answer: "Both the ALERT2 and the ALERT418 Transmitters transmit to the vessel upon hitting water, immediately notifying the crew of a fall overboard. The ALERT418 was introduced to the market in Fall 2016. It has been engineered with the latest technology, making it more efficient and easy to use. It is also slightly smaller and lighter than the ALERT2, and includes a lanyard and clip to attach to the personal flotation device, making it even more seamless to wear. The ALERT418 also includes a bank of 6 LED lights for illumination when water-activated. The unit is undergoing review by the United States Coast Guard to meet regulations to use as a personal light beacon. Both the ALERT2 and ALERT418 Transmitters work with the ALERT2 and ALERT418 Receivers."
+    question: 'What is the range of the ALERT Man-Overboard Alarm System?',
+    answer: "The ALERT Man-Overboard Alarm System is a “line of sight” Ultra High Frequency (UHF) transmission system. Therefore the range is dependent on antenna placement for the ALERT Receiver and how far the person wearing the ALERT Transmitter is in proximity to the line of sight of the antenna. In most cases, the coverage range is 1,000 to 1,500 feet (300 to 450 meters) without tall buildings or topography between the antenna and the working area of the person working near water. That is why the ALERT Man-Overboard Alarm System is perfect for most vessels and shoreside operations. Once the person falls in the water, the ALERT Transmitter continues to transmit its signal and can be “homed in” by using the ALERT Portable Direction Finder."
   },
   {
     ariaControls: 'panel4a-content',
     id: "panel4a-header",
-    question: 'How does the ALERT Man-Overboard Alarm System know when someone falls overboard?',
-    answer: "The ALERT Man-Overboard Alarm System has a water activated Transmitter (either the ALERT2 or the ALERT418) that is easily and comfortably worn by the deck crew. If the Transmitter becomes submerged for a few seconds, it switches on automatically, transmitting a radio signal to the ALERT Receiver on the boat. When the Receiver picks up the signal it sounds a loud alarm, alerting the deck crew, allowing for a locally managed rescue operation. It works in fresh or salt water. With the contacts on the back of the Receiver, additional functions can be programmed to kill the engine or amplify alerting functions."
+    question: 'Can I extend the amount of alerting devices?',
+    answer: "The ALERT2 and ALERT418 Man-Overboard Alarm System Receivers have connections on the back that allow for the wiring of other devices to extend the alerting capabilities of a MOB. Many customers have connected additional external alarms, strobe lights, Internet connected devices, remote dial-up technology, and other solutions that alert both locally and remotely of a fall overboard situation."
   },
   {
     ariaControls: 'panel5a-content',
     id: "panel5a-header",
-    question: 'How does the ALERT Man-Overboard Alarm System locate the person overboard?',
-    answer: "With the optional ALERT2 Portable Direction Finder, the victim can be located when the hand held antenna is swept around the horizon and pointed in the direction of the MOB. Maximum range is 1 nautical mile."
+    question: 'Will the ALERT interface with my Chartplotter software?',
+    answer: "The ALERT418 Receiver has a serial port and can be connected to Chartplotting software that accepts a NMEA 0183 compliant MOB command. The ALERT2 Receiver has “Normally Open”, “Normally Closed” contacts that can also be wired to various chartplotter software. Contact Emerald Marine Products for specific technical information."
   },
   {
     ariaControls: 'panel6a-content',
     id: "panel6a-header",
-    question: 'How does the ALERT Man-Overboard Alarm System help the singlehander?',
-    answer: "The shipboard mounted receiver has relay contacts that can be wired into various devices such as an engine shut down or autopilot disconnect. This gives the victim a chance to swim back to the boat."
+    question: 'How does the ALERT Man-Overboard Alarm System locate the person in the water?',
+    answer: "The ALERT Man-Overboard Alarm System works so quickly that a visual of the person in the water is your best way to locate them. In the event the person does float out of sight, the optional ALERT2 Portable Direction Finder can assist in detection by sweeping the handheld antenna along the horizon. The ALERT2 Portable Direction Finder will pick-up the ALERT Transmitter’s transmission and as the direction finder is pointing in the direction of the person, the rescue skiff can follow the signal. Maximum range is one nautical mile."
   },
   {
     ariaControls: 'panel7a-content',
     id: "panel7a-header",
-    question: 'What is the difference between the ALERT Man-Overboard Alarm System and an EPIRB?',
-    answer: "An EPIRB is designed to transmit to a satellite which will retransmit a position to the authorities. It may take many hours before a search effort is coordinated. The ALERT Man-Overboard Alarm System is a local transmission beacon for the boat and provides quick notification for the fastest rescue because it's automatic water activation alerts the boat as the MOB is coming up for their first breath of fresh air."
+    question: 'How does the ALERT Man-Overboard Alarm System help the single handler?',
+    answer: "The shipboard mounted receiver has relay contacts that can be wired into various devices such as an engine shut down or autopilot disconnect. This gives the person in the water a chance to swim back to the boat."
   },
   {
     ariaControls: 'panel8a-content',
     id: "panel8a-header",
-    question: 'How many ALERT Man-Overboard Transmitters can be used?',
-    answer: "There is no limit to the number of Transmitters. Every crew member should wear one on their Personal Flotation Device (PFD)."
+    question: 'What do I have to do to maintain the ALERT Man-Overboard Alarm System?',
+    answer: "There is no need for any type of annual certification. We recommend periodic testing (daily, weekly, monthly based on your company’s safety maintenance plan). Proper storage of the unit will greatly extend the product's lifespan. The ALERT2 Transmitter uses two (2) 3.6 volt replaceable lithium batteries (included) with a 10-year shelf life. The ALERT418 Transmitter uses two (2) CR123A replaceable lithium batteries (included) with a 10-year shelf life. You can arm the Transmitter and leave it in that state for years. Replace the batteries after emergency use."
   },
   {
     ariaControls: 'panel9a-content',
     id: "panel9a-header",
-    question: 'Will the ALERT Man-Overboard Transmitter switch on if I get splashed on deck?',
-    answer: "When mounted in its pouch (included), rain and waves splashing against it will not activate the water sensor. However, in conditions where excessive water is around the crew member, for example commercial fishing vessels where pulling lines over shoulder will drip water over the Transmitter, a Spray-tight pouch is available to protect the ALERT2 and the ALERT418 from sending unwanted transmissions."
+    question: 'Who is using the ALERT Man-Overboard Alarm System?',
+    answer: "The ALERT Man-Overboard Alarm System is in use by Government Entities, Tug and Tow Boats, Fishing Vessels, Pilot Vessels, Marine Terminals, Fleeting Operations, and Offshore Sailboats. Any company concerned that an accidental fall-in-the-water activity may occur should use our product."
   },
   {
     ariaControls: 'panel10a-content',
     id: "panel10a-header",
-    question: 'Will the ALERT interface with my chartplotter software?',
-    answer: "The ALERT418 Receiver has a serial port and can be connected to Chartplotting software that accepts a NMEA 0183 complaint MOB command."
+    question: 'What type of warranty comes with the products?',
+    answer: "All ALERT products come with a 3-year parts and labor warranty."
   },
   {
     ariaControls: 'panel11a-content',
     id: "panel11a-header",
-    question: 'Will the ALERT Transmitters work underwater?',
-    answer: "Technically the ALERT2 and ALERT418 Transmitters are transmitting underwater but the transmission might not be received by the Receiver if the transmitter is deep in the water. The UHF frequency is based on “line of sight” therefore the higher the transmitter is located (as in held overhead by the person in the water) a better reception can occur. This is why a PFD should be worn and the Transmitter mounted high on the PFD."
+    question: 'How can I buy the ALERT Man-Overboard Alarm System?',
+    answer: "Our life-saving products are available for purchase directly or through one of our many Signed Dealers. We also ship to International destinations. The best way to purchase our product is to browse our Products page and add items to your cart to configure the alarm system that best fits your needs. You can calculate shipping costs if desired. After you select your products, click on the “Submit Request For Quote'' button. We will receive your configuration, review it, and make sure we are getting you the best system for your needs. You can then purchase directly from Emerald Marine Products or our Signed Dealers if that is more effecient."
   },
   {
     ariaControls: 'panel12a-content',
     id: "panel12a-header",
-    question: 'What do I have to do to maintain the ALERT Man-Overboard Alarm System?',
-    answer: "The ALERT2 Transmitter uses two (2) 3.6 volt replaceable lithium batteries (included) with a 10-year shelf life. The ALERT418 Transmitter uses two (2) CR123A replaceable lithium batteries (included) with a 10-year shelf life. You can arm the Transmitter and leave it in that state for up to 10 years. Though we highly recommend testing your ALERT2 and ALERT418 Transmitters periodically. Replace the batteries after emergency use."
+    question: 'What is the difference between the ALERT2 and ALERT418 Transmitter?',
+    answer: "Both the ALERT2(™) and the ALERT418(r) Transmitters transmit to the vessel upon hitting water, immediately notifying the crew of a fall overboard. The ALERT418 is slightly smaller and lighter than the ALERT2. The ALERT418 Transmitter broadcast’s unit identifier information that can be displayed on the ALERT418 Receiver. The ALERT418 Transmitter is slimmer and can be attached within an inflatable personal flotation device, making it even more seamless to wear. The ALERT418 includes a bank of 6 LED lights for illumination when water-activated. Both the ALERT2 and ALERT418 Transmitters work with the ALERT2 and ALERT418 Receivers."
   },
   {
     ariaControls: 'panel13a-content',
     id: "panel13a-header",
-    question: 'Where can I buy any of the ALERT Man-Overboard Alarm System products?',
-    answer: "You can purchase directly from Emerald Marine Products by calling 800-426-4201, or contact your favorite Marine Supply Dealer and they can order it for you."
+    question: 'How many ALERT Man-Overboard Transmitters can be used?',
+    answer: "There is no limit to the number of transmitters. Every crew member should wear one on their Personal Flotation Device (PFD)."
   },
   {
     ariaControls: 'panel14a-content',
     id: "panel14a-header",
-    question: 'Do I need a radio license?',
-    answer: "The ALERT Man-Overboard Alarm System is approved by the U.S. FCC and by Industry Canada. No license is required."
+    question: 'Will the ALERT Man-Overboard Transmitter switch on if I get splashed on deck?',
+    answer: "When mounted in its pouch (included), rain and waves splashing against it will not activate the water sensor. However, in conditions where excessive water is around the crew member, for example commercial fishing vessels where pulling lines over shoulder will drip water over the ALERT Transmitter, a Spray-tight pouch is available to protect the ALERT from sending unwanted transmissions. The ALERT418 transmitter is shipped standard with a spray-tight pouch."
   },
   {
     ariaControls: 'panel15a-content',
     id: "panel15a-header",
-    question: 'Who is using the ALERT Man-Overboard Alarm System?',
-    answer: "The ALERT System is currently in use by the U.S. Coast Guard, Pilot Vessels, Tug Boats, Fishing Vessels, Powerboats, and Offshore Sailboats."
+    question: 'Will the ALERT Man-Overboard Alarm work underwater?',
+    answer: "Technically the ALERT2 and ALERT418 Transmitters are transmitting underwater but the transmission might not be received by the Receiver if the transmitter is deep in the water. The UHF frequency is based on “line of sight” therefore the higher the transmitter is located (as in held overhead by the person in the water) better reception will occur. This is why a PFD should be worn and the Transmitter mounted high on the PFD."
   },
 ]
 
@@ -326,17 +326,17 @@ export default function SupportContent() {
         :
         <>
           <div className={classes.boxMargin}>
+            <Typography variant='h3' style={{ marginTop: '3rem', marginBottom: '1rem', color: '#74b4ab' }}>We are here to help</Typography>
+            <Typography style={{ width: '80%', margin: '0 auto', marginBottom: '1rem', }}>
+              Whether you have questions about the ALERT man-overboard system or the OSCAR Water Rescue Training Dummy, the experts at Emerald Marine Products are here for you. From answers to frequently asked questions to live support for our marine safety equipment, you'll find what you need here. We offer a variety of helpful information on our website, including documentation for our man-overboard systems and other marine safety equipment. If your question is not answered in the list below or in our product documentation, don't hesitate to contact us. We can be reached over the phone at 206.965.8207 and online via email.
+            </Typography>
+
             <Typography variant="h3" style={{ color: '#74b4ab', marginBottom: '1rem' }}>
               Contents
             </Typography>
             <Link href="#videos" style={{ display: 'block', fontSize: '1.5rem', marginLeft: '3rem' }}>Product Video Library</Link>
-            <Link href="#docs" style={{ display: 'block', fontSize: '1.5rem', marginLeft: '3rem' }}>Product Documentation and information</Link>
+            <Link href="#docs" style={{ display: 'block', fontSize: '1.5rem', marginLeft: '3rem' }}>Product Documentation and Information</Link>
             <Link href="#faq" style={{ display: 'block', fontSize: '1.5rem', marginLeft: '3rem' }}>Frequently Asked Questions</Link>
-
-            <Typography variant='h3' style={{ marginTop: '3rem', marginBottom: '1rem', color: '#74b4ab' }}>We are here to help</Typography>
-            <Typography style={{ width: '80%', margin: '0 auto' }}>
-              Whether you have questions about the ALERT man-overboard system or the OSCAR Water Rescue Training Dummy, the experts at Emerald Marine Products are here for you. From answers to frequently asked questions to live support for our marine safety equipment, you'll find what you need here. We offer a variety of helpful information on our website, including documentation for our man-overboard systems and other marine safety equipment. If your question is not answered in the list below or in our product documentation, don't hesitate to contact us. We can be reached over the phone at 206.965.8207 and online via email.
-            </Typography>
           </div>
         </>}
       {/* Marketing Info */}
@@ -361,7 +361,7 @@ export default function SupportContent() {
       <div className={classes.boxMargin}>
       </div>
       <Typography variant='h3' style={{ margin: '1rem 0px', color: '#74b4ab' }} id="docs">
-        Product Documentation and information
+        Product Documentation and Information
       </Typography>
       {input.length > 0 ?
         productState.map(item => (

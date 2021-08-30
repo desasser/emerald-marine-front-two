@@ -27,19 +27,23 @@ export default function ProductBlock(props) {
   const bestSellers = [
     {
       name:'ALERT2 Man-Overboard Receiver™',
-      SKU:'AR100'
+      SKU:'AR100',
+      order: 0,
     },
     {
       name:'OSCAR Water Rescue Training Dummy™ Now available for direct purchase!',
-      SKU:'OT100'
+      SKU:'OT100',
+      order: 1,
     },
     {
       name:'ALERT2 Man-Overboard Transmitter™ with Spray Tight Pouch',
-      SKU:'AT102'
+      SKU:'AT102',
+      order: 2,
     },
     {
-      name:'ALERT418® Man-Overboard Transmitter with Spray Tight Pouch',
-      SKU:'AT401'
+      name:'ALERT Portable, DIY Man-Overboard Alarm System',
+      SKU:'AS100',
+      order: 3,
     },
   ]
 
@@ -49,7 +53,13 @@ export default function ProductBlock(props) {
     }
   }
 
-  const filteredProducts = products.filter(checkSKU);
+  const sortOrder = ['AR100', 'AT102', 'AS100', 'OT100']
+
+  const itemArranger = products.filter(checkSKU);
+  const filteredProducts = [];
+  for (let i = 0; i < itemArranger.length; i++) {
+    filteredProducts.push(itemArranger.find(x => x.SKU === sortOrder[i]))
+  }
 
   return (
     <div>
