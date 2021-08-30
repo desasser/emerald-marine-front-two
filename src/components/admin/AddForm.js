@@ -88,8 +88,8 @@ const AddForm = ({ section, message, fields, handleAddFormChange, updateMe, succ
           </div>
         </div> :
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <Button size='small' variant="contained" onClick={showForm} style={{ fontSize: '1rem', margin: '5px', height: '60px', backgroundColor: '#f5ed5e' }}>Add new {section}</Button>
-          <Button size='small' variant="contained" onClick={grabSaved} style={{ fontSize: '1rem', margin: '5px', height: '60px', backgroundColor: '#f5ed5e' }}>Load Saved {section}</Button>
+          <Button size='small' variant="contained" onClick={showForm} style={{ fontSize: '1rem', margin: '5px', backgroundColor: '#f5ed5e' }}>Add new {section}</Button>
+          <Button size='small' variant="contained" onClick={grabSaved} style={{ fontSize: '1rem', margin: '5px', backgroundColor: '#f5ed5e' }}>Load Saved {section}</Button>
         </div>}
     </div>
   )

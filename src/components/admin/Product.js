@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
     height: 200
   },
   mediaRoot: {
-    marginBottom: '5px'
+    marginBottom: '5px',
+    height: '200px',
   },
   infoCards: {
     maxHeight: '75vh',
