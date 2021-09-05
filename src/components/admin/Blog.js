@@ -22,7 +22,7 @@ const Blog = () => {
     const blogContent = useSelector(state => state.blogContent.blogContent)
 
     const token = localStorage.getItem('token');
-    const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
+    const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter categories as a comma-seperated list.'
     const [current, setCurrent] = useState({
         title: '',
         date: '',
@@ -53,7 +53,7 @@ const Blog = () => {
         });
     };
     
-    const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}]
+    const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}]
 
     const showEditForm = () => {
         setEditing(true)

@@ -29,6 +29,7 @@ const Press = () => {
     image: '',
     date: '',
     alt: '',
+    categories: '',
     content: ''
   });
   const [currentID, setCurrentID] = useState('')

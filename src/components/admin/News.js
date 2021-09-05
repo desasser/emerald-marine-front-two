@@ -26,7 +26,7 @@ const News = () => {
     date: '',
     link: '',
     description: '',
-    tags: '',
+    catgegories: '',
     image: '',
     alt: '',
   });
