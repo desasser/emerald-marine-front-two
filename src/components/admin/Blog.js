@@ -22,12 +22,11 @@ const Blog = () => {
     const blogContent = useSelector(state => state.blogContent.blogContent)
 
     const token = localStorage.getItem('token');
-    const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
+    const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter categories as a comma-seperated list.'
     const [current, setCurrent] = useState({
         title: '',
         date: '',
         categories: '',
-        tags: '',
         image: '',
         alt: '',
         intro: '',
@@ -53,7 +52,7 @@ const Blog = () => {
         });
     };
     
-    const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}]
+    const fields = [{name: 'title', content: `${current.title}`}, {name: 'date', content: `${current.date}`}, {name: 'categories', content: `${current.categories}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, {name: 'intro', content: `${current.intro}`}]
 
     const showEditForm = () => {
         setEditing(true)
@@ -68,7 +67,6 @@ const Blog = () => {
         title: '',
         date: '',
         categories: '',
-        tags: '',
         image: '',
         alt: '',
         intro: '',
@@ -89,6 +87,7 @@ const Blog = () => {
         setEditorText('Add Content')
         setUpdating(false);
         const currentPost = {...current, content: JSON.stringify(blogContent)}
+        // console.log(`Here's what we sent: ${JSON.stringify(currentPost, null, 2)}`)
         API.createBlogPost(currentPost, token).then(res => {
             if(res.data) {
                 store.dispatch(fetchBlog())
@@ -119,7 +118,6 @@ const Blog = () => {
         const title = e.currentTarget.getAttribute('data-title')
         const date = e.currentTarget.getAttribute('data-date')
         const categories = e.currentTarget.getAttribute('data-categories')
-        const tags = e.currentTarget.getAttribute('data-tags')
         const image = e.currentTarget.getAttribute('data-image')
         const alt = e.currentTarget.getAttribute('data-alt')
         const intro = e.currentTarget.getAttribute('data-intro')
@@ -130,7 +128,6 @@ const Blog = () => {
             title: title,
             date: date,
             categories: categories,
-            tags: tags,
             image: image,
             alt: alt,
             intro: intro,
@@ -198,27 +195,6 @@ const Blog = () => {
     }
     
 
-    const uploadSuccess = result => {
-        store.dispatch({
-            type: 'FETCH_IMAGE_URL',
-            payload: {
-                url: result.info.url
-            }
-        });
-        setCurrent({
-            ...current,
-            image: result.info.url
-        });
-    }
-
-    const uploadFailure = response => {
-        setIndicator({
-            open: true,
-            severity: 'error',
-            message: `Error uploading image: ${response}`
-        });
-    }
-
     const saveCurrentBlog = e => {
         e.preventDefault();
         setUpdating(false)
@@ -255,17 +231,17 @@ const Blog = () => {
                 {editing ? 
                 <Grid container spacing={1} justify='space-evenly'>
                 <Grid item xs={10} sm={10}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} text={editorText} saveCurrent={saveCurrentBlog} grabSaved={grabSavedBlog}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateBlog : addBlogPost} show={editing} showForm={showEditForm} text={editorText} saveCurrent={saveCurrentBlog} grabSaved={grabSavedBlog}/>
                 </Grid>
             </Grid> :
             <Grid container spacing={4}>
                 <Grid item xs={11} sm={10} className={classes.infoCards}>
                 {posts?.map(post =>  
-                    <BlogCard id='#' view='admin' margin='1rem' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} tags={post.tags} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
+                    <BlogCard id='#' view='admin' margin='1rem' type='Blog Post' title={post.title} image={post.image} alt={post.alt} intro={post.intro} date={post.date} id={post._id} categories={post.categories} content={post.content} grabMe={grabCurrent} confirm={removeCurrent}/>
                     )}
                 </Grid>
                 <Grid item xs={12} sm={2}>
-                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentBlog} grabSaved={grabSavedBlog}/>
+                    <AddForm section='Blog Post' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} addMe={addBlogPost} updateMe={updateBlog} show={editing} showForm={showEditForm} saveCurrent={saveCurrentBlog} grabSaved={grabSavedBlog}/>
                 </Grid>
             </Grid>}
             </Grid>
