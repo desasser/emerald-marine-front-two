@@ -89,9 +89,8 @@ export default function SingleProductContent({ sku }) {
           quantity: `${JSON.parse(quantity.quantity) + JSON.parse(cartItem.quantity.quantity)}`
         }
       }
-      console.log('probably hi', productToCart)
+
       cart.splice(modifyIndex, 1)
-      console.log('maybe hi', cart)
 
       store.dispatch({
         type: 'FETCH_CART_PRODUCTS',
