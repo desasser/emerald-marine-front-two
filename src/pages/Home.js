@@ -60,7 +60,7 @@ export default function Home() {
   function Item(props) {
     return (
       <div
-        style={{ backgroundImage: `url(${props.item.source})`, height: '40vh', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        style={{ backgroundImage: `url(${props.item.source})`, height: '45vh', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         alt={props.item.description}>
         <div style={{ width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.1) 75%, rgba(0, 0, 0, 0.9) 100%)'}}>
           <Typography variant='h5' style={{ color: 'white', padding: '50px', width: '80%', fontSize: '1.5rem', textAlign: 'center' }}>
@@ -191,11 +191,11 @@ export default function Home() {
       </Carousel>
       <div style={{ maxWidth: '80%' }}>
         <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%', marginTop: '2rem' }}>
-          Why Emerald Marine?
+          Why Emerald Marine Products?
         </Typography>
         <MarketingInfo marketing={marketing} />
         <Typography variant='h3' style={{ margin: '1em 0px', color: '#74b4ab' }}>
-          Who is protected with the ALERT products?
+          Who is protected with the Emerald Marine ALERT products?
         </Typography>
         {/* Marketing Info */}
         <div style={{ margin: '20px auto' }}>

@@ -46,11 +46,9 @@ export default function SimpleAccordion({ input, content, classes }) {
           >
             <Typography className={customClasses.heading}>{item.question ? item.question : item.subHeader}</Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails style={{flexDirection: 'column'}}>
             {item.answer ?
-              <Typography>
-                {item.answer}
-              </Typography>
+                (item.answer.map(e => <Typography style={{marginBottom: '1rem'}}> {item.answer} </Typography>))
               :
               <div>
                 <Typography>
