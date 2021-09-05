@@ -9,7 +9,6 @@ const AdminLogin = () => {
 
     useEffect(() => {
         API.greeting().then(res => {
-            console.log(res.data)
         });
     }, [localStorage.getItem('token')]);
 

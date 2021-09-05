@@ -90,7 +90,6 @@ const News = () => {
         severity: 'success',
         message: 'Successfully added news article.'
       });
-      console.log(res);
     }).catch(err => {
       setIndicator({
         open: true,
@@ -160,7 +159,6 @@ const News = () => {
     e.preventDefault();
     API.updateNewsArticle(currentID, current, token).then(res => {
       if (res) {
-        console.log(res);
         store.dispatch(fetchNewsArticles())
       }
       clearCurrent();
