@@ -8,13 +8,12 @@ import store from '../utils/store'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    // width: '70%',
     margin: '20px',
   },
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
-    height: '225px'
+    minHeight: '225px'
   },
   img: {
     width: 128,
@@ -68,15 +67,15 @@ export default function CartCard({ price, shipping, image, title, sku, id, quant
   }
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div className={classes.root}>
+    <Grid container style={{ display: 'flex' }}>
+      <Grid item xs={12} sm={9} className={classes.root}>
         <Link to={`/product/${sku}`} style={{ textDecoration: 'none', color: 'black' }}>
           <Paper className={classes.paper}>
             <Grid container spacing={2}>
               <Grid item>
                 <img className={classes.img} alt={title} src={image} />
               </Grid>
-              <Grid item xs={12} sm container style={{ height: '200px' }}>
+              <Grid item xs={12} sm container style={{ minHeight: '200px' }}>
                 <Grid item xs container direction="column" spacing={2}>
                   <Grid item xs >
                     <Typography gutterBottom variant="h6" style={{ marginTop: '10px', color: '#74b4ab' }}>
@@ -84,7 +83,7 @@ export default function CartCard({ price, shipping, image, title, sku, id, quant
                     </Typography>
                   </Grid>
                 </Grid>
-                <Grid item style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
+                <Grid item style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <Typography variant="subtitle1" style={{ textAlign: 'right' }}>${price}</Typography>
                   <Typography variant="subtitle1" style={{ textAlign: 'right' }}>Quantity: {quantity}</Typography>
                   <Typography variant="subtitle1">Shipping Estimate: {shipping}</Typography>
@@ -96,11 +95,13 @@ export default function CartCard({ price, shipping, image, title, sku, id, quant
             </Grid>
           </Paper>
         </Link>
-      </div>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' value={currentQuant.quantity} />
-        <Button variant="contained" className={classes.buttonStyle} type='submit'>Update</Button>
-      </form>
-    </div>
+      </Grid>
+      <Grid item xs={12} sm={2} style={{display: 'flex', alignItems: 'center'}}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <TextField className={classes.inputStyle} id="outlined-basic" variant="outlined" onChange={handleChange} name='quantity' label='quantity' value={currentQuant.quantity} />
+          <Button variant="contained" className={classes.buttonStyle} type='submit'>Update</Button>
+        </form>
+      </Grid>
+    </Grid>
   );
 }
