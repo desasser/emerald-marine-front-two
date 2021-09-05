@@ -64,12 +64,13 @@ const Press = () => {
       image: '',
       date: '',
       alt: '',
-      content: ''
+      content: '',
+      categories: ''
     });
   }
 
   const warnings = 'Date must be in the following format: "YYYY-MM-DD".'
-  const fields = [{ name: 'title', content: `${current.title}` }, { name: 'image', content: `${current.image}` }, { name: 'date', content: `${current.date}` }, { name: 'alt', content: `${current.alt}` }, { name: 'content', content: `${current.content}` }]
+  const fields = [{ name: 'title', content: `${current.title}` }, { name: 'image', content: `${current.image}` }, { name: 'date', content: `${current.date}` }, { name: 'alt', content: `${current.alt}` }, { name: 'content', content: `${current.content}` }, { name: 'categories', content: `${current.categories}` }]
 
   const handleAddFormChange = e => {
     const { name, value } = e.target;
@@ -81,6 +82,7 @@ const Press = () => {
 
   const addPressRelease = () => {
     setUpdating(false);
+    // console.log(`Here's what we sent: ${JSON.stringify(current, null, 2)}`)
     API.createPressRelease(current, token).then(res => {
       if (res.data) {
         store.dispatch(fetchPressReleases())
@@ -111,13 +113,15 @@ const Press = () => {
     const alt = e.currentTarget.getAttribute('data-alt')
     const content = e.currentTarget.getAttribute('data-content')
     const id = e.currentTarget.getAttribute('data-id')
+    const categories = e.currentTarget.getAttribute('data-categories')
 
     setCurrent({
       title: title,
       date: date,
       image: image,
       alt: alt,
-      content: content
+      content: content,
+      categories: categories
     })
     setCurrentID(id)
     showEditForm();
@@ -173,28 +177,6 @@ const Press = () => {
     })
   }
 
-  const uploadSuccess = result => {
-    console.log(result.info.url)
-    store.dispatch({
-      type: 'FETCH_IMAGE_URL',
-      payload: {
-        url: result.info.url
-      }
-    });
-    setCurrent({
-      ...current,
-      image: result.info.url
-    });
-  }
-
-  const uploadFailure = response => {
-    setIndicator({
-      open: true,
-      severity: 'error',
-      message: `Error uploading image: ${response}`
-    });
-  }
-
   const saveCurrentPress = e => {
     e.preventDefault();
     setUpdating(false)
@@ -227,17 +209,17 @@ const Press = () => {
         {editing ?
           <Grid container spacing={1} justify='space-evenly'>
             <Grid item xs={12} sm={10}>
-              <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentPress} grabSaved={grabSavedPress} />
+              <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} show={editing} showForm={showEditForm} saveCurrent={saveCurrentPress} grabSaved={grabSavedPress} />
             </Grid>
           </Grid> :
           <Grid container spacing={1}>
             <Grid item xs={11} sm={10} spacing={2} className={classes.infoCards}>
               {releases?.map(release =>
-                <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' confirm={removeCurrent} grabMe={grabCurrent} className={classes.cards} />
+                <BlogCard id='#' title={release.title} image={release.image} alt={release.alt} date={release.date} content={release.content} id={release._id} view='admin' type='Press Release' confirm={removeCurrent} grabMe={grabCurrent} className={classes.cards} categories={release.categories} />
               )}
             </Grid>
             <Grid item xs={12} sm={2}>
-              <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} successCallback={uploadSuccess} failureCallback={uploadFailure} show={editing} showForm={showEditForm} saveCurrent={saveCurrentPress} grabSaved={grabSavedPress} />
+              <AddForm section='Press Release' message={warnings} fields={fields} handleAddFormChange={handleAddFormChange} updateMe={updating ? updateMe : addPressRelease} show={editing} showForm={showEditForm} saveCurrent={saveCurrentPress} grabSaved={grabSavedPress} />
             </Grid>
           </Grid>}
       </Grid>

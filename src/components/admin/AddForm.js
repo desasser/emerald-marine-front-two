@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import store from '../../utils/store';
 import DeleteConfirmation from './DeleteConfirmation';
 
-const AddForm = ({ section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, saveCurrent, grabSaved }) => {
+const AddForm = ({ section, message, fields, handleAddFormChange, updateMe, show, showForm, saveCurrent, grabSaved }) => {
   const blogContent = useSelector(state => state.blogContent.blogContent)
   const productSpecs = useSelector(state => state.productSpecs.productSpecs)
 
