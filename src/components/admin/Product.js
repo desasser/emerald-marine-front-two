@@ -230,7 +230,6 @@ const Product = () => {
   }
 
   const uploadSuccess = result => {
-    console.log(result.info.url)
     store.dispatch({
       type: 'FETCH_IMAGE_URL',
       payload: {

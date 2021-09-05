@@ -132,7 +132,6 @@ const Press = () => {
     const id = e.currentTarget.getAttribute('data-id')
     API.deletePressRelease(id, token).then(res => {
       if (res) {
-        console.log(res);
         store.dispatch(fetchPressReleases())
         setIndicator({
           open: true,
@@ -155,7 +154,6 @@ const Press = () => {
     e.preventDefault();
     API.updatePressRelease(currentID, current, token).then(res => {
       if (res) {
-        console.log(res.data);
         store.dispatch(fetchPressReleases())
       }
       clearCurrent();

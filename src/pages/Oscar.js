@@ -17,7 +17,6 @@ import { Helmet } from 'react-helmet'
 export default function Home() {
   useEffect(() => {
     API.greeting().then(res => {
-      console.log(res.data)
     });
   });
 
@@ -57,7 +56,7 @@ export default function Home() {
   function Item(props) {
     return (
       <div
-        style={{ backgroundImage: `url(${props.item.source})`, height: '40vh', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom', backgroundRepeat: 'no-repeat' }}
+        style={{ backgroundImage: `url(${props.item.source})`, height: '45vh', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom', backgroundRepeat: 'no-repeat' }}
         alt={props.item.description}>
 
       </div>

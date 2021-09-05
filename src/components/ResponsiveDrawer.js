@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor: 'white'
+    backgroundColor: '#78787a'
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: 'black',
+    color: 'white',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: 'white',
+    backgroundColor: '#78787a',
   },
   content: {
     flexGrow: 1,
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   link: {
-    color: 'black',
+    color: 'white',
     textDecoration: "none",
     fontWeight: 900,
     fontSize: "1.75em"
@@ -94,7 +94,7 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', paddingTop: '1em', paddingRight: '1em' }}>
-        <CloseIcon style={{ fontSize: '3em', color: 'black' }} onClick={handleDrawerToggle} />
+        <CloseIcon style={{ fontSize: '3em', color: 'white' }} onClick={handleDrawerToggle} />
       </div>
       <div className={classes.toolbar} />
       <NavLink to="/" className={classes.logoContainer} onClick={() => setMobileOpen(false)}>

@@ -17,7 +17,6 @@ export const fetchNewsArticles = () => {
         try {
             let res = await axios.get(`${URL_PREFIX}/news`)
             dispatch(fetchNewsArticlesSuccess(res))
-            // console.log(res)
         }
         catch(err) {
             dispatch(fetchNewsArticlesFailure(err));

@@ -19,7 +19,6 @@ export default function SimpleAccordion({ input, content, classes }) {
   const customClasses = useStyles();
   const [filteredContent, setFilteredContent] = useState([]);
 
-  // console.log('input search term', input)
   useEffect(() => {
     if (input.length > 0) {
       const filtered = filteredContent.filter(item => {
@@ -46,11 +45,9 @@ export default function SimpleAccordion({ input, content, classes }) {
           >
             <Typography className={customClasses.heading}>{item.question ? item.question : item.subHeader}</Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails style={{flexDirection: 'column'}}>
             {item.answer ?
-              <Typography>
-                {item.answer}
-              </Typography>
+                (item.answer.map(e => <Typography style={{marginBottom: '1rem'}}> {item.answer} </Typography>))
               :
               <div>
                 <Typography>
