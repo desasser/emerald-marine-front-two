@@ -82,17 +82,20 @@ export default function SingleProductContent({ sku }) {
     if (cart.some(item => item.product.SKU === currentProduct.SKU)) {
       const cartItem = cart.find(item => item.product.SKU === currentProduct.SKU);
       const modifyIndex = cart.findIndex(item => item.product.SKU === currentProduct.SKU)
+      console.log('---------modify index----------------', modifyIndex)
       productToCart = {
         product: currentProduct,
         quantity: {
           quantity: `${JSON.parse(quantity.quantity) + JSON.parse(cartItem.quantity.quantity)}`
         }
       }
-      console.log(cart.splice(1, modifyIndex + 1).concat(productToCart))
+      console.log('probably hi', productToCart)
+      cart.splice(modifyIndex, 1)
+      console.log('maybe hi', cart)
 
       store.dispatch({
         type: 'FETCH_CART_PRODUCTS',
-        payload: cart.splice(1, modifyIndex + 1).concat(productToCart)
+        payload: cart.concat(productToCart)
       })
     } else {
       productToCart = {

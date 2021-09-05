@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import API from '../utils/API';
 import ContactInfo from './ContactInfo';
 import ReCaptchaV2 from 'react-google-recaptcha';
+import { useHistory  } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   footer: {
@@ -94,6 +95,7 @@ export default function Contact() {
   const classes = useStyles()
   const [form, setForm] = useState(defaultForm)
   const [preferredContact, setPreferredContact] = useState('');
+  const history = useHistory();
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -135,6 +137,11 @@ export default function Contact() {
     })
   }
 
+  const handleClick = e => {
+    e.preventDefault();
+    history.push('/thank')
+  }
+
   return (
     <div>
       <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Contact</Typography>
@@ -173,7 +180,7 @@ export default function Contact() {
               onExpired={handleExpire}
             />
           </div>
-          <Button variant="contained" style={{ margin: '1rem 0', height: '56px', width: '100px', backgroundColor: '#f5ed5e', fontSize: '16px' }} type='submit'>Submit</Button>
+          <Button variant="contained" onClick={handleClick} style={{ margin: '1rem 0', height: '56px', width: '100px', backgroundColor: '#f5ed5e', fontSize: '16px' }} type='submit'>Submit</Button>
         </div>
       </form>
     </div>
