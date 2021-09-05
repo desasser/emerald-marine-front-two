@@ -76,6 +76,9 @@ export default function ProductContent() {
         All Products
       </Typography>
       <Typography style={{ width: '90%', marginBottom: '1rem' }}>
+        When it comes to water safety, adequate training and man overboard locator devices can make all the difference. Emerald Marine offers an industry trusted selection of ALERT Man-Overboard Alarm Systems, OSCAR Water Rescue Training Dummies, and other marine products and accessories to add in fall overboard retrieval.
+      </Typography>
+      <Typography style={{ width: '90%', marginBottom: '1rem' }}>
         Click on any of the products listed below to “Add to Your Cart.” Once you add up the items you'd like to purchase you can get a shipping estimate. Click on the “Submit Request For a Quote” button and our staff will look over your configuration and provide you with a quote specific to your needs.
       </Typography>
       <Typography style={{ width: '90%', marginBottom: '1rem' }}>

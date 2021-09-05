@@ -59,8 +59,6 @@ export default function NewsContent() {
     }
   };
 
-  console.log(postState.original)
-
   return (
     <Container style={{marginBottom: '2rem'}}>
       <Typography variant='h2' style={{ marginTop: '3rem', marginBottom: '2rem', color: '#74b4ab' }}>
@@ -85,14 +83,12 @@ export default function NewsContent() {
           <Grid item xs={12} key={post._id}>
             <Hidden smUp>
               {/* Big screens */}
-              <BlogCard title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt} intro={post.intro} publication={post.publication} link={post.link}>
-                {post.description}
+              <BlogCard description={post.description} title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt} intro={post.intro} publication={post.publication} link={post.link}>
               </BlogCard>
             </Hidden>
             {/* Mobile screens */}
             <Hidden xsDown>
-              <MobileBlogCard title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt} intro={post.intro} publication={post.publication} link={post.link}>
-                {post.description}
+              <MobileBlogCard description={post.description} title={post.title} image={post.image} date={post.date} id={post._id} alt={post.alt} intro={post.intro} publication={post.publication} link={post.link}>
               </MobileBlogCard>
             </Hidden>
           </Grid>

@@ -18,7 +18,6 @@ export default function SingleBlogContent({ id }) {
     isString = true;
   }
 
-  console.log('is a string?', isString)
   return (
     <>
       <div style={{ width: '100%', marginTop: '3em', }}>

@@ -98,8 +98,8 @@ export default function BlogCard({ id, title, image, alt, date, categories, tags
                 <Typography gutterBottom variant="h4" component="h2" style={{ color: '#74b4ab' }}>
                   {title}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Read More...
+                <Typography variant="body2" color="textSecondary" component="p" style={{ marginBottom: '1rem'}}>
+                  {description?.substring(0, 500)}
                 </Typography>
                 <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
                   <Typography gutterBottom variant="body1" component="h2" style={{ textAlign: 'right', fontStyle: 'italic' }}>

@@ -64,8 +64,6 @@ const ProductSpecs = ({ text, heading, content, number }) => {
       type: 'EDIT_SPECS',
       payload: [...newSpecs]
     })
-    console.log(newSpecs)
-    console.log(productSpecs)
     if (!number || number !== 0) {
       setProduct({
         ...product,
