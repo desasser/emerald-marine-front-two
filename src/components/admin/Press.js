@@ -127,7 +127,6 @@ const Press = () => {
     const id = e.currentTarget.getAttribute('data-id')
     API.deletePressRelease(id, token).then(res => {
       if (res) {
-        console.log(res);
         store.dispatch(fetchPressReleases())
         setIndicator({
           open: true,
@@ -150,7 +149,6 @@ const Press = () => {
     e.preventDefault();
     API.updatePressRelease(currentID, current, token).then(res => {
       if (res) {
-        console.log(res.data);
         store.dispatch(fetchPressReleases())
       }
       clearCurrent();
@@ -173,7 +171,6 @@ const Press = () => {
   }
 
   const uploadSuccess = result => {
-    console.log(result.info.url)
     store.dispatch({
       type: 'FETCH_IMAGE_URL',
       payload: {

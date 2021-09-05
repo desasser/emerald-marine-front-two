@@ -19,7 +19,6 @@ export default function SimpleAccordion({ input, content, classes }) {
   const customClasses = useStyles();
   const [filteredContent, setFilteredContent] = useState([]);
 
-  // console.log('input search term', input)
   useEffect(() => {
     if (input.length > 0) {
       const filtered = filteredContent.filter(item => {

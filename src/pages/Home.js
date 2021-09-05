@@ -26,7 +26,6 @@ export default function Home() {
 
   useEffect(() => {
     API.greeting().then(res => {
-      console.log(res.data)
     });
   });
 

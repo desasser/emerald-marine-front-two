@@ -151,7 +151,6 @@ const Blog = () => {
         const id = e.currentTarget.getAttribute('data-id');
         API.deleteBlogPost(id, token).then(res => {
             if(res) {
-                console.log(res)
                 store.dispatch(fetchBlog())
                 setIndicator({
                     open: true,
@@ -173,7 +172,6 @@ const Blog = () => {
         const currentPost = {...current, content: JSON.stringify(blogContent)}
         API.updateBlogPost(currentID, currentPost, token).then(res => {
             if(res) {
-                console.log(res)
                 store.dispatch(fetchBlog())
             }
             clearCurrent();
@@ -201,7 +199,6 @@ const Blog = () => {
     
 
     const uploadSuccess = result => {
-        console.log(result.info.url)
         store.dispatch({
             type: 'FETCH_IMAGE_URL',
             payload: {

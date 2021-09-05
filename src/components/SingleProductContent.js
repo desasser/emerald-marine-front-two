@@ -82,7 +82,6 @@ export default function SingleProductContent({ sku }) {
     if (cart.some(item => item.product.SKU === currentProduct.SKU)) {
       const cartItem = cart.find(item => item.product.SKU === currentProduct.SKU);
       const modifyIndex = cart.findIndex(item => item.product.SKU === currentProduct.SKU)
-      console.log('---------modify index----------------', modifyIndex)
       productToCart = {
         product: currentProduct,
         quantity: {
