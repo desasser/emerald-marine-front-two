@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import oscarOne from '../images/oscar_rescue_1_crop.jpg'
 import oscarTwo from '../images/oscar_rescue_2_crop.jpg'
-import oscarThree from '../images/oscar_rescue_3_crop.jpg'
+import oscarThree from '../images/oscar_rescue_4_crop.jpg'
 // import BlogBanner from "../components/BlogBanner"
 // import TestimonialBanner from "../components/TestimonialBanner"
 import ReactPlayer from 'react-player/youtube'
@@ -89,12 +89,6 @@ export default function Home() {
   ]
 
   return (
-    //   <div style={{maxWidth: '80%'}}>
-
-    //   <MarketingInfo marketing={marketing}/>
-    //   <ProductBlock />
-    //   </div>
-
     <Page>
       <Helmet>
         <title>OSCAR Water Rescue</title>
@@ -111,7 +105,7 @@ export default function Home() {
         }
       </Carousel>
       <div style={{ maxWidth: '80%', marginTop: '3rem' }}>
-        <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%' }}>
+        <Typography variant='h3' component="h1" style={{ color: '#74b4ab', textAlign: 'left', width: '95%' }}>
           Why OSCAR - Water Rescue Training Dummy?
         </Typography>
         {/* Marketing Info */}

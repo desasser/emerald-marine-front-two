@@ -142,7 +142,7 @@ export default function CartContent() {
   return (
     <Grid container style={{ width: '80%', marginBottom: '1rem' }} spacing={3}>
       <Grid item xs={12} sm={6}>
-        <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
+        <Typography variant='h2' component="h1" style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Shopping Cart</Typography>
       </Grid>
       <Grid item xs={12} sm={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
         <Link to='/products' style={{ cursor: 'pointer', textDecoration: 'none', color: 'goldenrod'}}>

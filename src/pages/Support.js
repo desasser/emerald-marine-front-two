@@ -17,7 +17,7 @@ const Support = () => (
         style={{ backgroundImage: `url(${HandsUp})`, height: '45vh', backgroundSize: 'cover', width: '100vw', backgroundPosition: 'bottom'  }}
         alt='Man overboard'
       />
-    <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab' }}>Support</Typography>
+    <Typography variant='h1' component="h1" style={{ marginTop: '50px', color: '#74b4ab' }}>Support</Typography>
     <div style={{maxWidth: '80%'}}>
       <SupportContent></SupportContent>
     </div>
