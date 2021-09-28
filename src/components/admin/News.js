@@ -26,7 +26,7 @@ const News = () => {
     date: '',
     link: '',
     description: '',
-    tags: '',
+    catgegories: '',
     image: '',
     alt: '',
   });
@@ -62,12 +62,13 @@ const News = () => {
       publication: '',
       date: '',
       link: '',
-      description: ''
+      description: '',
+      categories: ''
     });
   }
 
-  const warnings = 'Date must be in the following format: "YYYY-MM-DD". Enter tags and categories as comma-seperated lists.'
-  const fields = [{ name: 'title', content: `${current.title}` }, { name: 'publication', content: `${current.publication}` }, { name: 'date', content: `${current.date}` }, { name: 'link', content: `${current.link}` }, { name: 'description', content: `${current.description}` }, {name: 'tags', content: `${current.tags}`}, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}]
+  const warnings = 'Date must be in the following format: "YYYY-MM-DD".'
+  const fields = [{ name: 'title', content: `${current.title}` }, { name: 'publication', content: `${current.publication}` }, { name: 'date', content: `${current.date}` }, { name: 'link', content: `${current.link}` }, { name: 'description', content: `${current.description}` }, {name: 'image', content: `${current.image}`}, {name: 'alt', content: `${current.alt}`}, { name: 'categories', content: `${current.categories}` }]
 
   const handleAddFormChange = e => {
     const { name, value } = e.target;
@@ -79,6 +80,7 @@ const News = () => {
 
   const addNewsArticle = () => {
     setUpdating(false);
+    // console.log(`Here's what we sent: ${JSON.stringify(current, null, 2)}`)
     API.createNewsArticle(current, token).then(res => {
       if (res.data) {
         store.dispatch(fetchNewsArticles())
@@ -108,9 +110,9 @@ const News = () => {
     const link = e.currentTarget.getAttribute('data-link')
     const description = e.currentTarget.getAttribute('data-description')
     const id = e.currentTarget.getAttribute('data-id')
-    const tags = e.currentTarget.getAttribute('data-tags')
     const image = e.currentTarget.getAttribute('data-image')
     const alt = e.currentTarget.getAttribute('data-alt')
+    const categories = e.currentTarget.getAttribute('data-categories')
 
     description ? setCurrent({
       title: title,
@@ -118,7 +120,6 @@ const News = () => {
       date: date,
       link: link,
       description: description,
-      tags: tags,
       image: image,
       alt: alt
     }) : setCurrent({
@@ -126,7 +127,6 @@ const News = () => {
       publication: publication,
       date: date,
       link: link,
-      tags: tags,
       image: image,
       alt: alt
     })
@@ -220,7 +220,7 @@ const News = () => {
           <Grid container spacing={1}>
             <Grid item xs={11} sm={10} className={classes.infoCards}>
               {articles?.map(article =>
-                <BlogCard id='#' title={article.title} alt={'not a cat'} publication={article.publication} date={article.date} link={article.link} description={article.description} id={article._id} image={article.image} alt={article.alt} tags={article.tags} confirm={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article' />
+                <BlogCard id='#' title={article.title} alt={'not a cat'} publication={article.publication} date={article.date} link={article.link} description={article.description} id={article._id} image={article.image} alt={article.alt} categories={article.categories} confirm={removeCurrent} grabMe={grabCurrent} view='admin' type='News Article' />
               )}
             </Grid>
             <Grid item xs={12} sm={2}>

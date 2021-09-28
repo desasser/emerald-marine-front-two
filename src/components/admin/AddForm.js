@@ -1,14 +1,13 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import UploadWidget from './UploadWidget';
 import BlogContent from './BlogContent';
 import ProductSpecs from './ProductSpecs';
 import { useSelector } from 'react-redux';
 import store from '../../utils/store';
 import DeleteConfirmation from './DeleteConfirmation';
 
-const AddForm = ({ section, message, fields, handleAddFormChange, updateMe, successCallback, failureCallback, show, showForm, saveCurrent, grabSaved }) => {
+const AddForm = ({ section, message, fields, handleAddFormChange, updateMe, show, showForm, saveCurrent, grabSaved }) => {
   const blogContent = useSelector(state => state.blogContent.blogContent)
   const productSpecs = useSelector(state => state.productSpecs.productSpecs)
 
@@ -79,9 +78,6 @@ const AddForm = ({ section, message, fields, handleAddFormChange, updateMe, succ
           </div> : <></>}
 
           <br />
-          {section === 'Product' || section === 'Press Release' || section === 'Blog Post' ?
-            <UploadWidget successCallback={successCallback} failureCallback={failureCallback} /> :
-            <></>}
           <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginTop: '1.5rem' }}>
             <Button variant="contained" onClick={saveCurrent} style={{ backgroundColor: '#f5ed5e', margin: '5px', boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, .3)', border: 'none', fontSize: '1rem' }}>Save Draft</Button>
             <Button variant='contained' style={{ backgroundColor: '#f5ed5e', margin: '5px', boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, .3)', border: 'none', fontSize: '1rem' }} onClick={updateMe}>Submit</Button>
