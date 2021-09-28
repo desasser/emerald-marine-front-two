@@ -72,7 +72,7 @@ export default function ProductContent() {
 
   return (
     <Container>
-      <Typography variant='h2' style={{ marginTop: '3rem', marginBottom: '2rem', color: '#74b4ab', display: 'inline-block', width: '50%' }}>
+      <Typography variant='h2' component="h1" style={{ marginTop: '3rem', marginBottom: '2rem', color: '#74b4ab', display: 'inline-block', width: '50%' }}>
         All Products
       </Typography>
       <Typography style={{ width: '90%', marginBottom: '1rem' }}>

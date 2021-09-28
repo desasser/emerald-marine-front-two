@@ -61,7 +61,7 @@ export default function NewsContent() {
 
   return (
     <Container style={{marginBottom: '2rem'}}>
-      <Typography variant='h2' style={{ marginTop: '3rem', marginBottom: '2rem', color: '#74b4ab' }}>
+      <Typography variant='h2' component="h1" style={{ marginTop: '3rem', marginBottom: '2rem', color: '#74b4ab' }}>
         News
       </Typography>
       <Typography style={{ width: '90%', marginBottom: '2rem' }}>

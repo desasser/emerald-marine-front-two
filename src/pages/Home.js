@@ -66,9 +66,6 @@ export default function Home() {
             {props.item.text}
           </Typography>
         </div>
-        {/* <Typography variant='h5' style={{ color: 'white', padding: '50px', width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', boxShadow: '0 0 25px 25px rgba(0, 0, 0, 0.5)', borderRadius: '2rem', fontSize: '1.75rem', textAlign: 'center' }}>
-          {props.item.text}
-        </Typography> */}
       </div>
     )
   }
@@ -189,7 +186,7 @@ export default function Home() {
         }
       </Carousel>
       <div style={{ maxWidth: '80%' }}>
-        <Typography variant='h3' style={{ color: '#74b4ab', textAlign: 'left', width: '95%', marginTop: '2rem' }}>
+        <Typography variant='h3' component="h1" style={{ color: '#74b4ab', textAlign: 'left', width: '95%', marginTop: '2rem' }}>
           Why Emerald Marine Products?
         </Typography>
         <MarketingInfo marketing={marketing} />

@@ -144,7 +144,7 @@ export default function Contact() {
 
   return (
     <div>
-      <Typography variant='h2' style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Contact</Typography>
+      <Typography variant='h2' component="h1" style={{ marginTop: '50px', color: '#74b4ab', textAlign: 'left' }}>Contact</Typography>
       <hr></hr>
       <Typography variant='body1' style={{ margin: '1rem 0' }}>
         Emerald Marine Products is an industry leader in industrial-grade, USA-made, Man Overboard Alerting, Water Rescue Dummy, and Retrieval Products. Please contact us through the contact form below, by telephone, or email.
