@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import React from 'react'
 import ProductCard from './ProductCard'
+import { get } from 'lodash'
 
 const useStyles = makeStyles((theme) => ({
   flexBox: {
@@ -77,7 +78,7 @@ export default function ProductBlock(props) {
           <Grid container justify='center' spacing={4}>
             {filteredProducts?.map(product => (
               <Grid key={product._id} item>
-                <ProductCard name={product.name} classes={classes} sku={product.SKU} price={product.price} image={product.image} alt={product.alt}></ProductCard>
+                <ProductCard name={get(product, 'name')} classes={classes} sku={get(product, 'SKU')} price={get(product, 'price')} image={get(product, 'image')} alt={get(product, 'alt')}></ProductCard>
               </Grid>
             ))}
           </Grid>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import oscarOne from '../images/oscar_rescue_1_crop.jpg'
 import oscarTwo from '../images/oscar_rescue_2_crop.jpg'
-import oscarThree from '../images/oscar_rescue_4_crop.jpg'
+// import oscarThree from '../images/oscar_rescue_4_crop.jpg'
 // import BlogBanner from "../components/BlogBanner"
 // import TestimonialBanner from "../components/TestimonialBanner"
 import ReactPlayer from 'react-player/youtube'
@@ -34,7 +34,7 @@ export default function Home() {
     {
       name: "Oscar Water Rescue Training Three",
       description: "Rescuers train with the oscar water rescue training dummy",
-      source: oscarThree
+      source: 'none'
     },
   ]
 
