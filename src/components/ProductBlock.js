@@ -77,7 +77,7 @@ export default function ProductBlock(props) {
         <Grid item xs={12}>
           <Grid container justify='center' spacing={4}>
             {filteredProducts?.map(product => (
-              <Grid key={product._id} item>
+              <Grid key={get(product, '_id')} item>
                 <ProductCard name={get(product, 'name')} classes={classes} sku={get(product, 'SKU')} price={get(product, 'price')} image={get(product, 'image')} alt={get(product, 'alt')}></ProductCard>
               </Grid>
             ))}
